@@ -24,19 +24,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
+
+    Route::controller(App\Http\Controllers\Admin\UserController::class)->group(function () {
+        Route::get('/users', 'index');
+        Route::get('/users/create', 'create');
+        Route::post('/users', 'store');
+        Route::get('/users/{id}', 'edit');
+        Route::put('/update-users/{id}', 'update');
+        Route::post('/delete-users', 'destroy');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
 });
-// Route::prefix('user')->middleware('auth', 'isAdmin')->group(function () {
-//     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
-// });
-// Route::group(['middleware' => ['auth', 'isAdmin']], function () {
-//     Route::prefix('admin')->group(function () {
-//         Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
-//     });
-
-//     Route::prefix('user')->group(function () {
-//         Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
-//     });
-// });

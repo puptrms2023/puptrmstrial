@@ -24,18 +24,12 @@
                                         <input type="text" name="username" class="form-control"
                                             placeholder="Enter your username" value="{{ old('username') }}" required
                                             autofocus>
-                                        @if ($errors->has('username'))
-                                        <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                                        @endif
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label class="label" for="password">Password</label>
                                         <input type="password" name="password" class="form-control"
                                             placeholder="Enter your password" value="{{ old('password') }}" required>
-                                        @if ($errors->has('password'))
-                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-                                        @endif
                                     </div>
 
                                     <div class="form-group">
@@ -44,18 +38,19 @@
                                             Sign In
                                         </button>
                                     </div>
-                                </form>
 
-                                <div class="form-group clearfix">
-                                    <div class="custom-control custom-checkbox float-left">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck"
-                                            name="rem" />
-                                        <label class="custom-control-label" for="customCheck">Remember me</label>
+                                    <div class="form-group clearfix">
+                                        <div class="custom-control custom-checkbox float-left">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck"
+                                                name="remember" {{ old('remember') ? 'checked' : '' }} />
+                                            <label class="custom-control-label" for="customCheck">Remember me</label>
+                                        </div>
+                                        <div class="forgot float-right">
+                                            <a class="text-decoration-none" href="#" id="forgot-link">Forgot
+                                                Password?</a>
+                                        </div>
                                     </div>
-                                    <div class="forgot float-right">
-                                        <a class="text-decoration-none" href="#" id="forgot-link">Forgot Password?</a>
-                                    </div>
-                                </div>
+                                </form>
                                 <div class="text-center">
                                     Do not have an account? <a class="text-decoration-none"
                                         href="{{ route('register') }}">Sign Up</a>

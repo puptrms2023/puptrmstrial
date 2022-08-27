@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\StrMustContain;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest

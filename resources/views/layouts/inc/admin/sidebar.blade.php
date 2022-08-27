@@ -2,7 +2,7 @@
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_home_page">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('assets/admin/img/puplogomini.png') }}"></i>
+            <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
         </div>
         <div class="sidebar-brand-text mx-3">PUPT AAAS</div>
     </a>
@@ -33,7 +33,7 @@
 
     <!--Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{url('admin/users')}}">
             <i class="fa fa-id-card"></i>
             <span>Users</span>
         </a>
