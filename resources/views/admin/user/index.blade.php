@@ -49,7 +49,7 @@
                                 <th>Username</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Enail</th>
+                                <th>Email</th>
                                 <th>Role</th>
                                 <th>Action</th>
                             </tr>
@@ -57,7 +57,7 @@
                         <tbody>
                             @foreach ($users as $item)
                             <tr>
-                                <td>{{ $item->stud_num }}</td>
+                                <td class="font-weight-bold">{{ $item->stud_num }}</td>
                                 <td>{{ $item->username }}</td>
                                 <td>{{ $item->first_name }}</td>
                                 <td>{{ $item->last_name }}</td>

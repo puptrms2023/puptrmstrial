@@ -56,7 +56,7 @@ class UserController extends Controller
             'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
             'course' => 'required',
             'role_as' => 'required',
-            'stud_num' => ['required', 'unique:users,stud_num', 'max:15', new StrMustContain('TG')],
+            'stud_num' => ['required', 'unique:users,stud_num,' . $id, 'max:15', new StrMustContain('TG')],
             'username' => 'required|alpha_dash|unique:users,username,' . $id,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $id
         ]);

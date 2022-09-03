@@ -19,8 +19,7 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label class="small mb-1">Username (how your name will
-                            appear to other users on the site)</label>
+                        <label class="small mb-1">Username</label>
                         <input class="form-control" name="username" type="text" placeholder="Enter your username"
                             value="{{ old('username') }}" required autofocus>
                         @if ($errors->has('username'))

@@ -33,7 +33,15 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::put('/update-users/{id}', 'update');
         Route::post('/delete-users', 'destroy');
     });
+    Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
+        Route::get('/achievers-award', 'index');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
+
+    Route::controller(App\Http\Controllers\User\AwardApplicationController::class)->group(function () {
+        Route::get('/application-form', 'index');
+        Route::post('/application-form', 'store');
+    });
 });

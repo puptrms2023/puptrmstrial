@@ -2,58 +2,30 @@
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_home_page">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('assets/img/puplogomini.png') }}"></i>
+            <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
         </div>
         <div class="sidebar-brand-text mx-3">PUPT AAAS</div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
-        <a class="nav-link align-middle" href="{{url('user/dashboard')}}">
-            Welcome, Super Admin
-    </li>
 
-    <div class="sidebar-heading">
+    <div class="sidebar-heading mt-4">
         NAVIGATION PANE
     </div>
 
     <li class="nav-item active">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <span>Home</span>
+        <a class="nav-link align-middle" href="{{url('user/dashboard')}}">
+            <i class="fa-solid fa-house-chimney"></i>
+            <span>Home</span>
         </a>
-        <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div> -->
     </li>
 
     <!--Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="">
-            <i class="fa fa-id-card"></i>
-            <span>Users</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="achievers_courses.php">
-            <i class="fa fa-award"></i>
-            <span>Achiever Awardees</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="pl_courses.php">
-            <i class="fa fa-award"></i>
-            <span>President's Listers</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="dl_courses.php">
-            <i class="fa fa-award"></i>
-            <span>Dean's Listers</span>
+            <i class="fa-solid fa-list-check"></i>
+            <span>Application Status</span>
         </a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
