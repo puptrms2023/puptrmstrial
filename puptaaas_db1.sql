@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2022 at 08:46 AM
+-- Generation Time: Sep 03, 2022 at 08:57 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -60,7 +60,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2022_08_23_071834_add_details_to_users_table', 2),
 (6, '2022_08_23_135821_add_username_to_users', 3),
-(7, '2022_08_23_150017_delete_name_users_table', 4);
+(7, '2022_08_23_150017_delete_name_users_table', 4),
+(8, '2022_08_23_173103_create_sessions_table', 5),
+(9, '2022_08_27_085759_create_student_applicants_table', 5);
 
 -- --------------------------------------------------------
 
@@ -103,6 +105,48 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_applicants`
+--
+
+CREATE TABLE `student_applicants` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `school_year` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year_level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `award_applied` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1=AA,2=DL,3=PL,4=AE',
+  `gwa_1st` decimal(10,2) NOT NULL,
+  `gwa_2nd` decimal(10,2) NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Accepted,2=Rejected',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `student_applicants`
+--
+
+INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, `award_applied`, `gwa_1st`, `gwa_2nd`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(3, 24, '2022-2023', '3rd Year', '2', '1.75', '2.00', '1662231258.png', 0, '2022-09-03 10:54:18', '2022-09-03 10:54:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -129,8 +173,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(19, '2022-07000-TG-0', 'admins', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', 'BSIT', 1, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'U1sexxSPZPunpPkLwotUHH0yOTNra3pR7gDVgJUT0d45iKgMXuYR8DmTVIaV', '2022-08-23 11:10:10', '2022-08-25 23:02:06'),
-(24, '2022-00330-ab-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'aaa@gmail.com', '+639297205140', 'BSITs', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', NULL, '2022-08-25 03:27:24', '2022-08-26 22:25:05');
+(19, '2022-07000-TG-0', 'admins', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', 'BSIT', 1, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'ONlk6pTh18C9BTtNDLLdhDRDxFxjpeT6Fz5UVT5DGVx2fq3Q0hIEf1amWYl7', '2022-08-23 11:10:10', '2022-08-25 23:02:06'),
+(24, '2022-00330-TG-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'aaa@gmail.com', '+639297205140', 'BSITs', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', 'KBuILBTdpRakcVmbY4kxoFsG7Q4tzCx67MUZ51ZXltMGDBkq6keVvKuDnlDG', '2022-08-25 03:27:24', '2022-08-27 00:50:12');
 
 --
 -- Indexes for dumped tables
@@ -164,6 +208,20 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `student_applicants`
+--
+ALTER TABLE `student_applicants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -185,13 +243,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_applicants`
+--
+ALTER TABLE `student_applicants`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -14,6 +14,7 @@ class StudentApplicants extends Model
         'user_id',
         'gwa_1st',
         'gwa_2nd',
+        'school_year',
         'year_level',
         'image',
         'award_applied',

@@ -21,6 +21,7 @@ class AwardApplicationController extends Controller
         $award = new StudentApplicants();
 
         $award->user_id = $data['user_id'];
+        $award->school_year = $data['school_year'];
         $award->gwa_1st = $data['gwa_1st'];
         $award->gwa_2nd = $data['gwa_2nd'];
         $award->year_level = $data['year_level'];

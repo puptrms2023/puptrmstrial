@@ -26,6 +26,7 @@ class AwardFormRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'school_year' => 'required',
             'gwa_1st' => 'required',
             'gwa_2nd' => 'required',
             'year_level' => 'required|string',
