@@ -25,9 +25,9 @@
                 <table class="table table-sm table-borderless">
                     <thead>
                         <tr>
-                            <th><em>Subject</em></th>
-                            <th width="20%"><em>Number of Units</em></th>
-                            <th width="20%"><em>Grade</em></th>
+                            <th><em>Subject</em><span class="text-danger">*</span></th>
+                            <th width="20%"><em>Number of Units</em><span class="text-danger">*</span></th>
+                            <th width="20%"><em>Grade</em><span class="text-danger">*</span></th>
                             <th><em>Action</em></th>
                             <th width="20%" style="display:none"><em>Total</em></th>
                         </tr>
@@ -66,9 +66,9 @@
                 <table class="table table-sm table-borderless">
                     <thead>
                         <tr>
-                            <th><em>Subject</em></th>
-                            <th width="20%"><em>Number of Units</em></th>
-                            <th width="20%"><em>Grade</em></th>
+                            <th><em>Subject</em><span class="text-danger">*</span></th>
+                            <th width="20%"><em>Number of Units</em><span class="text-danger">*</span></th>
+                            <th width="20%"><em>Grade</em><span class="text-danger">*</span></th>
                             <th><em>Action</em></th>
                             <th width="20%" style="display:none"><em>Total</em></th>
                         </tr>
