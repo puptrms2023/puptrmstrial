@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">{{ Auth::user()->first_name }}'s Dashboard</h1>
+    <div class="h3 mb-0 text-gray-800">{{ Auth::user()->first_name }}'s Dashboard</div>
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -13,9 +13,10 @@
     @endif
 </div>
 
+@include('layouts.partials.messages')
+
 <div class="row">
     <div class="col-md-3">
-        @include('layouts.partials.messages')
         <div class="card shadow mt-0 mb-4">
             <div class="card-header pt-3 pb-1">
                 <p class="text-primary font-weight-bold">Student Information</p>
@@ -76,28 +77,56 @@
                             </tr>
                         </thead>
                         <tbody id="calculation">
+                            @forelse (old('subjects', []) as $i => $subjects)
                             <tr>
-                                <td><input type="text" name="subjects" class="form-control" required></td>
-                                <td><input type="number" name="units" class="form-control units multi" id="units"
-                                        required>
+                                <td><input type="text" name="subjects[]" value="{{ $subjects }}" class="form-control"
+                                        required></td>
+                                <td><input type="number" name="units[]" value="{{ old('units')[$i] }}"
+                                        class="form-control units multi" id="units" required>
                                 </td>
-                                <td><input type="number" name="grades" class="form-control grades multi" step="any"
-                                        id="grades" required>
+                                <td><input type="number" name="grades[]" value="{{ old('grades')[$i] }}"
+                                        class="form-control grades multi" step="any" id="grades" required>
                                 </td>
-                                <td><button type="button" class="btn btn-primary" id="add_btn"><i
-                                            class="fa-solid fa-circle-plus"></i></button>
-                                </td>
-                                <td style="display:none"><input type="number" name="total" class="form-control total"
+                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                            class="fa-solid fa-circle-minus"></i></button></td>
+                                <td style="display:none"><input type="number" name="total[]" class="form-control total"
                                         id="total" readonly>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td><input type="text" name="subjects[]" class="form-control" required></td>
+                                <td><input type="number" name="units[]" class="form-control units multi" id="units"
+                                        required>
+                                </td>
+                                <td><input type="number" name="grades[]" class="form-control grades multi" step="any"
+                                        id="grades" required>
+                                </td>
+                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                            class="fa-solid fa-circle-minus"></i></button></td>
+                                <td style="display:none"><input type="number" name="total[]" class="form-control total"
+                                        id="total" readonly>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <input type="hidden" id="totalUnits">
                     <input type="hidden" id="weight">
-                    <input type="hidden" id="gwa" name="gwa_1st">
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" id="add_btn">Add Subject</button>
+                    </div>
                     <p class="text-muted"><small>Total Number of Units: </small><small id="totalUnit"></small></p>
-                    <p class="font-weight-bold">GWA: <b id="gwa2"></b></p>
+                    <div class="row">
+                        <label for="inputEmail" class="col-auto col-form-label">GWA:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly class="form-control-plaintext font-weight-bold" id="gwa"
+                                name="gwa_1st" value="{{ old('gwa_1st') }}">
+                            @if ($errors->has('gwa_1st'))
+                            <span class="text-danger text-left">{{ $errors->first('gwa_1st') }}</span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card shadow mt-0 mb-4">
@@ -116,28 +145,56 @@
                             </tr>
                         </thead>
                         <tbody id="calculation1">
+                            @forelse (old('subjects1', []) as $i => $subjects1)
                             <tr>
-                                <td><input type="text" name="subjects1" class="form-control" required></td>
-                                <td><input type="number" name="units1" class="form-control units1 multi1" id="units1"
-                                        required>
+                                <td><input type="text" name="subjects1[]" value="{{ $subjects1 }}" class="form-control"
+                                        required></td>
+                                <td><input type="number" name="units1[]" value="{{ old('units1')[$i] }}"
+                                        class="form-control units1 multi1" id="units1" required>
                                 </td>
-                                <td><input type="number" name="grades1" class="form-control grades1 multi1" step="any"
-                                        id="grades1" required>
+                                <td><input type="number" name="grades1[]" value="{{ old('grades1')[$i] }}"
+                                        class="form-control grades1 multi1" step="any" id="grades1" required>
                                 </td>
-                                <td><button type="button" class="btn btn-primary" id="add_btn1"><i
-                                            class="fa-solid fa-circle-plus"></i></button>
-                                </td>
-                                <td style="display:none"><input type="number" name="total" class="form-control total1"
+                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                            class="fa-solid fa-circle-minus"></i></button></td>
+                                <td style="display:none"><input type="number" name="total[]" class="form-control total1"
                                         id="total1" readonly>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td><input type="text" name="subjects1[]" class="form-control" required></td>
+                                <td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1"
+                                        required>
+                                </td>
+                                <td><input type="number" name="grades1[]" class="form-control grades1 multi1" step="any"
+                                        id="grades1" required>
+                                </td>
+                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                            class="fa-solid fa-circle-minus"></i></button></td>
+                                <td style="display:none"><input type="number" name="total[]" class="form-control total1"
+                                        id="total1" readonly>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <input type="hidden" id="totalUnits1">
                     <input type="hidden" id="weight1">
-                    <input type="hidden" id="gwa1" name="gwa_2nd">
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" id="add_btn1">Add Subject</button>
+                    </div>
                     <p class="text-muted"><small>Total Number of Units: </small><small id="totalUnit1"></small></p>
-                    <p class="font-weight-bold">GWA: <b id="gwa21"></b></p>
+                    <div class="row mb-3">
+                        <label class="col-auto col-form-label">GWA:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly class="form-control-plaintext font-weight-bold" id="gwa1"
+                                name="gwa_2nd" value="{{ old('gwa_2nd') }}">
+                            @if ($errors->has('gwa_2nd'))
+                            <span class="text-danger text-left">{{ $errors->first('gwa_2nd') }}</span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card shadow mt-0 mb-4">
@@ -171,7 +228,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
                         <span class="text-danger">*</span>
-                        <input type="file" name="image">
+                        <input type="file" name="image" required>
                     </div>
                 </div>
             </div>
@@ -207,9 +264,9 @@
         $('#add_btn').on('click',function () { 
             var html='';
             html+='<tr>'
-            html+='<td><input type="text" name="subjects" class="form-control" required></td>';
-            html+='<td><input type="number" name="units" class="form-control units multi" id="units" required></td>';
-            html+='<td><input type="number" name="grades" class="form-control grades multi" id="grades" step="any" required></td>';
+            html+='<td><input type="text" name="subjects[]" class="form-control" required></td>';
+            html+='<td><input type="number" name="units[]" class="form-control units multi" id="units" required></td>';
+            html+='<td><input type="number" name="grades[]" class="form-control grades multi" id="grades" step="any" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove"><i class="fa-solid fa-circle-minus"></i></button></td>';
             html+='<td style="display:none"><input type="number" name="total" class="form-control total" id="total" readonly></td>';
             html+='</tr>';
@@ -273,9 +330,9 @@
         $('#add_btn1').on('click',function () { 
             var html='';
             html+='<tr>'
-            html+='<td><input type="text" name="subjects1" class="form-control" required></td>';
-            html+='<td><input type="number" name="units1" class="form-control units1 multi1" id="units1" required></td>';
-            html+='<td><input type="number" name="grades1" class="form-control grades1 multi1" id="grades1" step="any" required></td>';
+            html+='<td><input type="text" name="subjects1[]" class="form-control" required></td>';
+            html+='<td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1" required></td>';
+            html+='<td><input type="number" name="grades1[]" class="form-control grades1 multi1" id="grades1" step="any" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove1"><i class="fa-solid fa-circle-minus"></i></button></td>';
             html+='<td style="display:none"><input type="number" name="total1" class="form-control total1" id="total1" readonly></td>';
             html+='</tr>';
