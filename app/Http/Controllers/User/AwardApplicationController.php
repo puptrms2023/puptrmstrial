@@ -7,6 +7,7 @@ use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AwardFormRequest;
+use App\Models\Summary;
 
 class AwardApplicationController extends Controller
 {
@@ -34,7 +35,32 @@ class AwardApplicationController extends Controller
         }
 
         $award->award_applied = $data['award_applied'];
+        $award->course_id = $data['course_id'];
         $award->save();
+
+        foreach ($request->subjects as $key => $subjects) {
+            $sum = new Summary();
+            $sum->subjects = $subjects;
+            $sum->units = $data['units'][$key];
+            $sum->grades = $data['grades'][$key];
+            $sum->user_id = $data['user_id'];
+            $sum->term = $data['term'];
+            $sum->sy = $data['school_year'];
+            $sum->save();
+        }
+
+        foreach ($request->subjects1 as $key => $subjects1) {
+            $sum = new Summary();
+            $sum->subjects = $subjects1;
+            $sum->units = $data['units1'][$key];
+            $sum->grades = $data['grades1'][$key];
+            $sum->user_id = $data['user_id'];
+            $sum->term = $data['term1'];
+            $sum->sy = $data['school_year'];
+            $sum->save();
+        }
+
+
         return redirect('user/dashboard')->with('message', 'Your application is received');
     }
 }

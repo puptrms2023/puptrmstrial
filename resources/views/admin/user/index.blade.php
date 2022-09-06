@@ -63,7 +63,7 @@
                                 <td>{{ $item->last_name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>
-                                    @if ($item->role_as=='1')
+                                    @if ($item->role_as=='2')
                                     <span class="badge badge-success">Admin</span>
                                     @endif
                                     @if ($item->role_as=='0')

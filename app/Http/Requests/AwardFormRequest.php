@@ -26,22 +26,29 @@ class AwardFormRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'subjects.*' => 'required|string',
+            'subjects1.*' => 'required|string',
             'school_year' => 'required',
             'grades.*' => 'required|lt:2.50',
             'grades1.*' => 'required|lt:2.50',
-            'units.*' => 'required|regex:/^[0-9]+$/',
-            // 'units1.*' => 'required|integer',
+            'units.*' => 'required|integer|min:1',
+            'units1.*' => 'required|integer|min:1',
+            'term' => 'required',
+            'term1' => 'required',
             'gwa_1st' => 'required|lte:1.75',
             'gwa_2nd' => 'required|lte:1.75',
             'year_level' => 'required|string',
             'image' => 'required|mimes:jpeg,png,jpg',
-            'award_applied' => 'required|string'
+            'award_applied' => 'required|string',
+            'course_id' => 'required|string'
         ];
     }
 
     public function messages()
     {
         return [
+            'units.*.min' => 'Enter valid number for units',
+            'units1.*.min' => 'Enter valid number for units',
             'grades.*.lt' => 'Sorry, you have grades lower than 2.50.',
             'grades1.*.lt' => 'Sorry, you have grades lower than 2.50.',
             'gwa_1st.required' => 'Field for 1st Semester is required',

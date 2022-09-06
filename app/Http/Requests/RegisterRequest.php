@@ -30,12 +30,13 @@ class RegisterRequest extends FormRequest
             'middle_name' => 'nullable|max:255|regex:/^([^0-9]*)$/',
             'last_name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
-            'course' => 'required',
+            'course_id' => 'required',
             'stud_num' => ['required', 'unique:users,stud_num', 'max:15', new StrMustContain('TG')],
             'email' => 'required|email:rfc,dns|unique:users,email',
             'username' => ['required', 'string', 'max:255', 'unique:users', 'alpha_dash'],
             'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
+            'role_as' => 'required'
         ];
     }
 

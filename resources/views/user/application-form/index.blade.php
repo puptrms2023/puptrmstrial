@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
-@section('title','PUPTAAAS Dashboard')
+@section('title','Achievers Award Application')
 
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="h3 mb-0 text-gray-800">{{ Auth::user()->first_name }}'s Dashboard</div>
+    <div class="h3 mb-0 text-gray-800">Achiever's Award Application Form</div>
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -52,7 +52,7 @@
                 </div>
                 <div class="mb-3">
                     <label>Course:</label>
-                    <p class="text-uppercase font-weight-bold">{{ Auth::user()->course }}</p>
+                    <p class="text-uppercase font-weight-bold">{{ Auth::user()->courses->course }}</p>
                 </div>
             </div>
         </div>
@@ -82,7 +82,9 @@
                                 <td><input type="text" name="subjects[]" value="{{ $subjects }}" class="form-control"
                                         required></td>
                                 <td><input type="number" name="units[]" value="{{ old('units')[$i] }}"
-                                        class="form-control units multi" id="units" required>
+                                        class="form-control units multi" id="units" min="1"
+                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                        onpaste="return false" required>
                                 </td>
                                 <td><input type="number" name="grades[]" value="{{ old('grades')[$i] }}"
                                         class="form-control grades multi" step="any" id="grades" required>
@@ -97,7 +99,9 @@
                             <tr>
                                 <td><input type="text" name="subjects[]" class="form-control" required></td>
                                 <td><input type="number" name="units[]" class="form-control units multi" id="units"
-                                        required>
+                                        min="1"
+                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                        onpaste="return false" required>
                                 </td>
                                 <td><input type="number" name="grades[]" class="form-control grades multi" step="any"
                                         id="grades" required>
@@ -111,6 +115,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <input type="hidden" name="term" value="1">
                     <input type="hidden" id="totalUnits">
                     <input type="hidden" id="weight">
                     <div class="mb-3">
@@ -150,7 +155,9 @@
                                 <td><input type="text" name="subjects1[]" value="{{ $subjects1 }}" class="form-control"
                                         required></td>
                                 <td><input type="number" name="units1[]" value="{{ old('units1')[$i] }}"
-                                        class="form-control units1 multi1" id="units1" required>
+                                        class="form-control units1 multi1" id="units1" min="1"
+                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                        onpaste="return false" required>
                                 </td>
                                 <td><input type="number" name="grades1[]" value="{{ old('grades1')[$i] }}"
                                         class="form-control grades1 multi1" step="any" id="grades1" required>
@@ -165,7 +172,9 @@
                             <tr>
                                 <td><input type="text" name="subjects1[]" class="form-control" required></td>
                                 <td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1"
-                                        required>
+                                        min="1"
+                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                        onpaste="return false" required>
                                 </td>
                                 <td><input type="number" name="grades1[]" class="form-control grades1 multi1" step="any"
                                         id="grades1" required>
@@ -179,6 +188,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <input type="hidden" name="term1" value="2">
                     <input type="hidden" id="totalUnits1">
                     <input type="hidden" id="weight1">
                     <div class="mb-3">
@@ -212,13 +222,11 @@
                 <div class="card-body">
                     <div class="col-md-12 mb-3">
                         <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                        <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
                         <label for="" class="font-weight-bold">Academic Level</label>
                         <span class="text-danger">*</span>
                         <select class="form-control" name="year_level">
                             <option value="1st Year">1st Year</option>
-                            <option value="2nd Year">2nd Year</option>
-                            <option value="3rd Year">3rd Year</option>
-                            <option value="4th Year">4th Year</option>
                         </select>
                     </div>
                 </div>
@@ -239,11 +247,7 @@
                         <span class="text-danger">*</span>
                         <select class="form-control" name="award_applied">
                             <option value="1">Achiever's Award</option>
-                            <option value="2">Dean's List (1.51-1.75)</option>
-                            <option value="3">President's List (1.00 - 1.51)</option>
-                            <option value="4">Academic Excellence</option>
                         </select>
-                        <small>Status: Qualified</small>
                     </div>
                 </div>
             </div>
@@ -265,7 +269,7 @@
             var html='';
             html+='<tr>'
             html+='<td><input type="text" name="subjects[]" class="form-control" required></td>';
-            html+='<td><input type="number" name="units[]" class="form-control units multi" id="units" required></td>';
+            html+='<td><input type="number" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
             html+='<td><input type="number" name="grades[]" class="form-control grades multi" id="grades" step="any" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove"><i class="fa-solid fa-circle-minus"></i></button></td>';
             html+='<td style="display:none"><input type="number" name="total" class="form-control total" id="total" readonly></td>';
@@ -276,12 +280,15 @@
 
     $(document).on('click','#remove', function () { 
         $(this).closest('tr').remove();
+        grandTotal();
+        totalUnits();
+        getGWA();
         
     });
 
 
     $(document).ready(function(){
-        $('#calculation').on("keyup",".multi",function(){
+        $('#calculation').on("input",".multi",function(){
         var parent = $(this).closest('tr');
         var quant= $(parent).find('#units').val();
         var price= $(parent).find('#grades').val();
@@ -300,20 +307,18 @@
         $('.total').each(function(){
             total_avg +=Number($(this).val());
         });
-        document.getElementById('weight').value = total_avg;
+        document.getElementById('weight').value = isNaN(total_avg) ? "0.00" : total_avg.toFixed(2);;
     }
 
     function totalUnits()
     {
-        $(document).on('keyup', ".units",function () {
         var total_units = 0;
   
         $('.units').each(function(){
             total_units += parseFloat($(this).val());
         })  
         document.getElementById('totalUnits').value = total_units;
-        document.getElementById('totalUnit').innerHTML = total_units;
-        });
+        document.getElementById('totalUnit').innerHTML = isNaN(total_units) ? "0" : total_units.toFixed(2);;
     }
 
     function getGWA()
@@ -322,8 +327,8 @@
         var weight = $('#weight').val();
         var gwa = weight/total_units;
 
-        document.getElementById('gwa').value = gwa.toFixed(2);;
-        document.getElementById('gwa2').innerHTML = gwa.toFixed(2);;
+        document.getElementById('gwa').value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
+        // document.getElementById('gwa2').innerHTML = gwa.toFixed(2);
     }
   
     $(document).ready(function () {
@@ -331,7 +336,7 @@
             var html='';
             html+='<tr>'
             html+='<td><input type="text" name="subjects1[]" class="form-control" required></td>';
-            html+='<td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1" required></td>';
+            html+='<td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
             html+='<td><input type="number" name="grades1[]" class="form-control grades1 multi1" id="grades1" step="any" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove1"><i class="fa-solid fa-circle-minus"></i></button></td>';
             html+='<td style="display:none"><input type="number" name="total1" class="form-control total1" id="total1" readonly></td>';
@@ -342,11 +347,14 @@
 
     $(document).on('click','#remove1', function () { 
         $(this).closest('tr').remove();
+        grandTotal1();
+        totalUnits1();
+        getGWA1();
         
     });
 
     $(document).ready(function(){
-        $('#calculation1').on("keyup",".multi1",function(){
+        $('#calculation1').on("input",".multi1",function(){
         var parent1 = $(this).closest('tr');
         var quant1= $(parent1).find('#units1').val();
         var price1= $(parent1).find('#grades1').val();
@@ -355,6 +363,7 @@
         grandTotal1();
         totalUnits1();
         getGWA1();
+        });
     });
 
     function grandTotal1(){
@@ -362,20 +371,18 @@
         $('.total1').each(function(){
             total_avg1 +=Number($(this).val());
         });
-        document.getElementById('weight1').value = total_avg1;
+        document.getElementById('weight1').value = isNaN(total_avg1) ? "0.00" : total_avg1.toFixed(2);
     }
 
     function totalUnits1()
     {
-        $(document).on('keyup', ".units1",function () {
         var total_units = 0;
   
         $('.units1').each(function(){
             total_units += parseFloat($(this).val());
         })  
         document.getElementById('totalUnits1').value = total_units;
-        document.getElementById('totalUnit1').innerHTML = total_units;
-        });
+        document.getElementById('totalUnit1').innerHTML = isNaN(total_units) ? "0" : total_units.toFixed(2);
     }
 
     function getGWA1()
@@ -384,11 +391,10 @@
         var weight = $('#weight1').val();
         var gwa = weight/total_units;
 
-        document.getElementById('gwa1').value = gwa.toFixed(2);;
-        document.getElementById('gwa21').innerHTML = gwa.toFixed(2);;
+        document.getElementById('gwa1').value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
+        // document.getElementById('gwa21').innerHTML = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
     }
   
-});
 
 
 </script>

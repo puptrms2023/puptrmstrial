@@ -44,4 +44,8 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::get('/application-form', 'index');
         Route::post('/application-form', 'store');
     });
+
+    Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {
+        Route::get('/application-status', 'index');
+    });
 });

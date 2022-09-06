@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-8">
+    <div class="col-xl-9">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="m-0 font-weight-bold text-primary">Edit User
@@ -61,13 +61,21 @@
                             <label class="small mb-1">User ID</label>
                             <input class="form-control" name="stud_num" type="text"
                                 placeholder="Enter your user id or student number" value="{{ $user->stud_num }}"
-                                required autofocus>
+                                onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
                         </div>
 
                         <div class="col-md-6">
                             <label class="small mb-1">Course</label>
-                            <input class="form-control" name="course" type="text" placeholder="Enter your course"
-                                value="{{ $user->course }}" required autofocus>
+                            <select class="form-control" name="course_id" id="course_id" required>
+                                @foreach($course as $id => $item)
+                                <option value="{{ $id }}" {{ $user->course_id == $id ? 'selected':''}}>
+                                    {{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('course_id'))
+                            <span class="text-danger text-left">{{ $errors->first('course_id')
+                                }}</span>
+                            @endif
                         </div>
                     </div>
 
@@ -75,9 +83,9 @@
                         <div class="col-md-6">
                             <label class="small mb-1">Role</label>
                             <select class="custom-select my-1 mr-sm-2" name="role_as">
-                                <option value="1" {{ $user->role_as == '3' ? 'selected':''}}>Super Admin</option>
-                                <option value="1" {{ $user->role_as == '1' ? 'selected':''}}>Admin</option>
-                                <option value="2" {{ $user->role_as == '2' ? 'selected':''}}>Officials</option>
+                                <option value="1" {{ $user->role_as == '1' ? 'selected':''}}>Super Admin</option>
+                                <option value="2" {{ $user->role_as == '2' ? 'selected':''}}>Admin</option>
+                                <option value="3" {{ $user->role_as == '3' ? 'selected':''}}>Officials</option>
                                 <option value="0" {{ $user->role_as == '0' ? 'selected':''}}>Student</option>
                             </select>
                         </div>

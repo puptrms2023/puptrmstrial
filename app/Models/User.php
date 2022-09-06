@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Courses;
 
 class User extends Authenticatable
 {
@@ -30,7 +31,7 @@ class User extends Authenticatable
         'last_name',
         'contact',
         'stud_num',
-        'course',
+        'course_id',
         'email',
         'username',
         'password',
@@ -64,5 +65,10 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function courses()
+    {
+        return $this->belongsTo(Courses::class, 'course_id', 'id');
     }
 }

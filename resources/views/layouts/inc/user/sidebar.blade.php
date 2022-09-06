@@ -23,7 +23,7 @@
 
     <!--Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{url('user/application-status')}}">
             <i class="fa-solid fa-list-check"></i>
             <span>Application Status</span>
         </a>

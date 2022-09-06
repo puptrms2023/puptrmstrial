@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-8">
+    <div class="col-xl-9">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="m-0 font-weight-bold text-primary">Add User
@@ -75,7 +75,7 @@
                             <label class="small mb-1">User ID</label>
                             <input class="form-control" name="stud_num" type="text"
                                 placeholder="Enter your user id or student number" value="{{ old('stud_num') }}"
-                                required autofocus>
+                                onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
                             @if ($errors->has('stud_num'))
                             <span class="text-danger text-left">{{ $errors->first('stud_num') }}</span>
                             @endif
@@ -83,8 +83,16 @@
 
                         <div class="col-md-6">
                             <label class="small mb-1">Course</label>
-                            <input class="form-control" name="course" type="text" placeholder="Enter your course"
-                                value="{{ old('course') }}" required autofocus>
+                            <select class="form-control" name="course_id" id="course_id" required>
+                                @foreach($course as $id => $item)
+                                <option value="{{ $id }}" {{ old('course_id')==$id ? 'selected' : '' }}>
+                                    {{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('course_id'))
+                            <span class="text-danger text-left">{{ $errors->first('course_id')
+                                }}</span>
+                            @endif
                         </div>
                     </div>
                     <div class="row gx-3 mb-3">
@@ -106,6 +114,18 @@
                             @endif
                         </div>
 
+                    </div>
+
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1">Role</label>
+                            <select class="custom-select my-1 mr-sm-2" name="role_as">
+                                <option value="1">Super Admin</option>
+                                <option value="2">Admin</option>
+                                <option value="3">Officials</option>
+                                <option value="0">Student</option>
+                            </select>
+                        </div>
                     </div>
 
                     <button class="btn btn-primary" type="submit">Save</button>

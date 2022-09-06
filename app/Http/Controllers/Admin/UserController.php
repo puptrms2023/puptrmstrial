@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Courses;
 use Illuminate\Http\Request;
 use App\Rules\StrMustContain;
 use Illuminate\Validation\Rule;
@@ -17,10 +18,10 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.user.index', compact('users'));
     }
-
     public function create()
     {
-        return view('admin.user.create');
+        $course = Courses::pluck('course', 'id');
+        return view('admin.user.create', compact('course'));
     }
 
     public function store(RegisterRequest $request)
@@ -32,10 +33,11 @@ class UserController extends Controller
         $user->middle_name = $validatedData['middle_name'];
         $user->last_name = $validatedData['last_name'];
         $user->contact = $validatedData['contact'];
-        $user->course = $validatedData['course'];
+        $user->course_id = $validatedData['course_id'];
         $user->stud_num = $validatedData['stud_num'];
         $user->email = $validatedData['email'];
         $user->password = $validatedData['password'];
+        $user->role_as = $validatedData['role_as'];
         $user->save();
 
         return redirect('admin/users')->with('message', 'User Added Successfully');
@@ -44,7 +46,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit', compact('user'));
+        $course = Courses::pluck('course', 'id');
+        return view('admin.user.edit', compact('user', 'course'));
     }
 
     public function update(Request $request, $id)
@@ -54,7 +57,7 @@ class UserController extends Controller
             'middle_name' => 'nullable|max:255|regex:/^([^0-9]*)$/',
             'last_name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
-            'course' => 'required',
+            'course_id' => 'required',
             'role_as' => 'required',
             'stud_num' => ['required', 'unique:users,stud_num,' . $id, 'max:15', new StrMustContain('TG')],
             'username' => 'required|alpha_dash|unique:users,username,' . $id,
@@ -67,7 +70,7 @@ class UserController extends Controller
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
         $user->contact = $request->contact;
-        $user->course = $request->course;
+        $user->course_id = $request->course_id;
         $user->role_as = $request->role_as;
         $user->stud_num = $request->stud_num;
         $user->username = $request->username;
