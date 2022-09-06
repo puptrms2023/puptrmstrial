@@ -54,6 +54,7 @@
         <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
+        <script src="{{ asset('admin/js/custom.js') }}"></script>
         @livewireStyles
 
         @yield('scripts')

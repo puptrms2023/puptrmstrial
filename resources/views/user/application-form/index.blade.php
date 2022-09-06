@@ -81,34 +81,35 @@
                             <tr>
                                 <td><input type="text" name="subjects[]" value="{{ $subjects }}" class="form-control"
                                         required></td>
-                                <td><input type="number" name="units[]" value="{{ old('units')[$i] }}"
+                                <td><input type="text" name="units[]" value="{{ old('units')[$i] }}"
                                         class="form-control units multi" id="units" min="1"
                                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                         onpaste="return false" required>
                                 </td>
-                                <td><input type="number" name="grades[]" value="{{ old('grades')[$i] }}"
-                                        class="form-control grades multi" step="any" id="grades" required>
+                                <td><input type="text" name="grades[]" value="{{ old('grades')[$i] }}"
+                                        class="form-control grades multi" id="grades"
+                                        onkeypress="return isFloatNumber(this,event)" required>
                                 </td>
                                 <td><button type="button" class="btn btn-secondary" id="remove"><i
                                             class="fa-solid fa-circle-minus"></i></button></td>
-                                <td style="display:none"><input type="number" name="total[]" class="form-control total"
-                                        id="total" readonly>
+                                <td style="display:none"><input type="text" name="total[]" class="form-control total"
+                                        id="total" value="{{ old('total')[$i] }}" readonly>
                                 </td>
                             </tr>
                             @empty
                             <tr>
                                 <td><input type="text" name="subjects[]" class="form-control" required></td>
-                                <td><input type="number" name="units[]" class="form-control units multi" id="units"
+                                <td><input type="text" name="units[]" class="form-control units multi" id="units"
                                         min="1"
                                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                         onpaste="return false" required>
                                 </td>
-                                <td><input type="number" name="grades[]" class="form-control grades multi" step="any"
-                                        id="grades" required>
+                                <td><input type="text" name="grades[]" class="form-control grades multi" id="grades"
+                                        onkeypress="return isFloatNumber(this,event)" required>
                                 </td>
                                 <td><button type="button" class="btn btn-secondary" id="remove"><i
                                             class="fa-solid fa-circle-minus"></i></button></td>
-                                <td style="display:none"><input type="number" name="total[]" class="form-control total"
+                                <td style="display:none"><input type="text" name="total[]" class="form-control total"
                                         id="total" readonly>
                                 </td>
                             </tr>
@@ -116,8 +117,8 @@
                         </tbody>
                     </table>
                     <input type="hidden" name="term" value="1">
-                    <input type="hidden" id="totalUnits">
-                    <input type="hidden" id="weight">
+                    <input type="hidden" name="tu" value="{{ old('tu') }}" id="totalUnits">
+                    <input type="hidden" name="w" value="{{ old('w') }}" id="weight">
                     <div class="mb-3">
                         <button type="button" class="btn btn-primary" id="add_btn">Add Subject</button>
                     </div>
@@ -154,34 +155,35 @@
                             <tr>
                                 <td><input type="text" name="subjects1[]" value="{{ $subjects1 }}" class="form-control"
                                         required></td>
-                                <td><input type="number" name="units1[]" value="{{ old('units1')[$i] }}"
+                                <td><input type="text" name="units1[]" value="{{ old('units1')[$i] }}"
                                         class="form-control units1 multi1" id="units1" min="1"
                                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                         onpaste="return false" required>
                                 </td>
-                                <td><input type="number" name="grades1[]" value="{{ old('grades1')[$i] }}"
-                                        class="form-control grades1 multi1" step="any" id="grades1" required>
+                                <td><input type="text" name="grades1[]" value="{{ old('grades1')[$i] }}"
+                                        class="form-control grades1 multi1" id="grades1"
+                                        onkeypress="return isFloatNumber(this,event)" required>
                                 </td>
-                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                <td><button type="button" class="btn btn-secondary" id="remove1"><i
                                             class="fa-solid fa-circle-minus"></i></button></td>
-                                <td style="display:none"><input type="number" name="total[]" class="form-control total1"
-                                        id="total1" readonly>
+                                <td style="display:none"><input type="text" name="total1[]" class="form-control total1"
+                                        id="total1" value="{{ old('total1')[$i] }}" readonly>
                                 </td>
                             </tr>
                             @empty
                             <tr>
                                 <td><input type="text" name="subjects1[]" class="form-control" required></td>
-                                <td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1"
+                                <td><input type="text" name="units1[]" class="form-control units1 multi1" id="units1"
                                         min="1"
                                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                         onpaste="return false" required>
                                 </td>
-                                <td><input type="number" name="grades1[]" class="form-control grades1 multi1" step="any"
-                                        id="grades1" required>
+                                <td><input type="text" name="grades1[]" class="form-control grades1 multi1" id="grades1"
+                                        onkeypress="return isFloatNumber(this,event)" required>
                                 </td>
-                                <td><button type="button" class="btn btn-secondary" id="remove"><i
+                                <td><button type="button" class="btn btn-secondary" id="remove1"><i
                                             class="fa-solid fa-circle-minus"></i></button></td>
-                                <td style="display:none"><input type="number" name="total[]" class="form-control total1"
+                                <td style="display:none"><input type="text" name="total1[]" class="form-control total1"
                                         id="total1" readonly>
                                 </td>
                             </tr>
@@ -269,10 +271,10 @@
             var html='';
             html+='<tr>'
             html+='<td><input type="text" name="subjects[]" class="form-control" required></td>';
-            html+='<td><input type="number" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
-            html+='<td><input type="number" name="grades[]" class="form-control grades multi" id="grades" step="any" required></td>';
+            html+='<td><input type="text" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+            html+='<td><input type="text" name="grades[]" class="form-control grades multi" id="grades" onkeypress="return isFloatNumber(this,event)" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove"><i class="fa-solid fa-circle-minus"></i></button></td>';
-            html+='<td style="display:none"><input type="number" name="total" class="form-control total" id="total" readonly></td>';
+            html+='<td style="display:none"><input type="text" name="total[]" class="form-control total" id="total" readonly></td>';
             html+='</tr>';
             $('#calculation').append(html);
         });
@@ -290,10 +292,10 @@
     $(document).ready(function(){
         $('#calculation').on("input",".multi",function(){
         var parent = $(this).closest('tr');
-        var quant= $(parent).find('#units').val();
-        var price= $(parent).find('#grades').val();
+        var unit= $(parent).find('#units').val();
+        var grade= $(parent).find('#grades').val();
 
-        $(parent).find('#total').val(quant* price);
+        $(parent).find('#total').val(unit* grade);
         grandTotal();
         totalUnits();
         getGWA();
@@ -328,7 +330,6 @@
         var gwa = weight/total_units;
 
         document.getElementById('gwa').value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
-        // document.getElementById('gwa2').innerHTML = gwa.toFixed(2);
     }
   
     $(document).ready(function () {
@@ -336,10 +337,10 @@
             var html='';
             html+='<tr>'
             html+='<td><input type="text" name="subjects1[]" class="form-control" required></td>';
-            html+='<td><input type="number" name="units1[]" class="form-control units1 multi1" id="units1" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
-            html+='<td><input type="number" name="grades1[]" class="form-control grades1 multi1" id="grades1" step="any" required></td>';
+            html+='<td><input type="text" name="units1[]" class="form-control units1 multi1" id="units1" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+            html+='<td><input type="text" name="grades1[]" class="form-control grades1 multi1" id="grades1" onkeypress="return isFloatNumber(this,event)" required></td>';
             html+='<td><button type="button" class="btn btn-secondary" id="remove1"><i class="fa-solid fa-circle-minus"></i></button></td>';
-            html+='<td style="display:none"><input type="number" name="total1" class="form-control total1" id="total1" readonly></td>';
+            html+='<td style="display:none"><input type="text" name="total1[]" class="form-control total1" id="total1" readonly></td>';
             html+='</tr>';
             $('#calculation1').append(html);
         });
@@ -356,10 +357,10 @@
     $(document).ready(function(){
         $('#calculation1').on("input",".multi1",function(){
         var parent1 = $(this).closest('tr');
-        var quant1= $(parent1).find('#units1').val();
-        var price1= $(parent1).find('#grades1').val();
+        var unit= $(parent1).find('#units1').val();
+        var grade= $(parent1).find('#grades1').val();
 
-        $(parent1).find('#total1').val(quant1* price1);
+        $(parent1).find('#total1').val(unit* grade);
         grandTotal1();
         totalUnits1();
         getGWA1();
@@ -392,7 +393,6 @@
         var gwa = weight/total_units;
 
         document.getElementById('gwa1').value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
-        // document.getElementById('gwa21').innerHTML = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
     }
   
 

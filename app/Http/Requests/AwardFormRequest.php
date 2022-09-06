@@ -35,6 +35,8 @@ class AwardFormRequest extends FormRequest
             'units1.*' => 'required|integer|min:1',
             'term' => 'required',
             'term1' => 'required',
+            'total.*' => 'nullable',
+            'total1.*' => 'nullable',
             'gwa_1st' => 'required|lte:1.75',
             'gwa_2nd' => 'required|lte:1.75',
             'year_level' => 'required|string',
