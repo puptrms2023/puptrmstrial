@@ -18,4 +18,13 @@ class Summary extends Model
         'grades',
         'sy'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function status()
+    {
+        return $this->hasMany(StudentApplicants::class);
+    }
 }

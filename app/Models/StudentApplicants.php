@@ -30,5 +30,9 @@ class StudentApplicants extends Model
     {
         return $this->belongsTo(User::class, 'user_id','id');
     }
+    public function grades()
+    {
+        return $this->belongsTo(Summary::class, 'user_id','user_id');
+    }
 }
 

@@ -29,3 +29,16 @@ function isFloatNumber(item, evt) {
     }
     return true;
 }
+
+$(document).ready(function () {
+    $(".status").change(function () {
+        var responseId = $(this).val();
+        if (responseId == "2") {
+            $("#reason").removeClass("hidden");
+            $("#reason").addClass("show");
+        } else {
+            $("#reason").removeClass("show");
+            $("#reason").addClass("hidden");
+        }
+    });
+});

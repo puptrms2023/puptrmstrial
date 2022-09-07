@@ -10,7 +10,7 @@
     transform: none;
     box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
   }
-  
+
   .lift-sm {
     box-shadow: 0 0.125rem 0.25rem 0 rgba(33, 40, 50, 0.2);
   }
@@ -22,8 +22,15 @@
     transform: none;
     box-shadow: 0 0.125rem 0.25rem 0 rgba(33, 40, 50, 0.2);
   }
-  
+
   .card.lift {
     text-decoration: none;
     color: inherit;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .show{
+    display: block;
   }

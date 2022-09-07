@@ -35,6 +35,10 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
+        Route::get('/achievers-award/{course_code}', 'achieversView');
+        Route::get('/achievers-award/{course_code}/approve/{id}', 'approved');
+        Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
+        Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {

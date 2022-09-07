@@ -9,44 +9,32 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
-        <a class="nav-link align-middle" href="{{url('admin/dashboard')}}">
-            Welcome, Super Admin
-    </li>
-
-    <div class="sidebar-heading">
+    <div class="sidebar-heading mt-4">
         NAVIGATION PANE
     </div>
 
-    <li class="nav-item active">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <span>Home</span>
+    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active':'' }}">
+        <a class="nav-link align-middle" href="{{url('admin/dashboard')}}">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <span>Home</span>
         </a>
-        <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div> -->
     </li>
 
-    <!--Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') ? 'active':'' }}">
         <a class="nav-link collapsed" href="{{url('admin/users')}}">
             <i class="fa fa-id-card"></i>
             <span>Users</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+    <li class="nav-item {{ Request::is('admin/achievers-award') ? 'active':'' }}">
+        <a class="nav-link {{ Request::is('admin/achievers-award') ? '':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-award"></i>
             <span>Academic Awards</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ Request::is('admin/achievers-award') ? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{url('admin/achievers-award')}}">Achiever's Award</a>
+                <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active':'' }}" href="{{url('admin/achievers-award')}}">Achiever's Award</a>
                 <a class="collapse-item" href="cards.html">President's List</a>
                 <a class="collapse-item" href="cards.html">Dean's List</a>
                 <a class="collapse-item" href="cards.html">Academic Excellence</a>

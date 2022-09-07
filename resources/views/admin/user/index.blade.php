@@ -91,13 +91,13 @@
 
 <script>
     $(document).ready(function () {
-        $('.deleteUserbtn').click(function (e) { 
+        $('.deleteUserbtn').click(function (e) {
             e.preventDefault();
 
             var user_id = $(this).val();
             $('#user_id').val(user_id)
             $('#deleteModal').modal('show');
-            
+
         });
     });
 </script>
