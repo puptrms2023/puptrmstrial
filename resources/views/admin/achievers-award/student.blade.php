@@ -5,20 +5,21 @@
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="h3 mb-0 text-gray-800"> Achiever's Award Applicant</div>
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
+    <div class="h3 mb-0 text-gray-800"> Achiever's Award Applicant
     </div>
-    @endif
 </div>
-@include('layouts.partials.messages')
 
+@if(session('message'))
+<div class="alert alert-success">{{ session('message') }}</div>
+@endif
 <div class="row">
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-header">
-                Student Information
+                <div class="m-0 font-weight-bold text-primary">
+                    Student Information
+                    <a href="{{ url('admin/achievers-award/'.$status->courses->course_code) }}" class="btn btn-primary btn-sm float-right">Back</a>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-bordered">
@@ -58,11 +59,15 @@
                                 @endif
                                 @if ($status->status=='2')
                                 <span class="badge badge-danger">Rejected</span>
+                                    @if ($status->reason !='')
+                                    <small> - {{ $status->reason }}</small>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <small class="float-right"> Added at {{ $status->created_at }} </small>
             </div>
         </div>
     </div>
@@ -153,19 +158,26 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="mb-3">
-            <label for="">Status</label>
-            <select class="custom-select my-1 mr-sm-2 status" name="status">
-                <option>Select Option</option>
-                <option value="0" {{ $status->status == '0' ? 'selected':''}}>Pending</option>
-                <option value="1" {{ $status->status == '1' ? 'selected':''}}>Approve</option>
-                <option value="2" {{ $status->status == '2' ? 'selected':''}}>Reject</option>
-            </select>
-        </div>
-        <div class="mb-3 hidden" id="reason">
-            <label for="">Reason</label>
-            <textarea class="form-control" name="" rows="2"></textarea>
-        </div>
+        <form action="{{ url('admin/achievers-award/'.$status->courses->course_code . '/update-status/'.$status->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-3">
+                <label for="">Status</label>
+                <select class="custom-select my-1 mr-sm-2 status" name="status" required>
+                    <option value="0" {{ $status->status == '0' ? 'selected':''}}>Pending</option>
+                    <option value="1" {{ $status->status == '1' ? 'selected':''}}>Approve</option>
+                    <option value="2" {{ $status->status == '2' ? 'selected':''}}>Reject</option>
+                </select>
+            </div>
+            <div class="mb-3 hidden" id="reason">
+                <label for="">Reason</label>
+                <textarea class="form-control" name="reason" rows="2">{{ $status->reason }}</textarea>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

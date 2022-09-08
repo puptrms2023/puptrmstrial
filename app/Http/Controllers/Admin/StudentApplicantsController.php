@@ -53,4 +53,21 @@ class StudentApplicantsController extends Controller
         $grades2 = $grades2->where('term', '=', "2");
         return view('admin.achievers-award.student', compact('courses', 'status', 'grades', 'grades2'));
     }
+
+    public function update(Request $request, $course_code, $id)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+            'reason' => 'nullable'
+        ]);
+
+        $courses = Courses::where('course_code', $course_code)->first();
+        $status = StudentApplicants::where('course_id', $courses->id)->get();
+        $status = StudentApplicants::findOrFail($id);
+
+        $status->status = $request->status;
+        $status->reason = $request->reason;
+        $status->save();
+        return redirect()->back()->with('message', 'The Application Form Updated Successfully');
+    }
 }

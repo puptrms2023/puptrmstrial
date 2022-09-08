@@ -39,6 +39,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/achievers-award/{course_code}/approve/{id}', 'approved');
         Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
+        Route::put('/achievers-award/{course_code}/update-status/{id}', 'update');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
