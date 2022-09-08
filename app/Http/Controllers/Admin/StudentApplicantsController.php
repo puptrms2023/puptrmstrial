@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Courses;
-use App\Models\StudentApplicants;
 use App\Models\Summary;
 use Illuminate\Http\Request;
+use App\Models\StudentApplicants;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class StudentApplicantsController extends Controller
 {
@@ -16,11 +17,69 @@ class StudentApplicantsController extends Controller
         return view('admin.achievers-award.index', compact('courses'));
     }
 
-    public function achieversView($course_code)
+    public function achieversView(Request $request, $course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->get();
-        return view('admin.achievers-award.view', compact('courses', 'status'));
+
+        if ($request->ajax()) {
+            $data = StudentApplicants::with('users')->with('courses')->where('student_applicants.course_id', $courses->id)->select('student_applicants.*');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('image', function ($status) {
+                    $url = asset('uploads/' . $status->image);
+                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                    width="50" alt="Image">';
+                })
+                ->addColumn('status', function ($status) {
+                    if ($status->status == '1') {
+                        return '<span class="badge badge-success">Approved</span>';
+                    } else if ($status->status == '2') {
+                        return '<span class="badge badge-danger">Rejected</span>';
+                    } else {
+                        return '<a href="/admin/achievers-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Approve</span>
+                    </a>
+                    <a href="/admin/achievers-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
+                        <span class="icon text-white-50">
+                            <i class="fa-sharp fa-solid fa-xmark"></i>
+                        </span>
+                        <span class="text">Reject</span>
+                    </a>';
+                    }
+                })
+                ->addColumn('action', function ($status) {
+                    $btn = '';
+                    $btn .= '<a href="/admin/achievers-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                    $btn .= '<button type="button" class="btn btn-sm btn-danger deleteUserbtn"><i class="fa fa-trash"></i> </button>';
+
+                    return $btn;
+                })
+                ->filter(function ($instance) use ($request) {
+                    if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                        $instance->where('status', $request->get('status'));
+                    }
+
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $search = $request->get('search');
+                            $w->orWhere('gwa_1st', 'LIKE', "%$search%")
+                                ->orWhere('gwa_2nd', 'LIKE', "%$search%");
+                        });
+                    }
+                    // $instance->orwhereHas('users', function ($q) use ($request) {
+                    //     $searchData = $request->get('search');
+                    //     $q->orWhere('first_name', 'LIKE', "%$$searchData%")
+                    //         ->orWhere('last_name', 'LIKE', "%$$searchData%");
+                    // });
+                })
+                ->rawColumns(['image', 'status', 'action'])
+                ->make(true);
+        }
+
+        return view('admin.achievers-award.view', compact('courses'));
     }
 
     public function approved($course_code, $id)

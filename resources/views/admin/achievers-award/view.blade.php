@@ -5,18 +5,13 @@
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-    @endif
 </div>
 
+@if(session('message'))
+<div class="alert alert-success">{{ session('message') }}</div>
+@endif
 <div class="row">
     <div class="col-md-12">
-        @if(session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-        @endif
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="m-0 font-weight-bold text-primary">Students
@@ -24,16 +19,17 @@
                 </div>
             </div>
             <div class="card-body">
+                <input type="hidden" value="{{ $courses->course_code }}" id="course_id">
                 <div class="form-group">
                     <select id='status' class="custom-select" style="width: 200px">
-                        <option value="1">All</option>
+                        <option value="">All</option>
                         <option value="1">Approved</option>
                         <option value="0">Pending</option>
-                        <option value="2">Rejectd</option>
+                        <option value="2">Rejected</option>
                     </select>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-data" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Student No.</th>
@@ -48,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($status as $item)
+                            {{-- @foreach ($status as $item)
                             <tr>
                                 <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
                                 <td>{{ $item->users->first_name }}</td>
@@ -92,7 +88,7 @@
                                         value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                     <a href="http://localhost/aaaspupt/AdminPLSecondYear/pl_bsa_2ndyr_pdfdetails" target="_blank"

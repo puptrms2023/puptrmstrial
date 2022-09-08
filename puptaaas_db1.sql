@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2022 at 08:57 PM
+-- Generation Time: Sep 08, 2022 at 11:04 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `puptaaas_db1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` bigint(20) NOT NULL,
+  `course_code` varchar(100) NOT NULL,
+  `course` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course_code`, `course`) VALUES
+(1, 'BSA', 'BS Accountancy'),
+(2, 'BSBA-HR', 'BS Business Administration - Human Resource'),
+(3, 'BSBA-MM', 'BS Business Administration - Marketing Management'),
+(4, 'BSEE', 'BS Electronics Engineering'),
+(5, 'BSED-ENG', 'BS Education major in English'),
+(6, 'BSED-MT', 'BS Education major in Mathematics'),
+(7, 'BSIT', 'BS Information Technology\n'),
+(8, 'BSME', 'BS Mechanical Engineering'),
+(9, 'BSOA-LT', 'BS Office Administration - Legal Transcription'),
+(10, 'DICT', 'Diploma in Information Communication Technology'),
+(11, 'DOMT', 'Diploma in Office Management Technology');
 
 -- --------------------------------------------------------
 
@@ -62,7 +91,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2022_08_23_135821_add_username_to_users', 3),
 (7, '2022_08_23_150017_delete_name_users_table', 4),
 (8, '2022_08_23_173103_create_sessions_table', 5),
-(9, '2022_08_27_085759_create_student_applicants_table', 5);
+(9, '2022_08_27_085759_create_student_applicants_table', 5),
+(10, '2022_09_05_140024_create_table_summary', 6);
 
 -- --------------------------------------------------------
 
@@ -133,6 +163,8 @@ CREATE TABLE `student_applicants` (
   `gwa_2nd` decimal(10,2) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Accepted,2=Rejected',
+  `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -141,8 +173,39 @@ CREATE TABLE `student_applicants` (
 -- Dumping data for table `student_applicants`
 --
 
-INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, `award_applied`, `gwa_1st`, `gwa_2nd`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(3, 24, '2022-2023', '3rd Year', '2', '1.75', '2.00', '1662231258.png', 0, '2022-09-03 10:54:18', '2022-09-03 10:54:18');
+INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, `award_applied`, `gwa_1st`, `gwa_2nd`, `image`, `status`, `reason`, `course_id`, `created_at`, `updated_at`) VALUES
+(10, 24, '2022-2023', '1st Year', '1', '1.25', '1.35', '1662456029.jpg', 2, NULL, 11, '2022-09-06 01:20:29', '2022-09-08 07:52:48'),
+(11, 26, '2022-2023', '1st Year', '1', '1.75', '1.00', '1662462955.png', 1, NULL, 4, '2022-09-06 03:15:55', '2022-09-08 06:27:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `summary`
+--
+
+CREATE TABLE `summary` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `term` tinyint(4) NOT NULL,
+  `subjects` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `units` int(11) NOT NULL,
+  `grades` decimal(10,2) NOT NULL,
+  `sy` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `summary`
+--
+
+INSERT INTO `summary` (`id`, `user_id`, `term`, `subjects`, `units`, `grades`, `sy`, `created_at`, `updated_at`) VALUES
+(23, 24, 1, 'Computer Programming 1', 3, '1.00', '2022-2023', '2022-09-06 01:20:29', '2022-09-06 01:20:29'),
+(24, 24, 1, 'Platform Technology', 3, '1.50', '2022-2023', '2022-09-06 01:20:29', '2022-09-06 01:20:29'),
+(25, 24, 2, 'Computer Programming 2', 3, '1.25', '2022-2023', '2022-09-06 01:20:30', '2022-09-06 01:20:30'),
+(26, 24, 2, 'Physical Education', 2, '1.50', '2022-2023', '2022-09-06 01:20:30', '2022-09-06 01:20:30'),
+(27, 26, 1, 'Computer Programming 2', 3, '1.75', '2022-2023', '2022-09-06 03:15:55', '2022-09-06 03:15:55'),
+(28, 26, 2, 'Calculus', 3, '1.00', '2022-2023', '2022-09-06 03:15:56', '2022-09-06 03:15:56');
 
 -- --------------------------------------------------------
 
@@ -159,8 +222,8 @@ CREATE TABLE `users` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_as` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=user,1=admin',
+  `course_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_as` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=user,1=superadmin,2=admin,3=officials',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -172,13 +235,20 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(19, '2022-07000-TG-0', 'admins', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', 'BSIT', 1, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'ONlk6pTh18C9BTtNDLLdhDRDxFxjpeT6Fz5UVT5DGVx2fq3Q0hIEf1amWYl7', '2022-08-23 11:10:10', '2022-08-25 23:02:06'),
-(24, '2022-00330-TG-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'aaa@gmail.com', '+639297205140', 'BSITs', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', 'KBuILBTdpRakcVmbY4kxoFsG7Q4tzCx67MUZ51ZXltMGDBkq6keVvKuDnlDG', '2022-08-25 03:27:24', '2022-08-27 00:50:12');
+INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course_id`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(19, '2022-07000-TG-0', 'admin', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', '7', 2, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'aqegk00bNxy03A0D3uNn6ogQXo39fw4JEtMyDr2Dr6FI31NkqgrbFFWa9e4U', '2022-08-23 11:10:10', '2022-09-06 09:24:40'),
+(24, '2022-00330-TG-0', 'jane123', 'Jane', NULL, 'Doe', 'aaa@gmail.com', '+639297205140', '11', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', '4UliZZd2iDYGpjVpfHBO4vmkyFMFCMSfNEcv4MN9BoDI8d4GeykofI8uPGyC', '2022-08-25 03:27:24', '2022-09-06 22:38:39'),
+(26, '2022-00000-TG-0', 'john123', 'John', NULL, 'Doe', 'roseannbonador5@gmail.com', '+639297205140', '4', 0, NULL, '$2y$10$xhWTxQ5OkGk.PVVRtBn38uoYwXPV2xXcgZODPeijd2EAfc1D/egyS', 'MOOLPym06bGfb6d6qJWdadkNSZDc6wYi1JTYVYieDb4MAmjTdaqVydVcnN3M', '2022-09-06 00:04:54', '2022-09-06 22:38:28');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -222,6 +292,12 @@ ALTER TABLE `student_applicants`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `summary`
+--
+ALTER TABLE `summary`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -234,6 +310,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -243,7 +325,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -255,13 +337,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `student_applicants`
 --
 ALTER TABLE `student_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `summary`
+--
+ALTER TABLE `summary`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
