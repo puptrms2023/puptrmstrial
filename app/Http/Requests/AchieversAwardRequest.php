@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AwardFormRequest extends FormRequest
+class AchieversAwardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +25,7 @@ class AwardFormRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'app_id' => 'nullable',
             'subjects.*' => 'required|string',
             'subjects1.*' => 'required|string',
             'school_year' => 'required',

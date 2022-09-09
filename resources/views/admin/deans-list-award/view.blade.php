@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
+    <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List Applicants</div>
 </div>
 
 @if(session('message'))
@@ -15,7 +15,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="m-0 font-weight-bold text-primary">Students
-                    <a href="{{ url('admin/achievers-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                    <a href="{{ url('admin/deans-list-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
                 </div>
             </div>
             <div class="card-body">
@@ -29,13 +29,14 @@
                     </select>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-data" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped table-data-dl" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Student No.</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Course</th>
+                                <th>Year Level</th>
                                 <th width="">1st Sem GWA</th>
                                 <th>2nd Sem GWA</th>
                                 <th class="text-center">Image</th>

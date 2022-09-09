@@ -12,6 +12,7 @@ class Summary extends Model
     protected $table = 'summary';
     protected $fillable = [
         'user_id',
+        'app_id',
         'term',
         'subjects',
         'units',

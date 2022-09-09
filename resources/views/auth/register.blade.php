@@ -90,6 +90,7 @@
                                         <div class="col-md-6">
                                             <label class="small mb-1">Course</label>
                                             <select class="form-control" name="course_id" id="course_id" required>
+                                                <option value="">--Select Course--</option>
                                                 @foreach($course as $id => $item)
                                                 <option value="{{ $id }}" {{ old('course_id')==$id ? 'selected' : '' }}>
                                                     {{ $item }}</option>

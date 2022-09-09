@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Summary;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AchieversAwardRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Summary;
+use App\Http\Requests\PresidentListerRequest;
 
-class AwardApplicationController extends Controller
+class PlAwardApplicationController extends Controller
 {
     public function index()
     {
-        return view('user.application-form.index');
+        return view('user.application-form-pl.index');
     }
 
-    public function store(AchieversAwardRequest $request)
+    public function store(PresidentListerRequest $request)
     {
         $data = $request->validated();
         $award = new StudentApplicants();
@@ -62,6 +61,7 @@ class AwardApplicationController extends Controller
             $sum->app_id = $lastid;
             $sum->save();
         }
+
 
         return redirect('user/dashboard')->with('message', 'Your application is received');
     }

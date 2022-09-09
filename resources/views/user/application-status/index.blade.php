@@ -73,7 +73,7 @@
                                     <span class="badge badge-warning">Pending</span>
                                     @endif
                                     @if ($item->status=='1')
-                                    <span class="badge badge-success">Accepted</span>
+                                    <span class="badge badge-success">Approved</span>
                                     @endif
                                     @if ($item->status=='2')
                                     <span class="badge badge-danger">Rejected</span>

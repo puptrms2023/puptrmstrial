@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
-@section('title','Achievers Award Application')
+@section('title','Presidents List Application')
 
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="h3 mb-0 text-gray-800">Achiever's Award Application Form</div>
+    <div class="h3 mb-0 text-gray-800">President's List Application Form</div>
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <form action="{{ url('user/application-form') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('user/application-form-pl') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="card shadow mt-0 mb-4">
@@ -228,7 +228,9 @@
                         <label for="" class="font-weight-bold">Academic Level</label>
                         <span class="text-danger">*</span>
                         <select class="form-control" name="year_level">
-                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
                         </select>
                     </div>
                 </div>
@@ -238,17 +240,17 @@
                     <div class="col-md-6 mb-3">
                         <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
                         <span class="text-danger">*</span>
-                        <input type="file" name="image">
+                        <input type="file" name="image" required>
                     </div>
                 </div>
             </div>
-            <div class="card shadow mt-0 mb-4">
+            <div class="card hidden shadow mt-0 mb-4">
                 <div class="card-body">
                     <div class="col-md-12 mb-3">
                         <label for="" class="font-weight-bold">Award Applied</label>
                         <span class="text-danger">*</span>
                         <select class="form-control" name="award_applied">
-                            <option value="1">Achiever's Award</option>
+                            <option value="3">President's List</option>
                         </select>
                     </div>
                 </div>

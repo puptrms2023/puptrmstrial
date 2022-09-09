@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Summary;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AchieversAwardRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Summary;
 
-class AwardApplicationController extends Controller
+class DlAwardApplicationController extends Controller
 {
     public function index()
     {
-        return view('user.application-form.index');
+        return view('user.application-form-dl.index');
     }
 
     public function store(AchieversAwardRequest $request)
@@ -62,6 +61,7 @@ class AwardApplicationController extends Controller
             $sum->app_id = $lastid;
             $sum->save();
         }
+
 
         return redirect('user/dashboard')->with('message', 'Your application is received');
     }

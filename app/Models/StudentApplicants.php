@@ -28,11 +28,10 @@ class StudentApplicants extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function grades()
     {
-        return $this->belongsTo(Summary::class, 'user_id','user_id');
+        return $this->belongsTo(Summary::class, 'user_id', 'user_id');
     }
 }
-

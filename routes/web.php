@@ -41,6 +41,22 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/achievers-award/{course_code}/update-status/{id}', 'update');
     });
+    Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
+        Route::get('/deans-list-award', 'index');
+        Route::get('/deans-list-award/{course_code}', 'achieversView');
+        Route::get('/deans-list-award/{course_code}/approve/{id}', 'approved');
+        Route::get('/deans-list-award/{course_code}/reject/{id}', 'rejected');
+        Route::get('/deans-list-award/{course_code}/{id}', 'studentApplicationView');
+        Route::put('/deans-list-award/{course_code}/update-status/{id}', 'update');
+    });
+    Route::controller(App\Http\Controllers\Admin\PLApplicantsController::class)->group(function () {
+        Route::get('/presidents-list-award', 'index');
+        Route::get('/presidents-list-award/{course_code}', 'achieversView');
+        Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
+        Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
+        Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
+        Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
@@ -48,6 +64,14 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::controller(App\Http\Controllers\User\AwardApplicationController::class)->group(function () {
         Route::get('/application-form', 'index');
         Route::post('/application-form', 'store');
+    });
+    Route::controller(App\Http\Controllers\User\PlAwardApplicationController::class)->group(function () {
+        Route::get('/application-form-pl', 'index');
+        Route::post('/application-form-pl', 'store');
+    });
+    Route::controller(App\Http\Controllers\User\DlAwardApplicationController::class)->group(function () {
+        Route::get('/application-form-dl', 'index');
+        Route::post('/application-form-dl', 'store');
     });
 
     Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {

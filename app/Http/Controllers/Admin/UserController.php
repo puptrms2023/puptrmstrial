@@ -24,7 +24,7 @@ class UserController extends Controller
         return view('admin.user.create', compact('course'));
     }
 
-    public function store(RegisterRequest $request)
+    public function store(UserFormRequest $request)
     {
         $validatedData = $request->validated();
         $user = new User;

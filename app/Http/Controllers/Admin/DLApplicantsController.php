@@ -9,12 +9,12 @@ use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 
-class StudentApplicantsController extends Controller
+class DLApplicantsController extends Controller
 {
     public function index()
     {
         $courses = Courses::all();
-        return view('admin.achievers-award.index', compact('courses'));
+        return view('admin.deans-list-award.index', compact('courses'));
     }
 
     public function achieversView(Request $request, $course_code)
@@ -22,7 +22,7 @@ class StudentApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
 
         if ($request->ajax()) {
-            $data = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1')->select('student_applicants.*');
+            $data = StudentApplicants::with('users')->with('courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '2')->select('student_applicants.*');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('image', function ($status) {
@@ -36,13 +36,13 @@ class StudentApplicantsController extends Controller
                     } else if ($status->status == '2') {
                         return '<span class="badge badge-danger">Rejected</span>';
                     } else {
-                        return '<a href="/admin/achievers-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
+                        return '<a href="/admin/deans-list-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-check"></i>
                         </span>
                         <span class="text">Approve</span>
                     </a>
-                    <a href="/admin/achievers-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
+                    <a href="/admin/deans-list-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
                         <span class="icon text-white-50">
                             <i class="fa-sharp fa-solid fa-xmark"></i>
                         </span>
@@ -52,7 +52,7 @@ class StudentApplicantsController extends Controller
                 })
                 ->addColumn('action', function ($status) {
                     $btn = '';
-                    $btn .= '<a href="/admin/achievers-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                    $btn .= '<a href="/admin/deans-list-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
                     $btn .= '<button type="button" class="btn btn-sm btn-danger deleteUserbtn"><i class="fa fa-trash"></i> </button>';
 
                     return $btn;
@@ -79,7 +79,7 @@ class StudentApplicantsController extends Controller
                 ->make(true);
         }
 
-        return view('admin.achievers-award.view', compact('courses'));
+        return view('admin.deans-list-award.view', compact('courses'));
     }
 
     public function approved($course_code, $id)
@@ -114,7 +114,7 @@ class StudentApplicantsController extends Controller
             ->where('term', '=', "2")
             ->where('app_id', '=', $id)
             ->get();
-        return view('admin.achievers-award.student', compact('courses', 'status', 'grades', 'grades2'));
+        return view('admin.deans-list-award.student', compact('courses', 'status', 'grades', 'grades2'));
     }
 
     public function update(Request $request, $course_code, $id)

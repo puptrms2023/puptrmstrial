@@ -26,17 +26,17 @@
             <span>Users</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/achievers-award') ? 'active':'' }}">
-        <a class="nav-link {{ Request::is('admin/achievers-award') ? '':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+    <li class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active':'' }}">
+        <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? '':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-award"></i>
             <span>Academic Awards</span>
         </a>
-        <div id="collapseTwo" class="collapse {{ Request::is('admin/achievers-award') ? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active':'' }}" href="{{url('admin/achievers-award')}}">Achiever's Award</a>
-                <a class="collapse-item" href="cards.html">President's List</a>
-                <a class="collapse-item" href="cards.html">Dean's List</a>
+                <a class="collapse-item {{ Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') ? 'active':'' }}" href="{{url('admin/deans-list-award')}}">Dean's List</a>
+                <a class="collapse-item {{ Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active':'' }}" href="{{url('admin/presidents-list-award')}}">President's List</a>
                 <a class="collapse-item" href="cards.html">Academic Excellence</a>
             </div>
         </div>

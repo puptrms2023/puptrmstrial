@@ -14,7 +14,7 @@
         NAVIGATION PANE
     </div>
 
-    <li class="nav-item active">
+    <li class="nav-item {{ Request::is('user/dashboard') ? 'active':'' }}">
         <a class="nav-link align-middle" href="{{url('user/dashboard')}}">
             <i class="fa-solid fa-house-chimney"></i>
             <span>Home</span>
@@ -22,7 +22,7 @@
     </li>
 
     <!--Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('user/application-status') ? 'active':'' }}">
         <a class="nav-link collapsed" href="{{url('user/application-status')}}">
             <i class="fa-solid fa-list-check"></i>
             <span>Application Status</span>

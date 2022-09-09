@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="card border-left-danger shadow mb-4">
-            <img src="{{ asset('admin/img/achieverscover2.jpg') }}" class="card-img-top" alt="image">
+            <img src="{{ asset('admin/img/awardphotocard1.jpg') }}" class="card-img-top" alt="image">
             <div class="card-body text-center">
                 <div class="text-md card-text font-weight-bold text-danger text-uppercase pl-6 mt-4r">Achiever's Award
                     Application
@@ -61,13 +61,12 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="card border-left-warning shadow mb-4">
-            <img src="{{ asset('admin/img/pldlcover2.jpg') }}" class="card-img-top" alt="image">
+            <img src="{{ asset('admin/img/awardphotocard3.jpg') }}" class="card-img-top" alt="image">
             <div class="card-body text-center">
-                <div class="text-md card-text font-weight-bold text-danger text-uppercase pl-6 mt-4r">Dean's List and
-                    President's List Application
+                <div class="text-md card-text font-weight-bold text-info text-uppercase pl-6 mt-4r">Dean's List Application
                 </div>
                 <div class="h6 mb-0 font-weight-bold text-gray-800  ">2nd to 4th year students only</div>
-                <a href="#" class="btn btn-success btn-sm mt-4">Apply</a>
+                <a href="{{ url('user/application-form-dl') }}" class="btn btn-success btn-sm mt-4">Apply</a>
             </div>
         </div>
     </div>
@@ -102,6 +101,15 @@
 </div>
 <div class="row">
     <div class="col-lg-4">
+        <div class="card border-left-warning shadow mb-4">
+            <img src="{{ asset('admin/img/awardphotocard2.jpg') }}" class="card-img-top" alt="image">
+            <div class="card-body text-center">
+                <div class="text-md card-text font-weight-bold text-warning text-uppercase pl-6 mt-4r">President's List Application
+                </div>
+                <div class="h6 mb-0 font-weight-bold text-gray-800  ">2nd to 4th year students only</div>
+                <a href="{{ url('user/application-form-pl') }}" class="btn btn-success btn-sm mt-4">Apply</a>
+            </div>
+        </div>
     </div>
     <div class="col-lg-8">
         <div class="card shadow mb-4">
@@ -135,7 +143,7 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="card border-left-success shadow mb-4">
-            <img src="{{ asset('admin/img/achieverscover2.jpg') }}" class="card-img-top" alt="image">
+            <img src="{{ asset('admin/img/awardphotocard4.jpg') }}" class="card-img-top" alt="image">
             <div class="card-body text-center">
                 <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r">Academic
                     Excellence Award

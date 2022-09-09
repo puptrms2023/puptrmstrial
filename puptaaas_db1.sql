@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2022 at 11:04 PM
+-- Generation Time: Sep 09, 2022 at 11:35 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -174,8 +174,9 @@ CREATE TABLE `student_applicants` (
 --
 
 INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, `award_applied`, `gwa_1st`, `gwa_2nd`, `image`, `status`, `reason`, `course_id`, `created_at`, `updated_at`) VALUES
-(10, 24, '2022-2023', '1st Year', '1', '1.25', '1.35', '1662456029.jpg', 2, NULL, 11, '2022-09-06 01:20:29', '2022-09-08 07:52:48'),
-(11, 26, '2022-2023', '1st Year', '1', '1.75', '1.00', '1662462955.png', 1, NULL, 4, '2022-09-06 03:15:55', '2022-09-08 06:27:32');
+(32, 28, '2022-2023', '1st Year', '1', '1.00', '1.00', '1662752567.png', 1, NULL, 7, '2022-09-09 11:42:47', '2022-09-09 12:03:39'),
+(33, 28, '2022-2023', '1st Year', '1', '1.50', '1.00', '1662752983.jpg', 1, NULL, 7, '2022-09-09 11:49:43', '2022-09-09 12:03:36'),
+(34, 26, '2022-2023', '3rd Year', '2', '1.68', '1.03', '1662758948.jpg', 1, NULL, 4, '2022-09-09 13:29:08', '2022-09-09 13:31:30');
 
 -- --------------------------------------------------------
 
@@ -185,6 +186,7 @@ INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, 
 
 CREATE TABLE `summary` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `app_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `term` tinyint(4) NOT NULL,
   `subjects` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -199,13 +201,13 @@ CREATE TABLE `summary` (
 -- Dumping data for table `summary`
 --
 
-INSERT INTO `summary` (`id`, `user_id`, `term`, `subjects`, `units`, `grades`, `sy`, `created_at`, `updated_at`) VALUES
-(23, 24, 1, 'Computer Programming 1', 3, '1.00', '2022-2023', '2022-09-06 01:20:29', '2022-09-06 01:20:29'),
-(24, 24, 1, 'Platform Technology', 3, '1.50', '2022-2023', '2022-09-06 01:20:29', '2022-09-06 01:20:29'),
-(25, 24, 2, 'Computer Programming 2', 3, '1.25', '2022-2023', '2022-09-06 01:20:30', '2022-09-06 01:20:30'),
-(26, 24, 2, 'Physical Education', 2, '1.50', '2022-2023', '2022-09-06 01:20:30', '2022-09-06 01:20:30'),
-(27, 26, 1, 'Computer Programming 2', 3, '1.75', '2022-2023', '2022-09-06 03:15:55', '2022-09-06 03:15:55'),
-(28, 26, 2, 'Calculus', 3, '1.00', '2022-2023', '2022-09-06 03:15:56', '2022-09-06 03:15:56');
+INSERT INTO `summary` (`id`, `app_id`, `user_id`, `term`, `subjects`, `units`, `grades`, `sy`, `created_at`, `updated_at`) VALUES
+(53, 32, 28, 1, 'zobynon', 3, '1.00', '2022-2023', '2022-09-09 11:42:47', '2022-09-09 11:42:47'),
+(54, 32, 28, 2, 'cowejer', 3, '1.00', '2022-2023', '2022-09-09 11:42:47', '2022-09-09 11:42:47'),
+(55, 33, 28, 1, 'Computer Programming', 3, '1.50', '2022-2023', '2022-09-09 11:49:43', '2022-09-09 11:49:43'),
+(56, 33, 28, 2, 'Computer Programming 2', 3, '1.00', '2022-2023', '2022-09-09 11:49:43', '2022-09-09 11:49:43'),
+(57, 34, 26, 1, 'moqurar', 3, '1.68', '2022-2023', '2022-09-09 13:29:08', '2022-09-09 13:29:08'),
+(58, 34, 26, 2, 'dajizedoka', 3, '1.03', '2022-2023', '2022-09-09 13:29:08', '2022-09-09 13:29:08');
 
 -- --------------------------------------------------------
 
@@ -236,9 +238,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course_id`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(19, '2022-07000-TG-0', 'admin', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', '7', 2, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'aqegk00bNxy03A0D3uNn6ogQXo39fw4JEtMyDr2Dr6FI31NkqgrbFFWa9e4U', '2022-08-23 11:10:10', '2022-09-06 09:24:40'),
+(19, '2022-07000-TG-0', 'admin', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', '7', 2, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'Zeg8lAcgijw2hD0CVM6xSSt4o2vo9g6Bpdqa5xmhCmEXtwYUxwKDX8Sh8JMw', '2022-08-23 11:10:10', '2022-09-06 09:24:40'),
 (24, '2022-00330-TG-0', 'jane123', 'Jane', NULL, 'Doe', 'aaa@gmail.com', '+639297205140', '11', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', '4UliZZd2iDYGpjVpfHBO4vmkyFMFCMSfNEcv4MN9BoDI8d4GeykofI8uPGyC', '2022-08-25 03:27:24', '2022-09-06 22:38:39'),
-(26, '2022-00000-TG-0', 'john123', 'John', NULL, 'Doe', 'roseannbonador5@gmail.com', '+639297205140', '4', 0, NULL, '$2y$10$xhWTxQ5OkGk.PVVRtBn38uoYwXPV2xXcgZODPeijd2EAfc1D/egyS', 'MOOLPym06bGfb6d6qJWdadkNSZDc6wYi1JTYVYieDb4MAmjTdaqVydVcnN3M', '2022-09-06 00:04:54', '2022-09-06 22:38:28');
+(26, '2022-00000-TG-0', 'john123', 'John', NULL, 'Doe', 'roseannbonador5@gmail.com', '+639297205140', '4', 0, NULL, '$2y$10$xhWTxQ5OkGk.PVVRtBn38uoYwXPV2xXcgZODPeijd2EAfc1D/egyS', 'LbXdaAPB0WeBFI2TEyAwNIwCDkzMFz75rWtSpjHpov1KbNFt3bNGnH2kT1Jm', '2022-09-06 00:04:54', '2022-09-06 22:38:28'),
+(28, '2022-00043-TG-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'zzz@gmail.com', '+639297205140', '7', 0, NULL, '$2y$10$H3XlLFP/DgPNX4HmFx1aPOy5vYsYJLAbEHAIlrqJJr0i54GdHarLq', NULL, '2022-09-09 10:12:53', '2022-09-09 10:12:53');
 
 --
 -- Indexes for dumped tables
@@ -337,19 +340,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `student_applicants`
 --
 ALTER TABLE `student_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `summary`
 --
 ALTER TABLE `summary`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

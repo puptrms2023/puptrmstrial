@@ -3,10 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Rules\StrMustContain;
-
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class UserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -35,7 +34,8 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email:rfc,dns|unique:users,email',
             'username' => ['required', 'string', 'max:255', 'unique:users', 'alpha_dash'],
             'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
+            'role_as' => 'required'
         ];
     }
 
