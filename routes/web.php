@@ -36,6 +36,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
         Route::get('/achievers-award/{course_code}', 'achieversView');
+        Route::get('/achievers-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/achievers-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/achievers-award/{course_code}/approve/{id}', 'approved');
         Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
@@ -43,6 +45,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
+        Route::get('/deans-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/deans-list-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/deans-list-award/{course_code}', 'achieversView');
         Route::get('/deans-list-award/{course_code}/approve/{id}', 'approved');
         Route::get('/deans-list-award/{course_code}/reject/{id}', 'rejected');
@@ -56,6 +60,22 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+    });
+    Route::controller(App\Http\Controllers\Admin\AEApplicantsController::class)->group(function () {
+        Route::get('/academic-excellence-award', 'index');
+        // Route::get('/presidents-list-award/{course_code}', 'achieversView');
+        // Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
+        // Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
+        // Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
+        // Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+    });
+    Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
+        Route::get('/usermanagement', 'index');
+        // Route::get('/presidents-list-award/{course_code}', 'achieversView');
+        // Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
+        // Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
+        // Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
+        // Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {

@@ -46,10 +46,14 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <a href="http://localhost/aaaspupt/AdminPLSecondYear/pl_bsa_2ndyr_pdfdetails" target="_blank"
-                        class="btn btn-sm btn-primary mt-2 mb-3"><i
-                            class="fa fa-download fa-sm text-white-100"></i>&ensp;Print
-                        Report</a>
+                    <a href="{{ url('admin/achievers-award/'.$courses->course_code. '/view-approved-students-pdf')}}" target="__blank"
+                        class="btn btn-sm btn-info mt-2 mb-3">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Approved Students
+                    </a>
+                    <a href="{{ url('admin/achievers-award/'.$courses->course_code. '/view-rejected-students-pdf')}}" target="__blank"
+                        class="btn btn-sm btn-danger mt-2 mb-3">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Rejected Students
+                    </a>
                 </div>
             </div>
         </div>

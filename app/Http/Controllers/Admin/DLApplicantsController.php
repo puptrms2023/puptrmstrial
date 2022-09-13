@@ -7,7 +7,9 @@ use App\Models\Summary;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\PDF;
 
 class DLApplicantsController extends Controller
 {
@@ -60,6 +62,10 @@ class DLApplicantsController extends Controller
                 ->filter(function ($instance) use ($request) {
                     if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                         $instance->where('status', $request->get('status'));
+                    }
+                    if ($request->get('year') == '2nd-Year' || $request->get('year') == '3rd-Year' || $request->get('year') == '4th-Year') {
+                        $year = str_replace('-', ' ', $request->get('year'));
+                        $instance->where('year_level', $year);
                     }
 
                     if (!empty($request->get('search'))) {
@@ -133,4 +139,34 @@ class DLApplicantsController extends Controller
         $status->save();
         return redirect()->back()->with('message', 'The Application Form Updated Successfully');
     }
+
+    public function openPdfApproved($course_code,$year_level)
+    {
+        $year = str_replace('-', ' ',$year_level);
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::where('award_applied','2')
+            ->where('course_id', $courses->id)
+            ->where('year_level', $year)
+            ->where('status', '1')
+            ->orderBy('gwa','asc')
+            ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.deans-list-award.student-accepted',array('students' => $students),array('courses' => $courses));
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream('Deans-List-'.$courses->course_code.'.pdf');
+    }
+    public function openPdfRejected($course_code)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::where('award_applied','2')
+        ->where('course_id', $courses->id)
+        ->where('status', '2')
+        ->orderBy('user_id','asc')
+        ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.deans-list-award.student-rejected',array('students' => $students),array('courses' => $courses));
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream('Rejected-Deans-List-'.$courses->course_code.'.pdf');
+    }
+
 }

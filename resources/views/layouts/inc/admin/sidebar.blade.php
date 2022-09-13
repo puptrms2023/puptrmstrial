@@ -37,7 +37,7 @@
                 <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active':'' }}" href="{{url('admin/achievers-award')}}">Achiever's Award</a>
                 <a class="collapse-item {{ Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') ? 'active':'' }}" href="{{url('admin/deans-list-award')}}">Dean's List</a>
                 <a class="collapse-item {{ Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active':'' }}" href="{{url('admin/presidents-list-award')}}">President's List</a>
-                <a class="collapse-item" href="cards.html">Academic Excellence</a>
+                <a class="collapse-item" href="{{url('admin/academic-excellence-award')}}">Academic Excellence</a>
             </div>
         </div>
     </li>

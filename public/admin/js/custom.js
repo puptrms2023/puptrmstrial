@@ -239,6 +239,7 @@ $(function () {
             url: "/admin/deans-list-award/" + course_id,
             data: function (d) {
                 (d.status = $("#status").val()),
+                    (d.year = $("#year").val()),
                     (d.search = $('input[type="search"]').val());
             },
         },
@@ -268,7 +269,7 @@ $(function () {
         ],
     });
 
-    $("#status").change(function () {
+    $("#year,#status").change(function () {
         table.draw();
     });
 });
@@ -314,3 +315,41 @@ $(function () {
         table.draw();
     });
 });
+
+$(document).ready(function () {
+    $(".view-accepted").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/deans-list-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-approved-students-pdf";
+        location.href = link;
+        console.log(link);
+    });
+});
+
+// $(document).ready(function () {
+//     $("#year").on("change", function () {
+//         var course_id = document.getElementById("course_id").value;
+//         var year = $(this).val();
+//         var linkURL =
+//             "/admin/deans-list-award/" +
+//             course_id +
+//             "/view-approved-students-pdf";
+//         $.ajax({
+//             headers: {
+//                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+//             },
+//             type: "GET",
+//             url: linkURL,
+//             data: { year: year },
+//             success: function (response) {
+//                 window.location.href = window.location.href.linkURL;
+//             },
+//         });
+//     });
+// });

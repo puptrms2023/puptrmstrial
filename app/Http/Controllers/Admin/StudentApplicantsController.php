@@ -133,4 +133,30 @@ class StudentApplicantsController extends Controller
         $status->save();
         return redirect()->back()->with('message', 'The Application Form Updated Successfully');
     }
+    public function openPdfApproved($course_code)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::where('award_applied','1')
+        ->where('course_id', $courses->id)
+        ->where('status', '1')
+        ->orderBy('gwa','asc')
+        ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.achievers-award.student-accepted',array('students' => $students),array('courses' => $courses));
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream();
+    }
+    public function openPdfRejected($course_code)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::where('award_applied','1')
+        ->where('course_id', $courses->id)
+        ->where('status', '2')
+        ->orderBy('user_id','asc')
+        ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.achievers-award.student-rejected',array('students' => $students),array('courses' => $courses));
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream();
+    }
 }

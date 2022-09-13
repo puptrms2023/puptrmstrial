@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Summary;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AchieversAwardRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Summary;
+
+use App\Http\Requests\AchieversAwardRequest;
+use Dotenv\Validator;
 
 class AwardApplicationController extends Controller
 {
@@ -18,6 +21,7 @@ class AwardApplicationController extends Controller
 
     public function store(AchieversAwardRequest $request)
     {
+
         $data = $request->validated();
         $award = new StudentApplicants();
 

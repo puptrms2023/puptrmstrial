@@ -238,7 +238,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
                         <span class="text-danger">*</span>
-                        <input type="file" name="image">
+                        <input type="file" name="image" required>
                     </div>
                 </div>
             </div>
