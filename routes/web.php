@@ -36,8 +36,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
         Route::get('/achievers-award/{course_code}', 'achieversView');
-        Route::get('/achievers-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
-        Route::get('/achievers-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
+        Route::get('/achievers-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/achievers-award/{course_code}/view-all-students-pdf', 'openPdfAll');
+        Route::get('/achievers-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/achievers-award/{course_code}/approve/{id}', 'approved');
         Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
@@ -56,6 +57,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\PLApplicantsController::class)->group(function () {
         Route::get('/presidents-list-award', 'index');
+        Route::get('/presidents-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/presidents-list-award/{course_code}/view-approved-students-pdf', 'openPdfAll');
+        Route::get('/presidents-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/presidents-list-award/{course_code}', 'achieversView');
         Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
         Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');

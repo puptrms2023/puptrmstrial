@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Achiever Awardees - {{ $courses->course_code }}</title>
+  <title>President's Lister - {{ $courses->course_code }} </title>
   <style type="text/css">
     body{
         font-family: Arial, Helvetica, sans-serif;
@@ -109,11 +109,11 @@ hr {
     <hr/>
     <table class="table3">
         <tr>
-            <th colspan="2" style="text-align: left; font-size:22px;font-weight:bold;">List of Achievers Awardees - {{ $courses->course }}</th>
+            <th colspan="2" style="text-align: left; font-size:22px;font-weight:bold;">List of President's Lister - {{ $courses->course }}</th>
 
         </tr>
         <tr>
-            <th style="text-align: left;"><b>Year:</b> 1st-Year</th>
+            <th style="text-align: left;"><b>Year: </b>{{ (request()->route("year_level")) }}</th>
             <th style="text-align: right;"><b>Date Created:</b> {{ date('Y-m-d') }}</th>
             <td></td>
         </tr>

@@ -12,6 +12,30 @@
 <div class="alert alert-success">{{ session('message') }}</div>
 @endif
 <div class="row">
+    <div class="col-md-12 mb-2">
+        <div class="form-row">
+            <div class="col-lg-3 col-xs-12">
+                <select id="year_pl" class="custom-select" id="inlineFormCustomSelectPref">
+                    <option value="All" selected>All Year Levels</option>
+                    <option value="2nd-Year">2nd Year</option>
+                    <option value="3rd-Year">3rd Year</option>
+                    <option value="4th-Year">4th Year</option>
+                </select>
+            </div>
+            <div class="col-auto col-xs-12">
+                <button type="button" class="btn btn-secondary view-accepted-pl">
+                    <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
+                </button>
+            </div>
+            <div class="col-auto col-xs-12">
+                <button type="button" class="btn btn-danger view-rejected-pl">
+                    <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -48,10 +72,10 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <a href="http://localhost/aaaspupt/AdminPLSecondYear/pl_bsa_2ndyr_pdfdetails" target="_blank"
-                        class="btn btn-sm btn-primary mt-2 mb-3"><i
-                            class="fa fa-download fa-sm text-white-100"></i>&ensp;Print
-                        Report</a>
+                    <a href="{{ url('admin/presidents-list-award/'.$courses->course_code. '/view-approved-students-pdf')}}" target="__blank"
+                        class="btn btn-sm btn-primary mt-2 mb-3">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
+                    </a>
                 </div>
             </div>
         </div>

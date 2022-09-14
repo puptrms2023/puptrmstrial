@@ -282,6 +282,7 @@ $(function () {
             url: "/admin/presidents-list-award/" + course_id,
             data: function (d) {
                 (d.status = $("#status").val()),
+                    (d.year = $("#year_pl").val()),
                     (d.search = $('input[type="search"]').val());
             },
         },
@@ -311,7 +312,7 @@ $(function () {
         ],
     });
 
-    $("#status").change(function () {
+    $("#year_pl,#status").change(function () {
         table.draw();
     });
 });
@@ -337,6 +338,34 @@ $(document).ready(function () {
         var year = select.options[select.selectedIndex].value;
         var link =
             "/admin/deans-list-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-rejected-students-pdf";
+        window.open(link, "_blank");
+    });
+});
+$(document).ready(function () {
+    $(".view-accepted-pl").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year_pl");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/presidents-list-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-approved-students-pdf";
+        window.open(link, "_blank");
+    });
+});
+$(document).ready(function () {
+    $(".view-rejected-pl").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year_pl");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/presidents-list-award/" +
             course_id +
             "/" +
             year +

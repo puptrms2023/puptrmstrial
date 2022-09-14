@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Achiever Awardees - {{ $courses->course_code }}</title>
+  <title>President's List Applicants</title>
   <style type="text/css">
     body{
         font-family: Arial, Helvetica, sans-serif;
@@ -109,12 +109,12 @@ hr {
     <hr/>
     <table class="table3">
         <tr>
-            <th colspan="2" style="text-align: left; font-size:22px;font-weight:bold;">List of Achievers Awardees - {{ $courses->course }}</th>
+            <th style="text-align: left; font-size:22px;font-weight:bold;">List of President's List Applicants</th>
+            <td></td>
 
         </tr>
         <tr>
-            <th style="text-align: left;"><b>Year:</b> 1st-Year</th>
-            <th style="text-align: right;"><b>Date Created:</b> {{ date('Y-m-d') }}</th>
+            <th style="text-align: left;"><b>Date Created:</b> {{ date('Y-m-d') }}</th>
             <td></td>
         </tr>
     </table>
@@ -122,9 +122,9 @@ hr {
         <thead>
             <tr>
                 <th>Student Number</th>
-                <th>Last Name</th>
-                <th>First Name</th>
+                <th>Name</th>
                 <th>Course</th>
+                <th>Year Level</th>
                 <th>1st Sem GWA</th>
                 <th>2nd Sem GWA</th>
             </tr>
@@ -133,11 +133,11 @@ hr {
             @foreach ($students as $stud)
             <tr>
                 <td align="center">{{ $stud->users->stud_num }}</td>
-                <td>{{ $stud->users->last_name }}</td>
-                <td>{{ $stud->users->first_name }}</td>
-                <td>{{ $stud->courses->course_code }}</td>
-                <td align="center">{{ $stud->gwa_1st}}</td>
-                <td align="center">{{ $stud->gwa_2nd }}</td>
+                <td>{{ $stud->users->last_name.', '.$stud->users->first_name }}</td>
+                <td width="12%"">{{ $stud->courses->course_code }}</td>
+                <td width="15%">{{ $stud->year_level }}</td>
+                <td width="12%" align="center">{{ $stud->gwa_1st}}</td>
+                <td width="12%" align="center">{{ $stud->gwa_2nd }}</td>
             </tr>
             @endforeach
         </body>

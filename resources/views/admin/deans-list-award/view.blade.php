@@ -12,28 +12,26 @@
 @endif
 <div class="row">
     <div class="col-md-12 mb-2">
-        <form>
-            <div class="form-row mb-2">
-                <div class="col-lg-3 col-xs-12">
-                    <select id="year" class="custom-select" id="inlineFormCustomSelectPref">
-                        <option value="All" selected>All Year Levels</option>
-                        <option value="2nd-Year">2nd Year</option>
-                        <option value="3rd-Year">3rd Year</option>
-                        <option value="4th-Year">4th Year</option>
-                      </select>
-                </div>
-                <div class="col-auto col-xs-12">
-                    <button type="button" class="btn btn-secondary view-accepted" formtarget="_blank">
-                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
-                    </button>
-                </div>
-                <div class="col-auto col-xs-12">
-                    <button type="button" class="btn btn-danger view-rejected" formtarget="_blank">
-                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
-                    </button>
-                </div>
+        <div class="form-row">
+            <div class="col-lg-3 col-xs-12">
+                <select id="year" class="custom-select" id="inlineFormCustomSelectPref">
+                    <option value="All" selected>All Year Levels</option>
+                    <option value="2nd-Year">2nd Year</option>
+                    <option value="3rd-Year">3rd Year</option>
+                    <option value="4th-Year">4th Year</option>
+                </select>
             </div>
-        </form>
+            <div class="col-auto col-xs-12">
+                <button type="button" class="btn btn-secondary view-accepted" formtarget="_blank">
+                    <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
+                </button>
+            </div>
+            <div class="col-auto col-xs-12">
+                <button type="button" class="btn btn-danger view-rejected" formtarget="_blank">
+                    <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
