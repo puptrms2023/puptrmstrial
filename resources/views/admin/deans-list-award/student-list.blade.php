@@ -122,9 +122,9 @@ hr {
         <thead>
             <tr>
                 <th>Student Number</th>
-                <th>Last Name</th>
-                <th>First Name</th>
+                <th>Name</th>
                 <th>Course</th>
+                <th>Year Level</th>
                 <th>1st Sem GWA</th>
                 <th>2nd Sem GWA</th>
             </tr>
@@ -133,11 +133,11 @@ hr {
             @foreach ($students as $stud)
             <tr>
                 <td align="center">{{ $stud->users->stud_num }}</td>
-                <td>{{ $stud->users->last_name }}</td>
-                <td>{{ $stud->users->first_name }}</td>
-                <td>{{ $stud->courses->course_code }}</td>
-                <td align="center">{{ $stud->gwa_1st}}</td>
-                <td align="center">{{ $stud->gwa_2nd }}</td>
+                <td>{{ $stud->users->last_name.', '.$stud->users->first_name }}</td>
+                <td width="12%"">{{ $stud->courses->course_code }}</td>
+                <td width="15%">{{ $stud->year_level }}</td>
+                <td width="12%" align="center">{{ $stud->gwa_1st}}</td>
+                <td width="12%" align="center">{{ $stud->gwa_2nd }}</td>
             </tr>
             @endforeach
         </body>

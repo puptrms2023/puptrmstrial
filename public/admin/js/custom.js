@@ -327,29 +327,20 @@ $(document).ready(function () {
             "/" +
             year +
             "/view-approved-students-pdf";
-        location.href = link;
-        console.log(link);
+        window.open(link, "_blank");
     });
 });
-
-// $(document).ready(function () {
-//     $("#year").on("change", function () {
-//         var course_id = document.getElementById("course_id").value;
-//         var year = $(this).val();
-//         var linkURL =
-//             "/admin/deans-list-award/" +
-//             course_id +
-//             "/view-approved-students-pdf";
-//         $.ajax({
-//             headers: {
-//                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-//             },
-//             type: "GET",
-//             url: linkURL,
-//             data: { year: year },
-//             success: function (response) {
-//                 window.location.href = window.location.href.linkURL;
-//             },
-//         });
-//     });
-// });
+$(document).ready(function () {
+    $(".view-rejected").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/deans-list-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-rejected-students-pdf";
+        window.open(link, "_blank");
+    });
+});

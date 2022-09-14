@@ -142,31 +142,70 @@ class DLApplicantsController extends Controller
 
     public function openPdfApproved($course_code,$year_level)
     {
-        $year = str_replace('-', ' ',$year_level);
         $courses = Courses::where('course_code', $course_code)->first();
-        $students = StudentApplicants::where('award_applied','2')
+        if($year_level == "All")
+        {
+            $students = StudentApplicants::where('award_applied','2')
+            ->where('course_id', $courses->id)
+            ->where('status', '1')
+            ->orderBy('gwa','asc')
+            ->get();
+        }
+        else
+        {
+            $year = str_replace('-', ' ',$year_level);
+            $courses = Courses::where('course_code', $course_code)->first();
+            $students = StudentApplicants::where('award_applied','2')
             ->where('course_id', $courses->id)
             ->where('year_level', $year)
             ->where('status', '1')
             ->orderBy('gwa','asc')
             ->get();
+        }
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.deans-list-award.student-accepted',array('students' => $students),array('courses' => $courses));
         $pdf->setPaper('A4','portrait');
         return $pdf->stream('Deans-List-'.$courses->course_code.'.pdf');
     }
-    public function openPdfRejected($course_code)
+    public function openPdfRejected($course_code,$year_level)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $students = StudentApplicants::where('award_applied','2')
-        ->where('course_id', $courses->id)
-        ->where('status', '2')
-        ->orderBy('user_id','asc')
-        ->get();
+        if($year_level == "All")
+        {
+            $students = StudentApplicants::where('award_applied','2')
+            ->where('course_id', $courses->id)
+            ->where('status', '2')
+            ->orderBy('gwa','asc')
+            ->get();
+        }
+        else
+        {
+            $year = str_replace('-', ' ',$year_level);
+            $courses = Courses::where('course_code', $course_code)->first();
+            $students = StudentApplicants::where('award_applied','2')
+            ->where('course_id', $courses->id)
+            ->where('year_level', $year)
+            ->where('status', '2')
+            ->orderBy('gwa','asc')
+            ->get();
+        }
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.deans-list-award.student-rejected',array('students' => $students),array('courses' => $courses));
         $pdf->setPaper('A4','portrait');
         return $pdf->stream('Rejected-Deans-List-'.$courses->course_code.'.pdf');
+    }
+
+    public function openPdfAll($course_code)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::where('award_applied','2')
+            ->where('course_id', $courses->id)
+            ->orderBy('year_level','asc')
+            ->get();
+            $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.deans-list-award.student-list',array('students' => $students),array('courses' => $courses));
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream('Deans-List-Applicants-'.$courses->course_code.'.pdf');
     }
 
 }

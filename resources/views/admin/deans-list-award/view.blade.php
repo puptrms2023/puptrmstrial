@@ -11,14 +11,28 @@
 <div class="alert alert-success">{{ session('message') }}</div>
 @endif
 <div class="row">
-    <div class="col-12 col-md-12 mb-2">
-        <form class="form-inline">
-            <select id="year" class="custom-select col-sm-3 my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-              <option value="" selected>All Year Levels</option>
-              <option value="2nd-Year">2nd Year</option>
-              <option value="3rd-Year">3rd Year</option>
-              <option value="4th-Year">4th Year</option>
-            </select>
+    <div class="col-md-12 mb-2">
+        <form>
+            <div class="form-row mb-2">
+                <div class="col-lg-3 col-xs-12">
+                    <select id="year" class="custom-select" id="inlineFormCustomSelectPref">
+                        <option value="All" selected>All Year Levels</option>
+                        <option value="2nd-Year">2nd Year</option>
+                        <option value="3rd-Year">3rd Year</option>
+                        <option value="4th-Year">4th Year</option>
+                      </select>
+                </div>
+                <div class="col-auto col-xs-12">
+                    <button type="button" class="btn btn-secondary view-accepted" formtarget="_blank">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
+                    </button>
+                </div>
+                <div class="col-auto col-xs-12">
+                    <button type="button" class="btn btn-danger view-rejected" formtarget="_blank">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -59,16 +73,9 @@
                         <tbody>
                         </tbody>
                     </table>
-                    {{-- <a href="{{ url('admin/deans-list-award/'.$courses->course_code. '/view-approved-students-pdf')}}" target="__blank"
-                        class="btn btn-sm btn-info mt-2 mb-3">
-                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Approved Students
-                    </a> --}}
-                    <button type="button" class="btn btn-sm btn-info mt-2 mb-3 view-accepted" formtarget="_blank">
-                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Approved Students
-                    </button>
-                    <a href="{{ url('admin/deans-list-award/'.$courses->course_code. '/view-rejected-students-pdf')}}" target="__blank"
-                        class="btn btn-sm btn-danger mt-2 mb-3">
-                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Rejected Students
+                    <a href="{{ url('admin/deans-list-award/'.$courses->course_code. '/view-approved-students-pdf')}}" target="__blank"
+                        class="btn btn-sm btn-primary mt-2 mb-3">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
                     </a>
                 </div>
             </div>

@@ -137,9 +137,9 @@ class StudentApplicantsController extends Controller
     {
         $courses = Courses::where('course_code', $course_code)->first();
         $students = StudentApplicants::where('award_applied','1')
-        ->where('course_id', $courses->id)
-        ->where('status', '1')
-        ->orderBy('gwa','asc')
+        // ->where('course_id', $courses->id)
+        // ->where('status', '1')
+        // ->orderBy('gwa','asc')
         ->get();
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.achievers-award.student-accepted',array('students' => $students),array('courses' => $courses));

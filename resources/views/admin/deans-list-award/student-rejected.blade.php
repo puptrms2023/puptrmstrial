@@ -112,7 +112,7 @@ hr {
             <th colspan="2" style="text-align: left; font-size:22px;font-weight:bold;">List of Rejected Dean's Lister Applicants - {{ $courses->course }}</th>
         </tr>
         <tr>
-            <th style="text-align: left;"><b>Year:</b> 1st year</th>
+            <th style="text-align: left;"><b>Year: </b>{{ (request()->route("year_level")) }}</th>
             <th style="text-align: right;"><b>Date Created:</b> {{ date('Y-m-d') }}</th>
             <td></td>
         </tr>
