@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','PUPTAAAS Dashboard')
+@section('title','PUPT RMS Dashboard')
 
 @section('content')
 

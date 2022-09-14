@@ -4,40 +4,47 @@
         <div class="sidebar-brand-icon">
             <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">PUPT AAAS</div>
+        <div class="sidebar-brand-text mx-3">PUPT RMS</div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
-    <div class="sidebar-heading mt-4">
+    <div class="sidebar-heading mt-4 text-light">
         NAVIGATION PANE
     </div>
 
-    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active':'' }}">
-        <a class="nav-link align-middle" href="{{url('admin/dashboard')}}">
+    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+        <a class="nav-link align-middle" href="{{ url('admin/dashboard') }}">
             <i class="fa fa-home" aria-hidden="true"></i>
             <span>Home</span>
         </a>
     </li>
 
-    <li class="nav-item {{ Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') ? 'active':'' }}">
-        <a class="nav-link collapsed" href="{{url('admin/users')}}">
+    <li class="nav-item {{ Request::is('admin/students') || Request::is('admin/students/*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('admin/students') }}">
             <i class="fa fa-id-card"></i>
-            <span>Users</span>
+            <span>Students</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active':'' }}">
-        <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? '':'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+    <li
+        class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active' : '' }}">
+        <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? '' : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-award"></i>
             <span>Academic Awards</span>
         </a>
-        <div id="collapseTwo" class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo"
+            class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active':'' }}" href="{{url('admin/achievers-award')}}">Achiever's Award</a>
-                <a class="collapse-item {{ Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') ? 'active':'' }}" href="{{url('admin/deans-list-award')}}">Dean's List</a>
-                <a class="collapse-item {{ Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active':'' }}" href="{{url('admin/presidents-list-award')}}">President's List</a>
-                <a class="collapse-item" href="{{url('admin/academic-excellence-award')}}">Academic Excellence</a>
+                <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active' : '' }}"
+                    href="{{ url('admin/achievers-award') }}">Achiever's Award</a>
+                <a class="collapse-item {{ Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') ? 'active' : '' }}"
+                    href="{{ url('admin/deans-list-award') }}">Dean's List</a>
+                <a class="collapse-item {{ Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active' : '' }}"
+                    href="{{ url('admin/presidents-list-award') }}">President's List</a>
+                <a class="collapse-item" href="{{ url('admin/academic-excellence-award') }}">Academic Excellence</a>
             </div>
         </div>
     </li>
@@ -46,6 +53,34 @@
             <i class="fa fa-award"></i>
             <span>Non-Academic Awards</span>
         </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Module Management</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="">Modules</a>
+                <a class="collapse-item" href="">Permissions Type</a>
+                <a class="collapse-item" href="">Permissions</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Utilities</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="utilities-color.html">Roles</a>
+                <a class="collapse-item" href="{{ url('admin/users') }}">Users</a>
+                <a class="collapse-item" href="utilities-animation.html">Role Pernissions</a>
+            </div>
+        </div>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -69,7 +104,8 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{ route('logout')}}" onclick="event.preventDefault();
+                <a class="btn btn-primary" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="post">
                     @csrf

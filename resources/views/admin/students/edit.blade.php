@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit User')
+@section('title', 'Edit Student')
 
 @section('content')
 
@@ -9,13 +9,13 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Edit User
-                        <a href="{{ url('admin/users') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        <a href="{{ url('admin/students') }}" class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
                     @include('layouts.partials.messages')
 
-                    <form method="POST" action="{{ url('admin/update-users/' . $user->id) }}">
+                    <form method="POST" action="{{ url('admin/update-student/' . $user->id) }}">
                         @csrf
                         @method('PUT')
 
@@ -63,12 +63,12 @@
                                     placeholder="Enter your user id or student number" value="{{ $user->stud_num }}"
                                     onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
                             </div>
-
                             <div class="col-md-6">
                                 <label class="small mb-1">Course</label>
                                 <select class="form-control" name="course_id" id="course_id" required>
                                     @foreach ($course as $id => $item)
-                                        <option value="{{ $id }}" {{ $user->course_id == $id ? 'selected' : '' }}>
+                                        <option value="{{ $id }}"
+                                            {{ $user->course_id == $id ? 'selected' : '' }}>
                                             {{ $item }}</option>
                                     @endforeach
                                 </select>
@@ -77,22 +77,20 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">Role</label>
                                 <select class="custom-select my-1 mr-sm-2" name="role_as">
-                                    <option value="1" {{ $user->role_as == '1' ? 'selected' : '' }}>Super Admin</option>
+                                    <option value="1" {{ $user->role_as == '1' ? 'selected' : '' }}>Super Admin
+                                    </option>
                                     <option value="2" {{ $user->role_as == '2' ? 'selected' : '' }}>Admin</option>
                                     <option value="3" {{ $user->role_as == '3' ? 'selected' : '' }}>Officials</option>
                                     <option value="0" {{ $user->role_as == '0' ? 'selected' : '' }}>Student</option>
                                 </select>
                             </div>
                         </div>
-
                         <button class="btn btn-primary" type="submit">Update</button>
                     </form>
-
                 </div>
             </div>
         </div>

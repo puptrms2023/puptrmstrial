@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">President's List Application Form</div>
+        <div class="h3 mb-0 text-gray-800">Academic Excellence Application Form</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form action="{{ url('user/application-form-pl') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('user/application-form-ae') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card shadow mt-0 mb-4">
@@ -211,7 +211,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mt-0 mb-4">
+                <div class="card shadow mt-0 mb-4 hidden">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">School Year</label>
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mt-0 mb-4">
+                <div class="card shadow mt-0 mb-4 hidden">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
                             <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">

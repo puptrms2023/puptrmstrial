@@ -33,6 +33,13 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::put('/update-users/{id}', 'update');
         Route::post('/delete-users', 'destroy');
     });
+    Route::controller(App\Http\Controllers\Admin\StudentController::class)->group(function () {
+        Route::get('/students', 'index');
+        Route::get('/students/{id}', 'edit');
+        Route::get('/students/view/{id}', 'show');
+        Route::put('/update-student/{id}', 'update');
+        Route::post('/delete-student', 'destroy');
+    });
     Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
         Route::get('/achievers-award/{course_code}', 'achieversView');
@@ -76,11 +83,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
         Route::get('/usermanagement', 'index');
-        // Route::get('/presidents-list-award/{course_code}', 'achieversView');
-        // Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
-        // Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
-        // Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
-        // Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+    });
+    Route::controller(App\Http\Controllers\Admin\ActivityLogController::class)->group(function () {
+        Route::get('/user-activity-log', 'index');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
@@ -97,6 +102,10 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::controller(App\Http\Controllers\User\DlAwardApplicationController::class)->group(function () {
         Route::get('/application-form-dl', 'index');
         Route::post('/application-form-dl', 'store');
+    });
+    Route::controller(App\Http\Controllers\User\AEAwardApplicationController::class)->group(function () {
+        Route::get('/application-form-ae', 'index');
+        // Route::post('/application-form-ae', 'store');
     });
 
     Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {

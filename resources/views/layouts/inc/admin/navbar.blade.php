@@ -7,7 +7,7 @@
 
     <!-- Topbar Search -->
     <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
-        <div class="text-primary">PUP Taguig Academic Awardee Application System</div>
+        <div class="text-primary font-weight-bold">PUP Taguig Recognition Management System</div>
     </div>
 
     <!-- Topbar Navbar -->
@@ -32,7 +32,7 @@
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ url('admin/user-activity-log') }}">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                 </a>

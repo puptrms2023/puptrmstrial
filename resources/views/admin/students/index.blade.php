@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Users')
+@section('title', 'View Students')
 
 @section('content')
 
@@ -13,7 +13,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/delete-users') }}" method="POST">
+                <form action="{{ url('admin/delete-student') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <p>Are you sure you want to delete the user account?</p>
@@ -35,9 +35,7 @@
             @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Users
-                        <a class="btn btn-info btn-sm float-right" href="{{ url('admin/users/create') }}"><i
-                                class="fa fa-user fa-sm"></i>&ensp;Add User</a>
+                    <div class="m-0 font-weight-bold text-primary">Students
                     </div>
                 </div>
                 <div class="card-body">
@@ -71,8 +69,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/users/' . $item->id) }}" class="btn btn-sm btn-success"><i
-                                                    class="fa fa-edit"></i></a>
+                                            <a href="{{ url('admin/students/view/' . $item->id) }}"
+                                                class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
+                                            <a href="{{ url('admin/students/' . $item->id) }}"
+                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                             <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
                                                 value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
                                         </td>

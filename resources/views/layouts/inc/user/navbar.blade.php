@@ -7,7 +7,7 @@
 
     <!-- Topbar Search -->
     <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
-        <div class="text-primary">PUP Taguig Academic Awardee Application System</div>
+        <div class="text-primary font-weight-bold">PUP Taguig Recognition Management System</div>
     </div>
 
     <!-- Topbar Navbar -->

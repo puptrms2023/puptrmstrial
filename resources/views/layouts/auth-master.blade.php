@@ -22,7 +22,9 @@
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
-    <link href="{{ asset('admin/img/favicon.png') }}" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/img/favicon-16x16.png') }}">
 </head>
 
 <body class="bg-image" style="background-image: url('admin/img/bgimage7.jpg'); ">

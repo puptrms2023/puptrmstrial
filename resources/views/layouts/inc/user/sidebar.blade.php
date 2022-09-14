@@ -4,26 +4,26 @@
         <div class="sidebar-brand-icon">
             <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">PUPT AAAS</div>
+        <div class="sidebar-brand-text mx-3">PUPT RMS</div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
 
-    <div class="sidebar-heading mt-4">
+    <div class="sidebar-heading text-light mt-4">
         NAVIGATION PANE
     </div>
 
-    <li class="nav-item {{ Request::is('user/dashboard') ? 'active':'' }}">
-        <a class="nav-link align-middle" href="{{url('user/dashboard')}}">
+    <li class="nav-item {{ Request::is('user/dashboard') ? 'active' : '' }}">
+        <a class="nav-link align-middle" href="{{ url('user/dashboard') }}">
             <i class="fa-solid fa-house-chimney"></i>
             <span>Home</span>
         </a>
     </li>
 
     <!--Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item {{ Request::is('user/application-status') ? 'active':'' }}">
-        <a class="nav-link collapsed" href="{{url('user/application-status')}}">
+    <li class="nav-item {{ Request::is('user/application-status') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('user/application-status') }}">
             <i class="fa-solid fa-list-check"></i>
             <span>Application Status</span>
         </a>
@@ -50,7 +50,8 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{ route('logout')}}" onclick="event.preventDefault();
+                <a class="btn btn-primary" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="post">
                     @csrf
