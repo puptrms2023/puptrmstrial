@@ -1,6 +1,7 @@
 - Clone the repository with git clone
 - Copy <code>.env.example</code> file to <code>.env</code> and edit database credentials there
 - Run <code>composer install</code>
+- Run <code>php artisan migrate</code>
 - Run <code>php artisan key:generate</code>
 - Run <code>npm install</code> && <code>npm run dev</code>
 - That's it: launch the main URL and login with default credentials user: john123 - 11111111 | admin: admin - 11111111
