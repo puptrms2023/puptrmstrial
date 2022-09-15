@@ -55,6 +55,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('admin/import-csv') }}">
+            <i class="fa-solid fa-file-csv"></i>
+            <span>Import CSV</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>

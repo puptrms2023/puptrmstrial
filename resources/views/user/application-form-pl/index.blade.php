@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">President's List Application Form</div>
+        <div class="h3 mb-0 text-gray-800">Academic Excellence Application Form</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -211,6 +211,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -230,8 +231,6 @@
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
                             <select class="form-control" name="year_level">
-                                <option value="2nd Year">2nd Year</option>
-                                <option value="3rd Year">3rd Year</option>
                                 <option value="4th Year">4th Year</option>
                             </select>
                         </div>

@@ -88,7 +88,7 @@ $(document).ready(function () {
         }
     });
 });
-
+//1st Term
 $(document).ready(function () {
     $("#add_btn").on("click", function () {
         var html = "";
@@ -160,7 +160,7 @@ function getGWA() {
 
     document.getElementById("gwa").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
 }
-
+//2nd Term
 $(document).ready(function () {
     $("#add_btn1").on("click", function () {
         var html = "";
@@ -233,7 +233,151 @@ function getGWA1() {
         ? "0.00"
         : gwa.toFixed(2);
 }
+//Third Term
+$(document).ready(function () {
+    $("#add_btn3").on("click", function () {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects3[]" class="form-control" required></td>';
+        html +=
+            '<td><input type="text" name="units3[]" class="form-control units3 multi3" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+        html +=
+            '<td><input type="text" name="grades3[]" class="form-control grades3 multi3" id="grades3" onkeypress="return isFloatNumber(this,event)" required></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove3"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total3[]" class="form-control total3" id="total3" readonly></td>';
+        html += "</tr>";
+        $("#calculation3").append(html);
+    });
+});
 
+$(document).on("click", "#remove3", function () {
+    $(this).closest("tr").remove();
+    grandTotal3();
+    totalUnits3();
+    getGWA3();
+});
+
+$(document).ready(function () {
+    $("#calculation3").on("input", ".multi3", function () {
+        var parent = $(this).closest("tr");
+        var unit = $(parent).find("#units3").val();
+        var grade = $(parent).find("#grades3").val();
+
+        $(parent)
+            .find("#total3")
+            .val(unit * grade);
+        grandTotal3();
+        totalUnits3();
+        getGWA3();
+    });
+});
+
+function grandTotal3() {
+    var total_avg = 0;
+
+    $(".total3").each(function () {
+        total_avg += Number($(this).val());
+    });
+    document.getElementById("weight3").value = isNaN(total_avg)
+        ? "0.00"
+        : total_avg.toFixed(2);
+}
+
+function totalUnit3() {
+    var total_units = 0;
+
+    $(".units3").each(function () {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits3").value = total_units;
+    document.getElementById("totalUnit3").innerHTML = isNaN(total_units)
+        ? "0"
+        : total_units.toFixed(2);
+}
+
+function getGWA3() {
+    var total_units = $("#totalUnits3").val();
+    var weight = $("#weight3").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa3").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
+}
+//Fourth Term
+$(document).ready(function () {
+    $("#add_btn").on("click", function () {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects[]" class="form-control" required></td>';
+        html +=
+            '<td><input type="text" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+        html +=
+            '<td><input type="text" name="grades[]" class="form-control grades multi" id="grades" onkeypress="return isFloatNumber(this,event)" required></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total[]" class="form-control total" id="total" readonly></td>';
+        html += "</tr>";
+        $("#calculation").append(html);
+    });
+});
+
+$(document).on("click", "#remove", function () {
+    $(this).closest("tr").remove();
+    grandTotal();
+    totalUnits();
+    getGWA();
+});
+
+$(document).ready(function () {
+    $("#calculation").on("input", ".multi", function () {
+        var parent = $(this).closest("tr");
+        var unit = $(parent).find("#units").val();
+        var grade = $(parent).find("#grades").val();
+
+        $(parent)
+            .find("#total")
+            .val(unit * grade);
+        grandTotal();
+        totalUnits();
+        getGWA();
+    });
+});
+
+function grandTotal() {
+    var total_avg = 0;
+
+    $(".total").each(function () {
+        total_avg += Number($(this).val());
+    });
+    document.getElementById("weight").value = isNaN(total_avg)
+        ? "0.00"
+        : total_avg.toFixed(2);
+}
+
+function totalUnits() {
+    var total_units = 0;
+
+    $(".units").each(function () {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits").value = total_units;
+    document.getElementById("totalUnit").innerHTML = isNaN(total_units)
+        ? "0"
+        : total_units.toFixed(2);
+}
+
+function getGWA() {
+    var total_units = $("#totalUnits").val();
+    var weight = $("#weight").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
+}
+//
 $(function () {
     var course_id = document.getElementById("course_id").value;
     var table = $(".table-data").DataTable({

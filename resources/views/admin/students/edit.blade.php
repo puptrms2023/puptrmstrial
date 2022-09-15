@@ -58,7 +58,7 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1">User ID</label>
+                                <label class="small mb-1">Student Number</label>
                                 <input class="form-control" name="stud_num" type="text"
                                     placeholder="Enter your user id or student number" value="{{ $user->stud_num }}"
                                     onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>

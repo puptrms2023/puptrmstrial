@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Student Info')}
+@section('title', 'Student Info')
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

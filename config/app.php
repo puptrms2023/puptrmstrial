@@ -217,4 +217,14 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
+    'db_fields' => [
+        'stud_num',
+        'first_name',
+        'last_name',
+        'course',
+        'gwa_1st',
+        'gwa_2nd',
+        'avg'
+    ]
+
 ];

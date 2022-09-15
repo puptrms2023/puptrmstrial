@@ -87,6 +87,12 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\ActivityLogController::class)->group(function () {
         Route::get('/user-activity-log', 'index');
     });
+    Route::controller(App\Http\Controllers\Admin\ImportController::class)->group(function () {
+        Route::get('/import-csv', 'index');
+        Route::post('/import-csv/import-parse', 'parseImport');
+        Route::post('/import-csv/import-process', 'processImport');
+        Route::post('/delete-csv', 'destroy');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
