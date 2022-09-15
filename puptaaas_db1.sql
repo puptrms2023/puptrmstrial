@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2022 at 11:35 PM
+-- Generation Time: Sep 15, 2022 at 10:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -20,6 +20,64 @@ SET time_zone = "+00:00";
 --
 -- Database: `puptaaas_db1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audits`
+--
+
+CREATE TABLE `audits` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_id` bigint(20) UNSIGNED NOT NULL,
+  `old_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `new_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` varchar(1023) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `audits`
+--
+
+INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `auditable_id`, `old_values`, `new_values`, `url`, `ip_address`, `user_agent`, `tags`, `created_at`, `updated_at`) VALUES
+(18, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 26, '{\"course_id\":\"1\"}', '{\"course_id\":\"7\"}', 'http://127.0.0.1:8000/admin/update-student/26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-14 11:14:59', '2022-09-14 11:14:59'),
+(19, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 26, '{\"course_id\":\"7\"}', '{\"course_id\":\"3\"}', 'http://127.0.0.1:8000/admin/update-users/26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-14 12:47:51', '2022-09-14 12:47:51'),
+(20, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"EPHKdYlQMqW4Ven0M587D24LqNVcxdBzG3u2wfkrC79AVEm0laqmBHb0SJYI\"}', '{\"remember_token\":\"M9b87UMKxBXf1jOHmUbYT6c7dr5G5oocTIZGj9iXe7EEBQkFPyzviBH2JY2c\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-14 14:11:05', '2022-09-14 14:11:05'),
+(21, 'App\\Models\\User', 28, 'updated', 'App\\Models\\User', 28, '{\"remember_token\":\"Wuvc2L6MeYFw8iF2Y9xkXqP6nH6YjwuGdG3C0TCzx6lk3m0eZO7T6AlhCXFh\"}', '{\"remember_token\":\"0ORpclMCgIx82s3nhfKYYAz6tNbQbHcNN1bFt3ibmtmGrjZKWhPYY4XStmbW\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-14 14:11:43', '2022-09-14 14:11:43'),
+(22, 'App\\Models\\User', 28, 'updated', 'App\\Models\\User', 28, '{\"remember_token\":\"0ORpclMCgIx82s3nhfKYYAz6tNbQbHcNN1bFt3ibmtmGrjZKWhPYY4XStmbW\"}', '{\"remember_token\":\"zCByl5a0FNveA24t2c9WfPV2giUpMYY7UbJXRdFSCVOaR2ifLqRJA2FeqR3c\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-14 22:26:01', '2022-09-14 22:26:01'),
+(23, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"M9b87UMKxBXf1jOHmUbYT6c7dr5G5oocTIZGj9iXe7EEBQkFPyzviBH2JY2c\"}', '{\"remember_token\":\"WX8UTr6GQbUChyqV7djZGVkg5RjXW18Of6RxwVNJzMaGmMPqPFvJWYOGjkOT\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-15 03:52:54', '2022-09-15 03:52:54'),
+(24, NULL, NULL, 'created', 'App\\Models\\User', 30, '[]', '{\"first_name\":\"Peter\",\"middle_name\":\"Bean\",\"last_name\":\"Parker\",\"contact\":\"+639297205149\",\"course_id\":\"9\",\"stud_num\":\"2022-00200-TG-0\",\"email\":\"peterparker@gmail.com\",\"username\":\"abc\",\"password\":\"$2y$10$gPVOUADAytdXU4TIPAOhsOf0CBBGGVQnut0utL07aGBh.6QccZer6\",\"id\":30}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-15 03:54:07', '2022-09-15 03:54:07'),
+(25, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"WX8UTr6GQbUChyqV7djZGVkg5RjXW18Of6RxwVNJzMaGmMPqPFvJWYOGjkOT\"}', '{\"remember_token\":\"cpKgGtegSDzD5cAK7gJ97bkyAWRRhPoSukWBat1ZoaNnKVJg27BKSTKSKmAe\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-15 10:53:08', '2022-09-15 10:53:08'),
+(26, 'App\\Models\\User', 28, 'updated', 'App\\Models\\User', 28, '{\"remember_token\":\"zCByl5a0FNveA24t2c9WfPV2giUpMYY7UbJXRdFSCVOaR2ifLqRJA2FeqR3c\"}', '{\"remember_token\":\"N4ZI7PjXOHFT7Ia6aO5cxn9QiGEZfX1v2MfGPTi8bcJhqq9jWQzrbkaGEjvy\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-15 12:51:25', '2022-09-15 12:51:25'),
+(27, NULL, NULL, 'created', 'App\\Models\\User', 31, '[]', '{\"first_name\":\"Ynna\",\"middle_name\":null,\"last_name\":\"Gonzaga\",\"contact\":\"+639123456789\",\"course_id\":\"8\",\"stud_num\":\"2022-00530-TG-0\",\"email\":\"ynnago@gmail.com\",\"username\":\"ynna1\",\"password\":\"$2y$10$EgPSy2DQsAXJcGGmLHSuPO5tcf5hoIwngQ.iUYVe7IqtBGKznaMGK\",\"id\":31}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', NULL, '2022-09-15 12:53:13', '2022-09-15 12:53:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `awardees`
+--
+
+CREATE TABLE `awardees` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `stud_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gwa_1st` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gwa_2nd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avg` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +107,21 @@ INSERT INTO `courses` (`id`, `course_code`, `course`) VALUES
 (9, 'BSOA-LT', 'BS Office Administration - Legal Transcription'),
 (10, 'DICT', 'Diploma in Information Communication Technology'),
 (11, 'DOMT', 'Diploma in Office Management Technology');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `csv_data`
+--
+
+CREATE TABLE `csv_data` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `csv_filename` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `csv_header` tinyint(1) NOT NULL DEFAULT 0,
+  `csv_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`csv_data`)),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -92,7 +165,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2022_08_23_150017_delete_name_users_table', 4),
 (8, '2022_08_23_173103_create_sessions_table', 5),
 (9, '2022_08_27_085759_create_student_applicants_table', 5),
-(10, '2022_09_05_140024_create_table_summary', 6);
+(10, '2022_09_05_140024_create_table_summary', 6),
+(13, '2022_09_13_090931_add_gwa_to_student_applicants_table', 7),
+(14, '2022_09_13_111041_create_user_activity_logs_table', 8),
+(16, '2022_09_13_125225_create_audits_table', 9),
+(17, '2022_09_15_133218_create_csv_data_table', 10),
+(18, '2022_09_15_135428_create_awardees_table', 11);
 
 -- --------------------------------------------------------
 
@@ -161,6 +239,7 @@ CREATE TABLE `student_applicants` (
   `award_applied` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1=AA,2=DL,3=PL,4=AE',
   `gwa_1st` decimal(10,2) NOT NULL,
   `gwa_2nd` decimal(10,2) NOT NULL,
+  `gwa` decimal(10,2) GENERATED ALWAYS AS ((`gwa_1st` + `gwa_2nd`) / 2) VIRTUAL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Accepted,2=Rejected',
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -174,9 +253,9 @@ CREATE TABLE `student_applicants` (
 --
 
 INSERT INTO `student_applicants` (`id`, `user_id`, `school_year`, `year_level`, `award_applied`, `gwa_1st`, `gwa_2nd`, `image`, `status`, `reason`, `course_id`, `created_at`, `updated_at`) VALUES
-(32, 28, '2022-2023', '1st Year', '1', '1.00', '1.00', '1662752567.png', 1, NULL, 7, '2022-09-09 11:42:47', '2022-09-09 12:03:39'),
-(33, 28, '2022-2023', '1st Year', '1', '1.50', '1.00', '1662752983.jpg', 1, NULL, 7, '2022-09-09 11:49:43', '2022-09-09 12:03:36'),
-(34, 26, '2022-2023', '3rd Year', '2', '1.68', '1.03', '1662758948.jpg', 1, NULL, 4, '2022-09-09 13:29:08', '2022-09-09 13:31:30');
+(37, 28, '2022-2023', '2nd Year', '2', '1.25', '1.75', '1663052479.jpg', 1, 'dsgdg', 7, '2022-09-12 23:01:19', '2022-09-13 21:15:07'),
+(38, 26, '2022-2023', '4th Year', '3', '1.00', '1.50', '1663057270.jpg', 1, NULL, 7, '2022-09-13 00:21:10', '2022-09-13 00:22:50'),
+(39, 31, '2022-2023', '1st Year', '1', '1.25', '1.50', '1663275241.jpg', 0, NULL, 8, '2022-09-15 12:54:01', '2022-09-15 12:54:01');
 
 -- --------------------------------------------------------
 
@@ -202,12 +281,12 @@ CREATE TABLE `summary` (
 --
 
 INSERT INTO `summary` (`id`, `app_id`, `user_id`, `term`, `subjects`, `units`, `grades`, `sy`, `created_at`, `updated_at`) VALUES
-(53, 32, 28, 1, 'zobynon', 3, '1.00', '2022-2023', '2022-09-09 11:42:47', '2022-09-09 11:42:47'),
-(54, 32, 28, 2, 'cowejer', 3, '1.00', '2022-2023', '2022-09-09 11:42:47', '2022-09-09 11:42:47'),
-(55, 33, 28, 1, 'Computer Programming', 3, '1.50', '2022-2023', '2022-09-09 11:49:43', '2022-09-09 11:49:43'),
-(56, 33, 28, 2, 'Computer Programming 2', 3, '1.00', '2022-2023', '2022-09-09 11:49:43', '2022-09-09 11:49:43'),
-(57, 34, 26, 1, 'moqurar', 3, '1.68', '2022-2023', '2022-09-09 13:29:08', '2022-09-09 13:29:08'),
-(58, 34, 26, 2, 'dajizedoka', 3, '1.03', '2022-2023', '2022-09-09 13:29:08', '2022-09-09 13:29:08');
+(63, 37, 28, 1, 'dunulyxel', 3, '1.00', '2022-2023', '2022-09-12 23:01:19', '2022-09-12 23:01:19'),
+(64, 37, 28, 2, 'rovenaj', 3, '1.00', '2022-2023', '2022-09-12 23:01:19', '2022-09-12 23:01:19'),
+(65, 38, 26, 1, 'Computer Programming', 3, '1.50', '2022-2023', '2022-09-13 00:21:10', '2022-09-13 00:21:10'),
+(66, 38, 26, 2, 'ada', 3, '1.25', '2022-2023', '2022-09-13 00:21:10', '2022-09-13 00:21:10'),
+(67, 39, 31, 1, 'hopukawyxa', 3, '1.25', '2022-2023', '2022-09-15 12:54:01', '2022-09-15 12:54:01'),
+(68, 39, 31, 2, 'pexomemupu', 3, '1.50', '2022-2023', '2022-09-15 12:54:01', '2022-09-15 12:54:01');
 
 -- --------------------------------------------------------
 
@@ -238,19 +317,41 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course_id`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(19, '2022-07000-TG-0', 'admin', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', '7', 2, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'Zeg8lAcgijw2hD0CVM6xSSt4o2vo9g6Bpdqa5xmhCmEXtwYUxwKDX8Sh8JMw', '2022-08-23 11:10:10', '2022-09-06 09:24:40'),
+(19, '2022-07000-TG-0', 'admin', 'Rose Ann', NULL, 'Bonador', 'admin@gmail.com', '09297205140', '7', 2, NULL, '$2y$10$uP/rqm1hkHP29pQ94N7DleJne.tHSuLgDcxyX3hkP3fsLUxyUIrCK', 'cpKgGtegSDzD5cAK7gJ97bkyAWRRhPoSukWBat1ZoaNnKVJg27BKSTKSKmAe', '2022-08-23 11:10:10', '2022-09-06 09:24:40'),
 (24, '2022-00330-TG-0', 'jane123', 'Jane', NULL, 'Doe', 'aaa@gmail.com', '+639297205140', '11', 0, NULL, '$2y$10$TAWWjNNuF2KSNyXiUewS9.eV81XbKkbHiwyh1MbVlBQbGtxZQsVEa', '4UliZZd2iDYGpjVpfHBO4vmkyFMFCMSfNEcv4MN9BoDI8d4GeykofI8uPGyC', '2022-08-25 03:27:24', '2022-09-06 22:38:39'),
-(26, '2022-00000-TG-0', 'john123', 'John', NULL, 'Doe', 'roseannbonador5@gmail.com', '+639297205140', '4', 0, NULL, '$2y$10$xhWTxQ5OkGk.PVVRtBn38uoYwXPV2xXcgZODPeijd2EAfc1D/egyS', 'LbXdaAPB0WeBFI2TEyAwNIwCDkzMFz75rWtSpjHpov1KbNFt3bNGnH2kT1Jm', '2022-09-06 00:04:54', '2022-09-06 22:38:28'),
-(28, '2022-00043-TG-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'zzz@gmail.com', '+639297205140', '7', 0, NULL, '$2y$10$H3XlLFP/DgPNX4HmFx1aPOy5vYsYJLAbEHAIlrqJJr0i54GdHarLq', NULL, '2022-09-09 10:12:53', '2022-09-09 10:12:53');
+(26, '2022-00000-TG-0', 'john123', 'John', NULL, 'Doe', 'roseannbonador5@gmail.com', '+639297205140', '3', 0, NULL, '$2y$10$xhWTxQ5OkGk.PVVRtBn38uoYwXPV2xXcgZODPeijd2EAfc1D/egyS', 'LbXdaAPB0WeBFI2TEyAwNIwCDkzMFz75rWtSpjHpov1KbNFt3bNGnH2kT1Jm', '2022-09-06 00:04:54', '2022-09-14 12:47:51'),
+(28, '2022-00043-TG-0', 'rose123', 'Rose Ann', NULL, 'Bonador', 'zzz@gmail.com', '+639297205140', '7', 0, NULL, '$2y$10$H3XlLFP/DgPNX4HmFx1aPOy5vYsYJLAbEHAIlrqJJr0i54GdHarLq', 'N4ZI7PjXOHFT7Ia6aO5cxn9QiGEZfX1v2MfGPTi8bcJhqq9jWQzrbkaGEjvy', '2022-09-09 10:12:53', '2022-09-09 10:12:53'),
+(30, '2022-00200-TG-0', 'abc', 'Peter', 'Bean', 'Parker', 'peterparker@gmail.com', '+639297205149', '9', 0, NULL, '$2y$10$gPVOUADAytdXU4TIPAOhsOf0CBBGGVQnut0utL07aGBh.6QccZer6', NULL, '2022-09-15 03:54:07', '2022-09-15 03:54:07'),
+(31, '2022-00530-TG-0', 'ynna1', 'Ynna', NULL, 'Gonzaga', 'ynnago@gmail.com', '+639123456789', '8', 0, NULL, '$2y$10$EgPSy2DQsAXJcGGmLHSuPO5tcf5hoIwngQ.iUYVe7IqtBGKznaMGK', NULL, '2022-09-15 12:53:13', '2022-09-15 12:53:13');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `audits`
+--
+ALTER TABLE `audits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `audits_auditable_type_auditable_id_index` (`auditable_type`,`auditable_id`),
+  ADD KEY `audits_user_id_user_type_index` (`user_id`,`user_type`);
+
+--
+-- Indexes for table `awardees`
+--
+ALTER TABLE `awardees`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `csv_data`
+--
+ALTER TABLE `csv_data`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -313,10 +414,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `audits`
+--
+ALTER TABLE `audits`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `awardees`
+--
+ALTER TABLE `awardees`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `csv_data`
+--
+ALTER TABLE `csv_data`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -328,7 +447,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -340,19 +459,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `student_applicants`
 --
 ALTER TABLE `student_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `summary`
 --
 ALTER TABLE `summary`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
