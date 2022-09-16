@@ -10861,7 +10861,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url(../img/login-photo.jpg);
+  background: url(../img/bgimage-login.jpg);
   background-position: center;
   background-size: cover;
 }

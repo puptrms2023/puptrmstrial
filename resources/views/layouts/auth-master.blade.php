@@ -27,7 +27,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/img/favicon-16x16.png') }}">
 </head>
 
-<body class="bg-image" style="background-image: url('admin/img/bgimage7.jpg'); ">
+<body class="bg-image" style="background-image: url('admin/img/bgimage-login.jpg'); ">
 
     @yield('main-content')
 
