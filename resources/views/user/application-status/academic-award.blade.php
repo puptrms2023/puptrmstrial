@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Achiever's Award Application Status</div>
+        <div class="h3 mb-0 text-gray-800">Academic Award Application Status</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}

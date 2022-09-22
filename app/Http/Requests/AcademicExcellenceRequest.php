@@ -78,6 +78,7 @@ class AcademicExcellenceRequest extends FormRequest
             'gwa7' => 'required|lte:1.75',
             'gwa8' => 'required|lte:1.75',
             'course_id' => 'required|string',
+            'image' => 'required|mimes:jpeg,png,jpg',
         ];
     }
 

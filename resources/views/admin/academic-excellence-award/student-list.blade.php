@@ -2,8 +2,12 @@
 <html>
 
 <head>
-    <title>Achiever Awardee Applicants</title>
+    <title>Academic Excellence Applicants</title>
     <style type="text/css">
+        @page {
+            size: a4 portrait;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -41,12 +45,6 @@
             border: 1.5px solid black;
         }
 
-        .table2 td,
-        th {
-            border: none;
-            text-align: center;
-        }
-
         .table3 {
             margin: 0 auto;
             border: none;
@@ -72,33 +70,6 @@
             clear: both;
         }
 
-        /**footer**/
-        h4 {
-            overflow: hidden;
-            text-align: center;
-        }
-
-        h4:before,
-        h4:after {
-            background-color: #000;
-            content: "";
-            display: inline-block;
-            height: 1px;
-            position: relative;
-            vertical-align: middle;
-            width: 50%;
-        }
-
-        h4:before {
-            right: 0.5em;
-            margin-left: -50%;
-        }
-
-        h4:after {
-            left: 0.5em;
-            margin-right: -50%;
-        }
-
         hr {
             width: 95%;
             height: 1px;
@@ -107,11 +78,40 @@
             margin-top: 110px;
             padding: 0;
         }
+
+        header {
+            width: 95%;
+            position: fixed;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 50px;
+            right: 50px;
+            height: 165px;
+            /** Extra personal styles **/
+            font-family: "Arial", "sans-serif";
+            font-size: 10px;
+        }
+
+        .text {
+            margin-top: 13px;
+            font-family: "Times New Roman", "serif";
+            font-size: 20px;
+        }
+
+        .caps {
+            font-family: "Times New Roman", "serif";
+            font-size: 23px;
+        }
     </style>
 </head>
 
 <body>
-    <div style="width: 95%; margin: 0 auto;">
+    <header>
         <div style="width:15%;float:left;margin-right:20px;">
             <img src="admin/img/puplogopdf.png" width="100%" alt="">
         </div>
@@ -122,11 +122,11 @@
                 <b>TAGUIG BRANCH</b><br>
             </p>
         </div>
-    </div>
+    </header>
     <hr />
     <table class="table3">
         <tr>
-            <th style="text-align: left; font-size:22px;font-weight:bold;">List of Achievers Awardee Applicants</th>
+            <th style="text-align: left; font-size:22px;font-weight:bold;">List of Academic Excellence Applicants</th>
             <td></td>
 
         </tr>
@@ -153,40 +153,32 @@
                     <td align="center">{{ $stud->users->stud_num }}</td>
                     <td>{{ $stud->users->last_name }}</td>
                     <td>{{ $stud->users->first_name }}</td>
-                    <td width="12%">{{ $stud->courses->course_code }}</td>
-                    <td width="15%">{{ $stud->year_level }}</td>
+                    <td align="center" width="12%">{{ $stud->courses->course_code }}</td>
+                    <td align="center" width="15%">{{ $stud->year_level }}</td>
                     <td width="12%" align="center">{{ $stud->gwa }}</td>
                 </tr>
             @endforeach
         </body>
     </table>
-    <br>
-    <div style="width: 95%; margin: 0 auto;">
-        <h4><i>NOTHING FOLLOWS</i></h4>
-    </div>
-    <table class="table2">
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>Signed by:</td>
-            <td>
-                <b>Mr. Mhel P. Garcia</b><br>
-                Head of Registrar Office
-            </td>
-            <td>
-                <b>Ms. Liwanag Maliksi</b><br>
-                Guidance Councelor
-            </td>
-            <td>
-                <b>Ms. Bernadette I. Canlas</b><br>
-                Head of Student Services
-            </td>
-        </tr>
-    </table>
+    <footer>
+        <div style="margin-top:25px;">
+            <span>General Santos Avenue, Lower
+                Bicutan, Taguig City, Philippines 1632</span><br>
+            <span>Registrar’s Office: (02) 8837 5859 | Direct Line: (02) 8837 5858 to 60</span><br>
+            <span>Website: <a href="www.pup.edu.ph">www.pup.edu.ph</a> | Email: <a
+                    href="taguig@pup.edu.ph">taguig@pup.edu.ph</a> |
+                <a href="taguig.registrar@pup.edu.ph">taguig.registrar@pup.edu.ph</a></span>
+            <div class="text">
+                <span class="caps">T</span>HE <span class="caps">C</span>OUNTRY&rsquo;S 1<sup>st</sup> <span
+                    class="caps">P</span>OLYTECHNIC<span class="caps">U</span>
+            </div>
+        </div>
+    </footer>
+    <footer>
+        <div style="width:28%;float:right;">
+            <img src="admin/img/footer2.png" width="100%" alt="">
+        </div>
+    </footer>
 </body>
 
 </html>

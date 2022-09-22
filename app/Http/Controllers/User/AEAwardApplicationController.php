@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicExcellenceRequest;
+use App\Models\AcademicExcellence;
 use App\Models\AeApplicant;
 
 class AEAwardApplicationController extends Controller
@@ -19,12 +20,19 @@ class AEAwardApplicationController extends Controller
     public function store(AcademicExcellenceRequest $request)
     {
         $data = $request->validated();
-        $award = new AeApplicant();
+        $award = new AcademicExcellence();
 
         $award->user_id = $data['user_id'];
         $award->course_id = $data['course_id'];
         $award->school_year = $data['school_year'];
         $award->year_level = $data['year_level'];
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/', $filename);
+            $award->image = $filename;
+        }
         $award->gwa1 = $data['gwa1'];
         $award->gwa2 = $data['gwa2'];
         $award->gwa3 = $data['gwa3'];

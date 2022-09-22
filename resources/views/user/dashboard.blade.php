@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'PUPTAAAS Dashboard')
+@section('title', 'PUPTRMS Dashboard')
 
 @section('content')
 
@@ -17,16 +17,6 @@
                 application button.</p>
         </div>
     </div>
-
-    <div class="form-row mt-0 mb-4 text-center">
-        <div class="col-md-12 my-1">
-
-
-            <a href="{{ url('user/application-form') }}" class="btn btn-outline-primary" button="NA">NON-ACADEMIC AWARD
-                APPLICATION</a>
-        </div>
-    </div>
-
 
     <div class="row">
         <div class="col-lg-4">

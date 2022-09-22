@@ -58,8 +58,15 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form action="{{ url('user/application-form-ae') }}" method="POST">
+            <form action="{{ url('user/application-form-ae') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                <div class="card mb-4 border-left-warning">
+                    <div class="card-header pt-3 pb-1">
+                        <p class="text-primary">Note: P.E. and CWTS subjects cannot be included otherwise your
+                            application form will be automatically rejected.</p>
+                    </div>
+                </div>
 
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
@@ -693,7 +700,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-6 mb-3">
+                            <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
+                            <span class="text-danger">*</span>
+                            <input type="file" name="image" required>
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

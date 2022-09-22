@@ -59,7 +59,7 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <a href="{{ url('admin/academic-excellence-award/' . $courses->course_code . '/view-all-students-pdf') }}"
+                        <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-all-students-pdf') }}"
                             target="__blank" class="btn btn-sm btn-primary mt-2 mb-3">
                             <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
                         </a>

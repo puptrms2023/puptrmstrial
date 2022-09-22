@@ -78,8 +78,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/academic-excellence-award/{course_code}', 'achieversView');
         Route::get('/academic-excellence-award/{course_code}/approve/{id}', 'approved');
         Route::get('/academic-excellence-award/{course_code}/reject/{id}', 'rejected');
-        // Route::get('/academic-excellence-award/{course_code}/{id}', 'studentApplicationView');
-        // Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+        Route::get('/academic-excellence-award/{course_code}/{id}', 'studentApplicationView');
+        Route::put('/academic-excellence-award/{course_code}/update-status/{id}', 'update');
     });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
         Route::get('/usermanagement', 'index');

@@ -5,25 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AeApplicant extends Model
+class AcademicExcellence extends Model
 {
     use HasFactory;
     protected $table = 'ae_applicants';
-    protected $fillable = [
-        'user_id',
-        'course_id',
-        'gwa1',
-        'gwa2',
-        'gwa3',
-        'gwa4',
-        'gwa5',
-        'gwa6',
-        'gwa7',
-        'gwa8',
-        'image',
-        'year_level',
-        'award_applied',
-    ];
 
     public function courses()
     {

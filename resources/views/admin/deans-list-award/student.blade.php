@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800"> Achiever's Award Applicant
+        <div class="h3 mb-0 text-gray-800"> Dean's List Applicant
         </div>
     </div>
 

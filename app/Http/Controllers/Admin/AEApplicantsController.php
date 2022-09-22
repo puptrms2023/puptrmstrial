@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Courses;
-use App\Models\AeApplicant;
+use App\Models\Summary;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\AcademicExcellence;
 use App\Http\Controllers\Controller;
 
 class AEApplicantsController extends Controller
@@ -21,7 +22,7 @@ class AEApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
 
         if ($request->ajax()) {
-            $data = AeApplicant::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->select('ae_applicants.*');
+            $data = AcademicExcellence::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->select('ae_applicants.*');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('image', function ($status) {
@@ -79,28 +80,88 @@ class AEApplicantsController extends Controller
 
         return view('admin.academic-excellence-award.view', compact('courses'));
     }
+
+    public function studentApplicationView($course_code, $id)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $status = AcademicExcellence::where('course_id', $courses->id)->get();
+        $status = AcademicExcellence::find($id);
+        $grades = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "1")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades2 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "2")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades3 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "3")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades4 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "4")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades5 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "5")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades6 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "6")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades7 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "7")
+            ->where('app_id', '=', $id)
+            ->get();
+        $grades8 = Summary::where('user_id', $status->user_id)
+            ->where('term', '=', "8")
+            ->where('app_id', '=', $id)
+            ->get();
+        return view('admin.academic-excellence-award.student', compact('courses', 'status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8'));
+    }
+
     public function approved($course_code, $id)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $approve = AeApplicant::where('course_id', $courses->id)->get();
-        $approve = AeApplicant::find($id);
+        $approve = AcademicExcellence::where('course_id', $courses->id)->get();
+        $approve = AcademicExcellence::find($id);
         $approve->status = 1;
         $approve->save();
         return redirect()->back();
     }
+
     public function rejected($course_code, $id)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $reject = AeApplicant::where('course_id', $courses->id)->get();
-        $reject = AeApplicant::find($id);
+        $reject = AcademicExcellence::where('course_id', $courses->id)->get();
+        $reject = AcademicExcellence::find($id);
         $reject->status = 2;
         $reject->save();
         return redirect()->back();
     }
+
+    public function update(Request $request, $course_code, $id)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+            'reason' => 'nullable'
+        ]);
+
+        $courses = Courses::where('course_code', $course_code)->first();
+        $status = AcademicExcellence::where('course_id', $courses->id)->get();
+        $status = AcademicExcellence::findOrFail($id);
+
+        $status->status = $request->status;
+        $status->reason = $request->reason;
+        $status->save();
+        return redirect()->back()->with('message', 'The Application Form Updated Successfully');
+    }
+
     public function openPdfApproved($course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $students = AeApplicant::where('course_id', $courses->id)
+        $students = AcademicExcellence::where('course_id', $courses->id)
             ->where('status', '1')
             ->orderBy('gwa', 'asc')
             ->get();
@@ -109,10 +170,11 @@ class AEApplicantsController extends Controller
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('Academic-Excellence-Awardee-' . $courses->course_code . '.pdf');
     }
+
     public function openPdfRejected($course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $students = AeApplicant::where('course_id', $courses->id)
+        $students = AcademicExcellence::where('course_id', $courses->id)
             ->where('status', '2')
             ->get();
         $pdf = app('dompdf.wrapper');
@@ -120,10 +182,11 @@ class AEApplicantsController extends Controller
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('Rejected-Academic-Excellence-Awardee-' . $courses->course_code . '.pdf');
     }
+
     public function openPdfAll($course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $students = AeApplicant::where('course_id', $courses->id)
+        $students = AcademicExcellence::where('course_id', $courses->id)
             ->orderBy('year_level', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');

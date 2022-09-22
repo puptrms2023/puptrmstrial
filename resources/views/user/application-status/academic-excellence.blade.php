@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Academic Excellence Status</div>
+        <div class="h3 mb-0 text-gray-800">Academic Excellence Award Status</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -34,6 +34,7 @@
                                     <th>Course</th>
                                     <th>Year Level</th>
                                     <th>Award Applied</th>
+                                    <th>Image</th>
                                     <th>Average</th>
                                     <th>Status</th>
                                 </tr>
@@ -47,9 +48,13 @@
                                         <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
                                         <td>
-                                            @if ($item->award_applied == '3')
+                                            @if ($item->award_applied == '4')
                                                 <span class="badge badge-success">Academic Excellence</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset('uploads/' . $item->image) }}"
+                                                class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                         <td>{{ $item->gwa }}</td>
                                         <td>
