@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'View Users')
+@section('title', 'View Academic Excellence Awardees')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Courses - Achiever's Awardees</div>
+        <div class="h3 mb-0 text-gray-800">Courses - Academic Excellence</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -16,7 +16,7 @@
     <div class="row">
         @foreach ($courses as $item)
             <div class="col-sm-3 mb-4">
-                <a class="card lift h-100" href="{{ url('admin/achievers-award/' . $item->course_code) }}">
+                <a class="card lift h-100" href="{{ url('admin/academic-excellence-award/' . $item->course_code) }}">
                     <div class="card border-left-warning shadow">
                         <img src="{{ asset('admin/img/bgimage7.jpg') }}" class="card-img-top" alt="image">
                         <div class="card-body text-center">

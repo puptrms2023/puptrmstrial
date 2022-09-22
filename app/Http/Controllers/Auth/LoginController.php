@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class LoginController extends Controller
 {
@@ -33,7 +34,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
 
     public function authenticated()
     {

@@ -43,7 +43,7 @@
 //     });
 
 //   })();
-
+//Phone Format
 jQuery(function ($) {
     $(".js-phone").inputmask({
         mask: ["+639999999999", "8 999 999-99-99"],
@@ -52,14 +52,14 @@ jQuery(function ($) {
         autoUnmask: true,
     });
 });
-
+//Student No. Validation
 function limit(element) {
     var max_chars = 15;
     if (element.value.length > max_chars) {
         element.value = element.value.substr(0, max_chars);
     }
 }
-
+//Number Validation
 function isFloatNumber(item, evt) {
     evt = evt ? evt : window.event;
     var charCode = evt.which ? evt.which : evt.keyCode;
@@ -75,7 +75,7 @@ function isFloatNumber(item, evt) {
     }
     return true;
 }
-
+//Dropdown Reject Hide and Show
 $(document).ready(function () {
     $(".status").change(function () {
         var responseId = $(this).val();
@@ -88,6 +88,14 @@ $(document).ready(function () {
         }
     });
 });
+//Award Application Validation Dropdown
+var $selectYear = $('#selectYear'),
+		$selectAward = $('#selectAward'),
+    $options = $selectAward.find('option');
+
+$selectYear.on('change', function() {
+	$selectAward.html($options.filter('[data-state="'+this.value+'"]'));
+}).trigger('change');
 //1st Term
 $(document).ready(function () {
     $("#add_btn").on("click", function () {
@@ -234,14 +242,14 @@ function getGWA1() {
         : gwa.toFixed(2);
 }
 //Third Term
-$(document).ready(function () {
-    $("#add_btn3").on("click", function () {
+$(document).ready(function() {
+    $("#add_btn3").on("click", function() {
         var html = "";
         html += "<tr>";
         html +=
             '<td><input type="text" name="subjects3[]" class="form-control" required></td>';
         html +=
-            '<td><input type="text" name="units3[]" class="form-control units3 multi3" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+            '<td><input type="text" name="units3[]" class="form-control units3 multi3" id="units3" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
             '<td><input type="text" name="grades3[]" class="form-control grades3 multi3" id="grades3" onkeypress="return isFloatNumber(this,event)" required></td>';
         html +=
@@ -253,18 +261,20 @@ $(document).ready(function () {
     });
 });
 
-$(document).on("click", "#remove3", function () {
+$(document).on("click", "#remove3", function() {
     $(this).closest("tr").remove();
     grandTotal3();
     totalUnits3();
     getGWA3();
 });
 
-$(document).ready(function () {
-    $("#calculation3").on("input", ".multi3", function () {
+$(document).ready(function() {
+    $("#calculation3").on("input", ".multi3", function() {
         var parent = $(this).closest("tr");
         var unit = $(parent).find("#units3").val();
         var grade = $(parent).find("#grades3").val();
+
+        console.log(unit);
 
         $(parent)
             .find("#total3")
@@ -278,24 +288,24 @@ $(document).ready(function () {
 function grandTotal3() {
     var total_avg = 0;
 
-    $(".total3").each(function () {
+    $(".total3").each(function() {
         total_avg += Number($(this).val());
     });
-    document.getElementById("weight3").value = isNaN(total_avg)
-        ? "0.00"
-        : total_avg.toFixed(2);
+    document.getElementById("weight3").value = isNaN(total_avg) ?
+        "0.00" :
+        total_avg.toFixed(2);
 }
 
-function totalUnit3() {
+function totalUnits3() {
     var total_units = 0;
 
-    $(".units3").each(function () {
+    $(".units3").each(function() {
         total_units += parseFloat($(this).val());
     });
     document.getElementById("totalUnits3").value = total_units;
-    document.getElementById("totalUnit3").innerHTML = isNaN(total_units)
-        ? "0"
-        : total_units.toFixed(2);
+    document.getElementById("totalUnit3").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
 }
 
 function getGWA3() {
@@ -306,78 +316,300 @@ function getGWA3() {
     document.getElementById("gwa3").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
 }
 //Fourth Term
-$(document).ready(function () {
-    $("#add_btn").on("click", function () {
+$(document).ready(function() {
+    $("#add_btn4").on("click", function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects[]" class="form-control" required></td>';
+            '<td><input type="text" name="subjects4[]" class="form-control" required></td>';
         html +=
-            '<td><input type="text" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+            '<td><input type="text" name="units4[]" class="form-control units4 multi4" id="units4" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 14) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
-            '<td><input type="text" name="grades[]" class="form-control grades multi" id="grades" onkeypress="return isFloatNumber(this,event)" required></td>';
+            '<td><input type="text" name="grades4[]" class="form-control grades4 multi4" id="grades4" onkeypress="return isFloatNumber(this,event)" required></td>';
         html +=
-            '<td><button type="button" class="btn btn-secondary" id="remove"><i class="fa-solid fa-circle-minus"></i></button></td>';
+            '<td><button type="button" class="btn btn-secondary" id="remove4"><i class="fa-solid fa-circle-minus"></i></button></td>';
         html +=
-            '<td style="display:none"><input type="text" name="total[]" class="form-control total" id="total" readonly></td>';
+            '<td style="display:none"><input type="text" name="total4[]" class="form-control total4" id="total4" readonly></td>';
         html += "</tr>";
-        $("#calculation").append(html);
+        $("#calculation4").append(html);
     });
 });
 
-$(document).on("click", "#remove", function () {
+$(document).on("click", "#remove4", function() {
     $(this).closest("tr").remove();
-    grandTotal();
-    totalUnits();
-    getGWA();
+    grandTotal4();
+    totalUnits4();
+    getGWA4();
 });
 
-$(document).ready(function () {
-    $("#calculation").on("input", ".multi", function () {
+$(document).ready(function() {
+    $("#calculation4").on("input", ".multi4", function() {
         var parent = $(this).closest("tr");
-        var unit = $(parent).find("#units").val();
-        var grade = $(parent).find("#grades").val();
+        var unit = $(parent).find("#units4").val();
+        var grade = $(parent).find("#grades4").val();
+
+        console.log(unit);
 
         $(parent)
-            .find("#total")
+            .find("#total4")
             .val(unit * grade);
-        grandTotal();
-        totalUnits();
-        getGWA();
+        grandTotal4();
+        totalUnits4();
+        getGWA4();
     });
 });
 
-function grandTotal() {
+function grandTotal4() {
     var total_avg = 0;
 
-    $(".total").each(function () {
+    $(".total4").each(function() {
         total_avg += Number($(this).val());
     });
-    document.getElementById("weight").value = isNaN(total_avg)
-        ? "0.00"
-        : total_avg.toFixed(2);
+    document.getElementById("weight4").value = isNaN(total_avg) ?
+        "0.00" :
+        total_avg.toFixed(2);
 }
 
-function totalUnits() {
+function totalUnits4() {
     var total_units = 0;
 
-    $(".units").each(function () {
+    $(".units4").each(function() {
         total_units += parseFloat($(this).val());
     });
-    document.getElementById("totalUnits").value = total_units;
-    document.getElementById("totalUnit").innerHTML = isNaN(total_units)
-        ? "0"
-        : total_units.toFixed(2);
+    document.getElementById("totalUnits4").value = total_units;
+    document.getElementById("totalUnit4").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
 }
 
-function getGWA() {
-    var total_units = $("#totalUnits").val();
-    var weight = $("#weight").val();
+function getGWA4() {
+    var total_units = $("#totalUnits4").val();
+    var weight = $("#weight4").val();
     var gwa = weight / total_units;
 
-    document.getElementById("gwa").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
+    document.getElementById("gwa4").value = isNaN(gwa) ? "0.00" : gwa.toFixed(2);
 }
-//
+//5th Term
+$(document).ready(function() {
+    $("#add_btn5").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects5[]" class="form-control" required></td>';
+        html +=
+            '<td><input type="text" name="units5[]" class="form-control units5 multi5" id="units5" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+        html +=
+            '<td><input type="text" name="grades5[]" class="form-control grades5 multi5" id="grades5" onkeypress="return isFloatNumber(this,event)" required></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove5"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total5[]" class="form-control total5" id="total5" readonly></td>';
+        html += "</tr>";
+        $("#calculation5").append(html);
+    });
+});
+
+$(document).on("click", "#remove5", function() {
+    $(this).closest("tr").remove();
+    grandTotal5();
+    totalUnits5();
+    getGWA5();
+});
+
+$(document).ready(function() {
+    $("#calculation5").on("input", ".multi5", function() {
+        var parent5 = $(this).closest("tr");
+        var unit = $(parent5).find("#units5").val();
+        var grade = $(parent5).find("#grades5").val();
+
+        $(parent5)
+            .find("#total5")
+            .val(unit * grade);
+        grandTotal5();
+        totalUnits5();
+        getGWA5();
+    });
+});
+
+function grandTotal5() {
+    var total_avg5 = 0;
+    $(".total5").each(function() {
+        total_avg5 += Number($(this).val());
+    });
+    document.getElementById("weight5").value = isNaN(total_avg5) ?
+        "0.00" :
+        total_avg5.toFixed(2);
+}
+
+function totalUnits5() {
+    var total_units = 0;
+
+    $(".units5").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits5").value = total_units;
+    document.getElementById("totalUnit5").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA5() {
+    var total_units = $("#totalUnits5").val();
+    var weight = $("#weight5").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa5").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
+//6th Term
+$(document).ready(function() {
+    $("#add_btn6").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects6[]" class="form-control" required></td>';
+        html +=
+            '<td><input type="text" name="units6[]" class="form-control units6 multi6" id="units6" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+        html +=
+            '<td><input type="text" name="grades6[]" class="form-control grades6 multi6" id="grades6" onkeypress="return isFloatNumber(this,event)" required></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove6"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total6[]" class="form-control total6" id="total6" readonly></td>';
+        html += "</tr>";
+        $("#calculation6").append(html);
+    });
+});
+
+$(document).on("click", "#remove6", function() {
+    $(this).closest("tr").remove();
+    grandTotal6();
+    totalUnits6();
+    getGWA6();
+});
+
+$(document).ready(function() {
+    $("#calculation6").on("input", ".multi6", function() {
+        var parent6 = $(this).closest("tr");
+        var unit = $(parent6).find("#units6").val();
+        var grade = $(parent6).find("#grades6").val();
+
+        $(parent6)
+            .find("#total6")
+            .val(unit * grade);
+        grandTotal6();
+        totalUnits6();
+        getGWA6();
+    });
+});
+
+function grandTotal6() {
+    var total_avg6 = 0;
+    $(".total6").each(function() {
+        total_avg6 += Number($(this).val());
+    });
+    document.getElementById("weight6").value = isNaN(total_avg6) ?
+        "0.00" :
+        total_avg6.toFixed(2);
+}
+
+function totalUnits6() {
+    var total_units = 0;
+
+    $(".units6").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits6").value = total_units;
+    document.getElementById("totalUnit6").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA6() {
+    var total_units = $("#totalUnits6").val();
+    var weight = $("#weight6").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa6").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
+//7th Term
+$(document).ready(function() {
+    $("#add_btn7").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects7[]" class="form-control" required></td>';
+        html +=
+            '<td><input type="text" name="units7[]" class="form-control units7 multi7" id="units7" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
+        html +=
+            '<td><input type="text" name="grades7[]" class="form-control grades7 multi7" id="grades7" onkeypress="return isFloatNumber(this,event)" required></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove7"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total7[]" class="form-control total7" id="total7" readonly></td>';
+        html += "</tr>";
+        $("#calculation7").append(html);
+    });
+});
+
+$(document).on("click", "#remove7", function() {
+    $(this).closest("tr").remove();
+    grandTotal7();
+    totalUnits7();
+    getGWA7();
+});
+
+$(document).ready(function() {
+    $("#calculation7").on("input", ".multi7", function() {
+        var parent7 = $(this).closest("tr");
+        var unit = $(parent7).find("#units7").val();
+        var grade = $(parent7).find("#grades7").val();
+
+        $(parent7)
+            .find("#total7")
+            .val(unit * grade);
+        grandTotal7();
+        totalUnits7();
+        getGWA7();
+    });
+});
+
+function grandTotal7() {
+    var total_avg7 = 0;
+    $(".total7").each(function() {
+        total_avg7 += Number($(this).val());
+    });
+    document.getElementById("weight7").value = isNaN(total_avg7) ?
+        "0.00" :
+        total_avg7.toFixed(2);
+}
+
+function totalUnits7() {
+    var total_units = 0;
+
+    $(".units7").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits7").value = total_units;
+    document.getElementById("totalUnit7").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA7() {
+    var total_units = $("#totalUnits7").val();
+    var weight = $("#weight7").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa7").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
+//8th Term
+//Admin Filter Pending,Approved and Rejected
 $(function () {
     var course_id = document.getElementById("course_id").value;
     var table = $(".table-data").DataTable({
@@ -419,7 +651,6 @@ $(function () {
         table.draw();
     });
 });
-
 $(function () {
     var course_id = document.getElementById("course_id").value;
     var table = $(".table-data-dl").DataTable({
@@ -506,7 +737,48 @@ $(function () {
         table.draw();
     });
 });
+$(function () {
+    var course_id = document.getElementById("course_id").value;
+    var table = $(".table-data-ae").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/admin/academic-excellence-award/" + course_id,
+            data: function (d) {
+                (d.status = $("#status").val()),
+                    (d.search = $('input[type="search"]').val());
+            },
+        },
+        columns: [
+            {
+                data: "users.stud_num",
+                name: "users.stud_num",
+                className: "font-weight-bold",
+            },
+            { data: "users.first_name", name: "users.first_name" },
+            { data: "users.last_name", name: "users.last_name" },
+            { data: "courses.course_code", name: "courses.course_code" },
+            { data: "year_level" },
+            { data: "gwa" },
+            {
+                data: "image",
+                searchable: false,
+                className: "text-center",
+            },
+            { data: "status", className: "text-center" },
+            {
+                data: "action",
+                orderable: false,
+                searchable: false,
+            },
+        ],
+    });
 
+    $("#status").change(function () {
+        table.draw();
+    });
+});
+//Admin Print
 $(document).ready(function () {
     $(".view-accepted").click(function () {
         var course_id = document.getElementById("course_id").value;

@@ -3,9 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PresidentListerRequest extends FormRequest
+class AcademicAwardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,23 +27,22 @@ class PresidentListerRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'app_id' => 'nullable',
             'subjects.*' => 'required|string',
             'subjects1.*' => 'required|string',
             'school_year' => 'required',
-            'grades.*' => ['required','numeric','lt:2.50',Rule::in([1.00, 1.25, 1.5, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades1.*' => ['required','numeric','lt:2.50',Rule::in([1.00, 1.25, 1.5, 2.00, 2.25, 2.50, 2.75, 3.00])],
+            'grades.*' => ['required', 'numeric', 'lt:2.50', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
+            'grades1.*' => ['required', 'numeric', 'lt:2.50', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
             'units.*' => 'required|integer|min:1',
             'units1.*' => 'required|integer|min:1',
             'term' => 'required',
             'term1' => 'required',
             'total.*' => 'nullable',
             'total1.*' => 'nullable',
-            'gwa_1st' => 'required|lte:1.50',
-            'gwa_2nd' => 'required|lte:1.50',
             'year_level' => 'required|string',
             'image' => 'required|mimes:jpeg,png,jpg',
             'award_applied' => 'required|string',
-            'course_id' => 'required|string'
+            'course_id' => 'required|string',
         ];
     }
 
@@ -60,5 +60,21 @@ class PresidentListerRequest extends FormRequest
             'gwa_1st.lte' => 'Your 1st Semester GWA did not meet the grade requirement.',
             'gwa_2nd.lte' => 'Your 2nd Semester GWA did not meet the grade requirement.',
         ];
+    }
+
+    public function withValidator(Validator $validator)
+    {
+        $validator->sometimes('gwa_1st', 'required|lte:1.75', function ($input) {
+            return $input->award_applied == '1' || $input->award_applied == '2';
+        });
+        $validator->sometimes('gwa_2nd', 'required|lte:1.75', function ($input) {
+            return $input->award_applied == '1' || $input->award_applied == '2';
+        });
+        $validator->sometimes('gwa_1st', 'required|lte:1.50', function ($input) {
+            return $input->award_applied == '3';
+        });
+        $validator->sometimes('gwa_2nd', 'required|lte:1.50', function ($input) {
+            return $input->award_applied == '3';
+        });
     }
 }

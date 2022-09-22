@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Summary;
-use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PresidentListerRequest;
+use App\Http\Requests\AcademicAwardRequest;
 
-class PlAwardApplicationController extends Controller
+class AcademicAwardController extends Controller
 {
     public function index()
     {
-        return view('user.application-form-pl.index');
+        return view('user.application-form.index');
     }
 
-    public function store(PresidentListerRequest $request)
+    public function store(AcademicAwardRequest $request)
     {
+
         $data = $request->validated();
         $award = new StudentApplicants();
 
@@ -61,7 +61,6 @@ class PlAwardApplicationController extends Controller
             $sum->app_id = $lastid;
             $sum->save();
         }
-
 
         return redirect('user/dashboard')->with('message', 'Your application is received');
     }

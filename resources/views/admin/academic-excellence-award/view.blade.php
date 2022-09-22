@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
+        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Academic Excellence Applicants</div>
     </div>
 
     @if (session('message'))
@@ -12,11 +12,11 @@
     @endif
     <div class="row">
         <div class="col-md-12 mb-2">
-            <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
+            <a href="{{ url('admin/academic-excellence-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
                 target="__blank" class="btn btn-secondary">
                 <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
             </a>
-            <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-rejected-students-pdf') }}"
+            <a href="{{ url('admin/academic-excellence-award/' . $courses->course_code . '/view-rejected-students-pdf') }}"
                 target="__blank" class="btn btn-danger">
                 <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
             </a>
@@ -27,7 +27,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students
-                        <a href="{{ url('admin/achievers-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        <a href="{{ url('admin/academic-excellence-award') }}"
+                            class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -41,7 +42,7 @@
                         </select>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-data" id="dataTable" width="100%"
+                        <table class="table table-bordered table-striped table-data-ae" id="dataTable" width="100%"
                             cellspacing="0">
                             <thead>
                                 <tr>
@@ -49,9 +50,9 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Course</th>
-                                    <th width="">1st Sem GWA</th>
-                                    <th>2nd Sem GWA</th>
-                                    <th class="text-center">Image</th>
+                                    <th>Year Level</th>
+                                    <th>Average</th>
+                                    <th>Image</th>
                                     <th class="text-center">Status</th>
                                     <th>Action</th>
                                 </tr>

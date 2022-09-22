@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
-@section('title', 'Achievers Award Application')
+@section('title', 'Achievers Award Status')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Application Status</div>
+        <div class="h3 mb-0 text-gray-800">Achiever's Award Application Status</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -36,6 +36,7 @@
                                     <th>Award Applied</th>
                                     <th>1st Sem GWA</th>
                                     <th>2nd Sem GWA</th>
+                                    <th>Average</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                 </tr>
@@ -64,9 +65,10 @@
                                         </td>
                                         <td>{{ $item->gwa_1st }}</td>
                                         <td>{{ $item->gwa_2nd }}</td>
+                                        <td>{{ $item->gwa }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/' . $item->image) }}" class="img-thumbnail img-circle"
-                                                width="50" alt="Image">
+                                            <img src="{{ asset('uploads/' . $item->image) }}"
+                                                class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                         <td>
                                             @if ($item->status == '0')

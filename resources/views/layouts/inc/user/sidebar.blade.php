@@ -22,11 +22,21 @@
     </li>
 
     <!--Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item {{ Request::is('user/application-status') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="{{ url('user/application-status') }}">
+
+    <li class="nav-item {{ Request::is('user/application-status/academic-award') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
             <i class="fa-solid fa-list-check"></i>
             <span>Application Status</span>
         </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ url('user/application-status/academic-award') }}">Academic Award</a>
+                <a class="collapse-item" href="{{ url('user/application-status/academic-excellence') }}">Academic
+                    Excellence</a>
+                <a class="collapse-item" href="">Non-Academic Award</a>
+            </div>
+        </div>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
 

@@ -18,16 +18,24 @@
         </div>
     </div>
 
+    <div class="form-row mt-0 mb-4 text-center">
+        <div class="col-md-12 my-1">
+
+
+            <a href="{{ url('user/application-form') }}" class="btn btn-outline-primary" button="NA">NON-ACADEMIC AWARD
+                APPLICATION</a>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-lg-4">
             <div class="card border-left-danger shadow mb-4">
-                <img src="{{ asset('admin/img/awardphotocard1.jpg') }}" class="card-img-top" alt="image">
+                <img src="{{ asset('admin/img/acadaward_photocard.jpg') }}" class="card-img-top" alt="image">
                 <div class="card-body text-center">
-                    <div class="text-md card-text font-weight-bold text-danger text-uppercase pl-6 mt-4r">Achiever's Award
-                        Application
-                    </div>
-                    <div class="h6 mb-0 font-weight-bold text-gray-800  ">1st year students only</div>
-                    <a href="{{ url('user/application-form') }}" class="btn btn-success btn-sm mt-4">Apply</a>
+                    <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
+                        ACADEMIC AWARD APPLICATION
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,12 +51,14 @@
                         </li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;With
                             grades <b>NO LOWER THAN 2.50 IN ALL SUBJECTS</b></li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;Bonafide
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i>
+                            &ensp;Bonafide
                             student of PUP Taguig Branch.</li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i>
                             &ensp;Officially enrolled for 1st and 2nd semester
                             of the recent academic year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;Regular
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i>
+                            &ensp;Regular
                             Student</li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;No
                             Failed, Withdrawn, Incomplete
@@ -60,16 +70,7 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="card border-left-warning shadow mb-4">
-                <img src="{{ asset('admin/img/awardphotocard3.jpg') }}" class="card-img-top" alt="image">
-                <div class="card-body text-center">
-                    <div class="text-md card-text font-weight-bold text-info text-uppercase pl-6 mt-4r">Dean's List
-                        Application
-                    </div>
-                    <div class="h6 mb-0 font-weight-bold text-gray-800  ">2nd to 4th year students only</div>
-                    <a href="{{ url('user/application-form-dl') }}" class="btn btn-success btn-sm mt-4">Apply</a>
-                </div>
-            </div>
+
         </div>
         <div class="col-lg-8">
             <div class="card shadow mb-4">
@@ -90,7 +91,8 @@
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
                             &ensp;Officially enrolled for 1st and 2nd semester
                             of the recent academic year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;Regular
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
+                            &ensp;Regular
                             Student</li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;No
                             Failed, Withdrawn, Incomplete
@@ -102,16 +104,6 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="card border-left-warning shadow mb-4">
-                <img src="{{ asset('admin/img/awardphotocard2.jpg') }}" class="card-img-top" alt="image">
-                <div class="card-body text-center">
-                    <div class="text-md card-text font-weight-bold text-warning text-uppercase pl-6 mt-4r">President's List
-                        Application
-                    </div>
-                    <div class="h6 mb-0 font-weight-bold text-gray-800  ">2nd to 4th year students only</div>
-                    <a href="{{ url('user/application-form-pl') }}" class="btn btn-success btn-sm mt-4">Apply</a>
-                </div>
-            </div>
         </div>
         <div class="col-lg-8">
             <div class="card shadow mb-4">
@@ -120,21 +112,25 @@
                         President's List Qualifications
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i> &ensp;<b>2nd
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                            &ensp;<b>2nd
                                 to 4th year students</b> are only qualified.
                         </li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>&ensp;<b>GWA
                                 of 1.00 to 1.50</b> for both first and second semester.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i> &ensp;With
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                            &ensp;With
                             grades <b>NO LOWER THAN 2.50 IN ALL SUBJECTS</b></li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
                             &ensp;Bonafide student of PUP Taguig Branch.</li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
                             &ensp;Officially enrolled for 1st and 2nd semester
                             of the recent academic year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i> &ensp;Regular
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                            &ensp;Regular
                             Student</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i> &ensp;No
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                            &ensp;No
                             Failed, Withdrawn, Incomplete
                             and 'P' remarks in any subject enrolled for the recent academic year.</li>
                     </ul>
@@ -144,14 +140,13 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="card border-left-success shadow mb-4">
-                <img src="{{ asset('admin/img/awardphotocard4.jpg') }}" class="card-img-top" alt="image">
+            <div class="card border-left-info shadow mb-4">
+                <img src="{{ asset('admin/img/acadexcellence_photocard.jpg') }}" class="card-img-top" alt="image">
                 <div class="card-body text-center">
-                    <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r">Academic
-                        Excellence Award
-                    </div>
-                    <div class="h6 mb-0 font-weight-bold text-gray-800  ">For graduating students only</div>
-                    <a href="{{ url('user/application-form-ae') }}" class="btn btn-success btn-sm mt-4">Apply</a>
+                    <a href="{{ url('user/application-form-ae') }}"
+                        class="btn btn-sm btn-outline-primary mb-2 mt-2">ACADEMIC
+                        EXCELLENCE
+                        AWARD APPLICATION</a>
                 </div>
             </div>
         </div>
@@ -162,13 +157,15 @@
                         Academic Excellence Award Qualifications
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i> &ensp;For
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
+                            &ensp;For
                             Graduating students.
                         </li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
                             &ensp;<b>GWA
                                 1.75</b> or above from 1st to 4th year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i> &ensp;With
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
+                            &ensp;With
                             grades <b>NO LOWER THAN 2.50 IN ALL SUBJECTS</b> from 1st year to 4th year.</li>
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
                             &ensp;Bonafide
@@ -179,8 +176,10 @@
                         <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
                             &ensp;Regular
                             Student from 1st year to 4th year</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i> &ensp;No
-                            Failed, Withdrawn, Incomplete and 'P' remarks in any subject enrolled from 1st to 4th Year</li>
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
+                            &ensp;No
+                            Failed, Withdrawn, Incomplete and 'P' remarks in any subject enrolled from 1st to 4th Year
+                        </li>
                     </ul>
                 </div>
             </div>

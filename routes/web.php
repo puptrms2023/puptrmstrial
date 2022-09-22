@@ -14,17 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::redirect('/', 'login');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectUser'])->name('home');
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
-    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
+    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     Route::controller(App\Http\Controllers\Admin\UserController::class)->group(function () {
         Route::get('/users', 'index');
         Route::get('/users/create', 'create');
@@ -75,10 +72,13 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
-        // Route::get('/presidents-list-award/{course_code}', 'achieversView');
-        // Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
-        // Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
-        // Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
+        Route::get('/academic-excellence-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/academic-excellence-award/{course_code}/view-all-students-pdf', 'openPdfAll');
+        Route::get('/academic-excellence-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
+        Route::get('/academic-excellence-award/{course_code}', 'achieversView');
+        Route::get('/academic-excellence-award/{course_code}/approve/{id}', 'approved');
+        Route::get('/academic-excellence-award/{course_code}/reject/{id}', 'rejected');
+        // Route::get('/academic-excellence-award/{course_code}/{id}', 'studentApplicationView');
         // Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
     });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
@@ -97,24 +97,17 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
 
-    Route::controller(App\Http\Controllers\User\AwardApplicationController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\AcademicAwardController::class)->group(function () {
         Route::get('/application-form', 'index');
         Route::post('/application-form', 'store');
     });
-    Route::controller(App\Http\Controllers\User\PlAwardApplicationController::class)->group(function () {
-        Route::get('/application-form-pl', 'index');
-        Route::post('/application-form-pl', 'store');
-    });
-    Route::controller(App\Http\Controllers\User\DlAwardApplicationController::class)->group(function () {
-        Route::get('/application-form-dl', 'index');
-        Route::post('/application-form-dl', 'store');
-    });
     Route::controller(App\Http\Controllers\User\AEAwardApplicationController::class)->group(function () {
         Route::get('/application-form-ae', 'index');
-        // Route::post('/application-form-ae', 'store');
+        Route::post('/application-form-ae', 'store');
     });
 
     Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {
-        Route::get('/application-status', 'index');
+        Route::get('/application-status/academic-award', 'aaAward');
+        Route::get('/application-status/academic-excellence', 'aeAward');
     });
 });

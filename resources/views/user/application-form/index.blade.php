@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
-@section('title', 'Achievers Award Application')
+@section('title', 'Award Application')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Achiever's Award Application Form</div>
+        <div class="h3 mb-0 text-gray-800">Academic Award Application Form</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -58,8 +58,63 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form action="{{ url('user/application-form') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('user/application-form') }}" method="POST" enctype="multipart/form-data"
+                id="application_form_aa">
                 @csrf
+
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-3">
+                            <label for="" class="font-weight-bold">School Year</label>
+                            <span class="text-danger">*</span>
+                            <select class="form-control" name="school_year">
+                                <option value="2022-2023">2022-2023</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-3">
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                            <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
+                            <label for="" class="font-weight-bold">Academic Level</label>
+                            <span class="text-danger">*</span>
+                            <select class="form-control" name="year_level" id="selectYear">
+                                <option value="">--Select Academic Level--</option>
+                                <option data-state="1st Year" value="1st Year"
+                                    {{ old('year_level') == '1st Year' ? 'selected' : '' }}>1st Year</option>
+                                <option data-state="2nd Year" value="2nd Year"
+                                    {{ old('year_level') == '2nd Year' ? 'selected' : '' }}>2nd Year</option>
+                                <option data-state="3rd Year" value="3rd Year"
+                                    {{ old('year_level') == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
+                                <option data-state="4th Year" value="4th Year"
+                                    {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-3">
+                            <label for="" class="font-weight-bold">Award Applied</label>
+                            <span class="text-danger">*</span>
+                            <select class="form-control" name="award_applied" id="selectAward">
+                                <option data-state="1st Year" value="1">Achiever's Award</option>
+                                <option data-state="2nd Year" value="2">Dean's List</option>
+                                <option data-state="2nd Year" value="3">President's List </option>
+                                <option data-state="3rd Year" value="2">Dean's List</option>
+                                <option data-state="3rd Year" value="3">President's List </option>
+                                <option data-state="4th Year" value="2">Dean's List</option>
+                                <option data-state="4th Year" value="3">President's List </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                </div>
+
 
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-header pt-3 pb-1">
@@ -213,45 +268,10 @@
                 </div>
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="font-weight-bold">School Year</label>
-                            <span class="text-danger">*</span>
-                            <select class="form-control" name="school_year">
-                                <option value="2022-2023">2022-2023</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
-                            <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
-                            <label for="" class="font-weight-bold">Academic Level</label>
-                            <span class="text-danger">*</span>
-                            <select class="form-control" name="year_level">
-                                <option value="1st Year">1st Year</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
                         <div class="col-md-6 mb-3">
                             <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
                             <span class="text-danger">*</span>
                             <input type="file" name="image" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="font-weight-bold">Award Applied</label>
-                            <span class="text-danger">*</span>
-                            <select class="form-control" name="award_applied">
-                                <option value="1">Achiever's Award</option>
-                            </select>
                         </div>
                     </div>
                 </div>
