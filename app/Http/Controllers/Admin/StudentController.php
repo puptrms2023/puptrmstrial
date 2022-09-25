@@ -59,13 +59,13 @@ class StudentController extends Controller
         $user->email = $request->email;
 
         $user->save();
-        return redirect('admin/students')->with('message', 'Student Updated Successfully');
+        return redirect('admin/students')->with('success', 'Student updated successfully');
     }
 
     public function destroy(Request $request)
     {
         $user = User::find($request->user_delete_id);
         $user->delete();
-        return redirect('admin/students')->with('message', 'Student Deleted Successfully');
+        return redirect('admin/students')->with('success', 'Student deleted successfully');
     }
 }

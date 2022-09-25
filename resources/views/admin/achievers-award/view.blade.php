@@ -7,9 +7,6 @@
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
     </div>
 
-    @if (session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
     <div class="row">
         <div class="col-md-12 mb-2">
             <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-approved-students-pdf') }}"

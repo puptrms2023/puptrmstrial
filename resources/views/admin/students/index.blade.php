@@ -30,9 +30,6 @@
 
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students

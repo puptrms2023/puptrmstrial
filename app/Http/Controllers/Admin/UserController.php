@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->role_as = $validatedData['role_as'];
         $user->save();
 
-        return redirect('admin/users')->with('message', 'User Added Successfully');
+        return redirect('admin/users')->with('success', 'User added successfully');
     }
 
     public function edit($id)
@@ -81,13 +81,13 @@ class UserController extends Controller
         // }
 
         $user->save();
-        return redirect('admin/users')->with('message', 'User Updated Successfully');
+        return redirect('admin/users')->with('success', 'User updated successfully');
     }
 
     public function destroy(Request $request)
     {
         $user = User::find($request->user_delete_id);
         $user->delete();
-        return redirect('admin/users')->with('message', 'User Deleted Successfully');
+        return redirect('admin/users')->with('success', 'User deleted successfully');
     }
 }

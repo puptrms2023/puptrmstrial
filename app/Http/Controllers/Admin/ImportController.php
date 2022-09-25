@@ -44,7 +44,7 @@ class ImportController extends Controller
             'headings' => $headings ?? null,
             'csv_data' => $csv_data,
             'csv_data_file' => $csv_data_file
-        ])->with('message', 'The CSV file imported Successfully');;
+        ])->with('success', 'The CSV file imported successfully');;
     }
 
     public function processImport(Request $request)
@@ -62,13 +62,13 @@ class ImportController extends Controller
             }
             $awardees->save();
         }
-        return redirect()->action([ImportController::class, 'index'])->with('message', 'Import finished.');
+        return redirect()->action([ImportController::class, 'index'])->with('success', 'Import finished.');
     }
 
     public function destroy(Request $request)
     {
         $user = CsvData::find($request->file_delete_id);
         $user->delete();
-        return redirect('admin/import-csv')->with('message', 'CSV File Deleted Successfully');
+        return redirect('admin/import-csv')->with('success', 'CSV file deleted successfully');
     }
 }

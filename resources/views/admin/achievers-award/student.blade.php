@@ -8,9 +8,8 @@
         </div>
     </div>
 
-    @if (session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
+    @include('layouts.partials.messages')
+
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -180,6 +179,12 @@
                     <button class="btn btn-primary" type="submit">Update</button>
                 </div>
             </form>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <a href="{{ url('admin/achievers-award/' . $status->courses->course_code . '/' . $status->id . '/generate-certificate') }}"
+                    target="_blank" class="btn btn-sm btn-primary">Generate Certificate</a>
+            </div>
         </div>
     </div>
 @endsection

@@ -7,9 +7,6 @@
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List Applicants</div>
     </div>
 
-    @if (session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
     <div class="row">
         <div class="col-md-12 mb-2">
             <div class="form-row">

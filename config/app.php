@@ -197,6 +197,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),

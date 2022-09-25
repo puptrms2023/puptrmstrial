@@ -155,7 +155,7 @@ class AEApplicantsController extends Controller
         $status->status = $request->status;
         $status->reason = $request->reason;
         $status->save();
-        return redirect()->back()->with('message', 'The Application Form Updated Successfully');
+        return redirect()->back()->with('success', 'The Application form updated successfully');
     }
 
     public function openPdfApproved($course_code)

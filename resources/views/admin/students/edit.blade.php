@@ -44,8 +44,9 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">Phone number</label>
-                                <input class="form-control" name="contact" type="tel"
-                                    placeholder="Enter your phone number" value="{{ $user->contact }}" required autofocus>
+                                <input class="form-control js-phone" name="contact" type="text"
+                                    placeholder="Enter your phone number" value="{{ substr($user->contact, 3) }}" required
+                                    autofocus>
                             </div>
                         </div>
                         <div class="mb-3">

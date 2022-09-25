@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/achievers-award/{course_code}/update-status/{id}', 'update');
+        Route::get('/achievers-award/{course_code}/{id}/generate-certificate', 'certificate');
     });
     Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
@@ -92,6 +93,12 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/import-csv/import-parse', 'parseImport');
         Route::post('/import-csv/import-process', 'processImport');
         Route::post('/delete-csv', 'destroy');
+    });
+    Route::controller(App\Http\Controllers\Admin\CertificatesController::class)->group(function () {
+        Route::get('/send-awardees-certificates', 'index');
+        Route::get('/send-awardees-certificates/{course_code}', 'view');
+        Route::post('/send-awardees-certificates/{course_code}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/{course_code}/{id}', 'showCertificate');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {

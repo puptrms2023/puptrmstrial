@@ -8,9 +8,8 @@
         </div>
     </div>
 
-    @if (session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
+    @include('layouts.partials.messages')
+
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">

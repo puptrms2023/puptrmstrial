@@ -61,6 +61,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('admin/send-awardees-certificates') }}">
+            <i class="fa-solid fa-certificate"></i>
+            <span>Send E-Certificates</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Courses;
 use App\Models\Summary;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentApplicantsController extends Controller
 {
@@ -131,8 +135,21 @@ class StudentApplicantsController extends Controller
         $status->status = $request->status;
         $status->reason = $request->reason;
         $status->save();
-        return redirect()->back()->with('message', 'The Application Form Updated Successfully');
+        return redirect()->back()->with('success', 'The Application form updated successfully');
     }
+
+    public function certificate($course_code, $id)
+    {
+        $courses = Courses::where('course_code', $course_code)->first();
+        $students = StudentApplicants::with('users')->find($id);
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($students->users->stud_num));
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.achievers-award.certificate', array('students' => $students), array('qrcode' => $qrcode));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream('Achievers-Awardee-' . $courses->course_code . '.pdf');
+    }
+
     public function openPdfApproved($course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
