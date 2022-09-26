@@ -3,6 +3,30 @@
 @section('title', $courses->course)
 
 @section('content')
+    <div class="modal" tabindex="-1" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Application Form</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/deans-list-award/' . $courses->course_code . '/delete-form') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete the submitted application form?</p>
+                        <input type="hidden" name="form_delete_id" id="form_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List Applicants</div>
     </div>
@@ -78,5 +102,19 @@
             </div>
         </div>
     </div>
+
+@endsection
+@section('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.deleteFormbtn', function() {
+
+                var app_form_id = $(this).data("id");
+                $('#form_id').val(app_form_id);
+                $('#deleteModal').modal('show');
+            });
+        });
+    </script>
 
 @endsection

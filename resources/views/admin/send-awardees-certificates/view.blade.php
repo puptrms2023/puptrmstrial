@@ -14,14 +14,8 @@
 
     <div class="row">
         <div id="send-button" class="col-md-12 mb-2">
-            <button class="btn btn-success send-email"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send
-                E-Certificates</button>
-        </div>
-        <div id="spinner-div" class="col-md-12 mb-2 hidden">
-            <button class="btn btn-success" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Send E-Certificates
-            </button>
+            <button class="btn btn-success send-email-aa"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send
+                Certificates</button>
         </div>
     </div>
     <div class="row">
@@ -32,6 +26,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students
+                        <div class="float-right text-muted text-gray-600 small">Total Email sent:
+                            {{ $count }}/{{ $total }}</div>
                     </div>
                 </div>
                 <input type="hidden" value="{{ $courses->course_code }}" id="course_id">
@@ -62,7 +58,9 @@
                                         <td>{{ $awardee->gwa }}</td>
                                         <td>
                                             @if ($awardee->certificate_status == '1')
-                                                <span class="text-success">Sent</span>
+                                                <span class="badge badge-success">Sent</span>
+                                            @else
+                                                <span class="badge badge-warning">Pending</span>
                                             @endif
                                         </td>
                                         <td>
@@ -88,7 +86,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $(".send-email").click(function() {
+        $(".send-email-aa").click(function() {
             var course_id = document.getElementById("course_id").value;
             var selectRowsCount = $("input[class='user-checkbox']:checked").length;
             if (selectRowsCount > 0) {
@@ -96,9 +94,8 @@
                 var ids = $.map($("input[class='user-checkbox']:checked"), function(c) {
                     return c.value;
                 });
-
-                $('#send-button').addClass('hidden');
-                $('#spinner-div').removeClass('hidden');
+                $(this).attr("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i> Send E-Certificates');
 
                 $.ajax({
                     type: 'POST',
@@ -110,8 +107,9 @@
                     },
                     success: function(data) {
                         toastr.success(data.success);
-                        $('#send-button').removeClass('hidden');
-                        $('#spinner-div').addClass('hidden');
+                        $('.send-email-aa').attr("disabled", false);
+                        $('.send-email-aa').html(
+                            '<i class="fas fa-paper-plane"></i> Send E-Certificates');
                     },
                 });
 

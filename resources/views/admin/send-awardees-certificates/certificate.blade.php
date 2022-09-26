@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Generated Certificate</title>
+    <title>Dean's List Certificate</title>
     <style type="text/css">
         * {
             margin: 0;
@@ -16,7 +16,6 @@
             width: 11.69in;
             background-image: url('admin/img/cert_layout1.jpg');
             background-size: 11.69in 8.27in;
-            /* Not sure whether it works with DOMPDF. So, using a background of actual size. */
             background-repeat: no-repeat;
         }
 
@@ -82,17 +81,17 @@
 
 <body>
     <div class="name">
-        @if ($students->users->middle_name == '')
-            {{ $students->users->first_name . ' ' . $students->users->last_name }}
+        @if ($mname == '')
+            {{ $fname . ' ' . $lname }}
         @else
-            {{ $students->users->first_name . ' ' . $students->users->middle_name . ' ' . $students->users->last_name }}
+            {{ $fname . ' ' . $mname . ' ' . $lname }}
         @endif
     </div>
     <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>
-        a General Weighted Average of {{ $students->gwa }} qualified for the Achiever's Award for the S.Y.
-        {{ $students->school_year }}.
+        a General Weighted Average of {{ $gwa }} qualified for the Achiever's Award for the S.Y.
+        {{ $sy }}.
     </div>
-    <div class="date">Given this day, 1st of September 2022 via Google Mail</div>
+    <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
     <table class="table2">
         <tr>
             <td width="21%">
@@ -122,7 +121,7 @@
             <img src="data:image/png;base64, {!! $qrcode !!}" width="25%" alt="">
             <span class="scan">
                 Scan QR Code for verification<br>
-                Date Generated: 09-01-22
+                Date Generated: {{ date('m-d-y') }}
             </span>
         </div>
     </footer>

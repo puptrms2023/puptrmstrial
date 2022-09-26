@@ -180,11 +180,5 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
-            <div class="mb-3">
-                <a href="{{ url('admin/achievers-award/' . $status->courses->course_code . '/' . $status->id . '/generate-certificate') }}"
-                    target="_blank" class="btn btn-sm btn-primary">Generate Certificate</a>
-            </div>
-        </div>
     </div>
 @endsection

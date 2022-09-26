@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class PLApplicantsController extends Controller
 {
@@ -53,7 +54,7 @@ class PLApplicantsController extends Controller
                 ->addColumn('action', function ($status) {
                     $btn = '';
                     $btn .= '<a href="/admin/presidents-list-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<button type="button" class="btn btn-sm btn-danger deleteUserbtn"><i class="fa fa-trash"></i> </button>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $status->id . '"><i class="fa fa-trash"></i> </button>';
 
                     return $btn;
                 })
@@ -197,5 +198,18 @@ class PLApplicantsController extends Controller
         $pdf->loadView('admin.presidents-list-award.student-list', array('students' => $students), array('courses' => $courses));
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('Deans-List-Applicants-' . $courses->course_code . '.pdf');
+    }
+
+    public function destroy(Request $request)
+    {
+        $form = StudentApplicants::find($request->form_delete_id);
+        if ($form->image) {
+            $path = 'uploads/' . $form->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        $form->delete();
+        return redirect()->back()->with('success', 'The Application form deleted successfully');
     }
 }

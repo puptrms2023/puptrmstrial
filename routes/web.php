@@ -47,7 +47,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/achievers-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/achievers-award/{course_code}/update-status/{id}', 'update');
-        Route::get('/achievers-award/{course_code}/{id}/generate-certificate', 'certificate');
+        Route::post('achievers-award/{course_code}/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
@@ -59,6 +59,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/deans-list-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/deans-list-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/deans-list-award/{course_code}/update-status/{id}', 'update');
+        Route::post('/deans-list-award/{course_code}/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\PLApplicantsController::class)->group(function () {
         Route::get('/presidents-list-award', 'index');
@@ -70,6 +71,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/presidents-list-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
+        Route::post('/presidents-list-award/{course_code}/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
@@ -81,6 +83,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/academic-excellence-award/{course_code}/reject/{id}', 'rejected');
         Route::get('/academic-excellence-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/academic-excellence-award/{course_code}/update-status/{id}', 'update');
+        Route::post('/academic-excellence-award/{course_code}/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
         Route::get('/usermanagement', 'index');
