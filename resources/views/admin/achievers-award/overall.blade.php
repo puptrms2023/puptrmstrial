@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $courses->course)
+@section('title', 'Overall')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">
@@ -12,7 +12,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/achievers-award/' . $courses->course_code . '/delete-form') }}" method="POST">
+                <form action="{{ url('admin/achievers-award/') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <p>Are you sure you want to delete the submitted application form?</p>
@@ -27,19 +27,19 @@
         </div>
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
+        <div class="h3 mb-0 text-gray-800">Achiever's Award Applicants</div>
     </div>
 
     <div class="row">
         <div class="col-md-12 mb-2">
-            <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
+            {{-- <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
                 target="__blank" class="btn btn-secondary">
                 <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
             </a>
             <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-rejected-students-pdf') }}"
                 target="__blank" class="btn btn-danger">
                 <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
-            </a>
+            </a> --}}
         </div>
     </div>
     <div class="row">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <input type="hidden" value="{{ $courses->course_code }}" id="course_id">
+                    {{-- <input type="hidden" value="{{ $courses->course_code }}" id="course_id"> --}}
                     <div class="form-group">
                         <select id='status' class="custom-select" style="width: 200px">
                             <option value="">All</option>
@@ -79,10 +79,10 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-all-students-pdf') }}"
+                        {{-- <a href="{{ url('admin/achievers-award/' . $courses->course_code . '/view-all-students-pdf') }}"
                             target="__blank" class="btn btn-sm btn-primary mt-2 mb-3">
                             <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

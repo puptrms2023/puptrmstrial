@@ -16,8 +16,8 @@
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">
                         Student Information
-                        <a href="{{ url('admin/achievers-award/' . $status->courses->course_code) }}"
-                            class="btn btn-primary btn-sm float-right">Back</a>
+                        {{-- <a href="{{ url('admin/achievers-award/' . $status->courses->course_code) }}"
+                            class="btn btn-primary btn-sm float-right">Back</a> --}}
                     </div>
                 </div>
                 <div class="card-body">

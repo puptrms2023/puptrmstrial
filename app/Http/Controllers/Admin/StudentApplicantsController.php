@@ -7,11 +7,11 @@ use App\Models\Courses;
 use App\Models\Summary;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Yajra\DataTables\Facades\DataTables;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentApplicantsController extends Controller
@@ -27,27 +27,42 @@ class StudentApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
 
         if ($request->ajax()) {
-            $data = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1')->select('student_applicants.*');
-            return DataTables::of($data)
-                ->addIndexColumn()
+            if ($request->get('status') == '') {
+                $model = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1');
+            } else {
+                $model = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1')->where('status', $request->get('status'));
+            }
+            return DataTables::eloquent($model)
+                ->addColumn('studno', function (StudentApplicants $post) {
+                    return $post->users->stud_num;
+                })
+                ->addColumn('fname', function (StudentApplicants $post) {
+                    return $post->users->first_name;
+                })
+                ->addColumn('lname', function (StudentApplicants $post) {
+                    return $post->users->last_name;
+                })
+                ->addColumn('course', function (StudentApplicants $post) {
+                    return $post->courses->course_code;
+                })
                 ->addColumn('image', function ($status) {
                     $url = asset('uploads/' . $status->image);
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
-                    width="50" alt="Image">';
+                                    width="50" alt="Image">';
                 })
-                ->addColumn('status', function ($status) {
-                    if ($status->status == '1') {
+                ->addColumn('status', function (StudentApplicants $data) {
+                    if ($data->status == '1') {
                         return '<span class="badge badge-success">Approved</span>';
-                    } else if ($status->status == '2') {
+                    } else if ($data->status == '2') {
                         return '<span class="badge badge-danger">Rejected</span>';
                     } else {
-                        return '<a href="/admin/achievers-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
+                        return '<a href="/admin/achievers-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-check"></i>
                         </span>
                         <span class="text">Approve</span>
                     </a>
-                    <a href="/admin/achievers-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
+                    <a href="/admin/achievers-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
                         <span class="icon text-white-50">
                             <i class="fa-sharp fa-solid fa-xmark"></i>
                         </span>
@@ -55,30 +70,12 @@ class StudentApplicantsController extends Controller
                     </a>';
                     }
                 })
-                ->addColumn('action', function ($status) {
+                ->addColumn('action', function ($data) {
                     $btn = '';
-                    $btn .= '<a href="/admin/achievers-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $status->id . '"><i class="fa fa-trash"></i> </button>';
+                    $btn .= '<a href="/admin/achievers-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
 
                     return $btn;
-                })
-                ->filter(function ($instance) use ($request) {
-                    if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
-                        $instance->where('status', $request->get('status'));
-                    }
-
-                    if (!empty($request->get('search'))) {
-                        $instance->where(function ($w) use ($request) {
-                            $search = $request->get('search');
-                            $w->orWhere('gwa_1st', 'LIKE', "%$search%")
-                                ->orWhere('gwa_2nd', 'LIKE', "%$search%");
-                        });
-                    }
-                    // $instance->orwhereHas('users', function ($q) use ($request) {
-                    //     $searchData = $request->get('search');
-                    //     $q->orWhere('first_name', 'LIKE', "%$$searchData%")
-                    //         ->orWhere('last_name', 'LIKE', "%$$searchData%");
-                    // });
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
@@ -108,14 +105,14 @@ class StudentApplicantsController extends Controller
 
     public function studentApplicationView($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->get();
+        // $courses = Courses::where('course_code', $course_code)->first();
+        $status = StudentApplicants::where('course_id', $courses->id)->first();
         $status = StudentApplicants::find($id);
-        $grades = Summary::where('user_id', $status->user_id)
+        $grades = Summary::where('user_id', $id)
             ->where('term', '=', "1")
             ->where('app_id', '=', $id)
             ->get();
-        $grades2 = Summary::where('user_id', $status->user_id)
+        $grades2 = Summary::where('user_id', $id)
             ->where('term', '=', "2")
             ->where('app_id', '=', $id)
             ->get();
@@ -201,5 +198,10 @@ class StudentApplicantsController extends Controller
         }
         $form->delete();
         return redirect()->back()->with('success', 'The Application form deleted successfully');
+    }
+
+    public function overallList()
+    {
+        return view('admin.achievers-award.overall');
     }
 }

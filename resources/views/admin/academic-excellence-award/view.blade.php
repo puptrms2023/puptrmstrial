@@ -65,7 +65,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-data-ae" id="dataTable" width="100%"
                             cellspacing="0">
-                            <thead>
+                            <thead class="text-primary">
                                 <tr>
                                     <th>Student No.</th>
                                     <th>First Name</th>

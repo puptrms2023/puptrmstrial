@@ -69,7 +69,7 @@
                 <div class="card-body">
 
                     <table class="table table-sm table-bordered">
-                        <thead>
+                        <thead class="text-primary">
                             <tr>
                                 <th>Award Applied</th>
                                 <th>Yesr Level</th>

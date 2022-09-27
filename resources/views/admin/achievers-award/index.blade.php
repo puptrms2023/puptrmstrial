@@ -11,6 +11,8 @@
                 {{ session('status') }}
             </div>
         @endif
+        <a href="{{ url('admin/achievers-award/overall') }}" class="btn btn-sm btn-secondary"><i
+                class="fa-solid fa-user-group fa-sm"></i> Applicants</a>
     </div>
 
     <div class="row">

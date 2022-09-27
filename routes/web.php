@@ -39,6 +39,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
+        Route::get('/achievers-award/overall', 'overallList');
         Route::get('/achievers-award/{course_code}', 'achieversView');
         Route::get('/achievers-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/achievers-award/{course_code}/view-all-students-pdf', 'openPdfAll');

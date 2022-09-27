@@ -18,7 +18,7 @@
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered table-striped" id="dataTable" width="100%"
                             cellspacing="0">
-                            <thead>
+                            <thead class="text-primary">
                                 <tr>
                                     <th>ID</th>
                                     <th>Date</th>

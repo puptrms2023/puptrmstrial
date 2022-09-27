@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+                            <thead class="text-primary">
                                 <tr>
                                     <th>User ID</th>
                                     <th>Username</th>
@@ -71,8 +71,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/users/' . $item->id) }}" class="btn btn-sm btn-success"><i
-                                                    class="fa fa-edit"></i></a>
+                                            <a href="{{ url('admin/users/' . $item->id) }}"
+                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                             <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
                                                 value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
                                         </td>

@@ -618,19 +618,27 @@ $(function () {
         ajax: {
             url: "/admin/achievers-award/" + course_id,
             data: function (d) {
-                (d.status = $("#status").val()),
-                    (d.search = $('input[type="search"]').val());
+                (d.status = $("#status").val());
             },
         },
         columns: [
             {
-                data: "users.stud_num",
-                name: "users.stud_num",
+                data: 'studno',
+                name: 'users.stud_num',
                 className: "font-weight-bold",
             },
-            { data: "users.first_name", name: "users.first_name" },
-            { data: "users.last_name", name: "users.last_name" },
-            { data: "courses.course_code", name: "courses.course_code" },
+            {
+                data: 'fname',
+                name: 'users.first_name'
+            },
+            {
+                data: 'lname',
+                name: 'users.last_name'
+            },
+            {
+                data: "course",
+                name: "courses.course_code"
+            },
             { data: "gwa_1st" },
             { data: "gwa_2nd" },
             {
@@ -680,6 +688,12 @@ $(function () {
                 data: "image",
                 searchable: false,
                 className: "text-center",
+            },
+            {
+                "data": 'image',
+                render: function(data, type) {
+                  return '<img src="upload/'+ data + '" class="img-thumbnail img-circle" width="50" alt="image">';
+                }
             },
             { data: "status", className: "text-center" },
             {
