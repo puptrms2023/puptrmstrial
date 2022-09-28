@@ -60,11 +60,50 @@
             <span>Import CSV</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('admin/send-awardees-certificates') }}">
+    <li
+        class="nav-item {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
+        Request::is('admin/send-awardees-certificates/deans-list-award') ||
+        Request::is('admin/send-awardees-certificates/presidents-list-award') ||
+        Request::is('admin/send-awardees-certificates/academic-excellence-award')
+            ? 'active'
+            : '' }}">
+        <a class="nav-link collapsed {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
+        Request::is('admin/send-awardees-certificates/deans-list-award') ||
+        Request::is('admin/send-awardees-certificates/presidents-list-award') ||
+        Request::is('admin/send-awardees-certificates/academic-excellence-award')
+            ? ''
+            : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+            aria-controls="collapsePages">
             <i class="fa-solid fa-certificate"></i>
-            <span>Send E-Certificates</span>
+            <span>Send Certificates</span>
         </a>
+        <div id="collapsePages"
+            class="collapse {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
+            Request::is('admin/send-awardees-certificates/deans-list-award') ||
+            Request::is('admin/send-awardees-certificates/presidents-list-award') ||
+            Request::is('admin/send-awardees-certificates/academic-excellence-award')
+                ? 'show'
+                : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item"
+                    {{ Request::is('admin/send-awardees-certificates/achievers-award') ? 'active' : '' }}
+                    href="{{ url('admin/send-awardees-certificates/achievers-award') }}">Achiever's Award</a>
+                <a class="collapse-item"
+                    {{ Request::is('admin/send-awardees-certificates/deans-list-award') ? 'active' : '' }}
+                    href="{{ url('admin/send-awardees-certificates/deans-list-award') }}">Dean's
+                    List</a>
+                <a class="collapse-item"
+                    {{ Request::is('admin/send-awardees-certificates/presidents-list-award') ? 'active' : '' }}
+                    href="{{ url('admin/send-awardees-certificates/presidents-list-award') }}">President's List</a>
+                <a class="collapse-item"
+                    {{ Request::is('admin/send-awardees-certificates/academic-excellence-award') ? 'active' : '' }}
+                    href="{{ url('admin/send-awardees-certificates/academic-excellence-award') }}">Academic
+                    Excellence</a>
+                <a class="collapse-item" href="">Non-Academic Excellence</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -86,7 +125,8 @@
             <i class="fas fa-fw fa-wrench"></i>
             <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="utilities-color.html">Roles</a>
                 <a class="collapse-item" href="{{ url('admin/users') }}">Users</a>

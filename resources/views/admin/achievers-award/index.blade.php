@@ -11,8 +11,14 @@
                 {{ session('status') }}
             </div>
         @endif
-        <a href="{{ url('admin/achievers-award/overall') }}" class="btn btn-sm btn-secondary"><i
-                class="fa-solid fa-user-group fa-sm"></i> Applicants</a>
+        <a href="{{ url('admin/achievers-award/overall') }}" class="btn btn-secondary position-relative mr-2"><i
+                class="fa-solid fa-user-group fa-sm"></i> Applicants
+            @if ($pending >= 1)
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ $pending }}
+                </span>
+            @endif
+        </a>
     </div>
 
     <div class="row">

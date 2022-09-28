@@ -1,30 +1,23 @@
 @extends('layouts.admin')
 
-@section('title', 'View President\'s Lister')
+@section('title', 'Send Certificates')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Courses - President's List</div>
+        <div class="h3 mb-0 text-gray-800">President's List - Send Certificates</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
             </div>
         @endif
-        <a href="{{ url('admin/presidents-list-award/overall') }}" class="btn btn-secondary position-relative mr-2"><i
-                class="fa-solid fa-user-group fa-sm"></i> Applicants
-            @if ($pending >= 1)
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ $pending }}
-                </span>
-            @endif
-        </a>
     </div>
 
     <div class="row">
         @foreach ($courses as $item)
             <div class="col-sm-3 mb-4">
-                <a class="card lift h-100" href="{{ url('admin/presidents-list-award/' . $item->course_code) }}">
+                <a class="card lift h-100"
+                    href="{{ url('admin/send-awardees-certificates/presidents-list-award/' . $item->course_code) }}">
                     <div class="card border-left-success shadow">
                         <img src="{{ asset('admin/img/bgimage-login.jpg') }}" class="card-img-top" alt="image">
                         <div class="card-body text-center">
@@ -40,5 +33,6 @@
             </div>
         @endforeach
     </div>
+
 
 @endsection

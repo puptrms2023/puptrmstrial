@@ -49,9 +49,11 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/achievers-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/achievers-award/{course_code}/update-status/{id}', 'update');
         Route::post('achievers-award/{course_code}/delete-form', 'destroy');
+        Route::post('achievers-award/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
+        Route::get('/deans-list-award/overall', 'overallList');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/deans-list-award/{course_code}/view-approved-students-pdf', 'openPdfAll');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
@@ -61,9 +63,11 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/deans-list-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/deans-list-award/{course_code}/update-status/{id}', 'update');
         Route::post('/deans-list-award/{course_code}/delete-form', 'destroy');
+        Route::post('/deans-list-award/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\PLApplicantsController::class)->group(function () {
         Route::get('/presidents-list-award', 'index');
+        Route::get('/presidents-list-award/overall', 'overallList');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/presidents-list-award/{course_code}/view-approved-students-pdf', 'openPdfAll');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
@@ -73,9 +77,11 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/presidents-list-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/presidents-list-award/{course_code}/update-status/{id}', 'update');
         Route::post('/presidents-list-award/{course_code}/delete-form', 'destroy');
+        Route::post('/presidents-list-award/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
+        Route::get('/academic-excellence-award/overall', 'overallList');
         Route::get('/academic-excellence-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/academic-excellence-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/academic-excellence-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
@@ -85,6 +91,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/academic-excellence-award/{course_code}/{id}', 'studentApplicationView');
         Route::put('/academic-excellence-award/{course_code}/update-status/{id}', 'update');
         Route::post('/academic-excellence-award/{course_code}/delete-form', 'destroy');
+        Route::post('/academic-excellence-award/delete-form', 'destroy');
     });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
         Route::get('/usermanagement', 'index');
@@ -98,11 +105,29 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/import-csv/import-process', 'processImport');
         Route::post('/delete-csv', 'destroy');
     });
-    Route::controller(App\Http\Controllers\Admin\CertificatesController::class)->group(function () {
-        Route::get('/send-awardees-certificates', 'index');
-        Route::get('/send-awardees-certificates/{course_code}', 'view');
-        Route::post('/send-awardees-certificates/{course_code}/send', 'sendEmail');
-        Route::get('/send-awardees-certificates/{course_code}/{id}', 'showCertificate');
+    Route::controller(App\Http\Controllers\Admin\AACertificateController::class)->group(function () {
+        Route::get('/send-awardees-certificates/achievers-award', 'index');
+        Route::get('/send-awardees-certificates/achievers-award/{course_code}', 'view');
+        Route::post('/send-awardees-certificates/achievers-award/{course_code}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/achievers-award/{course_code}/{id}', 'showCertificate');
+    });
+    Route::controller(App\Http\Controllers\Admin\DLCertificateController::class)->group(function () {
+        Route::get('/send-awardees-certificates/deans-list-award', 'index');
+        Route::get('/send-awardees-certificates/deans-list-award/{course_code}', 'view');
+        Route::post('/send-awardees-certificates/deans-list-award/{course_code}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/deans-list-award/{course_code}/{id}', 'showCertificate');
+    });
+    Route::controller(App\Http\Controllers\Admin\PLCertificateController::class)->group(function () {
+        Route::get('/send-awardees-certificates/presidents-list-award', 'index');
+        Route::get('/send-awardees-certificates/presidents-list-award/{course_code}', 'view');
+        Route::post('/send-awardees-certificates/presidents-list-award/{course_code}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/presidents-list-award/{course_code}/{id}', 'showCertificate');
+    });
+    Route::controller(App\Http\Controllers\Admin\AECertificateController::class)->group(function () {
+        Route::get('/send-awardees-certificates/academic-excellence-award', 'index');
+        Route::get('/send-awardees-certificates/academic-excellence-award/{course_code}', 'view');
+        Route::post('/send-awardees-certificates/academic-excellence-award/{course_code}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/academic-excellence-award/{course_code}/{id}', 'showCertificate');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {

@@ -12,7 +12,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/achievers-award/delete-form') }}" method="POST">
+                <form action="{{ url('admin/academic-excellence-award/delete-form') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <p>Are you sure you want to delete the submitted application form?</p>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Achiever's Award Applicants</div>
+        <div class="h3 mb-0 text-gray-800">Academic Excellence Applicants</div>
     </div>
 
     <div class="row">
@@ -35,7 +35,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students
-                        <a href="{{ url('admin/achievers-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        <a href="{{ url('admin/academic-excellence-award') }}"
+                            class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -48,17 +49,17 @@
                         </select>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-data-overall" id="dataTable" width="100%"
-                            cellspacing="0">
+                        <table class="table table-bordered table-striped table-data-ae-overall" id="dataTable"
+                            width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
                                     <th>Student No.</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Course</th>
-                                    <th width="">1st Sem GWA</th>
-                                    <th>2nd Sem GWA</th>
-                                    <th class="text-center">Image</th>
+                                    <th>Year Level</th>
+                                    <th>Average</th>
+                                    <th>Image</th>
                                     <th class="text-center">Status</th>
                                     <th>Action</th>
                                 </tr>

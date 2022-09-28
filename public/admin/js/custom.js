@@ -659,6 +659,53 @@ $(function () {
         table.draw();
     });
 });
+//Admin Filter Pending,Approved and Rejected overall
+$(function () {
+    var table = $(".table-data-overall").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/admin/achievers-award/overall" ,
+            data: function (d) {
+                (d.status = $("#status").val());
+            },
+        },
+        columns: [{
+            data: 'studno',
+            name: 'users.stud_num'
+        },
+        {
+            data: 'fname',
+            name: 'users.first_name'
+        },
+        {
+            data: 'lname',
+            name: 'users.last_name'
+        },
+        {
+            data: "course",
+            name: "courses.course_code"
+        },
+        { data: "gwa_1st" },
+        { data: "gwa_2nd" },
+        {
+            data: "image",
+            searchable: false,
+            className: "text-center",
+        },
+        { data: "status", className: "text-center" },
+        {
+            data: "action",
+            orderable: false,
+            searchable: false,
+        },
+    ]
+    });
+
+    $("#status").change(function () {
+        table.draw();
+    });
+});
 $(function () {
     var course_id = document.getElementById("course_id").value;
     var table = $(".table-data-dl").DataTable({
@@ -668,19 +715,27 @@ $(function () {
             url: "/admin/deans-list-award/" + course_id,
             data: function (d) {
                 (d.status = $("#status").val()),
-                    (d.year = $("#year").val()),
-                    (d.search = $('input[type="search"]').val());
+                    (d.year = $("#year").val());
             },
         },
         columns: [
             {
-                data: "users.stud_num",
-                name: "users.stud_num",
+                data: 'studno',
+                name: 'users.stud_num',
                 className: "font-weight-bold",
             },
-            { data: "users.first_name", name: "users.first_name" },
-            { data: "users.last_name", name: "users.last_name" },
-            { data: "courses.course_code", name: "courses.course_code" },
+            {
+                data: 'fname',
+                name: 'users.first_name'
+            },
+            {
+                data: 'lname',
+                name: 'users.last_name'
+            },
+            {
+                data: "course",
+                name: "courses.course_code"
+            },
             { data: "year_level" },
             { data: "gwa_1st" },
             { data: "gwa_2nd" },
@@ -688,12 +743,6 @@ $(function () {
                 data: "image",
                 searchable: false,
                 className: "text-center",
-            },
-            {
-                "data": 'image',
-                render: function(data, type) {
-                  return '<img src="upload/'+ data + '" class="img-thumbnail img-circle" width="50" alt="image">';
-                }
             },
             { data: "status", className: "text-center" },
             {
@@ -705,6 +754,54 @@ $(function () {
     });
 
     $("#year,#status").change(function () {
+        table.draw();
+    });
+});
+//Admin Filter Pending,Approved and Rejected overall
+$(function () {
+    var table = $(".table-data-dl-overall").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/admin/deans-list-award/overall" ,
+            data: function (d) {
+                (d.status = $("#status").val());
+            },
+        },
+        columns: [{
+            data: 'studno',
+            name: 'users.stud_num'
+        },
+        {
+            data: 'fname',
+            name: 'users.first_name'
+        },
+        {
+            data: 'lname',
+            name: 'users.last_name'
+        },
+        {
+            data: "course",
+            name: "courses.course_code"
+        },
+        { data: "year_level" },
+        { data: "gwa_1st" },
+        { data: "gwa_2nd" },
+        {
+            data: "image",
+            searchable: false,
+            className: "text-center",
+        },
+        { data: "status", className: "text-center" },
+        {
+            data: "action",
+            orderable: false,
+            searchable: false,
+        },
+    ]
+    });
+
+    $("#status").change(function () {
         table.draw();
     });
 });
@@ -723,13 +820,22 @@ $(function () {
         },
         columns: [
             {
-                data: "users.stud_num",
-                name: "users.stud_num",
+                data: 'studno',
+                name: 'users.stud_num',
                 className: "font-weight-bold",
             },
-            { data: "users.first_name", name: "users.first_name" },
-            { data: "users.last_name", name: "users.last_name" },
-            { data: "courses.course_code", name: "courses.course_code" },
+            {
+                data: 'fname',
+                name: 'users.first_name'
+            },
+            {
+                data: 'lname',
+                name: 'users.last_name'
+            },
+            {
+                data: "course",
+                name: "courses.course_code"
+            },
             { data: "year_level" },
             { data: "gwa_1st" },
             { data: "gwa_2nd" },
@@ -751,6 +857,54 @@ $(function () {
         table.draw();
     });
 });
+//Admin Filter Pending,Approved and Rejected overall
+$(function () {
+    var table = $(".table-data-pl-overall").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/admin/presidents-list-award/overall" ,
+            data: function (d) {
+                (d.status = $("#status").val());
+            },
+        },
+        columns: [{
+            data: 'studno',
+            name: 'users.stud_num'
+        },
+        {
+            data: 'fname',
+            name: 'users.first_name'
+        },
+        {
+            data: 'lname',
+            name: 'users.last_name'
+        },
+        {
+            data: "course",
+            name: "courses.course_code"
+        },
+        { data: "year_level" },
+        { data: "gwa_1st" },
+        { data: "gwa_2nd" },
+        {
+            data: "image",
+            searchable: false,
+            className: "text-center",
+        },
+        { data: "status", className: "text-center" },
+        {
+            data: "action",
+            orderable: false,
+            searchable: false,
+        },
+    ]
+    });
+
+    $("#status").change(function () {
+        table.draw();
+    });
+});
 $(function () {
     var course_id = document.getElementById("course_id").value;
     var table = $(".table-data-ae").DataTable({
@@ -759,19 +913,74 @@ $(function () {
         ajax: {
             url: "/admin/academic-excellence-award/" + course_id,
             data: function (d) {
-                (d.status = $("#status").val()),
-                    (d.search = $('input[type="search"]').val());
+                (d.status = $("#status").val())
             },
         },
         columns: [
             {
-                data: "users.stud_num",
-                name: "users.stud_num",
-                className: "font-weight-bold",
+                data: 'studno',
+                name: 'users.stud_num'
             },
-            { data: "users.first_name", name: "users.first_name" },
-            { data: "users.last_name", name: "users.last_name" },
-            { data: "courses.course_code", name: "courses.course_code" },
+            {
+                data: 'fname',
+                name: 'users.first_name'
+            },
+            {
+                data: 'lname',
+                name: 'users.last_name'
+            },
+            {
+                data: "course",
+                name: "courses.course_code"
+            },
+            { data: "year_level" },
+            { data: "gwa" },
+            {
+                data: "image",
+                searchable: false,
+                className: "text-center",
+            },
+            { data: "status", className: "text-center" },
+            {
+                data: "action",
+                orderable: false,
+                searchable: false,
+            },
+        ],
+    });
+
+    $("#status").change(function () {
+        table.draw();
+    });
+});
+//Admin Filter Pending,Approved and Rejected overall
+$(function () {
+    var table = $(".table-data-ae-overall").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/admin/academic-excellence-award/overall" ,
+            data: function (d) {
+                (d.status = $("#status").val())
+            },
+        },
+        columns: [
+            {
+                data: 'studno',
+                name: 'users.stud_num'
+            },
+            {
+                data: 'fname',
+                name: 'users.first_name'
+            },
+            {
+                data: 'lname',
+                name: 'users.last_name'
+            },
+            {
+                data: "course",
+                name: "courses.course_code"
+            },
             { data: "year_level" },
             { data: "gwa" },
             {
@@ -847,5 +1056,25 @@ $(document).ready(function () {
             year +
             "/view-rejected-students-pdf";
         window.open(link, "_blank");
+    });
+});
+//checkbox to sending email uncheck
+$(function() {
+    $('.checkAll').click(function() {
+        if (this.checked) {
+            $(".user-checkboxes").prop("checked", true);
+        } else {
+            $(".user-checkboxes").prop("checked", false);
+        }
+    });
+
+    $(".user-checkboxes").click(function() {
+        var numberOfCheckboxes = $(".user-checkboxes").length;
+        var numberOfCheckboxesChecked = $('.user-checkboxes:checked').length;
+        if (numberOfCheckboxes == numberOfCheckboxesChecked) {
+            $(".checkAll").prop("checked", true);
+        } else {
+            $(".checkAll").prop("checked", false);
+        }
     });
 });

@@ -19,34 +19,35 @@ class StudentApplicantsController extends Controller
     public function index()
     {
         $courses = Courses::all();
-        return view('admin.achievers-award.index', compact('courses'));
+        $pending = StudentApplicants::where('award_applied', '1')->where('status', '0')->count();
+        return view('admin.achievers-award.index', compact('courses', 'pending'));
     }
 
     public function achieversView(Request $request, $course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
+        $model = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1')->select('student_applicants.*');
 
+        if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+            $model->where('status', $request->get('status'))->get();
+        }
         if ($request->ajax()) {
-            if ($request->get('status') == '') {
-                $model = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1');
-            } else {
-                $model = StudentApplicants::with('users', 'courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '1')->where('status', $request->get('status'));
-            }
+
             return DataTables::eloquent($model)
-                ->addColumn('studno', function (StudentApplicants $post) {
-                    return $post->users->stud_num;
+                ->addColumn('studno', function (StudentApplicants $stud) {
+                    return $stud->users->stud_num;
                 })
-                ->addColumn('fname', function (StudentApplicants $post) {
-                    return $post->users->first_name;
+                ->addColumn('fname', function (StudentApplicants $stud) {
+                    return $stud->users->first_name;
                 })
-                ->addColumn('lname', function (StudentApplicants $post) {
-                    return $post->users->last_name;
+                ->addColumn('lname', function (StudentApplicants $stud) {
+                    return $stud->users->last_name;
                 })
-                ->addColumn('course', function (StudentApplicants $post) {
-                    return $post->courses->course_code;
+                ->addColumn('course', function (StudentApplicants $stud) {
+                    return $stud->courses->course_code;
                 })
-                ->addColumn('image', function ($status) {
-                    $url = asset('uploads/' . $status->image);
+                ->addColumn('image', function ($data) {
+                    $url = asset('uploads/' . $data->image);
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
                                     width="50" alt="Image">';
                 })
@@ -86,8 +87,6 @@ class StudentApplicantsController extends Controller
 
     public function approved($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $approve = StudentApplicants::where('course_id', $courses->id)->get();
         $approve = StudentApplicants::find($id);
         $approve->status = 1;
         $approve->save();
@@ -95,8 +94,6 @@ class StudentApplicantsController extends Controller
     }
     public function rejected($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $reject = StudentApplicants::where('course_id', $courses->id)->get();
         $reject = StudentApplicants::find($id);
         $reject->status = 2;
         $reject->save();
@@ -105,18 +102,14 @@ class StudentApplicantsController extends Controller
 
     public function studentApplicationView($course_code, $id)
     {
-        // $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->first();
-        $status = StudentApplicants::find($id);
-        $grades = Summary::where('user_id', $id)
-            ->where('term', '=', "1")
-            ->where('app_id', '=', $id)
+        $status = StudentApplicants::with('users')->where('id', $id)->first();
+        $grades = Summary::where('app_id', $id)
+            ->where('term', "1")
             ->get();
-        $grades2 = Summary::where('user_id', $id)
-            ->where('term', '=', "2")
-            ->where('app_id', '=', $id)
+        $grades2 = Summary::where('app_id', $id)
+            ->where('term', "2")
             ->get();
-        return view('admin.achievers-award.student', compact('courses', 'status', 'grades', 'grades2'));
+        return view('admin.achievers-award.student', compact('status', 'grades', 'grades2'));
     }
 
     public function update(Request $request, $course_code, $id)
@@ -126,26 +119,12 @@ class StudentApplicantsController extends Controller
             'reason' => 'nullable'
         ]);
 
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->get();
         $status = StudentApplicants::findOrFail($id);
 
         $status->status = $request->status;
         $status->reason = $request->reason;
         $status->save();
         return redirect()->back()->with('success', 'The Application form updated successfully');
-    }
-
-    public function certificate($course_code, $id)
-    {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $students = StudentApplicants::with('users')->find($id);
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($students->users->stud_num));
-
-        $pdf = app('dompdf.wrapper');
-        $pdf->loadView('admin.achievers-award.certificate', array('students' => $students), array('qrcode' => $qrcode));
-        $pdf->setPaper('A4', 'landscape');
-        return $pdf->stream('Achievers-Awardee-' . $courses->course_code . '.pdf');
     }
 
     public function openPdfApproved($course_code)
@@ -187,6 +166,56 @@ class StudentApplicantsController extends Controller
         return $pdf->stream('Achievers-Awardee-Applicants-' . $courses->course_code . '.pdf');
     }
 
+    public function overallList(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->ajax()) {
+                $model = StudentApplicants::with('users', 'courses')->where('award_applied', '1')->select('student_applicants.*');
+
+                if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                    $model->where('status', $request->get('status'))->get();
+                }
+                return DataTables::eloquent($model)
+                    ->addColumn('studno', function (StudentApplicants $stud) {
+                        return $stud->users->stud_num;
+                    })
+                    ->addColumn('fname', function (StudentApplicants $stud) {
+                        return $stud->users->first_name;
+                    })
+                    ->addColumn('lname', function (StudentApplicants $stud) {
+                        return $stud->users->last_name;
+                    })
+                    ->addColumn('course', function (StudentApplicants $stud) {
+                        return $stud->courses->course_code;
+                    })
+                    ->addColumn('image', function ($data) {
+                        $url = asset('uploads/' . $data->image);
+                        return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                                width="50" alt="Image">';
+                    })
+                    ->addColumn('status', function (StudentApplicants $data) {
+                        if ($data->status == '1') {
+                            return '<span class="badge badge-success">Approved</span>';
+                        } else if ($data->status == '2') {
+                            return '<span class="badge badge-danger">Rejected</span>';
+                        } else {
+                            return '<span class="badge badge-warning">Pending</span>';
+                        }
+                    })
+                    ->addColumn('action', function ($data) {
+                        $btn = '';
+                        $btn .= '<a href="/admin/achievers-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
+
+                        return $btn;
+                    })
+                    ->rawColumns(['image', 'status', 'action'])
+                    ->make(true);
+            }
+        }
+        return view('admin.achievers-award.overall');
+    }
+
     public function destroy(Request $request)
     {
         $form = StudentApplicants::find($request->form_delete_id);
@@ -198,10 +227,5 @@ class StudentApplicantsController extends Controller
         }
         $form->delete();
         return redirect()->back()->with('success', 'The Application form deleted successfully');
-    }
-
-    public function overallList()
-    {
-        return view('admin.achievers-award.overall');
     }
 }

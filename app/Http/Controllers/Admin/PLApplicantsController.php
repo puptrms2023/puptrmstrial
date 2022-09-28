@@ -5,45 +5,69 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Courses;
 use App\Models\Summary;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Yajra\DataTables\Facades\DataTables;
 
 class PLApplicantsController extends Controller
 {
     public function index()
     {
         $courses = Courses::all();
-        return view('admin.presidents-list-award.index', compact('courses'));
+        $pending = StudentApplicants::where('award_applied', '3')->where('status', '0')->count();
+        return view('admin.presidents-list-award.index', compact('courses', 'pending'));
     }
 
     public function achieversView(Request $request, $course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
+        $model = StudentApplicants::with('users', 'courses')
+            ->where('student_applicants.course_id', $courses->id)
+            ->where('award_applied', '3')
+            ->select('student_applicants.*');
 
         if ($request->ajax()) {
-            $data = StudentApplicants::with('users')->with('courses')->where('student_applicants.course_id', $courses->id)->where('award_applied', '3')->select('student_applicants.*');
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('image', function ($status) {
-                    $url = asset('uploads/' . $status->image);
-                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
-                    width="50" alt="Image">';
+            if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                $model->where('status', $request->get('status'))->get();
+            }
+
+            if ($request->get('year') == '2nd-Year' || $request->get('year') == '3rd-Year' || $request->get('year') == '4th-Year') {
+                $year = str_replace('-', ' ', $request->get('year'));
+                $model->where('year_level', $year)->get();
+            }
+
+            return DataTables::eloquent($model)
+                ->addColumn('studno', function (StudentApplicants $stud) {
+                    return $stud->users->stud_num;
                 })
-                ->addColumn('status', function ($status) {
-                    if ($status->status == '1') {
+                ->addColumn('fname', function (StudentApplicants $stud) {
+                    return $stud->users->first_name;
+                })
+                ->addColumn('lname', function (StudentApplicants $stud) {
+                    return $stud->users->last_name;
+                })
+                ->addColumn('course', function (StudentApplicants $stud) {
+                    return $stud->courses->course_code;
+                })
+                ->addColumn('image', function ($data) {
+                    $url = asset('uploads/' . $data->image);
+                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                                    width="50" alt="Image">';
+                })
+                ->addColumn('status', function (StudentApplicants $data) {
+                    if ($data->status == '1') {
                         return '<span class="badge badge-success">Approved</span>';
-                    } else if ($status->status == '2') {
+                    } else if ($data->status == '2') {
                         return '<span class="badge badge-danger">Rejected</span>';
                     } else {
-                        return '<a href="/admin/presidents-list-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
+                        return '<a href="/admin/presidents-list-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-check"></i>
                         </span>
                         <span class="text">Approve</span>
                     </a>
-                    <a href="/admin/presidents-list-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
+                    <a href="/admin/presidents-list-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
                         <span class="icon text-white-50">
                             <i class="fa-sharp fa-solid fa-xmark"></i>
                         </span>
@@ -51,33 +75,12 @@ class PLApplicantsController extends Controller
                     </a>';
                     }
                 })
-                ->addColumn('action', function ($status) {
+                ->addColumn('action', function ($data) {
                     $btn = '';
-                    $btn .= '<a href="/admin/presidents-list-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $status->id . '"><i class="fa fa-trash"></i> </button>';
+                    $btn .= '<a href="/admin/presidents-list-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
 
                     return $btn;
-                })
-                ->filter(function ($instance) use ($request) {
-                    if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
-                        $instance->where('status', $request->get('status'));
-                    }
-                    if ($request->get('year') == '2nd-Year' || $request->get('year') == '3rd-Year' || $request->get('year') == '4th-Year') {
-                        $year = str_replace('-', ' ', $request->get('year'));
-                        $instance->where('year_level', $year);
-                    }
-                    if (!empty($request->get('search'))) {
-                        $instance->where(function ($w) use ($request) {
-                            $search = $request->get('search');
-                            $w->orWhere('gwa_1st', 'LIKE', "%$search%")
-                                ->orWhere('gwa_2nd', 'LIKE', "%$search%");
-                        });
-                    }
-                    // $instance->orwhereHas('users', function ($q) use ($request) {
-                    //     $searchData = $request->get('search');
-                    //     $q->orWhere('first_name', 'LIKE', "%$$searchData%")
-                    //         ->orWhere('last_name', 'LIKE', "%$$searchData%");
-                    // });
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
@@ -88,8 +91,6 @@ class PLApplicantsController extends Controller
 
     public function approved($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $approve = StudentApplicants::where('course_id', $courses->id)->get();
         $approve = StudentApplicants::find($id);
         $approve->status = 1;
         $approve->save();
@@ -97,8 +98,6 @@ class PLApplicantsController extends Controller
     }
     public function rejected($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $reject = StudentApplicants::where('course_id', $courses->id)->get();
         $reject = StudentApplicants::find($id);
         $reject->status = 2;
         $reject->save();
@@ -107,18 +106,14 @@ class PLApplicantsController extends Controller
 
     public function studentApplicationView($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->get();
-        $status = StudentApplicants::find($id);
-        $grades = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "1")
-            ->where('app_id', '=', $id)
+        $status = StudentApplicants::with('users')->where('id', $id)->first();
+        $grades = Summary::where('app_id', $id)
+            ->where('term', "1")
             ->get();
-        $grades2 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "2")
-            ->where('app_id', '=', $id)
+        $grades2 = Summary::where('app_id', $id)
+            ->where('term', "2")
             ->get();
-        return view('admin.presidents-list-award.student', compact('courses', 'status', 'grades', 'grades2'));
+        return view('admin.presidents-list-award.student', compact('status', 'grades', 'grades2'));
     }
 
     public function update(Request $request, $course_code, $id)
@@ -128,8 +123,6 @@ class PLApplicantsController extends Controller
             'reason' => 'nullable'
         ]);
 
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = StudentApplicants::where('course_id', $courses->id)->get();
         $status = StudentApplicants::findOrFail($id);
 
         $status->status = $request->status;
@@ -198,6 +191,55 @@ class PLApplicantsController extends Controller
         $pdf->loadView('admin.presidents-list-award.student-list', array('students' => $students), array('courses' => $courses));
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('Deans-List-Applicants-' . $courses->course_code . '.pdf');
+    }
+
+    public function overallList(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->ajax()) {
+                $model = StudentApplicants::with('users', 'courses')->where('award_applied', '3')->select('student_applicants.*');
+                if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                    $model->where('status', $request->get('status'))->get();
+                }
+                return DataTables::eloquent($model)
+                    ->addColumn('studno', function (StudentApplicants $stud) {
+                        return $stud->users->stud_num;
+                    })
+                    ->addColumn('fname', function (StudentApplicants $stud) {
+                        return $stud->users->first_name;
+                    })
+                    ->addColumn('lname', function (StudentApplicants $stud) {
+                        return $stud->users->last_name;
+                    })
+                    ->addColumn('course', function (StudentApplicants $stud) {
+                        return $stud->courses->course_code;
+                    })
+                    ->addColumn('image', function ($data) {
+                        $url = asset('uploads/' . $data->image);
+                        return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                                width="50" alt="Image">';
+                    })
+                    ->addColumn('status', function (StudentApplicants $data) {
+                        if ($data->status == '1') {
+                            return '<span class="badge badge-success">Approved</span>';
+                        } else if ($data->status == '2') {
+                            return '<span class="badge badge-danger">Rejected</span>';
+                        } else {
+                            return '<span class="badge badge-warning">Pending</span>';
+                        }
+                    })
+                    ->addColumn('action', function ($data) {
+                        $btn = '';
+                        $btn .= '<a href="/admin/presidents-list-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
+
+                        return $btn;
+                    })
+                    ->rawColumns(['image', 'status', 'action'])
+                    ->make(true);
+            }
+        }
+        return view('admin.presidents-list-award.overall');
     }
 
     public function destroy(Request $request)

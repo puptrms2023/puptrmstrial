@@ -6,44 +6,59 @@ use App\Models\User;
 use App\Models\Courses;
 use App\Models\Summary;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Models\AcademicExcellence;
 use App\Http\Controllers\Controller;
+use App\Models\SummaryAcadExcell;
 use Illuminate\Support\Facades\File;
+use Yajra\DataTables\Facades\DataTables;
 
 class AEApplicantsController extends Controller
 {
     public function index()
     {
+        $pending = AcademicExcellence::where('status', '0')->count();
         $courses = Courses::all();
-        return view('admin.academic-excellence-award.index', compact('courses'));
+        return view('admin.academic-excellence-award.index', compact('courses', 'pending'));
     }
     public function achieversView(Request $request, $course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-
+        $model = AcademicExcellence::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->select('ae_applicants.*');
         if ($request->ajax()) {
-            $data = AcademicExcellence::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->select('ae_applicants.*');
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('image', function ($status) {
-                    $url = asset('uploads/' . $status->image);
-                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
-                    width="50" alt="Image">';
+            if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                $model->where('status', $request->get('status'))->get();
+            }
+            return DataTables::eloquent($model)
+                ->addColumn('studno', function (AcademicExcellence $stud) {
+                    return $stud->users->stud_num;
                 })
-                ->addColumn('status', function ($status) {
-                    if ($status->status == '1') {
+                ->addColumn('fname', function (AcademicExcellence $stud) {
+                    return $stud->users->first_name;
+                })
+                ->addColumn('lname', function (AcademicExcellence $stud) {
+                    return $stud->users->last_name;
+                })
+                ->addColumn('course', function (AcademicExcellence $stud) {
+                    return $stud->courses->course_code;
+                })
+                ->addColumn('image', function ($data) {
+                    $url = asset('uploads/' . $data->image);
+                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                                    width="50" alt="Image">';
+                })
+                ->addColumn('status', function (AcademicExcellence $data) {
+                    if ($data->status == '1') {
                         return '<span class="badge badge-success">Approved</span>';
-                    } else if ($status->status == '2') {
+                    } else if ($data->status == '2') {
                         return '<span class="badge badge-danger">Rejected</span>';
                     } else {
-                        return '<a href="/admin/academic-excellence-award/' . $status->courses->course_code . '/approve/' . $status->id . '" class="btn btn-success btn-sm btn-icon-split">
+                        return '<a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-check"></i>
                         </span>
                         <span class="text">Approve</span>
                     </a>
-                    <a href="/admin/academic-excellence-award/' . $status->courses->course_code . '/reject/' . $status->id . '" class="btn btn-danger btn-sm btn-icon-split" >
+                    <a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
                         <span class="icon text-white-50">
                             <i class="fa-sharp fa-solid fa-xmark"></i>
                         </span>
@@ -58,23 +73,6 @@ class AEApplicantsController extends Controller
 
                     return $btn;
                 })
-                ->filter(function ($instance) use ($request) {
-                    if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
-                        $instance->where('status', $request->get('status'));
-                    }
-
-                    if (!empty($request->get('search'))) {
-                        $instance->where(function ($w) use ($request) {
-                            $search = $request->get('search');
-                            $w->orWhere('gwa', 'LIKE', "%$search%");
-                        });
-                    }
-                    // $instance->orwhereHas('users', function ($q) use ($request) {
-                    //     $searchData = $request->get('search');
-                    //     $q->orWhere('first_name', 'LIKE', "%$$searchData%")
-                    //         ->orWhere('last_name', 'LIKE', "%$$searchData%");
-                    // });
-                })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
         }
@@ -84,48 +82,37 @@ class AEApplicantsController extends Controller
 
     public function studentApplicationView($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = AcademicExcellence::where('course_id', $courses->id)->get();
-        $status = AcademicExcellence::find($id);
-        $grades = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "1")
-            ->where('app_id', '=', $id)
+        $status = AcademicExcellence::where('id', $id)->first();
+        $grades = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "1")
             ->get();
-        $grades2 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "2")
-            ->where('app_id', '=', $id)
+        $grades2 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "2")
             ->get();
-        $grades3 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "3")
-            ->where('app_id', '=', $id)
+        $grades3 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "3")
             ->get();
-        $grades4 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "4")
-            ->where('app_id', '=', $id)
+        $grades4 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "4")
             ->get();
-        $grades5 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "5")
-            ->where('app_id', '=', $id)
+        $grades5 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "5")
             ->get();
-        $grades6 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "6")
-            ->where('app_id', '=', $id)
+        $grades6 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "6")
             ->get();
-        $grades7 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "7")
-            ->where('app_id', '=', $id)
+        $grades7 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "7")
             ->get();
-        $grades8 = Summary::where('user_id', $status->user_id)
-            ->where('term', '=', "8")
-            ->where('app_id', '=', $id)
+        $grades8 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "8")
             ->get();
-        return view('admin.academic-excellence-award.student', compact('courses', 'status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8'));
+
+        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8'));
     }
 
     public function approved($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $approve = AcademicExcellence::where('course_id', $courses->id)->get();
         $approve = AcademicExcellence::find($id);
         $approve->status = 1;
         $approve->save();
@@ -134,8 +121,6 @@ class AEApplicantsController extends Controller
 
     public function rejected($course_code, $id)
     {
-        $courses = Courses::where('course_code', $course_code)->first();
-        $reject = AcademicExcellence::where('course_id', $courses->id)->get();
         $reject = AcademicExcellence::find($id);
         $reject->status = 2;
         $reject->save();
@@ -149,8 +134,6 @@ class AEApplicantsController extends Controller
             'reason' => 'nullable'
         ]);
 
-        $courses = Courses::where('course_code', $course_code)->first();
-        $status = AcademicExcellence::where('course_id', $courses->id)->get();
         $status = AcademicExcellence::findOrFail($id);
 
         $status->status = $request->status;
@@ -194,6 +177,54 @@ class AEApplicantsController extends Controller
         $pdf->loadView('admin.academic-excellence-award.student-list', array('students' => $students), array('courses' => $courses));
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('Academic-Excellence-Awardee-Applicants-' . $courses->course_code . '.pdf');
+    }
+
+    public function overallList(Request $request)
+    {
+        $model = AcademicExcellence::with('users', 'courses')->select('ae_applicants.*');
+        if ($request->ajax()) {
+            if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
+                $model->where('status', $request->get('status'))->get();
+            }
+            return DataTables::eloquent($model)
+                ->addColumn('studno', function (AcademicExcellence $stud) {
+                    return $stud->users->stud_num;
+                })
+                ->addColumn('fname', function (AcademicExcellence $stud) {
+                    return $stud->users->first_name;
+                })
+                ->addColumn('lname', function (AcademicExcellence $stud) {
+                    return $stud->users->last_name;
+                })
+                ->addColumn('course', function (AcademicExcellence $stud) {
+                    return $stud->courses->course_code;
+                })
+                ->addColumn('image', function ($data) {
+                    $url = asset('uploads/' . $data->image);
+                    return '<img src="' . $url . '" class="img-thumbnail img-circle"
+                                width="50" alt="Image">';
+                })
+                ->addColumn('status', function (AcademicExcellence $data) {
+                    if ($data->status == '1') {
+                        return '<span class="badge badge-success">Approved</span>';
+                    } else if ($data->status == '2') {
+                        return '<span class="badge badge-danger">Rejected</span>';
+                    } else {
+                        return '<span class="badge badge-warning">Pending</span>';
+                    }
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '';
+                    $btn .= '<a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
+
+                    return $btn;
+                })
+                ->rawColumns(['image', 'status', 'action'])
+                ->make(true);
+        }
+
+        return view('admin.academic-excellence-award.overall');
     }
 
     public function destroy(Request $request)

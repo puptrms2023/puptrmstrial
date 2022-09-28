@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\CertEmail;
 use App\Mail\CertificateEmail;
 use App\Mail\UserEmail;
 use Illuminate\Bus\Queueable;
@@ -17,15 +18,17 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $details;
     public $data;
+    public $studno;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($details, $data)
+    public function __construct($details, $data, $studno)
     {
         $this->details = $details;
         $this->data = $data;
+        $this->studno = $studno;
     }
 
     /**
@@ -35,7 +38,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $email = new CertificateEmail($this->data);
+        $email = new CertEmail($this->data, $this->studno);
         Mail::to($this->details['email'])->send($email);
     }
 }

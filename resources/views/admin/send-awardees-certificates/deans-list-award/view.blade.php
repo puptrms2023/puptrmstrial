@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-sm-flex align-awardees-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>
+        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List Applicants</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -14,8 +14,10 @@
 
     <div class="row">
         <div id="send-button" class="col-md-12 mb-2">
-            <button class="btn btn-success send-email-aa"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send
+            <button class="btn btn-success send-email-dl"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send
                 Certificates</button>
+            <div class="float-right text-muted text-gray-600">Total Email sent:
+                {{ $count }}/{{ $total }}</div>
         </div>
     </div>
     <div class="row">
@@ -26,8 +28,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students
-                        <div class="float-right text-muted text-gray-600 small">Total Email sent:
-                            {{ $count }}/{{ $total }}</div>
+                        <a href="{{ url('admin/send-awardees-certificates/deans-list-award') }}"
+                            class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <input type="hidden" value="{{ $courses->course_code }}" id="course_id">
@@ -36,7 +38,8 @@
                         <table class="table table-bordered table-cert" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
+                                    </th>
                                     <th>Last Name</th>
                                     <th>First Name</th>
                                     <th>Course</th>
@@ -49,7 +52,7 @@
                             <tbody>
                                 @foreach ($awardees as $awardee)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkbox" name="users[]"
+                                        <td><input type="checkbox" class="user-checkboxes" name="users[]"
                                                 value="{{ $awardee->id }}"></td>
                                         <td>{{ $awardee->users->last_name }}</td>
                                         <td>{{ $awardee->users->first_name }}</td>
@@ -60,11 +63,11 @@
                                             @if ($awardee->certificate_status == '1')
                                                 <span class="badge badge-success">Sent</span>
                                             @else
-                                                <span class="badge badge-warning">Pending</span>
+                                                <span class="badge badge-warning">Waiting</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/send-awardees-certificates/' . $awardee->courses->course_code . '/' . $awardee->id) }}"
+                                            <a href="{{ url('admin/send-awardees-certificates/deans-list-award/' . $awardee->courses->course_code . '/' . $awardee->id) }}"
                                                 target="_blank" class="btn btn-sm btn-secondary">Preview</a>
                                         </td>
                                     </tr>
@@ -86,20 +89,20 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $(".send-email-aa").click(function() {
+        $(".send-email-dl").click(function() {
             var course_id = document.getElementById("course_id").value;
-            var selectRowsCount = $("input[class='user-checkbox']:checked").length;
+            var selectRowsCount = $("input[class='user-checkboxes']:checked").length;
             if (selectRowsCount > 0) {
 
-                var ids = $.map($("input[class='user-checkbox']:checked"), function(c) {
+                var ids = $.map($("input[class='user-checkboxes']:checked"), function(c) {
                     return c.value;
                 });
                 $(this).attr("disabled", true);
-                $(this).html('<i class="fa fa-spinner fa-spin"></i> Send E-Certificates');
+                $(this).html('<i class="fa fa-spinner fa-spin"></i> Send Certificates');
 
                 $.ajax({
                     type: 'POST',
-                    url: "/admin/send-awardees-certificates/" +
+                    url: "/admin/send-awardees-certificates/deans-list-award/" +
                         course_id +
                         "/send",
                     data: {
@@ -107,10 +110,10 @@
                     },
                     success: function(data) {
                         toastr.success(data.success);
-                        $('.send-email-aa').attr("disabled", false);
-                        $('.send-email-aa').html(
-                            '<i class="fas fa-paper-plane"></i> Send E-Certificates');
-                    },
+                        $('.send-email-dl').attr("disabled", false);
+                        $('.send-email-dl').html(
+                            '<i class="fas fa-paper-plane"></i> Send Certificates');
+                    }
                 });
 
             } else {
