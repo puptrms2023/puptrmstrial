@@ -129,6 +129,27 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/send-awardees-certificates/academic-excellence-award/{course_code}/send', 'sendEmail');
         Route::get('/send-awardees-certificates/academic-excellence-award/{course_code}/{id}', 'showCertificate');
     });
+    Route::controller(App\Http\Controllers\Admin\GalleryController::class)->group(function () {
+        Route::get('/galleries', 'index');
+        Route::get('/galleries/create', 'create');
+        Route::post('/galleries', 'store');
+        Route::get('/galleries/show/{id}', 'show');
+        Route::get('/galleries/edit/{id}', 'edit');
+        Route::post('/galleries/update/{id}', 'update');
+        Route::post('/galleries/delete', 'destroy');
+
+        //photo route
+        Route::get('galleries/photos/create/{id}', 'photoCreate');
+        Route::post('galleries/photos/store', 'photoStore');
+        Route::get('galleries/photos/show/{id}', 'photoShow');
+        Route::get('galleries/photos/edit/{id}', 'photoEdit');
+        Route::post('galleries/photos/update/{id}', 'photoUpdate');
+        Route::post('galleries/photos/delete', 'photoDelete');
+    });
+    Route::controller(App\Http\Controllers\Admin\FullCalendarController::class)->group(function () {
+        Route::get('/calendar', 'index');
+        Route::post('/calendar-event', 'ajax');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);

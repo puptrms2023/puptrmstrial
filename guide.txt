@@ -1,1 +1,0 @@
-if di gumana ang php artisan migrate gamitin na lang yung sql file dito.

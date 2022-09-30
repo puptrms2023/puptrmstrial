@@ -62,6 +62,6 @@ class AcademicAwardController extends Controller
             $sum->save();
         }
 
-        return redirect('user/dashboard')->with('message', 'Your application is received');
+        return redirect('user/dashboard')->with('success', 'Your application is received');
     }
 }

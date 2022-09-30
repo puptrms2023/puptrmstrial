@@ -134,7 +134,23 @@
             </div>
         </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        PROGRAMS
+    </div>
+    <li class="nav-item {{ Request::is('admin/calendar') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('admin/calendar') }}">
+            <i class="fa fa-id-card"></i>
+            <span>Calendar of Events</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('admin/students') || Request::is('admin/students/*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('admin/galleries') }}">
+            <i class="fa fa-id-card"></i>
+            <span>Recognition of Gallery</span>
+        </a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
