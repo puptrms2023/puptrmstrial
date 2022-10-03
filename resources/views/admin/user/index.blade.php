@@ -36,8 +36,10 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Users
-                        <a class="btn btn-info btn-sm float-right" href="{{ url('admin/users/create') }}"><i
-                                class="fa fa-user fa-sm"></i>&ensp;Add User</a>
+                        @can('user create')
+                            <a class="btn btn-info btn-sm float-right" href="{{ url('admin/users/create') }}"><i
+                                    class="fa fa-user fa-sm"></i>&ensp;Add User</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -55,7 +57,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $item)
+                                @foreach ($users as $key => $item)
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->stud_num }}</td>
                                         <td>{{ $item->username }}</td>
@@ -63,18 +65,21 @@
                                         <td>{{ $item->last_name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>
-                                            @if ($item->role_as == '2')
-                                                <span class="badge badge-success">Admin</span>
-                                            @endif
-                                            @if ($item->role_as == '0')
-                                                <span class="badge badge-warning">Student</span>
+                                            @if (!empty($item->getRoleNames()))
+                                                @foreach ($item->getRoleNames() as $val)
+                                                    <span class="badge badge-success">{{ $val }}</label>
+                                                @endforeach
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/users/' . $item->id) }}"
-                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                            <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
-                                                value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                            @can('user edit')
+                                                <a href="{{ url('admin/users/' . $item->id) }}"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                            @endcan
+                                            @can('user delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
+                                                    value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

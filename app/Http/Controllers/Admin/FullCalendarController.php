@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class FullCalendarController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu-calendar', ['only' => ['index','crud']]);
+    }
+
     public function index(Request $request)
     {
 
@@ -28,39 +33,39 @@ class FullCalendarController extends Controller
      *
      * @return response()
      */
-    public function ajax(Request $request)
+    public function crud(Request $request)
     {
 
         switch ($request->type) {
-           case 'add':
-              $event = Event::create([
-                  'title' => $request->title,
-                  'start' => $request->start,
-                  'end' => $request->end,
-              ]);
+            case 'add':
+                $event = Event::create([
+                    'title' => $request->title,
+                    'start' => $request->start,
+                    'end' => $request->end,
+                ]);
 
-              return response()->json($event);
-             break;
+                return response()->json($event);
+                break;
 
-           case 'update':
-              $event = Event::find($request->id)->update([
-                  'title' => $request->title,
-                  'start' => $request->start,
-                  'end' => $request->end,
-              ]);
+            case 'update':
+                $event = Event::find($request->id)->update([
+                    'title' => $request->title,
+                    'start' => $request->start,
+                    'end' => $request->end,
+                ]);
 
-              return response()->json($event);
-             break;
+                return response()->json($event);
+                break;
 
-           case 'delete':
-              $event = Event::find($request->id)->delete();
+            case 'delete':
+                $event = Event::find($request->id)->delete();
 
-              return response()->json($event);
-             break;
+                return response()->json($event);
+                break;
 
-           default:
-             # code...
-             break;
+            default:
+                # code...
+                break;
         }
     }
 }

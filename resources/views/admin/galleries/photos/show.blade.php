@@ -35,10 +35,14 @@
                     Actions
                 </div>
                 <div class="card-body">
-                    <a href="{{ url('admin/galleries/photos/edit/' . $photo->id) }}"
-                        class="btn btn-sm btn-secondary btn-block">Edit Photo</a>
-                    <button type="button" class="btn btn-sm btn-block btn-danger deletePhotobtn"
-                        value="{{ $photo->id }}">Delete Gallery</button>
+                    @can('photo edit')
+                        <a href="{{ url('admin/galleries/photos/edit/' . $photo->id) }}"
+                            class="btn btn-sm btn-secondary btn-block">Edit Photo</a>
+                    @endcan
+                    @can('photo delete')
+                        <button type="button" class="btn btn-sm btn-block btn-danger deletePhotobtn"
+                            value="{{ $photo->id }}">Delete Gallery</button>
+                    @endcan
                 </div>
             </div>
         </div>

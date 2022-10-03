@@ -133,6 +133,10 @@
 
         /*Toastr Success Code*/
         function displayMessage(message) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
             toastr.success(message, 'Event');
         }
     </script>

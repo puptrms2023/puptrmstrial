@@ -11,6 +11,10 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PLCertificateController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu send certificate', ['only' => ['index', 'view', 'sendEmail', 'showCertificate']]);
+    }
     public function index()
     {
         $courses = Courses::all();

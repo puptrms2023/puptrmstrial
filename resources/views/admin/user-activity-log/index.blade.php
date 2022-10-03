@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="font-weight-bold">{{ $act->created_at }}</td>
-                                        <td>{{ $act->user_type }}</td>
+                                        <td>{{ $act->auditable_type }}</td>
                                         <td>{{ $act->user_id }}</td>
                                         <td>
                                             @if ($act->event == 'updated')

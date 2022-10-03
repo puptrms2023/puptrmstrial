@@ -11,6 +11,10 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AECertificateController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu send certificate', ['only' => ['index', 'view', 'sendEmail', 'showCertificate']]);
+    }
     public function index()
     {
         $courses = Courses::all();
@@ -35,7 +39,6 @@ class AECertificateController extends Controller
     public function sendEmail(Request $request)
     {
         $users = AcademicExcellence::whereIn("id", $request->ids)->get();
-
 
         foreach ($users as $key => $user) {
             $data = [

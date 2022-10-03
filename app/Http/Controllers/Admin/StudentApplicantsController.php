@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Courses;
 use App\Models\Summary;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
-use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentApplicantsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:achievers list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:achievers edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:achievers delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $courses = Courses::all();
@@ -52,31 +56,10 @@ class StudentApplicantsController extends Controller
                                     width="50" alt="Image">';
                 })
                 ->addColumn('status', function (StudentApplicants $data) {
-                    if ($data->status == '1') {
-                        return '<span class="badge badge-success">Approved</span>';
-                    } else if ($data->status == '2') {
-                        return '<span class="badge badge-danger">Rejected</span>';
-                    } else {
-                        return '<a href="/admin/achievers-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
-                        </span>
-                        <span class="text">Approve</span>
-                    </a>
-                    <a href="/admin/achievers-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
-                        <span class="icon text-white-50">
-                            <i class="fa-sharp fa-solid fa-xmark"></i>
-                        </span>
-                        <span class="text">Reject</span>
-                    </a>';
-                    }
+                    return view('admin.achievers-award.action.status', compact('data'));
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '';
-                    $btn .= '<a href="/admin/achievers-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
-
-                    return $btn;
+                    return view('admin.achievers-award.action.buttons', compact('data'));
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
@@ -203,11 +186,7 @@ class StudentApplicantsController extends Controller
                         }
                     })
                     ->addColumn('action', function ($data) {
-                        $btn = '';
-                        $btn .= '<a href="/admin/achievers-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
-
-                        return $btn;
+                        return view('admin.achievers-award.action.buttons', compact('data'));
                     })
                     ->rawColumns(['image', 'status', 'action'])
                     ->make(true);

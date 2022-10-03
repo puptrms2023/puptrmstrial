@@ -44,7 +44,7 @@
 
 //   })();
 //Phone Format
-jQuery(function ($) {
+jQuery(document).ready(function($){
     $(".js-phone").inputmask({
         mask: ["+639999999999"],
         jitMasking: 3,

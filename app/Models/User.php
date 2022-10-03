@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Courses;
+use Spatie\Permission\Traits\HasRoles;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
     use \OwenIt\Auditing\Auditable;
 
     /**
@@ -64,9 +65,9 @@ class User extends Authenticatable implements Auditable
      * @param $value
      * @return string
      */
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = bcrypt($password);
     }
 
     public function courses()
@@ -74,4 +75,8 @@ class User extends Authenticatable implements Auditable
         return $this->belongsTo(Courses::class, 'course_id', 'id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

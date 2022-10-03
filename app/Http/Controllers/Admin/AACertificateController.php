@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Courses;
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailJob;
+use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Carbon\Carbon;
 
 
 class AACertificateController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu send certificate', ['only' => ['index', 'view', 'sendEmail', 'showCertificate']]);
+    }
     public function index()
     {
         $courses = Courses::all();
@@ -53,7 +58,6 @@ class AACertificateController extends Controller
         }
         $users1 = StudentApplicants::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully. Refresh the page']);
-        // return response()->json(['status' => 'success', 'message' => 'Report has been sent successfully.']);
     }
 
     public function showCertificate($course_code, $id)
@@ -75,25 +79,4 @@ class AACertificateController extends Controller
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream($stud->users->last_name . ',' . $stud->users->first_name . '-cert.pdf');
     }
-
-    // public function sendEmailAll()
-    // {
-    //     $users = StudentApplicants::whereIn('status', '1')->whereIn('award_applied', '1')->get();
-
-    //     foreach ($users as $key => $user) {
-    //         $data = [
-    //             'studnum' => $user->users->stud_num,
-    //             'fname' => $user->users->first_name,
-    //             'mname' => $user->users->middle_name,
-    //             'lname' => $user->users->last_name,
-    //             'gwa'  => $user->gwa,
-    //             'award'  => $user->award_applied,
-    //             'sy'  => $user->school_year
-    //         ];
-    //         $details = ['email' => $user->users->email];
-    //         SendEmailJob::dispatch($details, $data, $data['studnum']);
-    //     }
-    //     $users1 = StudentApplicants::whereIn("certificate_status", '0')->update(['certificate_status' => 1]);
-    //     return response()->json(['success' => 'Send email successfully. Refresh the page']);
-    // }
 }

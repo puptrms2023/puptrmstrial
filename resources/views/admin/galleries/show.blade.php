@@ -60,13 +60,19 @@
                 <div class="card-body text-center">
                     <img src="{{ asset('uploads/galleries/' . $gallery->cover) }}" class="mb-2" width="100%"
                         alt="cover">
-                    <a href="{{ url('admin/galleries/edit/' . $gallery->id) }}"
-                        class="btn btn-sm btn-block btn-secondary">Edit Gallery</a>
-                    <a href="{{ url('admin/galleries/photos/create/' . $gallery->id) }}"
-                        class="btn btn-sm btn-block btn-success mb-2">Upload
-                        Photo</a>
-                    <button type="button" class="btn btn-sm btn-block btn-danger deletePhotobtn"
-                        value="{{ $gallery->id }}">Delete Gallery</button>
+                    @can('gallery edit')
+                        <a href="{{ url('admin/galleries/edit/' . $gallery->id) }}"
+                            class="btn btn-sm btn-block btn-secondary">Edit Gallery</a>
+                    @endcan
+                    @can('photo create')
+                        <a href="{{ url('admin/galleries/photos/create/' . $gallery->id) }}"
+                            class="btn btn-sm btn-block btn-success mb-2">Upload
+                            Photo</a>
+                    @endcan
+                    @can('gallery delete')
+                        <button type="button" class="btn btn-sm btn-block btn-danger deletePhotobtn"
+                            value="{{ $gallery->id }}">Delete Gallery</button>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -44,8 +44,9 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">Phone number</label>
-                                <input class="form-control" name="contact" type="tel"
-                                    placeholder="Enter your phone number" value="{{ $user->contact }}" required autofocus>
+                                <input class="form-control js-phone" name="contact" type="tel"
+                                    placeholder="Enter your phone number" value="{{ substr($user->contact, 3) }}" required
+                                    autofocus>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -68,7 +69,8 @@
                                 <label class="small mb-1">Course</label>
                                 <select class="form-control" name="course_id" id="course_id" required>
                                     @foreach ($course as $id => $item)
-                                        <option value="{{ $id }}" {{ $user->course_id == $id ? 'selected' : '' }}>
+                                        <option value="{{ $id }}"
+                                            {{ $user->course_id == $id ? 'selected' : '' }}>
                                             {{ $item }}</option>
                                     @endforeach
                                 </select>
@@ -77,16 +79,30 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1">Password</label>
+                                <input class="form-control" name="password" type="password" placeholder="Enter new password"
+                                    value="{{ old('password') }}">
+                                @if ($errors->has('password'))
+                                    <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1">Confirm Password</label>
+                                <input class="form-control" name="password_confirmation" type="password"
+                                    placeholder="Confirm new password" value="{{ old('password_confirmation') }}">
+                                @if ($errors->has('password_confirmation'))
+                                    <span
+                                        class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">Role</label>
-                                <select class="custom-select my-1 mr-sm-2" name="role_as">
-                                    <option value="1" {{ $user->role_as == '1' ? 'selected' : '' }}>Super Admin</option>
-                                    <option value="2" {{ $user->role_as == '2' ? 'selected' : '' }}>Admin</option>
-                                    <option value="3" {{ $user->role_as == '3' ? 'selected' : '' }}>Officials</option>
-                                    <option value="0" {{ $user->role_as == '0' ? 'selected' : '' }}>Student</option>
-                                </select>
+                                {!! Form::select('roles[]', $roles, $userRole, ['class' => 'custom-select']) !!}
                             </div>
                         </div>
 

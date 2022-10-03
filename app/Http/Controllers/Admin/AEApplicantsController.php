@@ -14,6 +14,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AEApplicantsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:acad excellence list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:acad excellence edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:acad excellence delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $pending = AcademicExcellence::where('status', '0')->count();
@@ -47,31 +55,10 @@ class AEApplicantsController extends Controller
                                     width="50" alt="Image">';
                 })
                 ->addColumn('status', function (AcademicExcellence $data) {
-                    if ($data->status == '1') {
-                        return '<span class="badge badge-success">Approved</span>';
-                    } else if ($data->status == '2') {
-                        return '<span class="badge badge-danger">Rejected</span>';
-                    } else {
-                        return '<a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
-                        </span>
-                        <span class="text">Approve</span>
-                    </a>
-                    <a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
-                        <span class="icon text-white-50">
-                            <i class="fa-sharp fa-solid fa-xmark"></i>
-                        </span>
-                        <span class="text">Reject</span>
-                    </a>';
-                    }
+                    return view('admin.academic-excellence-award.action.status', compact('data'));
                 })
-                ->addColumn('action', function ($status) {
-                    $btn = '';
-                    $btn .= '<a href="/admin/academic-excellence-award/' . $status->courses->course_code . '/' . $status->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $status->id . '"><i class="fa fa-trash"></i> </button>';
-
-                    return $btn;
+                ->addColumn('action', function ($data) {
+                    return view('admin.academic-excellence-award.action.buttons', compact('data'));
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
@@ -214,11 +201,7 @@ class AEApplicantsController extends Controller
                     }
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '';
-                    $btn .= '<a href="/admin/academic-excellence-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
-
-                    return $btn;
+                    return view('admin.academic-excellence-award.action.buttons', compact('data'));
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);

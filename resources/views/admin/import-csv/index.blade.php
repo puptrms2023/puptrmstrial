@@ -35,45 +35,46 @@
 
             @include('layouts.partials.messages')
 
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">CSV Import
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="{{ url('admin/import-csv/import-parse') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-inline mb-2">
-                            <label for="csv_file" class="control-label">CSV file to import</label>
-
-                            <div class="col-md-4">
-                                <input id="csv_file" type="file" class="form-control" name="csv_file" required>
-
-                                @if ($errors->has('csv_file'))
-                                    <span class="text-danger text-left">{{ $errors->first('csv_file') }}</span>
-                                @endif
-                            </div>
+            @can('csv create')
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="m-0 font-weight-bold text-primary">CSV Import
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('admin/import-csv/import-parse') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-inline mb-2">
+                                <label for="csv_file" class="control-label">CSV file to import</label>
 
-                        <div class="form-group hidden">
-                            <div class="col-md-4 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="header" type="checkbox" name="header" checked> File contains header
-                                        row?
-                                    </label>
+                                <div class="col-md-4">
+                                    <input id="csv_file" type="file" class="form-control" name="csv_file" required>
+
+                                    @if ($errors->has('csv_file'))
+                                        <span class="text-danger text-left">{{ $errors->first('csv_file') }}</span>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
 
+                            <div class="form-group hidden">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="header" type="checkbox" name="header" checked> File contains header
+                                            row?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <button type="submit" class="btn btn-sm btn-secondary">
-                            Parse CSV
-                        </button>
+                            <button type="submit" class="btn btn-sm btn-secondary">
+                                Parse CSV
+                            </button>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
     </div>
     <div class="row">
@@ -101,8 +102,10 @@
                                         <td>{{ $list->csv_filename }}</td>
                                         <td>{{ $list->created_at }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger deleteCSVbtn"
-                                                value="{{ $list->id }}"><i class="fa fa-trash"></i></button>
+                                            @can('csv delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteCSVbtn"
+                                                    value="{{ $list->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

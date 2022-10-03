@@ -56,7 +56,8 @@
                             <div class="col-md-6">
                                 <label class="small mb-1">Phone number</label>
                                 <input class="form-control js-phone" name="contact" type="tel"
-                                    placeholder="Enter your phone number" value="{{ old('contact') }}" required autofocus>
+                                    placeholder="Enter your phone number" value="{{ substr(old('contact'), 3) }}" required
+                                    autofocus>
                                 @if ($errors->has('contact'))
                                     <span class="text-danger text-left">{{ $errors->first('contact') }}</span>
                                 @endif
@@ -85,7 +86,8 @@
                                 <label class="small mb-1">Course</label>
                                 <select class="form-control" name="course_id" id="course_id" required>
                                     @foreach ($course as $id => $item)
-                                        <option value="{{ $id }}" {{ old('course_id') == $id ? 'selected' : '' }}>
+                                        <option value="{{ $id }}"
+                                            {{ old('course_id') == $id ? 'selected' : '' }}>
                                             {{ $item }}</option>
                                     @endforeach
                                 </select>
@@ -112,18 +114,12 @@
                                         class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
                                 @endif
                             </div>
-
                         </div>
 
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">Role</label>
-                                <select class="custom-select my-1 mr-sm-2" name="role_as">
-                                    <option value="1">Super Admin</option>
-                                    <option value="2">Admin</option>
-                                    <option value="3">Officials</option>
-                                    <option value="0">Student</option>
-                                </select>
+                                {!! Form::select('roles[]', $roles, [], ['class' => 'custom-select']) !!}
                             </div>
                         </div>
 

@@ -53,17 +53,7 @@ class CertificatesController extends Controller
         }
         $users1 = StudentApplicants::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully. Refresh the page']);
-        // return response()->json(['status' => 'success', 'message' => 'Report has been sent successfully.']);
     }
-    // public function sendEmail()
-    // {
-    //     $users = StudentApplicants::all();
-    //     $data['name'] = 'Hi';
-
-    //     $details = ['email' => 'roseannbndor5@gamil.com'];
-    //     SendEmailJob::dispatch($details, $data);
-    //     return response()->json(['status' => 'success', 'message' => 'Report has been sent successfully.']);
-    // }
 
     public function showCertificate($course_code, $id)
     {
