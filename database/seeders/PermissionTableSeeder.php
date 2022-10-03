@@ -22,19 +22,20 @@ class PermissionTableSeeder extends Seeder
             // 'calendar-edit',
             // 'calendar-delete',
             // 'menu-calendar',
-            // 'gallery-create',
-            // 'gallery-edit',
-            // 'gallery-delete',
-            // 'photo-list',
-            // 'photo-create',
-            // 'photo-edit',
-            // 'photo-delete',
+            'gallery list',
+            'gallery create',
+            'gallery edit',
+            'gallery delete',
+            'photo view',
+            'photo create',
+            'photo edit',
+            'photo delete',
             // 'menu-gallery',
             // 'menu academic awards'
             // 'menu utilities'
-            'student list',
-            'student edit',
-            'student delete'
+            // 'student list',
+            // 'student edit',
+            // 'student delete'
 
         ];
 

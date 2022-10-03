@@ -46,14 +46,6 @@
                             @endforeach
                         </div>
 
-                        {{--
-                            @foreach ($user_perm as $value)
-                                <div class="col-md-3 mt-2">
-                                    <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, ['class' => 'name']) }}
-                                        {{ $value->name }}</label>
-                                </div>
-                            @endforeach --}}
-
                         <button class="btn btn-primary" type="submit">Save</button>
                     </form>
                 </div>

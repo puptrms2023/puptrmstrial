@@ -24,11 +24,9 @@
                                         alt="" width="100%">
                                     <div class="overlay">
                                         <h2 class="font-weight-bold">{{ $gallery->title }}</h2>
-                                        @can('photo view')
-                                            <a class="btn btn-sm btn-primary info"
-                                                href="{{ url('admin/galleries/show/' . $gallery->id) }}">View
-                                                Photos</a>
-                                        @endcan
+                                        <a class="btn btn-sm btn-primary info"
+                                            href="{{ url('admin/galleries/show/' . $gallery->id) }}">View
+                                            Photos</a>
                                     </div>
                                 </div>
                             </div>
@@ -38,17 +36,15 @@
                 </div>
             </div>
         </div>
-        @can('gallery create')
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header font-weight-bold text-primary">Create New Gallery</div>
-                    <div class="card-body">
-                        <a href="{{ url('admin/galleries/create') }}" class="btn btn-sm btn-block btn-secondary">Create New
-                            Gallery</a>
-                    </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header font-weight-bold text-primary">Create New Gallery</div>
+                <div class="card-body">
+                    <a href="{{ url('admin/galleries/create') }}" class="btn btn-sm btn-block btn-secondary">Create New
+                        Gallery</a>
                 </div>
             </div>
-        @endcan
+        </div>
     </div>
 
 @endsection

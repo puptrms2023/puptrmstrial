@@ -28,8 +28,8 @@ class RoleController extends Controller
 
     public function create()
     {
-        $permission = Permission::orderBy('name')->get();
-        return view('admin.roles.create', compact('permission'));
+        $category = Category::with('permission')->get();
+        return view('admin.roles.create', compact('category'));
     }
 
     public function store(Request $request)
@@ -54,11 +54,6 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
         return view('admin.roles.edit', compact('category', 'role', 'rolePermissions'));
-
-        // $user_perm = Permission::where('category_id', '1')->get();
-        // $role_perm = Permission::where('category_id', '2')->get();
-
-        // return view('admin.roles.edit', compact('role', 'user_perm', 'role_perm', 'rolePermissions'));
     }
 
     public function update(Request $request, $id)

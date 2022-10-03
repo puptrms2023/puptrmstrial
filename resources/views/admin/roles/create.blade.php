@@ -34,11 +34,13 @@
                                 <label><input type="checkbox" id="select-all" /> Check
                                     all</label>
                             </div>
-                            @foreach ($permission as $value)
+                            @foreach ($category as $value)
                                 <div class="col-md-3 mt-2">
-                                    <label>{{ Form::checkbox('permission[]', $value->id, false, ['class' => 'name']) }}
-                                        {{ $value->name }}</label>
-                                    <br />
+                                    <div class="font-weight-bold mb-2">{{ $value->name }}</div>
+                                    @foreach ($value->permission as $permission)
+                                        <label>{{ Form::checkbox('permission[]', $permission->id, false, ['class' => 'name']) }}
+                                            {{ $permission->name }}</label><br>
+                                    @endforeach
                                 </div>
                             @endforeach
                         </div>

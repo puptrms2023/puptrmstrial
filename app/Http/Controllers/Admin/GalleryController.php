@@ -13,12 +13,12 @@ class GalleryController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:gallery list', ['only' => ['index', 'create', 'edit']]);
+        $this->middleware('permission:gallery list', ['only' => ['index', 'create', 'show', 'edit', 'photoCreate', 'photoShow', 'photoDelete']]);
         $this->middleware('permission:gallery create', ['only' => ['create', 'store']]);
         $this->middleware('permission:gallery edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:gallery delete', ['only' => ['destroy']]);
 
-        $this->middleware('permission:photo list', ['only' => ['show']]);
+        $this->middleware('permission:photo view', ['only' => ['show']]);
         $this->middleware('permission:photo create', ['only' => ['photoCreate', 'photoStore']]);
         $this->middleware('permission:photo edit', ['only' => ['photoEdit', 'photoUpdate']]);
         $this->middleware('permission:photo delete', ['only' => ['photoDelete']]);
