@@ -13,6 +13,13 @@ use Maatwebsite\Excel\HeadingRowImport;
 
 class ImportController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:csv list', ['only' => ['index', 'parseImport', 'processImport']]);
+        $this->middleware('permission:csv create', ['only' => ['parseImport', 'processImport']]);
+        $this->middleware('permission:csv delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $csv = CsvData::all();

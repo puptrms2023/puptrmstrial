@@ -68,10 +68,14 @@
                                         <td>
                                             <a href="{{ url('admin/students/view/' . $item->id) }}"
                                                 class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
-                                            <a href="{{ url('admin/students/' . $item->id) }}"
-                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                            <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
-                                                value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                            @can('student edit')
+                                                <a href="{{ url('admin/students/' . $item->id) }}"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                            @endcan
+                                            @can('student delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
+                                                    value="{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

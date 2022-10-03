@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class AcademicExcellence extends Model
+class AcademicExcellence extends Model implements Auditable
 {
     use HasFactory;
+    use \OwenIt\Auditing\Auditable;
     protected $table = 'ae_applicants';
 
     public function courses()

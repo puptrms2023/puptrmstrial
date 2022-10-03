@@ -36,7 +36,8 @@
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
 
 </body>
 

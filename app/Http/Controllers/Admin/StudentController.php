@@ -12,6 +12,12 @@ use App\Models\StudentApplicants;
 
 class StudentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:student list', ['only' => ['index', 'create', 'edit']]);
+        $this->middleware('permission:student edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:student delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $users = User::where('role_as', '0')->get();
@@ -40,7 +46,6 @@ class StudentController extends Controller
             'last_name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
             'course_id' => 'required',
-            'role_as' => 'required',
             'stud_num' => ['required', 'unique:users,stud_num,' . $id, 'max:15', new StrMustContain('TG')],
             'username' => 'required|alpha_dash|unique:users,username,' . $id,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $id
@@ -53,7 +58,6 @@ class StudentController extends Controller
         $user->last_name = $request->last_name;
         $user->contact = $request->contact;
         $user->course_id = $request->course_id;
-        $user->role_as = $request->role_as;
         $user->stud_num = $request->stud_num;
         $user->username = $request->username;
         $user->email = $request->email;

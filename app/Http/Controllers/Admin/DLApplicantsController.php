@@ -14,6 +14,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DLApplicantsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:deans list list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
+        $this->middleware('permission:deans list edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:deans list delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $pending = StudentApplicants::where('award_applied', '2')->where('status', '0')->count();
@@ -58,31 +65,10 @@ class DLApplicantsController extends Controller
                                     width="50" alt="Image">';
                 })
                 ->addColumn('status', function (StudentApplicants $data) {
-                    if ($data->status == '1') {
-                        return '<span class="badge badge-success">Approved</span>';
-                    } else if ($data->status == '2') {
-                        return '<span class="badge badge-danger">Rejected</span>';
-                    } else {
-                        return '<a href="/admin/deans-list-award/' . $data->courses->course_code . '/approve/' . $data->id . '" class="btn btn-success btn-sm btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
-                        </span>
-                        <span class="text">Approve</span>
-                    </a>
-                    <a href="/admin/deans-list-award/' . $data->courses->course_code . '/reject/' . $data->id . '" class="btn btn-danger btn-sm btn-icon-split" >
-                        <span class="icon text-white-50">
-                            <i class="fa-sharp fa-solid fa-xmark"></i>
-                        </span>
-                        <span class="text">Reject</span>
-                    </a>';
-                    }
+                    return view('admin.deans-list-award.action.status', compact('data'));
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '';
-                    $btn .= '<a href="/admin/deans-list-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
-
-                    return $btn;
+                    return view('admin.deans-list-award.action.buttons', compact('data'));
                 })
                 ->rawColumns(['image', 'status', 'action'])
                 ->make(true);
@@ -230,11 +216,7 @@ class DLApplicantsController extends Controller
                         }
                     })
                     ->addColumn('action', function ($data) {
-                        $btn = '';
-                        $btn .= '<a href="/admin/deans-list-award/' . $data->courses->course_code . '/' . $data->id . '" class="btn btn-sm btn-secondary"><i class="fa-regular fa-eye"></i> </a> ';
-                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" class="btn btn-sm btn-danger deleteFormbtn" data-id="' . $data->id . '"><i class="fa fa-trash"></i> </button>';
-
-                        return $btn;
+                        return view('admin.deans-list-award.action.buttons', compact('data'));
                     })
                     ->rawColumns(['image', 'status', 'action'])
                     ->make(true);

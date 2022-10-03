@@ -35,7 +35,7 @@ class UserFormRequest extends FormRequest
             'username' => ['required', 'string', 'max:255', 'unique:users', 'alpha_dash'],
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
-            'role_as' => 'required'
+            'roles' => 'required'
         ];
     }
 

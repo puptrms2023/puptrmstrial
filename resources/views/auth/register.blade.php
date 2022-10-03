@@ -60,8 +60,8 @@
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Phone number</label>
                                                 <input class="form-control js-phone" name="contact" type="text"
-                                                    placeholder="Enter your phone number" value="{{ old('contact') }}"
-                                                    required autofocus>
+                                                    placeholder="Enter your phone number"
+                                                    value="{{ substr(old('contact'), 3) }}" required autofocus>
                                                 @if ($errors->has('contact'))
                                                     <span
                                                         class="text-danger text-left">{{ $errors->first('contact') }}</span>

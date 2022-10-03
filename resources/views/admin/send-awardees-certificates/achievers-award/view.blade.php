@@ -11,7 +11,7 @@
             </div>
         @endif
     </div>
-
+    @include('layouts.partials.messages')
     <div class="row">
         <div id="send-button" class="col-md-12 mb-2">
             <button class="btn btn-success send-email-aa"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send
@@ -22,9 +22,6 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Students
@@ -119,7 +116,6 @@
             } else {
                 alert("Please select at least one user from list.");
             }
-            console.log(selectRowsCount);
         });
     </script>
 @endsection
