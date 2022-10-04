@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Courses;
 use Illuminate\Http\Request;
-use App\Models\StudentApplicants;
+use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailJob;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -26,10 +26,10 @@ class DLCertificateController extends Controller
     {
         $courses = Courses::where('course_code', $course_code)->first();
         //count
-        $count = StudentApplicants::where('certificate_status', '1')->where('status', '1')->where('award_applied', '2')->where('course_id', $courses->id)->count();
-        $total = StudentApplicants::where('status', '1')->where('award_applied', '2')->where('course_id', $courses->id)->count();
+        $count = StudentApplicant::where('certificate_status', '1')->where('status', '1')->where('award_applied', '2')->where('course_id', $courses->id)->count();
+        $total = StudentApplicant::where('status', '1')->where('award_applied', '2')->where('course_id', $courses->id)->count();
 
-        $awardees = StudentApplicants::where('award_applied', '2')
+        $awardees = StudentApplicant::where('award_applied', '2')
             ->where('course_id', $courses->id)
             ->where('status', '1')
             ->orderBy('gwa', 'asc')
@@ -39,7 +39,7 @@ class DLCertificateController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $users = StudentApplicants::whereIn("id", $request->ids)->get();
+        $users = StudentApplicant::whereIn("id", $request->ids)->get();
 
 
         foreach ($users as $key => $user) {
@@ -55,13 +55,13 @@ class DLCertificateController extends Controller
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['studnum']);
         }
-        $users1 = StudentApplicants::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
+        $users1 = StudentApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully. Refresh the page']);
     }
 
     public function showCertificate($course_code, $id)
     {
-        $stud = StudentApplicants::with('users')->find($id);
+        $stud = StudentApplicant::with('users')->find($id);
         $data = [
             'fname' => $stud->users->first_name,
             'mname' => $stud->users->middle_name,

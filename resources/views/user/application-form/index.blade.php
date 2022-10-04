@@ -74,7 +74,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">School Year</label>
                             <span class="text-danger">*</span>
-                            <select class="form-control" name="school_year">
+                            <select class="custom-select" name="school_year">
                                 <option value="2022-2023">2022-2023</option>
                             </select>
                         </div>
@@ -87,7 +87,7 @@
                             <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
-                            <select class="form-control" name="year_level" id="selectYear">
+                            <select class="custom-select" name="year_level" id="selectYear">
                                 <option value="">--Select Academic Level--</option>
                                 <option data-state="1st Year" value="1st Year"
                                     {{ old('year_level') == '1st Year' ? 'selected' : '' }}>1st Year</option>
@@ -106,7 +106,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Award Applied</label>
                             <span class="text-danger">*</span>
-                            <select class="form-control" name="award_applied" id="selectAward">
+                            <select class="custom-select" name="award_applied" id="selectAward">
                                 <option data-state="1st Year" value="1">Achiever's Award</option>
                                 <option data-state="2nd Year" value="2">Dean's List</option>
                                 <option data-state="2nd Year" value="3">President's List </option>

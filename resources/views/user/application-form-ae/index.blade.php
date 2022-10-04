@@ -75,7 +75,7 @@
                             <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
                             <label for="" class="font-weight-bold">School Year</label>
                             <span class="text-danger">*</span>
-                            <select class="form-control" name="school_year">
+                            <select class="custom-select" name="school_year">
                                 <option value="2022-2023">2022-2023</option>
                             </select>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
-                            <select class="form-control" name="year_level">
+                            <select class="custom-select" name="year_level">
                                 <option value="4th Year">4th Year</option>
                             </select>
                         </div>

@@ -192,6 +192,10 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::get('/application-form-ae', 'index');
         Route::post('/application-form-ae', 'store');
     });
+    Route::controller(App\Http\Controllers\User\NonAcademicAwardController::class)->group(function () {
+        Route::get('/non-academic-form', 'index');
+        Route::post('/non-academic-form', 'store');
+    });
 
     Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {
         Route::get('/application-status/academic-award', 'aaAward');

@@ -172,5 +172,42 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card border-left-secondary shadow mb-4">
+                <img src="{{ asset('admin/img/nonacadaward_photocard.jpg') }}" class="card-img-top" alt="image">
+                <div class="card-body text-center">
+                    <a href="{{ url('user/non-academic-form') }}"
+                        class="btn btn-sm btn-outline-primary mb-2 mt-2">NON-ACADEMIC
+                        AWARD APPLICATION</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-secondary text-uppercase mb-1">
+                        Non-Academic Award Qualifications
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
+                            &ensp;For 1st-4th year students only.
+                        </li>
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
+                            &ensp;Bonafide
+                            student of PUP Taguig Branch.</li>
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
+                            &ensp;Officially enrolled for 1st and 2nd semester
+                            of the recent academic year.</li>
+                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
+                            &ensp;The non-academic award was under the university institution and recieved during the
+                            current school year
+                            Student from 1st year to 4th year</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

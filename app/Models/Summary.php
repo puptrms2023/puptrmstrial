@@ -26,6 +26,6 @@ class Summary extends Model
     }
     public function status()
     {
-        return $this->hasMany(StudentApplicants::class);
+        return $this->hasMany(StudentApplicant::class);
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Summary;
-use App\Models\StudentApplicants;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicAwardRequest;
+use App\Models\StudentApplicant;
 
 class AcademicAwardController extends Controller
 {
@@ -18,7 +18,7 @@ class AcademicAwardController extends Controller
     {
 
         $data = $request->validated();
-        $award = new StudentApplicants();
+        $award = new StudentApplicant();
 
         $award->user_id = $data['user_id'];
         $award->school_year = $data['school_year'];

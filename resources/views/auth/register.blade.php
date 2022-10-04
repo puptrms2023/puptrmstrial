@@ -80,7 +80,7 @@
                                         <div class="row gx-3 mb-3">
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Student Number</label>
-                                                <input class="form-control" name="stud_num" type="text"
+                                                <input name="stud_num" type="text" class="form-control"
                                                     placeholder="Enter your student number" value="{{ old('stud_num') }}"
                                                     onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
                                                 @if ($errors->has('stud_num'))
@@ -91,7 +91,7 @@
 
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Course</label>
-                                                <select class="form-control" name="course_id" id="course_id" required>
+                                                <select class="custom-select" name="course_id" id="course_id" required>
                                                     <option value="">--Select Course--</option>
                                                     @foreach ($course as $id => $item)
                                                         <option value="{{ $id }}"

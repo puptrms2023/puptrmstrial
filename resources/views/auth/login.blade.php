@@ -47,10 +47,14 @@
                                                     name="remember" {{ old('remember') ? 'checked' : '' }} />
                                                 <label class="custom-control-label" for="customCheck">Remember me</label>
                                             </div>
-                                            <div class="forgot float-right">
-                                                <a class="text-decoration-none" href="#" id="forgot-link">Forgot
-                                                    Password?</a>
-                                            </div>
+
+                                            @if (Route::has('password.request'))
+                                                <div class="forgot float-right">
+                                                    <a class="text-decoration-none" href="{{ route('password.request') }}"
+                                                        id="forgot-link">Forgot
+                                                        Password?</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </form>
                                     <div class="text-center">

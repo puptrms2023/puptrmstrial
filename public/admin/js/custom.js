@@ -43,6 +43,145 @@
 //     });
 
 //   })();
+document.addEventListener('DOMContentLoaded', (event) => {
+    var award = document.getElementById('non');
+
+    if (award.value == "1") {
+        $("#organization").removeClass("hidden");
+        $("#organization").addClass("show");
+    } else {
+        $("#organization").removeClass("show");
+        $("#organization").addClass("hidden");
+    }
+    if (award.value  == "2") {
+        $("#sports").removeClass("hidden");
+        $("#sports").addClass("show");
+    } else {
+        $("#sports").removeClass("show");
+        $("#sports").addClass("hidden");
+    }
+    if (award.value  == "4") {
+        $("#subject_name").removeClass("hidden");
+        $("#subject_name").addClass("show");
+        $("#thesis").removeClass("hidden");
+        $("#thesis").addClass("show");
+    } else {
+        $("#subject_name").removeClass("show");
+        $("#subject_name").addClass("hidden");
+        $("#thesis").removeClass("show");
+        $("#thesis").addClass("hidden");
+    }
+    if (award.value  == "6") {
+        $("#sa").removeClass("hidden");
+        $("#sa").addClass("show");
+    } else {
+        $("#sa").removeClass("show");
+        $("#sa").addClass("hidden");
+    }
+    if (award.value  == "7") {
+        $("#outside").removeClass("hidden");
+        $("#outside").addClass("show");
+    } else {
+        $("#outside").removeClass("show");
+        $("#outside").addClass("hidden");
+    }
+    if (award.value  == "1" || award.value  == "3" || award.value  == "5"  || award.value  == "6" || award.value  == "7")  {
+        $("#organization").removeClass("hidden");
+        $("#organization").addClass("show");
+    } else {
+        $("#organization").removeClass("show");
+        $("#organization").addClass("hidden");
+    }
+    if(award.value  == "2" || award.value  == "3")
+    {
+        $("#sports").removeClass("hidden");
+        $("#sports").addClass("show");
+    } else {
+        $("#sports").removeClass("show");
+        $("#sports").addClass("hidden");
+    }
+});
+$(document).ready(function () {
+    $(".nonacadaward").change(function () {
+        $('#sports-value').val('');
+        $('#comp-value').val('');
+        $('#placement-value').val('');
+        $('#subject-value').val('');
+        $('#thesis-value').val('');
+        $('#designation-value').val('');
+        $("#org-value").val("").trigger( "change" );
+        var responseId = $(this).val();
+        if (responseId == "1") {
+            $("#organization").removeClass("hidden");
+            $("#organization").addClass("show");
+        } else {
+            $("#organization").removeClass("show");
+            $("#organization").addClass("hidden");
+        }
+        if (responseId == "2") {
+            $("#sports").removeClass("hidden");
+            $("#sports").addClass("show");
+        } else {
+            $("#sports").removeClass("show");
+            $("#sports").addClass("hidden");
+        }
+        if (responseId == "4") {
+            $("#subject_name").removeClass("hidden");
+            $("#subject_name").addClass("show");
+            $("#thesis").removeClass("hidden");
+            $("#thesis").addClass("show");
+        } else {
+            $("#subject_name").removeClass("show");
+            $("#subject_name").addClass("hidden");
+            $("#thesis").removeClass("show");
+            $("#thesis").addClass("hidden");
+        }
+        if (responseId == "6") {
+            $("#sa").removeClass("hidden");
+            $("#sa").addClass("show");
+        } else {
+            $("#sa").removeClass("show");
+            $("#sa").addClass("hidden");
+        }
+        if (responseId == "7") {
+            $("#outside").removeClass("hidden");
+            $("#outside").addClass("show");
+        } else {
+            $("#outside").removeClass("show");
+            $("#outside").addClass("hidden");
+        }
+        if (responseId == "1" || responseId == "3" || responseId == "5"  || responseId == "6" || responseId == "7")  {
+            $("#organization").removeClass("hidden");
+            $("#organization").addClass("show");
+        } else {
+            $("#organization").removeClass("show");
+            $("#organization").addClass("hidden");
+        }
+        if(responseId == "2" || responseId == "3")
+        {
+            $("#sports").removeClass("hidden");
+            $("#sports").addClass("show");
+        } else {
+            $("#sports").removeClass("show");
+            $("#sports").addClass("hidden");
+        }
+    });
+});
+// User--------------------------------------------------------------------------
+$(document).ready(function () {
+    $(".status").change(function () {
+        var responseId = $(this).val();
+        if (responseId == "2") {
+            $("#reason").removeClass("hidden");
+            $("#reason").addClass("show");
+        } else {
+            $("#reason").removeClass("show");
+            $("#reason").addClass("hidden");
+        }
+    });
+});
+// User--------------------------------------------------------------------------
+
 //Phone Format
 jQuery(document).ready(function($){
     $(".js-phone").inputmask({

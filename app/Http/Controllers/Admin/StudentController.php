@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Rules\StrMustContain;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
-use App\Models\StudentApplicants;
+use App\Models\StudentApplicant;
 
 class StudentController extends Controller
 {
@@ -34,7 +34,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $students = User::find($id);
-        $application = StudentApplicants::where('user_id', $id)->get();
+        $application = StudentApplicant::where('user_id', $id)->get();
         return view('admin.students.show', compact('students', 'application'));
     }
 

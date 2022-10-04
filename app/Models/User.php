@@ -21,7 +21,6 @@ class User extends Authenticatable implements Auditable
      *
      * @var string
      */
-    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.

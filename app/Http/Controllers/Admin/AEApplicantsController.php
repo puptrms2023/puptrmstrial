@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Courses;
-use App\Models\Summary;
 use Illuminate\Http\Request;
 use App\Models\AcademicExcellence;
 use App\Http\Controllers\Controller;
