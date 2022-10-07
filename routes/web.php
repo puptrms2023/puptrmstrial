@@ -218,6 +218,14 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/calendar', 'index');
         Route::post('/calendar-event', 'crud');
     });
+    Route::controller(App\Http\Controllers\Admin\ProfileController::class)->group(function () {
+        Route::get('/profile', 'index');
+        Route::put('/update-profile/{id}', 'store');
+    });
+    Route::controller(App\Http\Controllers\Admin\ChangePassController::class)->group(function () {
+        Route::get('/change-password', 'index');
+        Route::post('/update-password', 'store');
+    });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
@@ -234,9 +242,22 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::get('/non-academic-form', 'index');
         Route::post('/non-academic-form', 'store');
     });
-
     Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {
         Route::get('/application-status/academic-award', 'aaAward');
         Route::get('/application-status/academic-excellence', 'aeAward');
+        Route::get('/application-status/non-academic-award', 'naAward');
+    });
+    Route::controller(App\Http\Controllers\User\FullCalendarController::class)->group(function () {
+        Route::get('/calendar', 'index');
+    });
+    Route::get('/gallery', [App\Http\Controllers\User\GalleryController::class, 'index']);
+    Route::get('/about', [App\Http\Controllers\User\AboutController::class, 'index']);
+    Route::controller(App\Http\Controllers\User\ProfileController::class)->group(function () {
+        Route::get('/profile', 'index');
+        Route::put('/update-profile/{id}', 'store');
+    });
+    Route::controller(App\Http\Controllers\User\ChangePassController::class)->group(function () {
+        Route::get('/change-password', 'index');
+        Route::post('/update-password', 'store');
     });
 });

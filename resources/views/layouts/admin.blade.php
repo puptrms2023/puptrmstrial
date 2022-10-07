@@ -58,6 +58,7 @@
         <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
+        {{-- calendar --}}
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
         <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>

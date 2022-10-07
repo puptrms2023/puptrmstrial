@@ -23,20 +23,50 @@
 
     <!--Nav Item - Utilities Collapse Menu -->
 
-    <li class="nav-item {{ Request::is('user/application-status/academic-award') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
+    <li
+        class="nav-item {{ Request::is('user/application-status/academic-award') || Request::is('user/application-status/academic-excellence') || Request::is('user/application-status/non-academic-award') ? 'active' : '' }}">
+        <a class="nav-link {{ Request::is('user/application-status/academic-award') || Request::is('user/application-status/academic-excellence') || Request::is('user/application-status/non-academic-award') ? '' : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+            aria-controls="collapsePages">
             <i class="fa-solid fa-list-check"></i>
             <span>Application Status</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapsePages"
+            class="collapse {{ Request::is('user/application-status/academic-award') || Request::is('user/application-status/academic-excellence') || Request::is('user/application-status/non-academic-award') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('user/application-status/academic-award') }}">Academic Award</a>
-                <a class="collapse-item" href="{{ url('user/application-status/academic-excellence') }}">Academic
+                <a class="collapse-item {{ Request::is('user/application-status/academic-award') ? 'active' : '' }}"
+                    href="{{ url('user/application-status/academic-award') }}">Academic Award</a>
+                <a class="collapse-item {{ Request::is('user/application-status/academic-excellence') ? 'active' : '' }}"
+                    href="{{ url('user/application-status/academic-excellence') }}">Academic
                     Excellence</a>
-                <a class="collapse-item" href="">Non-Academic Award</a>
+                <a class="collapse-item {{ Request::is('user/application-status/non-academic-award') ? 'active' : '' }}"
+                    href="{{ url('user/application-status/non-academic-award') }}">Non-Academic
+                    Award</a>
             </div>
         </div>
+    </li>
+
+    <div class="sidebar-heading">
+        PROGRAMS
+    </div>
+    <li class="nav-item {{ Request::is('user/calendar') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('user/calendar') }}">
+            <i class="fa-solid fa-calendar-week"></i>
+            <span>Calendar of Events</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('user/gallery') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('user/gallery') }}">
+            <i class="fa-solid fa-images"></i>
+            <span>Recognition Gallery</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('user/about') ? 'active' : '' }}">
+        <a class="nav-link align-middle" href="{{ url('user/about') }}">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>About</span>
+        </a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
 

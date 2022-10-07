@@ -143,11 +143,11 @@
                         Award</a>
                     <a class="collapse-item {{ Request::is('admin/non-academic-award/athlete-of-the-year') || Request::is('admin/non-academic-award/athlete-of-the-year/*') ? 'active' : '' }}"
                         href="{{ url('admin/non-academic-award/athlete-of-the-year') }}">Athlete
-                        of the Year
+                        of the Year<br>
                         Award</a>
                     <a class="collapse-item {{ Request::is('admin/non-academic-award/outstanding-organization-award') || Request::is('admin/non-academic-award/outstanding-organization-award/*') ? 'active' : '' }}"
-                        href="{{ url('admin/non-academic-award/outstanding-organization-award') }}">Outstanding
-                        Organization<br> Award</a>
+                        href="{{ url('admin/non-academic-award/outstanding-organization-award') }}">Outstanding<br>
+                        Organization Award</a>
                     <a class="collapse-item {{ Request::is('admin/non-academic-award/best-thesis-award') || Request::is('admin/non-academic-award/best-thesis-award/*') ? 'active' : '' }}"
                         href="{{ url('admin/non-academic-award/best-thesis-award') }}">Best Thesis
                         Award</a>
@@ -279,7 +279,7 @@
     @can('menu calendar')
         <li class="nav-item {{ Request::is('admin/calendar') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="{{ url('admin/calendar') }}">
-                <i class="fa fa-id-card"></i>
+                <i class="fa-solid fa-calendar-week"></i>
                 <span>Calendar of Events</span>
             </a>
         </li>
@@ -287,8 +287,8 @@
     @can('gallery list')
         <li class="nav-item {{ Request::is('admin/students') || Request::is('admin/students/*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="{{ url('admin/galleries') }}">
-                <i class="fa fa-id-card"></i>
-                <span>Recognition of Gallery</span>
+                <i class="fa-solid fa-images"></i>
+                <span>Recognition Gallery</span>
             </a>
         </li>
     @endcan

@@ -123,6 +123,8 @@
                 type: 'category'
             },
             yAxis: {
+                allowDecimals: false,
+                min: 0,
                 title: {
                     text: 'Total number of awardees'
                 }

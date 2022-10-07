@@ -24,13 +24,12 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-
+                <a class="dropdown-item" href="{{ url('admin/profile') }}">
                     Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
+                <a class="dropdown-item" href="{{ url('admin/change-password') }}">
+                    <i class="fa-solid fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Change Password
                 </a>
                 @can('menu activity log')
                     <a class="dropdown-item" href="{{ url('admin/user-activity-log') }}">

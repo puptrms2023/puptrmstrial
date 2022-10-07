@@ -19,7 +19,9 @@
     <link href="{{ asset('admin//vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
 
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}">
@@ -59,7 +61,13 @@
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
         <script src="{{ asset('admin/js/custom.js') }}"></script>
 
+        <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
+        <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
+
         <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
+        <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
         <script>
             $(document).ready(function() {
                 toastr.options.timeOut = 40000;

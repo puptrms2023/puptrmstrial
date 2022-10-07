@@ -64,10 +64,10 @@ class User extends Authenticatable implements Auditable
      * @param $value
      * @return string
      */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 
     public function courses()
     {
