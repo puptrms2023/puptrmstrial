@@ -38,6 +38,7 @@ class NonAcademicAwardRequest extends FormRequest
             'designation' => 'nullable',
             'competition' => 'nullable',
             'placement' => 'nullable',
+            'image' => 'required|mimes:jpeg,png,jpg',
         ];
     }
 

@@ -115,6 +115,44 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/academic-excellence-award/{course_code}/delete-form', 'destroy');
         Route::post('/academic-excellence-award/delete-form', 'destroy');
     });
+
+    Route::controller(App\Http\Controllers\Admin\NAApplicantsController::class)->group(function () {
+        Route::get('/non-academic-award/leadership-award', 'leadership');
+        Route::get('/non-academic-award/leadership-award/{id}', 'showLeadership');
+        Route::post('/non-academic-award/leadership-award/delete-form', 'destroyLeadership');
+
+        Route::get('/non-academic-award/athlete-of-the-year', 'athlete');
+        Route::get('/non-academic-award/athlete-of-the-year/{id}', 'showAthlete');
+        Route::post('/non-academic-award/athlete-of-the-year/delete-form', 'destroyAthlete');
+
+        Route::get('/non-academic-award/outstanding-organization-award', 'outstanding');
+        Route::get('/non-academic-award/outstanding-organization-award/{id}', 'showOutstanding');
+        Route::post('/non-academic-award/outstanding-organization-award/delete-form', 'destroyOutstanding');
+
+        Route::get('/non-academic-award/best-thesis-award', 'thesis');
+        Route::get('/non-academic-award/best-thesis-award/{id}', 'showThesis');
+        Route::post('/non-academic-award/best-thesis-award/delete-form', 'destroyThesis');
+
+        Route::get('/non-academic-award/graduating-organization-presidents', 'presidents');
+        Route::get('/non-academic-award/graduating-organization-presidents/{id}', 'showPresidents');
+        Route::post('/non-academic-award/graduating-organization-presidents/delete-form', 'destroyPresidents');
+
+        Route::get('/non-academic-award/graduating-sa', 'sa');
+        Route::get('/non-academic-award/graduating-sa/{id}', 'showSa');
+        Route::post('/non-academic-award/graduating-sa/delete-form', 'destroySa');
+
+        Route::get('/non-academic-award/outside-competition', 'competition');
+        Route::get('/non-academic-award/outside-competition/{id}', 'showcompetition');
+        Route::post('/non-academic-award/outside-competition/delete-form', 'destroyCompetition');
+
+        Route::get('/non-academic-award/pupt-dance-troupe', 'dance');
+        Route::get('/non-academic-award/pupt-dance-troupe/{id}', 'showDance');
+        Route::post('/non-academic-award/pupt-dance-troupe/delete-form', 'destroyDance');
+
+        Route::get('/non-academic-award/pupt-choral-troupe', 'choral');
+        Route::get('/non-academic-award/pupt-choral-troupe/{id}', 'showChoral');
+        Route::post('/non-academic-award/pupt-choral-troupe/delete-form', 'destroyChoral');
+    });
     Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
         Route::get('/usermanagement', 'index');
     });

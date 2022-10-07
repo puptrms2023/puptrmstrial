@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form action="{{ url('user/non-academic-form') }}" method="POST">
+            <form action="{{ url('user/non-academic-form') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
@@ -209,6 +209,15 @@
                                     <span class="text-danger text-left">{{ $errors->first('designation') }}</span>
                                 @endif
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-6 mb-3">
+                            <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
+                            <span class="text-danger">*</span>
+                            <input type="file" name="image" required>
                         </div>
                     </div>
                 </div>

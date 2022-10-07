@@ -36,6 +36,14 @@ class NonAcademicAwardController extends Controller
         $award->placement = $data['placement'];
         $award->designated_office = $data['designation'];
         $award->remarks = $data['remarks'];
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/', $filename);
+            $award->image = $filename;
+        }
+
         $award->save();
 
         return redirect('user/dashboard')->with('success', 'Your application is received');

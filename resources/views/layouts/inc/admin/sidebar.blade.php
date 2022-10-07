@@ -30,15 +30,15 @@
     @endcan
     @can('menu academic awards')
         <li
-            class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active' : '' }}">
-            <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? '' : 'collapsed' }}"
-                href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
+            class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? '' : 'collapsed' }}"
+                href="#" data-toggle="collapse" data-target="#academicAwardPages" aria-expanded="true"
+                aria-controls="academicAwardPages">
                 <i class="fas fa-award"></i>
                 <span>Academic Awards</span>
             </a>
-            <div id="collapseTwo"
-                class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'show' : '' }}"
+            <div id="academicAwardPages"
+                class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'show' : '' }}"
                 aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     @can('achievers list')
@@ -54,17 +54,121 @@
                             href="{{ url('admin/presidents-list-award') }}">President's List</a>
                     @endcan
                     @can('acad excellence list')
-                        <a class="collapse-item" href="{{ url('admin/academic-excellence-award') }}">Academic Excellence</a>
+                        <a class="collapse-item {{ Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}"
+                            href="{{ url('admin/academic-excellence-award') }}">Academic Excellence</a>
                     @endcan
                 </div>
             </div>
         </li>
     @endcan
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="pl_courses.php">
-            <i class="fa fa-award"></i>
-            <span>Non-Academic Awards</span>
+    <li
+        class="nav-item {{ Request::is('admin/non-academic-award/leadership-award') ||
+        Request::is('admin/non-academic-award/leadership-award/*') ||
+        Request::is('admin/non-academic-award/athlete-of-the-year') ||
+        Request::is('admin/non-academic-award/athlete-of-the-year/*') ||
+        Request::is('admin/non-academic-award/outstanding-organization-award') ||
+        Request::is('admin/non-academic-award/outstanding-organization-award/*') ||
+        Request::is('admin/non-academic-award/best-thesis-award') ||
+        Request::is('admin/non-academic-award/best-thesis-award/*') ||
+        Request::is('admin/non-academic-award/graduating-organization-presidents') ||
+        Request::is('admin/non-academic-award/graduating-organization-presidents/*') ||
+        Request::is('admin/non-academic-award/graduating-sa') ||
+        Request::is('admin/non-academic-award/graduating-sa/*') ||
+        Request::is('admin/non-academic-award/outside-competition') ||
+        Request::is('admin/non-academic-award/outside-competition/*') ||
+        Request::is('admin/non-academic-award/graduating-sa') ||
+        Request::is('admin/non-academic-award/graduating-sa/*') ||
+        Request::is('admin/non-academic-award/pupt-dance-troupe') ||
+        Request::is('admin/non-academic-award/pupt-dance-troupe/*') ||
+        Request::is('admin/non-academic-award/pupt-choral-troupe') ||
+        Request::is('admin/non-academic-award/pupt-choral-troupe/*')
+            ? 'active'
+            : '' }}">
+        <a class="nav-link {{ Request::is('admin/non-academic-award/leadership-award') ||
+        Request::is('admin/non-academic-award/leadership-award/*') ||
+        Request::is('admin/non-academic-award/athlete-of-the-year') ||
+        Request::is('admin/non-academic-award/athlete-of-the-year/*') ||
+        Request::is('admin/non-academic-award/outstanding-organization-award') ||
+        Request::is('admin/non-academic-award/outstanding-organization-award/*') ||
+        Request::is('admin/non-academic-award/best-thesis-award') ||
+        Request::is('admin/non-academic-award/best-thesis-award/*') ||
+        Request::is('admin/non-academic-award/graduating-organization-presidents') ||
+        Request::is('admin/non-academic-award/graduating-organization-presidents/*') ||
+        Request::is('admin/non-academic-award/graduating-sa') ||
+        Request::is('admin/non-academic-award/graduating-sa/*') ||
+        Request::is('admin/non-academic-award/outside-competition') ||
+        Request::is('admin/non-academic-award/outside-competition/*') ||
+        Request::is('admin/non-academic-award/graduating-sa') ||
+        Request::is('admin/non-academic-award/graduating-sa/*') ||
+        Request::is('admin/non-academic-award/pupt-dance-troupe') ||
+        Request::is('admin/non-academic-award/pupt-dance-troupe/*') ||
+        Request::is('admin/non-academic-award/pupt-choral-troupe') ||
+        Request::is('admin/non-academic-award/pupt-choral-troupe/*')
+            ? ''
+            : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#nonAcademicPages" aria-expanded="true"
+            aria-controls="nonAcademicPages">
+            <i class="fas fa-award"></i>
+            <span>Non Academic Awards</span>
         </a>
+        <div id="nonAcademicPages"
+            class="collapse {{ Request::is('admin/non-academic-award/leadership-award') ||
+            Request::is('admin/non-academic-award/leadership-award/*') ||
+            Request::is('admin/non-academic-award/athlete-of-the-year') ||
+            Request::is('admin/non-academic-award/athlete-of-the-year/*') ||
+            Request::is('admin/non-academic-award/outstanding-organization-award') ||
+            Request::is('admin/non-academic-award/outstanding-organization-award/*') ||
+            Request::is('admin/non-academic-award/best-thesis-award') ||
+            Request::is('admin/non-academic-award/best-thesis-award/*') ||
+            Request::is('admin/non-academic-award/graduating-organization-presidents') ||
+            Request::is('admin/non-academic-award/graduating-organization-presidents/*') ||
+            Request::is('admin/non-academic-award/graduating-sa') ||
+            Request::is('admin/non-academic-award/graduating-sa/*') ||
+            Request::is('admin/non-academic-award/outside-competition') ||
+            Request::is('admin/non-academic-award/outside-competition/*') ||
+            Request::is('admin/non-academic-award/graduating-sa') ||
+            Request::is('admin/non-academic-award/graduating-sa/*') ||
+            Request::is('admin/non-academic-award/pupt-dance-troupe') ||
+            Request::is('admin/non-academic-award/pupt-dance-troupe/*') ||
+            Request::is('admin/non-academic-award/pupt-choral-troupe') ||
+            Request::is('admin/non-academic-award/pupt-choral-troupe/*')
+                ? 'show'
+                : '' }}"
+            aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <div class="flex-column flex-nowrap">
+
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/leadership-award') || Request::is('admin/non-academic-award/leadership-award/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/leadership-award') }}">Leadership
+                        Award</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/athlete-of-the-year') || Request::is('admin/non-academic-award/athlete-of-the-year/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/athlete-of-the-year') }}">Athlete
+                        of the Year
+                        Award</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/outstanding-organization-award') || Request::is('admin/non-academic-award/outstanding-organization-award/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/outstanding-organization-award') }}">Outstanding
+                        Organization<br> Award</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/best-thesis-award') || Request::is('admin/non-academic-award/best-thesis-award/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/best-thesis-award') }}">Best Thesis
+                        Award</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/graduating-organization-presidents') || Request::is('admin/non-academic-award/graduating-organization-presidents/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/graduating-organization-presidents') }}">Graduating
+                        Organization<br> Presidents</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/graduating-sa') || Request::is('admin/non-academic-award/graduating-sa/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/graduating-sa') }}">Graduating
+                        Student<br> Assistants</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/outside-competition') || Request::is('admin/non-academic-award/outside-competition/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/outside-competition') }}">Outside
+                        Competitions</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/pupt-dance-troupe') || Request::is('admin/non-academic-award/pupt-dance-troupe/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/pupt-dance-troupe') }}">Graduating
+                        member<br> of PUPT Dance Troupe</a>
+                    <a class="collapse-item {{ Request::is('admin/non-academic-award/pupt-choral-troupe') || Request::is('admin/non-academic-award/pupt-choral-troupe/*') ? 'active' : '' }}"
+                        href="{{ url('admin/non-academic-award/pupt-choral-troupe') }}">Graduating
+                        member<br> of PUPT Choral Group
+                </div>
+            </div>
+        </div>
     </li>
     @can('csv list')
         <li class="nav-item">
@@ -88,12 +192,12 @@
             Request::is('admin/send-awardees-certificates/academic-excellence-award')
                 ? ''
                 : 'collapsed' }}"
-                href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                aria-controls="collapsePages">
+                href="#" data-toggle="collapse" data-target="#sendCertificatePages" aria-expanded="true"
+                aria-controls="sendCertificatePages">
                 <i class="fa-solid fa-certificate"></i>
                 <span>Send Certificates</span>
             </a>
-            <div id="collapsePages"
+            <div id="sendCertificatePages"
                 class="collapse {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
                 Request::is('admin/send-awardees-certificates/deans-list-award') ||
                 Request::is('admin/send-awardees-certificates/presidents-list-award') ||
@@ -122,12 +226,12 @@
         </li>
     @endcan
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#modulePages"
+            aria-expanded="true" aria-controls="modulePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Module Management</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
+        <div id="modulePages" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="">Modules</a>
                 <a class="collapse-item" href="">Permissions Type</a>
@@ -139,12 +243,12 @@
         <li
             class="nav-item {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles/*') || Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') ? 'active' : '' }}">
             <a class="nav-link {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles/*') || Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') ? '' : 'collapsed' }}"
-                href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
-                aria-controls="collapseUtilities">
+                href="#" data-toggle="collapse" data-target="#utilitiesPges" aria-expanded="true"
+                aria-controls="utilitiesPges">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Utilities</span>
             </a>
-            <div id="collapseUtilities"
+            <div id="utilitiesPges"
                 class="collapse {{ Request::is('admin/roles') ||
                 Request::is('admin/roles/create') ||
                 Request::is('admin/roles/*') ||

@@ -62,6 +62,14 @@
         <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
         <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
 
+        {{-- charts --}}
+        <script src="{{ asset('admin/vendor/highchart/highcharts.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/data.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/drilldown.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/exporting.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/export-data.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/accessibility.js') }}"></script>
+
         <script>
             $(document).ready(function() {
                 toastr.options.timeOut = 40000;
