@@ -220,13 +220,18 @@ return [
     ])->toArray(),
 
     'db_fields' => [
-        'stud_num',
+        'email_address',
+        'surname',
         'first_name',
-        'last_name',
+        'middle_name',
         'course',
+        'year_level',
+        'contact_number',
         'gwa_1st',
         'gwa_2nd',
-        'avg'
+        'applying_for',
+        'remarks',
+        'comments'
     ]
 
 ];

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class SIS extends Model
 {
     protected $table = 'awardees';
-    protected $fillable = ['stud_num', 'first_name', 'last_name', 'course', 'gwa_1st', 'gwa_2nd', 'avg'];
+    protected $fillable = ['email_address', 'surname', 'first_name', 'middle_name', 'course', 'year_level', 'contact_number', 'gwa_1st', 'gwa_2nd', 'applying_for', 'remarks', 'comments'];
 }

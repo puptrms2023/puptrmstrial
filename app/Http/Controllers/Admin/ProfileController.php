@@ -23,8 +23,6 @@ class ProfileController extends Controller
             'middle_name' => 'nullable|max:255|regex:/^([^0-9]*)$/',
             'last_name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
-            'course_id' => 'required',
-            'stud_num' => ['required', 'unique:users,stud_num,' . $id, 'max:15', new StrMustContain('TG')],
             'username' => 'required|alpha_dash|unique:users,username,' . $id,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $id
         ]);

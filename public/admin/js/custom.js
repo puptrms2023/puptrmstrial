@@ -43,64 +43,8 @@
 //     });
 
 //   })();
-document.addEventListener('DOMContentLoaded', (event) => {
-    var award = document.getElementById('non');
 
-    if (award.value == "1") {
-        $("#organization").removeClass("hidden");
-        $("#organization").addClass("show");
-    } else {
-        $("#organization").removeClass("show");
-        $("#organization").addClass("hidden");
-    }
-    if (award.value  == "2") {
-        $("#sports").removeClass("hidden");
-        $("#sports").addClass("show");
-    } else {
-        $("#sports").removeClass("show");
-        $("#sports").addClass("hidden");
-    }
-    if (award.value  == "4") {
-        $("#subject_name").removeClass("hidden");
-        $("#subject_name").addClass("show");
-        $("#thesis").removeClass("hidden");
-        $("#thesis").addClass("show");
-    } else {
-        $("#subject_name").removeClass("show");
-        $("#subject_name").addClass("hidden");
-        $("#thesis").removeClass("show");
-        $("#thesis").addClass("hidden");
-    }
-    if (award.value  == "6") {
-        $("#sa").removeClass("hidden");
-        $("#sa").addClass("show");
-    } else {
-        $("#sa").removeClass("show");
-        $("#sa").addClass("hidden");
-    }
-    if (award.value  == "7") {
-        $("#outside").removeClass("hidden");
-        $("#outside").addClass("show");
-    } else {
-        $("#outside").removeClass("show");
-        $("#outside").addClass("hidden");
-    }
-    if (award.value  == "1" || award.value  == "3" || award.value  == "5"  || award.value  == "6" || award.value  == "7")  {
-        $("#organization").removeClass("hidden");
-        $("#organization").addClass("show");
-    } else {
-        $("#organization").removeClass("show");
-        $("#organization").addClass("hidden");
-    }
-    if(award.value  == "2" || award.value  == "3")
-    {
-        $("#sports").removeClass("hidden");
-        $("#sports").addClass("show");
-    } else {
-        $("#sports").removeClass("show");
-        $("#sports").addClass("hidden");
-    }
-});
+
 $(document).ready(function () {
     $(".nonacadaward").change(function () {
         $('#sports-value').val('');
@@ -748,398 +692,74 @@ function getGWA7() {
         gwa.toFixed(2);
 }
 //8th Term
-//Admin Filter Pending,Approved and Rejected
-$(function () {
-    var course_id = document.getElementById("course_id").value;
-    var table = $(".table-data").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/achievers-award/" + course_id,
-            data: function (d) {
-                (d.status = $("#status").val());
-            },
-        },
-        columns: [
-            {
-                data: 'studno',
-                name: 'users.stud_num',
-                className: "font-weight-bold",
-            },
-            {
-                data: 'fname',
-                name: 'users.first_name'
-            },
-            {
-                data: 'lname',
-                name: 'users.last_name'
-            },
-            {
-                data: "course",
-                name: "courses.course_code"
-            },
-            { data: "gwa_1st" },
-            { data: "gwa_2nd" },
-            {
-                data: "image",
-                searchable: false,
-                className: "text-center",
-            },
-            { data: "status", className: "text-center" },
-            {
-                data: "action",
-                orderable: false,
-                searchable: false,
-            },
-        ],
-    });
 
-    $("#status").change(function () {
-        table.draw();
-    });
+function refreshPage() {
+        location.reload();
+    }
+//Checkbox for multiple delete in yajra Datatable
+$(document).on('click', 'input[name="main_checkbox"]', function() {
+    if (this.checked) {
+        $('input[name="form_checkbox"]').each(function() {
+            this.checked = true;
+        });
+    } else {
+        $('input[name="form_checkbox"]').each(function() {
+            this.checked = false;
+        });
+    }
+    togglebulk_delete();
 });
-//Admin Filter Pending,Approved and Rejected overall
-$(function () {
-    var table = $(".table-data-overall").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/achievers-award/overall" ,
-            data: function (d) {
-                (d.status = $("#status").val());
-            },
-        },
-        columns: [{
-            data: 'studno',
-            name: 'users.stud_num'
-        },
-        {
-            data: 'fname',
-            name: 'users.first_name'
-        },
-        {
-            data: 'lname',
-            name: 'users.last_name'
-        },
-        {
-            data: "course",
-            name: "courses.course_code"
-        },
-        { data: "gwa_1st" },
-        { data: "gwa_2nd" },
-        {
-            data: "image",
-            searchable: false,
-            className: "text-center",
-        },
-        { data: "status", className: "text-center" },
-        {
-            data: "action",
-            orderable: false,
-            searchable: false,
-        },
-    ]
-    });
+$(document).on('change', 'input[name="form_checkbox"]', function() {
 
-    $("#status").change(function () {
-        table.draw();
-    });
+    if ($('input[name="form_checkbox"]').length == $(
+            'input[name="form_checkbox"]:checked').length) {
+        $('input[name="main_checkbox"]').prop('checked', true);
+    } else {
+        $('input[name="main_checkbox"]').prop('checked', false);
+    }
+    togglebulk_delete();
 });
-$(function () {
-    var course_id = document.getElementById("course_id").value;
-    var table = $(".table-data-dl").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/deans-list-award/" + course_id,
-            data: function (d) {
-                (d.status = $("#status").val()),
-                    (d.year = $("#year").val());
-            },
-        },
-        columns: [
-            {
-                data: 'studno',
-                name: 'users.stud_num',
-                className: "font-weight-bold",
-            },
-            {
-                data: 'fname',
-                name: 'users.first_name'
-            },
-            {
-                data: 'lname',
-                name: 'users.last_name'
-            },
-            {
-                data: "course",
-                name: "courses.course_code"
-            },
-            { data: "year_level" },
-            { data: "gwa_1st" },
-            { data: "gwa_2nd" },
-            {
-                data: "image",
-                searchable: false,
-                className: "text-center",
-            },
-            { data: "status", className: "text-center" },
-            {
-                data: "action",
-                orderable: false,
-                searchable: false,
-            },
-        ],
-    });
+function togglebulk_delete() {
+    if ($('input[name="form_checkbox"]:checked').length > 0) {
+        $('button#bulk_delete').text('Delete (' + $('input[name="form_checkbox"]:checked').length +
+                ')')
+            .removeClass('d-none');
+    } else {
+        $('button#bulk_delete').addClass('d-none');
+    }
+}
+//checkbox for multiple delete
+$(document).on('click', 'input[class="checkAll"]', function() {
+    if (this.checked) {
+        $('input[class="user-checkboxes"]').each(function() {
+            this.checked = true;
+        });
+    } else {
+        $('input[class="user-checkboxes"]').each(function() {
+            this.checked = false;
+        });
+    }
+    togglebulk_delete_plain_table();
+});
+$(document).on('change', 'input[class="user-checkboxes"]', function() {
 
-    $("#year,#status").change(function () {
-        table.draw();
-    });
+    if ($('input[class="user-checkboxes"]').length == $(
+            'input[class="user-checkboxes"]:checked').length) {
+        $('input[class="checkAll"]').prop('checked', true);
+    } else {
+        $('input[class="checkAll"]').prop('checked', false);
+    }
+    togglebulk_delete_plain_table();
 });
-//Admin Filter Pending,Approved and Rejected overall
-$(function () {
-    var table = $(".table-data-dl-overall").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/deans-list-award/overall" ,
-            data: function (d) {
-                (d.status = $("#status").val());
-            },
-        },
-        columns: [{
-            data: 'studno',
-            name: 'users.stud_num'
-        },
-        {
-            data: 'fname',
-            name: 'users.first_name'
-        },
-        {
-            data: 'lname',
-            name: 'users.last_name'
-        },
-        {
-            data: "course",
-            name: "courses.course_code"
-        },
-        { data: "year_level" },
-        { data: "gwa_1st" },
-        { data: "gwa_2nd" },
-        {
-            data: "image",
-            searchable: false,
-            className: "text-center",
-        },
-        { data: "status", className: "text-center" },
-        {
-            data: "action",
-            orderable: false,
-            searchable: false,
-        },
-    ]
-    });
-
-    $("#status").change(function () {
-        table.draw();
-    });
-});
-$(function () {
-    var course_id = document.getElementById("course_id").value;
-    var table = $(".table-data-pl").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/presidents-list-award/" + course_id,
-            data: function (d) {
-                (d.status = $("#status").val()),
-                    (d.year = $("#year_pl").val()),
-                    (d.search = $('input[type="search"]').val());
-            },
-        },
-        columns: [
-            {
-                data: 'studno',
-                name: 'users.stud_num',
-                className: "font-weight-bold",
-            },
-            {
-                data: 'fname',
-                name: 'users.first_name'
-            },
-            {
-                data: 'lname',
-                name: 'users.last_name'
-            },
-            {
-                data: "course",
-                name: "courses.course_code"
-            },
-            { data: "year_level" },
-            { data: "gwa_1st" },
-            { data: "gwa_2nd" },
-            {
-                data: "image",
-                searchable: false,
-                className: "text-center",
-            },
-            { data: "status", className: "text-center" },
-            {
-                data: "action",
-                orderable: false,
-                searchable: false,
-            },
-        ],
-    });
-
-    $("#year_pl,#status").change(function () {
-        table.draw();
-    });
-});
-//Admin Filter Pending,Approved and Rejected overall
-$(function () {
-    var table = $(".table-data-pl-overall").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/presidents-list-award/overall" ,
-            data: function (d) {
-                (d.status = $("#status").val());
-            },
-        },
-        columns: [{
-            data: 'studno',
-            name: 'users.stud_num'
-        },
-        {
-            data: 'fname',
-            name: 'users.first_name'
-        },
-        {
-            data: 'lname',
-            name: 'users.last_name'
-        },
-        {
-            data: "course",
-            name: "courses.course_code"
-        },
-        { data: "year_level" },
-        { data: "gwa_1st" },
-        { data: "gwa_2nd" },
-        {
-            data: "image",
-            searchable: false,
-            className: "text-center",
-        },
-        { data: "status", className: "text-center" },
-        {
-            data: "action",
-            orderable: false,
-            searchable: false,
-        },
-    ]
-    });
-
-    $("#status").change(function () {
-        table.draw();
-    });
-});
-$(function () {
-    var course_id = document.getElementById("course_id").value;
-    var table = $(".table-data-ae").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/academic-excellence-award/" + course_id,
-            data: function (d) {
-                (d.status = $("#status").val())
-            },
-        },
-        columns: [
-            {
-                data: 'studno',
-                name: 'users.stud_num'
-            },
-            {
-                data: 'fname',
-                name: 'users.first_name'
-            },
-            {
-                data: 'lname',
-                name: 'users.last_name'
-            },
-            {
-                data: "course",
-                name: "courses.course_code"
-            },
-            { data: "year_level" },
-            { data: "gwa" },
-            {
-                data: "image",
-                searchable: false,
-                className: "text-center",
-            },
-            { data: "status", className: "text-center" },
-            {
-                data: "action",
-                orderable: false,
-                searchable: false,
-            },
-        ],
-    });
-
-    $("#status").change(function () {
-        table.draw();
-    });
-});
-//Admin Filter Pending,Approved and Rejected overall
-$(function () {
-    var table = $(".table-data-ae-overall").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "/admin/academic-excellence-award/overall" ,
-            data: function (d) {
-                (d.status = $("#status").val())
-            },
-        },
-        columns: [
-            {
-                data: 'studno',
-                name: 'users.stud_num'
-            },
-            {
-                data: 'fname',
-                name: 'users.first_name'
-            },
-            {
-                data: 'lname',
-                name: 'users.last_name'
-            },
-            {
-                data: "course",
-                name: "courses.course_code"
-            },
-            { data: "year_level" },
-            { data: "gwa" },
-            {
-                data: "image",
-                searchable: false,
-                className: "text-center",
-            },
-            { data: "status", className: "text-center" },
-            {
-                data: "action",
-                orderable: false,
-                searchable: false,
-            },
-        ],
-    });
-
-    $("#status").change(function () {
-        table.draw();
-    });
-});
+function togglebulk_delete_plain_table() {
+    if ($('input[class="user-checkboxes"]:checked').length > 0) {
+        $('button#bulk_delete').text('Delete (' + $('input[class="user-checkboxes"]:checked').length +
+                ')')
+            .removeClass('d-none');
+    } else {
+        $('button#bulk_delete').addClass('d-none');
+    }
+}
 //Admin Print
 $(document).ready(function () {
     $(".view-accepted").click(function () {

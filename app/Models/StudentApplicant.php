@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentApplicant extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
@@ -34,5 +35,10 @@ class StudentApplicant extends Model implements Auditable
     public function grades()
     {
         return $this->belongsTo(Summary::class, 'user_id', 'user_id');
+    }
+
+    public function award()
+    {
+        return $this->belongsTo(AcadAward::class, 'award_applied', 'id');
     }
 }

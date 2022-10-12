@@ -78,4 +78,10 @@ class ImportController extends Controller
         $user->delete();
         return redirect('admin/import-csv')->with('success', 'CSV file deleted successfully');
     }
+
+    public function showParsed()
+    {
+        $data = SIS::all();
+        return view('admin.import-csv.parse-data', compact('data'));
+    }
 }

@@ -64,8 +64,8 @@
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
 
-        <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
         <script>

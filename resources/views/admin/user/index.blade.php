@@ -27,6 +27,24 @@
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" id="deleteModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Application Form</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="data-count">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="delbtn btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -47,19 +65,26 @@
                         <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
-                                    <th>User ID</th>
+                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
+                                    </th>
                                     <th>Username</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Action</th>
+                                    <th>Actions <br>
+                                        @can('user delete')
+                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                                All</button>
+                                        @endcan
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $key => $item)
                                     <tr>
-                                        <td class="font-weight-bold">{{ $item->stud_num }}</td>
+                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $item->id }}">
+                                        </td>
                                         <td>{{ $item->username }}</td>
                                         <td>{{ $item->first_name }}</td>
                                         <td>{{ $item->last_name }}</td>
@@ -103,6 +128,41 @@
                 $('#user_id').val(user_id)
                 $('#deleteModal').modal('show');
 
+            });
+            $('#bulk_delete').on('click', function() {
+                const chkstats = Array.prototype.slice.call(document.querySelectorAll('[data-id]:checked'));
+                let arr = chkstats.map(function(c) {
+                    return c.getAttribute('data-id');
+                });
+                var selectRowsCount = arr.length;
+                $('#data-count').text('Are you sure you want to delete the ' + selectRowsCount +
+                    ' user account?');
+                $('#deleteModal2').modal('show');
+
+                $(document).on('click', '.delbtn', function() {
+                    if (selectRowsCount > 0) {
+                        $.ajax({
+                            url: "{{ url('admin/bulk-delete-user') }}",
+                            type: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                    .attr('content')
+                            },
+                            data: {
+                                ids: arr
+                            },
+                            success: function(data) {
+                                if (data['success']) {
+                                    $('#deleteModal2').modal('hide');
+                                    toastr.success(data.success);
+                                    setInterval('refreshPage()', 1000);
+                                }
+                            },
+                        });
+                    } else {
+                        alert("Please select at least one user from list.");
+                    }
+                });
             });
         });
     </script>

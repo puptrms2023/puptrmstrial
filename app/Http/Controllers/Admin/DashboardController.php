@@ -16,6 +16,12 @@ class DashboardController extends Controller
 
     public function index()
     {
+        //analytics
+        $analytics_achiever = StudentApplicant::where('award_applied', '1')->count();
+        $analytics_deans = StudentApplicant::where('award_applied', '2')->count();
+        $analytics_presidents = StudentApplicant::where('award_applied', '3')->count();
+        $analytics_acadexcell = AcademicExcellence::where('award_applied', '4')->count();
+
         // Achiever's Award Drilldown
         $achiever = DB::table('courses')
             ->selectRaw('courses.course_code,COUNT(student_applicants.status) as total')
@@ -73,7 +79,6 @@ class DashboardController extends Controller
 
         $total_excellence = AcademicExcellence::where('award_applied', '4')->where('status', '1')->count();
 
-        return view('admin.dashboard', compact('achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence'));
+        return view('admin.dashboard', compact('analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence'));
     }
-
 }

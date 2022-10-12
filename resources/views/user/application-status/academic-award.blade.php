@@ -46,28 +46,15 @@
                                         <td>{{ $item->users->last_name }}</td>
                                         <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
-                                        <td>
-                                            @if ($item->award_applied == '1')
-                                                <span class="badge badge-danger">Achiever's Award</span>
-                                            @endif
-                                            @if ($item->award_applied == '2')
-                                                <span class="badge badge-info">Dean's List</span>
-                                            @endif
-                                            @if ($item->award_applied == '3')
-                                                <span class="badge badge-warning">President's List</span>
-                                            @endif
-                                            @if ($item->award_applied == '4')
-                                                <span class="badge badge-suceess">Academic Excellence</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $item->gwa_1st }}</td>
-                                        <td>{{ $item->gwa_2nd }}</td>
-                                        <td>{{ $item->gwa }}</td>
+                                        <td><span class="badge badge-info">{{ $item->award->name }}</span></td>
+                                        <td class="text-center">{{ $item->gwa_1st }}</td>
+                                        <td class="text-center">{{ $item->gwa_2nd }}</td>
+                                        <td class="text-center">{{ $item->gwa }}</td>
                                         <td>
                                             <img src="{{ asset('uploads/' . $item->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>
                                             @endif
@@ -75,7 +62,10 @@
                                                 <span class="badge badge-success">Approved</span>
                                             @endif
                                             @if ($item->status == '2')
-                                                <span class="badge badge-danger">Rejected</span>
+                                                <span class="badge badge-danger">Rejected</span><br>
+                                                <div class="small">
+                                                    <P>{{ $item->reason }}</p>
+                                                </div>
                                             @endif
                                         </td>
                                     </tr>

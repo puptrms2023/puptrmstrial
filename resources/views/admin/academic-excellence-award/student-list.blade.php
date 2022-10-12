@@ -131,7 +131,7 @@
 
         </tr>
         <tr>
-            <th style="text-align: left;"><b>Date Created:</b> {{ date('Y-m-d') }}</th>
+            <th style="text-align: left;"><b>Date Printed:</b> {{ date('Y-m-d') }}</th>
             <td></td>
         </tr>
     </table>

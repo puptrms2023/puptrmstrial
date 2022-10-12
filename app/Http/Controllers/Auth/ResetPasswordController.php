@@ -18,6 +18,10 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
+    protected function setUserPassword($user, $password)
+    {
+        $user->password = $password;
+    }
 
     use ResetsPasswords;
 

@@ -44,17 +44,13 @@
                                         <td>{{ $item->users->last_name }}</td>
                                         <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
-                                        <td>
-                                            @if ($item->award_applied == '4')
-                                                <span class="badge badge-success">Academic Excellence</span>
-                                            @endif
-                                        </td>
+                                        <td><span class="badge badge-success">{{ $item->award->name }}<span></td>
                                         <td>
                                             <img src="{{ asset('uploads/' . $item->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
-                                        <td>{{ $item->gwa }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $item->gwa }}</td>
+                                        <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>
                                             @endif
@@ -63,6 +59,9 @@
                                             @endif
                                             @if ($item->status == '2')
                                                 <span class="badge badge-danger">Rejected</span>
+                                                <div class="small">
+                                                    <P>{{ $item->reason }}</p>
+                                                </div>
                                             @endif
                                         </td>
                                     </tr>

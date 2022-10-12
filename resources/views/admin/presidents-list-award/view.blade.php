@@ -27,6 +27,24 @@
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" id="deleteModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Application Form</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="data-count">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="delbtn btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - President's
@@ -77,10 +95,10 @@
                         </select>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-data-pl" id="dataTable" width="100%"
-                            cellspacing="0">
+                        <table class="table table-bordered table-striped table-data-pl" width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
+                                    <th><input type="checkbox" name="main_checkbox"></th>
                                     <th>Student No.</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -90,7 +108,12 @@
                                     <th>2nd Sem GWA</th>
                                     <th class="text-center">Image</th>
                                     <th class="text-center">Status</th>
-                                    <th>Action</th>
+                                    <th>Actions <br>
+                                        @can('presidents list delete')
+                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                                All</button>
+                                        @endcan
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,12 +134,125 @@
 @section('scripts')
 
     <script>
-        $(document).ready(function() {
+        var table = $(".table-data-pl").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ url('admin/presidents-list-award/' . $courses->course_code) }}",
+                data: function(d) {
+                    (d.status = $("#status").val()),
+                    (d.year = $("#year").val());
+                },
+            },
+            columns: [{
+                    data: 'checkbox',
+                    name: 'checkbox',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'studno',
+                    name: 'users.stud_num',
+                    className: "font-weight-bold",
+                },
+                {
+                    data: 'fname',
+                    name: 'users.first_name'
+                },
+                {
+                    data: 'lname',
+                    name: 'users.last_name'
+                },
+                {
+                    data: "course",
+                    name: "courses.course_code"
+                },
+                {
+                    data: "year_level"
+                },
+                {
+                    data: "gwa_1st"
+                },
+                {
+                    data: "gwa_2nd"
+                },
+                {
+                    data: "image",
+                    searchable: false,
+                    className: "text-center",
+                },
+                {
+                    data: "status",
+                    className: "text-center"
+                },
+                {
+                    data: "action",
+                    orderable: false,
+                    searchable: false,
+                },
+            ],
+            'columnDefs': [{
+                'targets': 0,
+                'searchable': false,
+                'orderable': false
+            }],
+            'order': [
+                [1, 'asc']
+            ]
+        }).on('draw', function() {
+            $('input[name="form_checkbox"]').each(function() {
+                this.checked = false;
+            });
+            $('input[name="main_checkbox"]').prop('checked', false);
+            $('button#bulk_delete').addClass('d-none');
+        });
+
+        $("#year,#status").change(function() {
+            table.draw();
+        });
+
+        $(function() {
             $('body').on('click', '.deleteFormbtn', function() {
 
                 var app_form_id = $(this).data("id");
                 $('#form_id').val(app_form_id);
                 $('#deleteModal').modal('show');
+            });
+            $(document).on('click', '#bulk_delete', function() {
+
+                $('#data-count').text('Are you sure you want to delete the (' + $(
+                        'input[name="form_checkbox"]:checked')
+                    .length + ') submitted application form?');
+                $('#deleteModal2').modal('show');
+
+                $(document).on('click', '.delbtn', function() {
+                    var bulkID = [];
+                    $('input[name="form_checkbox"]:checked').each(function() {
+                        bulkID.push($(this).data('id'));
+                    });
+                    if (bulkID.length > 0) {
+                        var join_selected_values = bulkID.join(",");
+                        $.ajax({
+                            url: "{{ url('admin/presidents-list-award/' . $courses->course_code . '/bulk-delete-form') }}",
+                            type: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                    .attr('content')
+                            },
+                            data: "ids=" + join_selected_values,
+                            success: function(data) {
+                                if (data['success']) {
+                                    $('.table-data-pl').DataTable().ajax
+                                        .reload(null, true);
+                                    $('#deleteModal2').modal('hide');
+                                    toastr.success(data.success);
+                                }
+                            },
+                        });
+                    } else {
+                        alert("Please select atleast one checkbox");
+                    }
+                });
             });
         });
     </script>

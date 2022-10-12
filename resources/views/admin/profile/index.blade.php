@@ -15,10 +15,21 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="mb-3">
-                            <label class="small mb-1">Username</label>
-                            <input class="form-control" name="username" type="text" placeholder="Enter your username"
-                                value="{{ Auth::user()->username }}" required autofocus>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1">Username</label>
+                                <input class="form-control" name="username" type="text" placeholder="Enter your username"
+                                    value="{{ Auth::user()->username }}" required autofocus>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1">Email address</label>
+                                <input class="form-control" name="email" type="email"
+                                    placeholder="Enter your email address" value="{{ Auth::user()->email }}" required
+                                    autofocus>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                @endif
+                            </div>
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
@@ -45,35 +56,6 @@
                                 <input class="form-control js-phone" name="contact" type="text"
                                     placeholder="Enter your phone number" value="{{ substr(Auth::user()->contact, 3) }}"
                                     required autofocus>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="small mb-1">Email address</label>
-                            <input class="form-control" name="email" type="email" placeholder="Enter your email address"
-                                value="{{ Auth::user()->email }}" required autofocus>
-                            @if ($errors->has('email'))
-                                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1">Student Number</label>
-                                <input class="form-control" name="stud_num" type="text"
-                                    placeholder="Enter your user id or student number" value="{{ Auth::user()->stud_num }}"
-                                    onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1">Course</label>
-                                <select class="form-control" name="course_id" id="course_id" required>
-                                    @foreach ($course as $id => $item)
-                                        <option value="{{ $id }}"
-                                            {{ Auth::user()->course_id == $id ? 'selected' : '' }}>
-                                            {{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('course_id'))
-                                    <span class="text-danger text-left">{{ $errors->first('course_id') }}</span>
-                                @endif
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Update</button>

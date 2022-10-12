@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Courses;
 use App\Models\Summary;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicant;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\StudentApplicantStatus;
 
 class StudentApplicantsController extends Controller
 {
@@ -38,6 +42,9 @@ class StudentApplicantsController extends Controller
         if ($request->ajax()) {
 
             return DataTables::eloquent($model)
+                ->addColumn('checkbox', function (StudentApplicant $stud) {
+                    return '<input type="checkbox" name="form_checkbox" data-id="' . $stud['id'] . '">';
+                })
                 ->addColumn('studno', function (StudentApplicant $stud) {
                     return $stud->users->stud_num;
                 })
@@ -61,7 +68,7 @@ class StudentApplicantsController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('admin.achievers-award.action.buttons', compact('data'));
                 })
-                ->rawColumns(['image', 'status', 'action'])
+                ->rawColumns(['checkbox', 'image', 'status', 'action'])
                 ->make(true);
         }
 
@@ -106,7 +113,13 @@ class StudentApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
+        $award = $status->award_applied;
+
+        $users = User::where('id', $status->user_id)->get();
         $status->save();
+        if ($request->status == '1' || $request->status == '2') {
+            Notification::send($users, new StudentApplicantStatus($status->id, $request->status, $award));
+        }
         return redirect()->back()->with('success', 'The Application form updated successfully');
     }
 
@@ -159,6 +172,9 @@ class StudentApplicantsController extends Controller
                     $model->where('status', $request->get('status'))->get();
                 }
                 return DataTables::eloquent($model)
+                    ->addColumn('checkbox', function (StudentApplicant $stud) {
+                        return '<input type="checkbox" name="form_checkbox" data-id="' . $stud['id'] . '">';
+                    })
                     ->addColumn('studno', function (StudentApplicant $stud) {
                         return $stud->users->stud_num;
                     })
@@ -188,7 +204,7 @@ class StudentApplicantsController extends Controller
                     ->addColumn('action', function ($data) {
                         return view('admin.achievers-award.action.buttons', compact('data'));
                     })
-                    ->rawColumns(['image', 'status', 'action'])
+                    ->rawColumns(['checkbox', 'image', 'status', 'action'])
                     ->make(true);
             }
         }
@@ -206,5 +222,23 @@ class StudentApplicantsController extends Controller
         }
         $form->delete();
         return redirect()->back()->with('success', 'The Application form deleted successfully');
+    }
+
+    public function deleteAll(Request $request)
+    {
+        $bulk_user = explode(',', $request->ids);
+        foreach ($bulk_user as $id) {
+            $i = StudentApplicant::findOrFail($id);
+            $i->delete();
+            $currentPhoto = $i->image;
+
+            $path = public_path('uploads/') . $currentPhoto;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        return response()->json([
+            'success' => 'The Application form deleted successfully'
+        ]);
     }
 }

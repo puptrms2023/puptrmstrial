@@ -7,6 +7,7 @@ use App\Models\Courses;
 use Illuminate\Http\Request;
 use App\Rules\StrMustContain;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {

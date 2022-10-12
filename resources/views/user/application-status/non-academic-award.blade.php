@@ -35,17 +35,60 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($status as $item)
+                                @foreach ($status as $list)
                                     <tr>
-                                        <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
-                                        <td>{{ $item->users->first_name }}</td>
-                                        <td>{{ $item->users->last_name }}</td>
-                                        <td>{{ $item->courses->course_code }}</td>
-                                        <td>{{ $item->year_level }}</td>
-                                        <td> <span class="badge badge-success"> {{ $item->nonacad->name }}</span>
+                                        <td class="font-weight-bold">{{ $list->users->stud_num }}</td>
+                                        <td>{{ $list->users->first_name }}</td>
+                                        <td>{{ $list->users->last_name }}</td>
+                                        <td>{{ $list->courses->course_code }}</td>
+                                        <td>{{ $list->year_level }}</td>
+                                        <td>
+                                            @if ($list->nonacad_id == '1')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>School Organization: {{ $list->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '2')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Sport: {{ $list->sports }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '3')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Sport: {{ $list->sports }}<br>
+                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '4')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Subject Name: {{ $list->subject_name }}<br>
+                                                        Thesis Title: {{ $list->thesis_title }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '5')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>School Organization: {{ $list->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '6')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Designation Office: {{ $list->designated_office }}<br>
+                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($list->nonacad_id == '7')
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Competition Name: {{ $list->competition_name }}<br>
+                                                        Placements: {{ $list->placement }}<br>
+                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                </div>
+                                            @else
+                                                <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
+                                            @endif
                                         </td>
                                         <td>
-                                            <img src="{{ asset('uploads/' . $item->image) }}"
+                                            <img src="{{ asset('uploads/' . $list->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                     </tr>

@@ -240,3 +240,66 @@
     </div>
 
 @endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var award = document.getElementById('non');
+
+            if (award.value == "1") {
+                $("#organization").removeClass("hidden");
+                $("#organization").addClass("show");
+            } else {
+                $("#organization").removeClass("show");
+                $("#organization").addClass("hidden");
+            }
+            if (award.value == "2") {
+                $("#sports").removeClass("hidden");
+                $("#sports").addClass("show");
+            } else {
+                $("#sports").removeClass("show");
+                $("#sports").addClass("hidden");
+            }
+            if (award.value == "4") {
+                $("#subject_name").removeClass("hidden");
+                $("#subject_name").addClass("show");
+                $("#thesis").removeClass("hidden");
+                $("#thesis").addClass("show");
+            } else {
+                $("#subject_name").removeClass("show");
+                $("#subject_name").addClass("hidden");
+                $("#thesis").removeClass("show");
+                $("#thesis").addClass("hidden");
+            }
+            if (award.value == "6") {
+                $("#sa").removeClass("hidden");
+                $("#sa").addClass("show");
+            } else {
+                $("#sa").removeClass("show");
+                $("#sa").addClass("hidden");
+            }
+            if (award.value == "7") {
+                $("#outside").removeClass("hidden");
+                $("#outside").addClass("show");
+            } else {
+                $("#outside").removeClass("show");
+                $("#outside").addClass("hidden");
+            }
+            if (award.value == "1" || award.value == "3" || award.value == "5" || award.value == "6" || award
+                .value == "7") {
+                $("#organization").removeClass("hidden");
+                $("#organization").addClass("show");
+            } else {
+                $("#organization").removeClass("show");
+                $("#organization").addClass("hidden");
+            }
+            if (award.value == "2" || award.value == "3") {
+                $("#sports").removeClass("hidden");
+                $("#sports").addClass("show");
+            } else {
+                $("#sports").removeClass("show");
+                $("#sports").addClass("hidden");
+            }
+        });
+    </script>
+@endsection

@@ -45,6 +45,9 @@ class DLApplicantsController extends Controller
             }
 
             return DataTables::eloquent($model)
+                ->addColumn('checkbox', function (StudentApplicant $stud) {
+                    return '<input type="checkbox" name="form_checkbox" data-id="' . $stud['id'] . '">';
+                })
                 ->addColumn('studno', function (StudentApplicant $stud) {
                     return $stud->users->stud_num;
                 })
@@ -68,7 +71,7 @@ class DLApplicantsController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('admin.deans-list-award.action.buttons', compact('data'));
                 })
-                ->rawColumns(['image', 'status', 'action'])
+                ->rawColumns(['checkbox', 'image', 'status', 'action'])
                 ->make(true);
         }
 
@@ -187,6 +190,9 @@ class DLApplicantsController extends Controller
                     $model->where('status', $request->get('status'))->get();
                 }
                 return DataTables::eloquent($model)
+                    ->addColumn('checkbox', function (StudentApplicant $stud) {
+                        return '<input type="checkbox" name="form_checkbox" data-id="' . $stud['id'] . '">';
+                    })
                     ->addColumn('studno', function (StudentApplicant $stud) {
                         return $stud->users->stud_num;
                     })
@@ -216,7 +222,7 @@ class DLApplicantsController extends Controller
                     ->addColumn('action', function ($data) {
                         return view('admin.deans-list-award.action.buttons', compact('data'));
                     })
-                    ->rawColumns(['image', 'status', 'action'])
+                    ->rawColumns(['checkbox', 'image', 'status', 'action'])
                     ->make(true);
             }
         }
@@ -234,5 +240,23 @@ class DLApplicantsController extends Controller
         }
         $form->delete();
         return redirect()->back()->with('success', 'The Application form deleted successfully');
+    }
+
+    public function deleteAll(Request $request)
+    {
+        $bulk_user = explode(',', $request->ids);
+        foreach ($bulk_user as $id) {
+            $i = StudentApplicant::findOrFail($id);
+            $i->delete();
+            $currentPhoto = $i->image;
+
+            $path = public_path('uploads/') . $currentPhoto;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        return response()->json([
+            'success' => 'The Application form deleted successfully'
+        ]);
     }
 }

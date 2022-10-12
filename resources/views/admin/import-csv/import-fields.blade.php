@@ -19,7 +19,8 @@
 
                         <input type="hidden" name="csv_data_file_id" value="{{ $csv_data_file->id }}" />
 
-                        <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-responsive table-sm" id="dataTable" width="100%"
+                            cellspacing="0">
                             @if (isset($headings))
                                 <thead>
                                     <tr>

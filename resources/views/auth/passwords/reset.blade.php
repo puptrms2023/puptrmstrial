@@ -25,9 +25,33 @@
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/img/favicon-16x16.png') }}">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background-image: url('../../admin/img/bgimage-login.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #999;
+
+        }
+
+        div,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: exo, sans-serif;
+
+        }
+    </style>
 </head>
 
-<body class="bg-image" style="background-image: url('../../admin/img/bgimage-login.jpg'); ">
+<body class="bg-image">
 
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">

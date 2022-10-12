@@ -29,7 +29,7 @@ class ChangePassController extends Controller
             'new_confirm_password' => ['same:new_password'],
         ]);
 
-        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+        User::find(auth()->user()->id)->update(['password' => $request->new_password]);
 
         return redirect('user/change-password')->with('success', 'Password change successfully.');
     }

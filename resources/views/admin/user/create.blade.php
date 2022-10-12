@@ -73,31 +73,6 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1">User ID</label>
-                                <input class="form-control" name="stud_num" type="text"
-                                    placeholder="Enter your user id or student number" value="{{ old('stud_num') }}"
-                                    onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
-                                @if ($errors->has('stud_num'))
-                                    <span class="text-danger text-left">{{ $errors->first('stud_num') }}</span>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="small mb-1">Course</label>
-                                <select class="form-control" name="course_id" id="course_id" required>
-                                    @foreach ($course as $id => $item)
-                                        <option value="{{ $id }}"
-                                            {{ old('course_id') == $id ? 'selected' : '' }}>
-                                            {{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('course_id'))
-                                    <span class="text-danger text-left">{{ $errors->first('course_id') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
                                 <label class="small mb-1">Password</label>
                                 <input class="form-control" name="password" type="password" placeholder="Enter new password"
                                     value="{{ old('password') }}" required>

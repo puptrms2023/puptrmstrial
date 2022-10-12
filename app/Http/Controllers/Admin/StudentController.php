@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Rules\StrMustContain;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
+use App\Models\AcademicExcellence;
+use App\Models\NonAcadAward;
+use App\Models\NonAcademicApplicant;
 use App\Models\StudentApplicant;
 
 class StudentController extends Controller
@@ -34,8 +37,10 @@ class StudentController extends Controller
     public function show($id)
     {
         $students = User::find($id);
-        $application = StudentApplicant::where('user_id', $id)->get();
-        return view('admin.students.show', compact('students', 'application'));
+        $academic = StudentApplicant::where('user_id', $id)->paginate(5);
+        $excellence = AcademicExcellence::where('user_id', $id)->paginate(5);
+        $non_acad = NonAcademicApplicant::where('user_id', $id)->paginate(5);
+        return view('admin.students.show', compact('students', 'academic', 'excellence', 'non_acad'));
     }
 
     public function update(Request $request, $id)
@@ -71,5 +76,14 @@ class StudentController extends Controller
         $user = User::find($request->user_delete_id);
         $user->delete();
         return redirect('admin/students')->with('success', 'Student deleted successfully');
+    }
+
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        User::whereIn('id', $ids)->delete();
+        return response()->json([
+            'success' => 'Student deleted successfully'
+        ]);
     }
 }

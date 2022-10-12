@@ -61,15 +61,15 @@
         {{-- calendar --}}
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
-        <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         {{-- charts --}}
-        <script src="{{ asset('admin/vendor/highchart/highcharts.js') }}"></script>
-        <script src="{{ asset('admin/vendor/highchart/data.js') }}"></script>
-        <script src="{{ asset('admin/vendor/highchart/drilldown.js') }}"></script>
-        <script src="{{ asset('admin/vendor/highchart/exporting.js') }}"></script>
-        <script src="{{ asset('admin/vendor/highchart/export-data.js') }}"></script>
-        <script src="{{ asset('admin/vendor/highchart/accessibility.js') }}"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
         <script>
             $(document).ready(function() {

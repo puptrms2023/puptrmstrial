@@ -12,57 +12,88 @@
             </div>
         @endif
     </div>
-    <!-- Content Row -->
     <div class="row">
-        <div class="col-xl-4 col-md-6 mb-4">
-            <a class="card lift h-100" href="{{ url('admin/achievers-award') }}">
-                <div class="card-body border-left-danger d-flex justify-content-center flex-column">
-                    <div class="row no-gutters align-items-center text-center">
+
+        <!-- Total Achiever's Award Applicants -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-danger text-uppercase mb-1 ">
-                                Achiever's Award Applications</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">First year students</div>
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Total Achiever's Award Applicants</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_achiever }}</div>
                         </div>
-                        <div class="col-12">
-                            <i class="fas fa-solid fa-award fa-2x text-danger"></i>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
-            <a class="card lift h-100" href="{{ url('admin/deans-list-award') }}">
-                <div class="card-body border-left-info d-flex justify-content-center flex-column">
-                    <div class="row no-gutters align-items-center text-center">
+
+        <!-- Total Dean's List Applicants -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-info text-uppercase mb-1 ">
-                                Dean's List Applications</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Second to Fourth year students</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Total Dean's List Applicants</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_deans }}</div>
                         </div>
-                        <div class="col-12">
-                            <i class="fas fa-solid fa-award fa-2x text-info"></i>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
-            <a class="card lift h-100" href="{{ url('admin/presidents-list-award') }}">
-                <div class="card-body border-left-success d-flex justify-content-center flex-column">
-                    <div class="row no-gutters align-items-center text-center">
+
+        <!-- Total President's List Applicants -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-success text-uppercase mb-1 ">
-                                President's List Applications</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Second to Fourth year students</div>
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total President's List
+                                Applicants
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $analytics_presidents }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <i class="fas fa-solid fa-award fa-2x text-success"></i>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
+        </div>
+
+        <!-- Total Academic Excellence -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Total Academic Excellence</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_acadexcell }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Content Row -->
     <div class="row mt-4 mb-4">
         <figure class="highcharts-figure">
             <div id="container"></div>

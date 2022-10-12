@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\AcademicExcellence;
-use App\Models\NonAcademicApplicant;
 use App\Models\StudentApplicant;
+use App\Models\AcademicExcellence;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\NonAcademicApplicant;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationStatusController extends Controller
@@ -25,4 +26,5 @@ class ApplicationStatusController extends Controller
         $status = NonAcademicApplicant::where('user_id', Auth::id())->get();
         return view('user.application-status.non-academic-award', compact('status'));
     }
+
 }
