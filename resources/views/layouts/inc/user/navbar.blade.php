@@ -30,13 +30,13 @@
                     Notifications({{ Auth::user()->unreadNotifications->count() }})
                     <a href="{{ url('user/preview') }}" class="float-right text-white">Mark all as read</a>
                 </h6>
-                @foreach (Auth::user()->unreadNotifications as $notification)
+                @foreach (Auth::user()->unreadNotifications->take(4) as $notification)
                     @if ($notification->data['award'] == '4')
                         <a class="dropdown-item d-flex align-items-center"
-                            href="{{ url('user/preview/academic-excellence/' . $notification->data['form_id']) }}">
+                            href="{{ url('user/preview/academic-excellence/' . $notification->id) }}">
                         @else
                             <a class="dropdown-item d-flex align-items-center"
-                                href="{{ url('user/preview/academic-award/' . $notification->data['form_id']) }}">
+                                href="{{ url('user/preview/academic-award/' . $notification->id) }}">
                     @endif
 
                     <div class="mr-3">

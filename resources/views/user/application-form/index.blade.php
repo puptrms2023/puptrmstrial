@@ -75,7 +75,7 @@
                             <label for="" class="font-weight-bold">School Year</label>
                             <span class="text-danger">*</span>
                             <select class="custom-select" name="school_year">
-                                <option value="2022-2023">2022-2023</option>
+                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
                             </select>
                         </div>
                     </div>

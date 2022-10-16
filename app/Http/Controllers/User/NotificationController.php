@@ -20,7 +20,7 @@ class NotificationController extends Controller
     public function showAA($id)
     {
         $status = StudentApplicant::where('user_id', Auth::id())->get();
-        $getid = DB::table('notifications')->where('data->form_id', $id)->pluck('id');
+        $getid = DB::table('notifications')->where('id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getid)->update(['read_at' => now()]);
 
         return view('user.application-status.academic-award', compact('status'));
@@ -28,7 +28,7 @@ class NotificationController extends Controller
     public function showAE($id)
     {
         $status = AcademicExcellence::where('user_id', Auth::id())->get();
-        $getid = DB::table('notifications')->where('data->form_id', $id)->pluck('id');
+        $getid = DB::table('notifications')->where('id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getid)->update(['read_at' => now()]);
 
         return view('user.application-status.academic-excellence', compact('status'));
@@ -36,7 +36,7 @@ class NotificationController extends Controller
     public function showNA($id)
     {
         $status = NonAcademicApplicant::where('user_id', Auth::id())->get();
-        $getid = DB::table('notifications')->where('data->form_id', $id)->pluck('id');
+        $getid = DB::table('notifications')->where('id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getid)->update(['read_at' => now()]);
 
         return view('user.application-status.non-academic-award', compact('status'));
@@ -51,10 +51,18 @@ class NotificationController extends Controller
         return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        // dd($id);
-        DB::table('notifications')->where('data->form_id', $id)->delete();
+        DB::table('notifications')->where('id', $request->notify_delete_id)->delete();
         return redirect()->back()->with('success', 'Notification deleted successfully');
+    }
+
+    public function destroyAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table('notifications')->whereIn('id', $ids)->delete();
+        return response()->json([
+            'success' => 'Notification deleted successfully'
+        ]);
     }
 }

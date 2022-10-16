@@ -13,15 +13,17 @@ class CertEmail extends Mailable
     use Queueable, SerializesModels;
     public $data;
     public $studno;
+    public $sig;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data, $studno)
+    public function __construct($data, $studno, $sig)
     {
         $this->data = $data;
         $this->studno = $studno;
+        $this->sig = $sig;
     }
 
     /**
@@ -33,7 +35,7 @@ class CertEmail extends Mailable
     {
         $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($this->studno));
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('admin.send-awardees-certificates.certificate', $this->data, array('qrcode' => $qrcode));
+        $pdf->loadView('admin.send-awardees-certificates.certificate', $this->data, array('qrcode' => $qrcode), $this->sig);
         $pdf->setPaper('A4', 'landscape');
 
         return $this->from('info@gmail.com', 'Mailtrap')

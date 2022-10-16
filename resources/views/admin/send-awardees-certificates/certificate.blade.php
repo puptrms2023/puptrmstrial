@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dean's List Certificate</title>
+    <title>Certificate</title>
     <style type="text/css">
         * {
             margin: 0;
@@ -87,26 +87,42 @@
             {{ $fname . ' ' . $mname . ' ' . $lname }}
         @endif
     </div>
-    <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>
-        a General Weighted Average of {{ $gwa }} qualified for the Achiever's Award for the S.Y.
-        {{ $sy }}.
+    <div class="description">
+        @if ($award == '1' || $award == '2' || $award == '3' || $award == '4')
+            for the remarkable performance in this institution, receiving the<br>
+            {{ $award_name }} in the S.Y. {{ $sy }}.
+        @elseif ($award == '5' || $award == '6')
+            for the remarkable service and performance<br>
+            in the institution for the Academic Year {{ $sy }}.
+        @elseif ($award == '7')
+            for the representing the institution/organization on the Academic Year {{ $sy }}.
+        @elseif ($award == '8' || $award == '9')
+            for the remarkable performance and outstanding participation in<br>
+            the {{ $award_name }} for the <br> Academic Year {{ $sy }}.
+        @else
+            for the remarkable academic performance as a student of this institution for obtaning<br>
+            a General Weighted Average of {{ $gwa }} qualified for the {{ $award_name }} for the S.Y.
+            {{ $sy }}.
+        @endif
     </div>
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
     <table class="table2">
-        <tr>
-            <td width="21%">
-                <b>Mr. Mhel P. Garcia</b><br>
-                Branch Registrar
-            </td>
-            <td width="21%">
-                <b>Mr. Israel G. Ortega</b><br>
-                Overall Chair-Recognition 2022
-            </td>
-            <td width="21%">
-                <b>Ms. Bernadette I. Canlas</b><br>
-                Head of Student Services
-            </td>
-        </tr>
+        @foreach ($sig as $item)
+            <tr>
+                <td width="21%">
+                    <b>{{ $item['name'] }}</b><br>
+                    Branch Registrar
+                </td>
+                <td width="21%">
+                    <b>Mr. Israel G. Ortega</b><br>
+                    Overall Chair-Recognition 2022
+                </td>
+                <td width="21%">
+                    <b>Ms. Bernadette I. Canlas</b><br>
+                    Head of Student Services
+                </td>
+            </tr>
+        @endforeach
     </table>
     <table class="table2">
         <tr>
@@ -116,6 +132,7 @@
             </td>
         </tr>
     </table>
+    {{-- {{ getSignature() }} --}}
     <footer>
         <div class="qr">
             <img src="data:image/png;base64, {!! $qrcode !!}" width="25%" alt="">

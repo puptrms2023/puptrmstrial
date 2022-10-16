@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'View Non Academic Applicants')
+
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">
         <div class="modal-dialog">

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'User Profile')
+
 @section('content')
     <div class="row">
         <div class="col-xl-9">

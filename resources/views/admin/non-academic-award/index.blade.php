@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View President\'s Lister')
+@section('title', 'Non Academic Applicants')
 
 @section('content')
 

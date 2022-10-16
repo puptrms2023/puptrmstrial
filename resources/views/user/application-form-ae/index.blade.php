@@ -76,7 +76,7 @@
                             <label for="" class="font-weight-bold">School Year</label>
                             <span class="text-danger">*</span>
                             <select class="custom-select" name="school_year">
-                                <option value="2022-2023">2022-2023</option>
+                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
                             </select>
                         </div>
                     </div>
@@ -716,81 +716,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $("#add_btn8").on("click", function() {
-                var html = "";
-                html += "<tr>";
-                html +=
-                    '<td><input type="text" name="subjects8[]" class="form-control" required></td>';
-                html +=
-                    '<td><input type="text" name="units8[]" class="form-control units8 multi8" id="units8" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
-                html +=
-                    '<td><input type="text" name="grades8[]" class="form-control grades8 multi8" id="grades8" onkeypress="return isFloatNumber(this,event)" required></td>';
-                html +=
-                    '<td><button type="button" class="btn btn-secondary" id="remove8"><i class="fa-solid fa-circle-minus"></i></button></td>';
-                html +=
-                    '<td style="display:none"><input type="text" name="total8[]" class="form-control total8" id="total8" readonly></td>';
-                html += "</tr>";
-                $("#calculation8").append(html);
-            });
-        });
-
-        $(document).on("click", "#remove8", function() {
-            $(this).closest("tr").remove();
-            grandTotal8();
-            totalUnits8();
-            getGWA8();
-        });
-
-        $(document).ready(function() {
-            $("#calculation8").on("input", ".multi8", function() {
-                var parent8 = $(this).closest("tr");
-                var unit = $(parent8).find("#units8").val();
-                var grade = $(parent8).find("#grades8").val();
-
-                $(parent8)
-                    .find("#total8")
-                    .val(unit * grade);
-                grandTotal8();
-                totalUnits8();
-                getGWA8();
-            });
-        });
-
-        function grandTotal8() {
-            var total_avg8 = 0;
-            $(".total8").each(function() {
-                total_avg8 += Number($(this).val());
-            });
-            document.getElementById("weight8").value = isNaN(total_avg8) ?
-                "0.00" :
-                total_avg8.toFixed(2);
-        }
-
-        function totalUnits8() {
-            var total_units = 0;
-
-            $(".units8").each(function() {
-                total_units += parseFloat($(this).val());
-            });
-            document.getElementById("totalUnits8").value = total_units;
-            document.getElementById("totalUnit8").innerHTML = isNaN(total_units) ?
-                "0" :
-                total_units.toFixed(2);
-        }
-
-        function getGWA8() {
-            var total_units = $("#totalUnits8").val();
-            var weight = $("#weight8").val();
-            var gwa = weight / total_units;
-
-            document.getElementById("gwa8").value = isNaN(gwa) ?
-                "0.00" :
-                gwa.toFixed(2);
-        }
-    </script>
 @endsection

@@ -7,13 +7,8 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="mb-2">
-                <p class="lead text-gray-800">Content</p>
-                <p class="mb-4">The <b>PUPT Recognition Management System (PUPT-RMS)</b> strives to establish a systematic
-                    process
-                    for recording, evaluating and verifying student awardees' information for university awarding and
-                    recognition pursuance. Thus, the project is particularly notable to the involved population in the
-                    institution
-                    Students.</p>
+                <div class="lead text-gray-800 mb-2">{{ $about->title }}</div>
+                <div class="mb-4">{!! $about->description !!}</div>
             </div>
         </div>
     </div>

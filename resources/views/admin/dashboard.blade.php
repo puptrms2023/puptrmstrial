@@ -105,6 +105,7 @@
 @section('scripts')
 
     <script>
+        var academic_year = '{{ $year }}';
         var achiever = @json($achiever);
         const output_achiever = achiever.map(({
             course_code,
@@ -140,7 +141,7 @@
             },
             title: {
                 align: 'left',
-                text: 'Awardees in School Year 2022-2023'
+                text: 'Awardees in Academic Year ' + academic_year
             },
             subtitle: {
                 align: 'left'

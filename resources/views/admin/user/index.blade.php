@@ -31,7 +31,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Delete User</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,7 +83,8 @@
                             <tbody>
                                 @foreach ($users as $key => $item)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $item->id }}">
+                                        <td class="text-center"><input type="checkbox" class="user-checkboxes"
+                                                data-id="{{ $item->id }}">
                                         </td>
                                         <td>{{ $item->username }}</td>
                                         <td>{{ $item->first_name }}</td>

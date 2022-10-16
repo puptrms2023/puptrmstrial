@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create User')
+@section('title', 'Show Photo')
 
 @section('content')
 

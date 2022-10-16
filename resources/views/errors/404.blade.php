@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>404 HTML Template by Colorlib</title>
+    <title>404</title>
 
     <link href="https://fonts.googleapis.com/css?family=Kanit:200" rel="stylesheet">
 

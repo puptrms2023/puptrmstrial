@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Academic Award Application Form</div>
+        <div class="h3 mb-0 text-gray-800">Non Academic Award Applicant</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -69,7 +69,7 @@
                             <label for="" class="font-weight-bold">School Year</label>
                             <span class="text-danger">*</span>
                             <select class="custom-select" name="school_year">
-                                <option value="2022-2023">2022-2023</option>
+                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
                             </select>
                         </div>
                     </div>

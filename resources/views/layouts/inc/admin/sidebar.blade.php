@@ -2,9 +2,10 @@
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_home_page">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
+            <img src="{{ asset('admin/img/' . getLogo()) }}" width="43px" height="41px"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">PUPT RMS</div>
+        <div class="sidebar-brand-text mx-3">{{ getSystemAcronym() }}</div>
+
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -28,6 +29,27 @@
             </a>
         </li>
     @endcan
+    <li class="nav-item {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'active' : '' }}">
+        <a class="nav-link {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? '' : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#csvPages" aria-expanded="true" aria-controls="csvPages">
+            <i class="fa-solid fa-file-csv"></i>
+            <span>CSV</span>
+        </a>
+        <div id="csvPages"
+            class="collapse {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                @can('csv list')
+                    <a class="collapse-item {{ Request::is('admin/import-csv') ? 'active' : '' }}"
+                        href="{{ url('admin/import-csv') }}">Import CSV</a>
+                @endcan
+                @can('parse list')
+                    <a class="collapse-item {{ Request::is('admin/parse-data') ? 'active' : '' }}"
+                        href="{{ url('admin/parse-data') }}">Parse Data</a>
+                @endcan
+            </div>
+        </div>
+    </li>
     @can('menu academic awards')
         <li
             class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}">
@@ -61,17 +83,11 @@
             </div>
         </li>
     @endcan
-    <li class="nav-item {{ Request::is('admin/non-academic-award') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="{{ url('admin/non-academic-award') }}">
-            <i class="fas fa-award"></i>
-            <span>Non Academic Award</span>
-        </a>
-    </li>
-    @can('csv list')
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ url('admin/import-csv') }}">
-                <i class="fa-solid fa-file-csv"></i>
-                <span>Import CSV</span>
+    @can('non-acad excellence list')
+        <li class="nav-item {{ Request::is('admin/non-academic-award') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="{{ url('admin/non-academic-award') }}">
+                <i class="fas fa-award"></i>
+                <span>Non Academic Awards</span>
             </a>
         </li>
     @endcan
@@ -80,13 +96,15 @@
             class="nav-item {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
             Request::is('admin/send-awardees-certificates/deans-list-award') ||
             Request::is('admin/send-awardees-certificates/presidents-list-award') ||
-            Request::is('admin/send-awardees-certificates/academic-excellence-award')
+            Request::is('admin/send-awardees-certificates/academic-excellence-award') ||
+            Request::is('admin/send-awardees-certificates/non-academic-award')
                 ? 'active'
                 : '' }}">
             <a class="nav-link collapsed {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
             Request::is('admin/send-awardees-certificates/deans-list-award') ||
             Request::is('admin/send-awardees-certificates/presidents-list-award') ||
-            Request::is('admin/send-awardees-certificates/academic-excellence-award')
+            Request::is('admin/send-awardees-certificates/academic-excellence-award') ||
+            Request::is('admin/send-awardees-certificates/non-academic-award')
                 ? ''
                 : 'collapsed' }}"
                 href="#" data-toggle="collapse" data-target="#sendCertificatePages" aria-expanded="true"
@@ -98,26 +116,29 @@
                 class="collapse {{ Request::is('admin/send-awardees-certificates/achievers-award') ||
                 Request::is('admin/send-awardees-certificates/deans-list-award') ||
                 Request::is('admin/send-awardees-certificates/presidents-list-award') ||
-                Request::is('admin/send-awardees-certificates/academic-excellence-award')
+                Request::is('admin/send-awardees-certificates/academic-excellence-award') ||
+                Request::is('admin/send-awardees-certificates/non-academic-award')
                     ? 'show'
                     : '' }}"
                 aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item"
-                        {{ Request::is('admin/send-awardees-certificates/achievers-award') ? 'active' : '' }}
+                    <a class="collapse-item
+                        {{ Request::is('admin/send-awardees-certificates/achievers-award') ? 'active' : '' }}"
                         href="{{ url('admin/send-awardees-certificates/achievers-award') }}">Achiever's Award</a>
-                    <a class="collapse-item"
-                        {{ Request::is('admin/send-awardees-certificates/deans-list-award') ? 'active' : '' }}
+                    <a class="collapse-item
+                        {{ Request::is('admin/send-awardees-certificates/deans-list-award') ? 'active' : '' }}"
                         href="{{ url('admin/send-awardees-certificates/deans-list-award') }}">Dean's
                         List</a>
-                    <a class="collapse-item"
-                        {{ Request::is('admin/send-awardees-certificates/presidents-list-award') ? 'active' : '' }}
+                    <a class="collapse-item
+                        {{ Request::is('admin/send-awardees-certificates/presidents-list-award') ? 'active' : '' }}"
                         href="{{ url('admin/send-awardees-certificates/presidents-list-award') }}">President's List</a>
-                    <a class="collapse-item"
-                        {{ Request::is('admin/send-awardees-certificates/academic-excellence-award') ? 'active' : '' }}
+                    <a class="collapse-item
+                        {{ Request::is('admin/send-awardees-certificates/academic-excellence-award') ? 'active' : '' }}"
                         href="{{ url('admin/send-awardees-certificates/academic-excellence-award') }}">Academic
                         Excellence</a>
-                    <a class="collapse-item" href="">Non-Academic Excellence</a>
+                    <a class="collapse-item
+                        {{ Request::is('admin/send-awardees-certificates/non-academic-award') ? 'active' : '' }}"
+                        href={{ url('admin/send-awardees-certificates/non-academic-award') }}>Non-Academic Excellence</a>
                 </div>
             </div>
         </li>
@@ -130,9 +151,9 @@
         </a>
         <div id="modulePages" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="">Modules</a>
-                <a class="collapse-item" href="">Permissions Type</a>
-                <a class="collapse-item" href="">Permissions</a>
+                <a class="collapse-item" href="{{ url('admin/maintenance/courses') }}">Course</a>
+                <a class="collapse-item" href="{{ url('admin/maintenance/about') }}">About</a>
+                <a class="collapse-item" href="{{ url('admin/maintenance/signatures') }}">Signature</a>
             </div>
         </div>
     </li>
@@ -143,7 +164,7 @@
                 href="#" data-toggle="collapse" data-target="#utilitiesPges" aria-expanded="true"
                 aria-controls="utilitiesPges">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+                <span>User Management</span>
             </a>
             <div id="utilitiesPges"
                 class="collapse {{ Request::is('admin/roles') ||

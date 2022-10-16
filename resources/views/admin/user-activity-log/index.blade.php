@@ -3,11 +3,34 @@
 @section('title', 'View Activity Log')
 
 @section('content')
+    <div class="modal" tabindex="-1" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Activity Log</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/delete-log') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete the activity log?</p>
+                        <input type="hidden" name="log_delete_id" id="log_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="modal" tabindex="-1" id="deleteModal2">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Delete Activity Log</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -36,13 +59,12 @@
                                 <tr>
                                     <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
                                     </th>
-                                    <th>Date</th>
+                                    <th>Changed Date</th>
                                     <th>Model</th>
-                                    <th>User ID</th>
-                                    <th>Event</th>
+                                    <th>Changed By</th>
                                     <th>URL</th>
-                                    <th>Ip Address</th>
-                                    <th>Audit User</th>
+                                    <th>Record</th>
+                                    <th>Operation</th>
                                     <th>Actions <br>
                                         @can('student delete')
                                             <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
@@ -56,9 +78,13 @@
                                     <tr>
                                         <td><input type="checkbox" class="user-checkboxes" data-id="{{ $act->id }}">
                                         </td>
-                                        <td class="font-weight-bold">{{ $act->created_at }}</td>
-                                        <td>{{ $act->auditable_type }}</td>
+
+                                        <td class="font-weight-bold">
+                                            {{ \Carbon\Carbon::parse($act->created_at)->format('F d, Y h:i a ') }}</td>
+                                        <td>{{ substr($act->auditable_type, 11) }}</td>
                                         <td>{{ $act->user_id }}</td>
+                                        <td>{{ $act->url }}</td>
+                                        <td>{{ $act->auditable_id }}</td>
                                         <td>
                                             @if ($act->event == 'updated')
                                                 <span class="badge badge-warning">UPDATE</span>
@@ -70,9 +96,12 @@
                                                 <span class="badge badge-danger">DELETE</span>
                                             @endif
                                         </td>
-                                        <td>{{ $act->url }}</td>
-                                        <td>{{ $act->ip_address }}</td>
-                                        <td>{{ $act->auditable_id }}</td>
+                                        <td>
+                                            @can('user delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
+                                                    value="{{ $act->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -86,6 +115,14 @@
 
 @section('scripts')
     <script>
+        $('.deleteUserbtn').click(function(e) {
+            e.preventDefault();
+
+            var log_id = $(this).val();
+            $('#log_id').val(log_id)
+            $('#deleteModal').modal('show');
+
+        });
         $('#bulk_delete').on('click', function() {
             const chkstats = Array.prototype.slice.call(document.querySelectorAll('[data-id]:checked'));
             let arr = chkstats.map(function(c) {

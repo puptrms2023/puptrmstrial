@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create User')
+@section('title', 'Edit Gallery')
 
 @section('content')
 
@@ -9,7 +9,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Edit Gallery
-                        <a href="{{ url('admin/galleries/show/'.$gallery->id) }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        <a href="{{ url('admin/galleries/show/' . $gallery->id) }}"
+                            class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">

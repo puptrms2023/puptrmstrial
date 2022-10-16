@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', $courses->course)
-
 @section('content')
     <div class="d-sm-flex align-awardees-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Academic Excellence Awardees</div>
@@ -35,8 +33,8 @@
                 <input type="hidden" value="{{ $courses->course_code }}" id="course_id">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-cert" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="text-primary">
                                 <tr>
                                     <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
                                     </th>
@@ -52,7 +50,7 @@
                             <tbody>
                                 @foreach ($awardees as $awardee)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" name="users[]"
+                                        <td><input type="checkbox" class="email-checkboxes" name="users[]"
                                                 value="{{ $awardee->id }}"></td>
 
                                         <td>{{ $awardee->users->last_name }}</td>
@@ -92,10 +90,10 @@
         });
         $(".send-email-ae").click(function() {
             var course_id = document.getElementById("course_id").value;
-            var selectRowsCount = $("input[class='user-checkboxes']:checked").length;
+            var selectRowsCount = $("input[class='email-checkboxes']:checked").length;
             if (selectRowsCount > 0) {
 
-                var ids = $.map($("input[class='user-checkboxes']:checked"), function(c) {
+                var ids = $.map($("input[class='email-checkboxes']:checked"), function(c) {
                     return c.value;
                 });
 

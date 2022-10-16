@@ -94,26 +94,24 @@
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
     <table class="table2">
         <tr>
-            <td width="21%">
-                <b>Mr. Mhel P. Garcia</b><br>
-                Branch Registrar
-            </td>
-            <td width="21%">
-                <b>Mr. Israel G. Ortega</b><br>
-                Overall Chair-Recognition 2022
-            </td>
-            <td width="21%">
-                <b>Ms. Bernadette I. Canlas</b><br>
-                Head of Student Services
-            </td>
+            @foreach ($sig->take(3) as $item)
+                <td width="21%">
+                    <b>{{ $item->name }}</b><br>
+                    {{ $item->position }}
+                </td>
+            @endforeach
         </tr>
     </table>
     <table class="table2">
         <tr>
-            <td>
-                <b>Marissa B. Ferrer, DEM, RPsy</b><br>
-                Branch Director
-            </td>
+            @foreach ($sig as $item)
+                @if ($loop->last)
+                    <td>
+                        <b>{{ $item->name }}</b><br>
+                        {{ $item->position }}
+                    </td>
+                @endif
+            @endforeach
         </tr>
     </table>
     <footer>

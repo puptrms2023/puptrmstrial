@@ -49,7 +49,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('/bulk-delete-student', 'deleteAll');
     });
     //Roles
-    Route::controller(App\Http\Controllers\Admin\RoleController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Role\RoleController::class)->group(function () {
         Route::get('/roles', 'index');
         Route::get('/roles/create', 'create');
         Route::post('/roles', 'store');
@@ -58,7 +58,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/delete-role', 'destroy');
     });
     //Achievers Award Applicants
-    Route::controller(App\Http\Controllers\Admin\StudentApplicantsController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Applicant\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
         Route::get('/achievers-award/overall', 'overallList');
         Route::get('/achievers-award/{course_code}', 'achieversView');
@@ -75,7 +75,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('achievers-award/bulk-delete-form', 'deleteAll');
     });
     //DL Applicants
-    Route::controller(App\Http\Controllers\Admin\DLApplicantsController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Applicant\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
         Route::get('/deans-list-award/overall', 'overallList');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
@@ -92,7 +92,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('/deans-list-award/bulk-delete-form', 'deleteAll');
     });
     //PL Applicants
-    Route::controller(App\Http\Controllers\Admin\PLApplicantsController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Applicant\PLApplicantsController::class)->group(function () {
         Route::get('/presidents-list-award', 'index');
         Route::get('/presidents-list-award/overall', 'overallList');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
@@ -109,7 +109,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('/presidents-list-award/bulk-delete-form', 'deleteAll');
     });
     //Academic Excellence Applicants
-    Route::controller(App\Http\Controllers\Admin\AEApplicantsController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Applicant\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
         Route::get('/academic-excellence-award/overall', 'overallList');
         Route::get('/academic-excellence-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
@@ -125,8 +125,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('/academic-excellence-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('/academic-excellence-award/bulk-delete-form', 'deleteAll');
     });
-
-    Route::controller(App\Http\Controllers\Admin\NAApplicantsController::class)->group(function () {
+    //Non Academic Applicants
+    Route::controller(App\Http\Controllers\Admin\Applicant\NAApplicantsController::class)->group(function () {
         Route::get('/non-academic-award', 'index');
         Route::get('/non-academic-award/all', 'overallList');
         Route::get('/non-academic-award/{id}', 'view');
@@ -135,52 +135,59 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/non-academic-award/delete-form', 'destroy');
         Route::delete('/non-academic-award/bulk-delete-form', 'deleteAll');
     });
-    Route::controller(App\Http\Controllers\Admin\UserManagementController::class)->group(function () {
-        Route::get('/usermanagement', 'index');
-    });
     //Activity Log
-    Route::controller(App\Http\Controllers\Admin\ActivityLogController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\ActivityLog\ActivityLogController::class)->group(function () {
         Route::get('/user-activity-log', 'index');
+        Route::post('/delete-log', 'destroy');
         Route::delete('/bulk-delete-log', 'deleteAll');
     });
     //Import CSV
-    Route::controller(App\Http\Controllers\Admin\ImportController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\CSV\ImportController::class)->group(function () {
         Route::get('/import-csv', 'index');
         Route::post('/import-csv/import-parse', 'parseImport');
         Route::post('/import-csv/import-process', 'processImport');
-        Route::get('/import-csv/parse-data', 'showParsed');
+        Route::get('/parse-data', 'showParsed');
         Route::post('/delete-csv', 'destroy');
+        Route::post('/delete-sis', 'destroySIS');
+        Route::delete('/bulk-delete-data', 'deleteAll');
     });
     //Achievers Award Send Certificate
-    Route::controller(App\Http\Controllers\Admin\AACertificateController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Certificate\AACertificateController::class)->group(function () {
         Route::get('/send-awardees-certificates/achievers-award', 'index');
         Route::get('/send-awardees-certificates/achievers-award/{course_code}', 'view');
         Route::post('/send-awardees-certificates/achievers-award/{course_code}/send', 'sendEmail');
         Route::get('/send-awardees-certificates/achievers-award/{course_code}/{id}', 'showCertificate');
     });
     //DL Send Certificate
-    Route::controller(App\Http\Controllers\Admin\DLCertificateController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Certificate\DLCertificateController::class)->group(function () {
         Route::get('/send-awardees-certificates/deans-list-award', 'index');
         Route::get('/send-awardees-certificates/deans-list-award/{course_code}', 'view');
         Route::post('/send-awardees-certificates/deans-list-award/{course_code}/send', 'sendEmail');
         Route::get('/send-awardees-certificates/deans-list-award/{course_code}/{id}', 'showCertificate');
     });
     //PL Send Certificate
-    Route::controller(App\Http\Controllers\Admin\PLCertificateController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Certificate\PLCertificateController::class)->group(function () {
         Route::get('/send-awardees-certificates/presidents-list-award', 'index');
         Route::get('/send-awardees-certificates/presidents-list-award/{course_code}', 'view');
         Route::post('/send-awardees-certificates/presidents-list-award/{course_code}/send', 'sendEmail');
         Route::get('/send-awardees-certificates/presidents-list-award/{course_code}/{id}', 'showCertificate');
     });
     //Academic Excellence Send Certificate
-    Route::controller(App\Http\Controllers\Admin\AECertificateController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Certificate\AECertificateController::class)->group(function () {
         Route::get('/send-awardees-certificates/academic-excellence-award', 'index');
         Route::get('/send-awardees-certificates/academic-excellence-award/{course_code}', 'view');
         Route::post('/send-awardees-certificates/academic-excellence-award/{course_code}/send', 'sendEmail');
         Route::get('/send-awardees-certificates/academic-excellence-award/{course_code}/{id}', 'showCertificate');
     });
+    //Non Academic Award Certificate
+    Route::controller(App\Http\Controllers\Admin\Certificate\NACertificateController::class)->group(function () {
+        Route::get('/send-awardees-certificates/non-academic-award', 'index');
+        Route::get('/send-awardees-certificates/non-academic-award/{nonacad_id}', 'show');
+        Route::post('/send-awardees-certificates/non-academic-award/{nonacad_id}/send', 'sendEmail');
+        Route::get('/send-awardees-certificates/non-academic-award/{nonacad_id}/{id}', 'showCertificate');
+    });
     //Gsllery
-    Route::controller(App\Http\Controllers\Admin\GalleryController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Gallery\GalleryController::class)->group(function () {
         Route::get('/galleries', 'index');
         Route::get('/galleries/create', 'create');
         Route::post('/galleries', 'store');
@@ -198,17 +205,50 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('galleries/photos/delete', 'photoDelete');
     });
     //fullcalendar
-    Route::controller(App\Http\Controllers\Admin\FullCalendarController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Calendar\FullCalendarController::class)->group(function () {
         Route::get('/calendar', 'index');
         Route::post('/calendar-event', 'crud');
     });
-    Route::controller(App\Http\Controllers\Admin\ProfileController::class)->group(function () {
+    //Profile
+    Route::controller(App\Http\Controllers\Admin\Profile\ProfileController::class)->group(function () {
         Route::get('/profile', 'index');
         Route::put('/update-profile/{id}', 'store');
     });
-    Route::controller(App\Http\Controllers\Admin\ChangePassController::class)->group(function () {
+    //Password
+    Route::controller(App\Http\Controllers\Admin\Password\ChangePassController::class)->group(function () {
         Route::get('/change-password', 'index');
         Route::post('/update-password', 'store');
+    });
+
+    //course M
+    Route::controller(App\Http\Controllers\Admin\Maintenance\CourseController::class)->group(function () {
+        Route::get('/maintenance/courses', 'index');
+        Route::get('/maintenance/courses/create', 'create');
+        Route::post('/maintenance/courses', 'store');
+        Route::get('/maintenance/courses/{id}', 'edit');
+        Route::put('/maintenance/courses/{id}', 'update');
+        Route::post('/maintenance/delete-course', 'destroy');
+        Route::delete('/maintenance/courses/bulk-delete', 'deleteAll');
+    });
+    //about M
+    Route::controller(App\Http\Controllers\Admin\Maintenance\AboutController::class)->group(function () {
+        Route::get('/maintenance/about', 'index');
+        Route::get('/maintenance/about/preview', 'show');
+        Route::put('/maintenance/about/{id}', 'update');
+        Route::post('/maintenance/about/upload', 'upload')->name('ckeditor.upload');
+    });
+    //signatures
+    Route::controller(App\Http\Controllers\Admin\Maintenance\SignatureController::class)->group(function () {
+        Route::get('/maintenance/signatures', 'index');
+        Route::get('/maintenance/signatures/create', 'create');
+        Route::post('/maintenance/signature-store', 'store');
+        Route::get('/maintenance/signatures/{id}', 'edit');
+        Route::put('/maintenance/signatures/{id}', 'update');
+    });
+    //Settings
+    Route::controller(App\Http\Controllers\Admin\SystemSetting\SettingController::class)->group(function () {
+        Route::get('/manage-settings', 'index');
+        Route::put('/update-settings/{id}', 'update');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
@@ -237,7 +277,8 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::get('/preview/{id}', 'showNA');
         Route::get('/preview', 'markAsRead');
         Route::get('/all-notifications', 'index');
-        Route::get('/delete-notification/{id}', 'destroy');
+        Route::post('/delete-notification', 'destroy');
+        Route::delete('/bulk-delete-notifications', 'destroyAll');
     });
     Route::controller(App\Http\Controllers\User\FullCalendarController::class)->group(function () {
         Route::get('/calendar', 'index');

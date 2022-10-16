@@ -7,7 +7,7 @@
 
     <!-- Topbar Search -->
     <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
-        <div class="text-primary font-weight-bold">PUP Taguig Recognition Management System</div>
+        <div class="text-primary font-weight-bold">{{ getSystemName() }}</div>
     </div>
 
     <!-- Topbar Navbar -->
@@ -38,6 +38,12 @@
                         Activity Log
                     </a>
                 @endcan
+
+                <a class="dropdown-item" href="{{ url('admin/manage-settings') }}">
+                    <i class="fa-solid fa-gear fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                </a>
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

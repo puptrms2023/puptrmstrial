@@ -16,11 +16,14 @@ class DashboardController extends Controller
 
     public function index()
     {
+
+        //academic year
+        $year = getAcademicYear();
         //analytics
-        $analytics_achiever = StudentApplicant::where('award_applied', '1')->count();
-        $analytics_deans = StudentApplicant::where('award_applied', '2')->count();
-        $analytics_presidents = StudentApplicant::where('award_applied', '3')->count();
-        $analytics_acadexcell = AcademicExcellence::where('award_applied', '4')->count();
+        $analytics_achiever = StudentApplicant::where('award_applied', '1')->where('school_year', $year)->count();
+        $analytics_deans = StudentApplicant::where('award_applied', '2')->where('school_year', $year)->count();
+        $analytics_presidents = StudentApplicant::where('award_applied', '3')->where('school_year', $year)->count();
+        $analytics_acadexcell = AcademicExcellence::where('award_applied', '4')->where('school_year', $year)->count();
 
         // Achiever's Award Drilldown
         $achiever = DB::table('courses')
@@ -34,8 +37,9 @@ class DashboardController extends Controller
             ->get()
             ->toArray();
 
+
         // $res = array_values($data);
-        $total_achiever = StudentApplicant::where('award_applied', '1')->where('status', '1')->count();
+        $total_achiever = StudentApplicant::where('award_applied', '1')->where('status', '1')->where('school_year', $year)->count();
 
         // Dean's Lister Drilldown
         $deans = DB::table('courses')
@@ -49,7 +53,7 @@ class DashboardController extends Controller
             ->get()
             ->toArray();
 
-        $total_dean = StudentApplicant::where('award_applied', '2')->where('status', '1')->count();
+        $total_dean = StudentApplicant::where('award_applied', '2')->where('status', '1')->where('school_year', $year)->count();
 
         // President's Lister Drilldown
         $president = DB::table('courses')
@@ -63,7 +67,7 @@ class DashboardController extends Controller
             ->get()
             ->toArray();
 
-        $total_president = StudentApplicant::where('award_applied', '3')->where('status', '1')->count();
+        $total_president = StudentApplicant::where('award_applied', '3')->where('status', '1')->where('school_year', $year)->count();
 
         // President's Lister Drilldown
         $excellence = DB::table('courses')
@@ -77,8 +81,8 @@ class DashboardController extends Controller
             ->get()
             ->toArray();
 
-        $total_excellence = AcademicExcellence::where('award_applied', '4')->where('status', '1')->count();
+        $total_excellence = AcademicExcellence::where('award_applied', '4')->where('status', '1')->where('school_year', $year)->count();
 
-        return view('admin.dashboard', compact('analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence'));
+        return view('admin.dashboard', compact('year', 'analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence'));
     }
 }

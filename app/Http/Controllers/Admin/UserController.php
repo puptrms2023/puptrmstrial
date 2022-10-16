@@ -74,14 +74,12 @@ class UserController extends Controller
         $user->contact = $validatedData['contact'];
         $user->email = $validatedData['email'];
 
-        if ($request->has('password')) {
-            $user->password = $request->password;
-        }
-
-        // dd($request->has('password'));
-
         $user = User::find($id);
-        $user->save();
+        if ($request->get('password') == '') {
+            $user->update($request->except('password'));
+        } else {
+            $user->update($request->all());
+        }
 
         DB::table('model_has_roles')
             ->where('model_id', $id)

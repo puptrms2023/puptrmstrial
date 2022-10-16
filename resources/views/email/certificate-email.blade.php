@@ -47,6 +47,8 @@
         <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
             academic excellence and wishes you the best of luck for the future.
         </p>
+    @else
+        <p>Congratulations!
     @endif
 
 </body>

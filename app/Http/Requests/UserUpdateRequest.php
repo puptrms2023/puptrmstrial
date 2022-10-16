@@ -38,7 +38,6 @@ class UserUpdateRequest extends FormRequest
             'roles' => 'required',
             'username' => 'required|alpha_dash|unique:users,username,' . $this->id,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $this->id,
-            'password' => 'sometimes|required_with:password_confirmation|confirmed'
 
         ];
     }

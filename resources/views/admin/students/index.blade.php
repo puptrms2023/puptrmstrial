@@ -8,7 +8,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete User</h5>
+                    <h5 class="modal-title">Delete Students</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -31,7 +31,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Delete Students</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -62,8 +62,7 @@
                                     </th>
                                     <th>User ID</th>
                                     <th>Username</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Actions <br>
@@ -77,12 +76,12 @@
                             <tbody>
                                 @foreach ($users as $item)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $item->id }}">
+                                        <td class="text-center"><input type="checkbox" class="user-checkboxes"
+                                                data-id="{{ $item->id }}">
                                         </td>
                                         <td class="font-weight-bold">{{ $item->stud_num }}</td>
                                         <td>{{ $item->username }}</td>
-                                        <td>{{ $item->first_name }}</td>
-                                        <td>{{ $item->last_name }}</td>
+                                        <td class="text-uppercase">{{ $item->first_name . ' ' . $item->last_name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>
                                             @if ($item->role_as == '2')

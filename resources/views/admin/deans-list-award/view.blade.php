@@ -53,7 +53,7 @@
         <div class="col-md-12 mb-2">
             <div class="form-row">
                 <div class="col-lg-3 col-xs-12">
-                    <select id="year" class="custom-select" id="inlineFormCustomSelectPref">
+                    <select id="year" class="custom-select">
                         <option value="All" selected>All Year Levels</option>
                         <option value="2nd-Year">2nd Year</option>
                         <option value="3rd-Year">3rd Year</option>

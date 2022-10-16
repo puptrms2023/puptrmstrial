@@ -23,17 +23,26 @@
                             <label class="small mb-1">Username</label>
                             <input class="form-control" name="username" type="text" placeholder="Enter your username"
                                 value="{{ $user->username }}" required autofocus>
+                            @if ($errors->has('username'))
+                                <span class="text-danger text-left">{{ $errors->first('username') }}</span>
+                            @endif
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">First name</label>
                                 <input class="form-control" name="first_name" type="text"
                                     placeholder="Enter your first name" value="{{ $user->first_name }}" required autofocus>
+                                @if ($errors->has('first_name'))
+                                    <span class="text-danger text-left">{{ $errors->first('first_name') }}</span>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">Middle name</label>
                                 <input class="form-control" name="middle_name" type="text"
                                     placeholder="Enter your middle name" value="{{ $user->middle_name }}" />
+                                @if ($errors->has('middle_name'))
+                                    <span class="text-danger text-left">{{ $errors->first('middle_name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
@@ -41,12 +50,18 @@
                                 <label class="small mb-1">Last Name</label>
                                 <input class="form-control" name="last_name" type="text"
                                     placeholder="Enter your last name" value="{{ $user->last_name }}" required autofocus>
+                                @if ($errors->has('last_name'))
+                                    <span class="text-danger text-left">{{ $errors->first('last_name') }}</span>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">Phone number</label>
                                 <input class="form-control js-phone" name="contact" type="tel"
                                     placeholder="Enter your phone number" value="{{ substr($user->contact, 3) }}" required
                                     autofocus>
+                                @if ($errors->has('contact'))
+                                    <span class="text-danger text-left">{{ $errors->first('contact') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="mb-3">
