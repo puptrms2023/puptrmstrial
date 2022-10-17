@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2022 at 12:22 AM
+-- Generation Time: Oct 17, 2022 at 12:06 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -1320,9 +1320,9 @@ CREATE TABLE `forms` (
 --
 
 INSERT INTO `forms` (`id`, `award_form`, `photocard`, `requirements`, `created_at`, `updated_at`) VALUES
-(4, '1', '1665949714.jpg', '[{\"requirement\":\"Sunt vero quo labore\"},{\"requirement\":\"Corporis voluptatibu\"}]', '2022-10-16 19:48:34', '2022-10-16 22:20:21'),
-(5, '2', '1665952428.jpg', '{\"0\":{\"requirement\":\"Dolor quis nulla dol\"},\"2\":{\"requirement\":\"Quis corrupti rerum\"},\"3\":{\"requirement\":\"Ut quas tempore ut\"}}', '2022-10-16 20:33:48', '2022-10-16 20:33:48'),
-(7, '3', '1665952721.jpg', '[{\"requirement\":\"Optio et similique\"},{\"requirement\":\"Id ad odit odio qua\"},{\"requirement\":\"Nostrum ullam ex rep\"}]', '2022-10-16 20:38:41', '2022-10-16 20:38:41');
+(4, 'Academic Award', '1665949714.jpg', '[{\"requirement\":\"For Graduating students.\"},{\"requirement\":\"GWA 1.75 or above from 1st to 4th year.\"},{\"requirement\":\"With grades NO LOWER THAN 2.50 IN ALL SUBJECTS from 1st year to 4th year.\"},{\"requirement\":\"Bonafide student of PUP Taguig Branch.\"},{\"requirement\":\"Officially enrolled for 1st and 2nd semester of the recent academic year.\"},{\"requirement\":\"Regular Student from 1st year to 4th year\"},{\"requirement\":\"No Failed, Withdrawn, Incomplete and \'P\' remarks in any subject enrolled from 1st to 4th Year\"}]', '2022-10-16 19:48:34', '2022-10-17 09:59:22'),
+(5, 'Academic Excellence', '1665952428.jpg', '[{\"requirement\":\"For Graduating students.\"},{\"requirement\":\"GWA 1.75 or above from 1st to 4th year.\"},{\"requirement\":\"With grades NO LOWER THAN 2.50 IN ALL SUBJECTS from 1st year to 4th year.\"},{\"requirement\":\"Bonafide student of PUP Taguig Branch.\"},{\"requirement\":\"Officially enrolled for 1st and 2nd semester of the recent academic year.\"},{\"requirement\":\"Regular Student from 1st year to 4th year\"},{\"requirement\":\"No Failed, Withdrawn, Incomplete and \'P\' remarks in any subject enrolled from 1st to 4th Year\"}]', '2022-10-16 20:33:48', '2022-10-16 20:33:48'),
+(7, 'Non Academic ', '1665952721.jpg', '[{\"requirement\":\"Bonafide student of PUP Taguig Branch.\"},{\"requirement\":\"Officially enrolled for 1st and 2nd semester of the recent academic year.\"},{\"requirement\":\"The non-academic award was under the university institution and recieved during the current school year Student from 1st year to 4th year\"}]', '2022-10-16 20:38:41', '2022-10-17 10:03:20');
 
 -- --------------------------------------------------------
 

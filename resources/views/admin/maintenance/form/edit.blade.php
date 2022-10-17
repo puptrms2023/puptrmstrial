@@ -21,6 +21,12 @@
                         @method('PUT')
 
                         <div class="form-group row">
+                            <div class="col-md-5">
+                                <label class="text-gray font-weight-bold">Award Category </label>
+                                <input type="text" class="form-control" value="{{ $form->award_form }}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-5 mb-2">
                                 <label class="text-gray font-weight-bold">Photo Card <span
                                         class="text-danger">*</span></label>

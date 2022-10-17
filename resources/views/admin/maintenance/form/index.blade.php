@@ -34,7 +34,7 @@
                                     <tr>
                                         <td><img src="{{ asset('uploads/form/' . $list->photocard) }}" class="img-thumbnail"
                                                 width="150" alt="Image"></td>
-                                        <td>Academic Award</td>
+                                        <td>{{ $list->award_form }}</td>
                                         <td>
                                             @foreach ($list->requirements as $reqs)
                                                 {{ $reqs['requirement'] }}<br>

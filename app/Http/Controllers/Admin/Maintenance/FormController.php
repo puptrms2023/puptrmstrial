@@ -36,9 +36,10 @@ class FormController extends Controller
         } else {
             $form->photocard = $request->old_photo;
         }
+
         $form->requirements = $request->addMoreInputFields;
         $form->save();
 
-        return back()->with('success', 'New subject has been added.');
+        return back()->with('success', 'New requirement has been updated.');
     }
 }
