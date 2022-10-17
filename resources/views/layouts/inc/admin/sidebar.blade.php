@@ -151,6 +151,7 @@
         </a>
         <div id="modulePages" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ url('admin/maintenance/form') }}">Form</a>
                 <a class="collapse-item" href="{{ url('admin/maintenance/courses') }}">Course</a>
                 <a class="collapse-item" href="{{ url('admin/maintenance/about') }}">About</a>
                 <a class="collapse-item" href="{{ url('admin/maintenance/signatures') }}">Signature</a>

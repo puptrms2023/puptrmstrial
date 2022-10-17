@@ -13,7 +13,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">Details
-                        <a class="btn btn-secondary btn-sm float-right" href="{{ url('admin/maintenance/about/preview') }}">
+                        <a class="btn btn-primary btn-sm float-right" href="{{ url('admin/maintenance/about/preview') }}">
                             Preview</a>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-secondary">Update</button>
                         </div>
                     </form>
                 </div>

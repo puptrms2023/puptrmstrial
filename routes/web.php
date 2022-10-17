@@ -237,6 +237,13 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::put('/maintenance/about/{id}', 'update');
         Route::post('/maintenance/about/upload', 'upload')->name('ckeditor.upload');
     });
+    // form m
+    Route::controller(App\Http\Controllers\Admin\Maintenance\FormController::class)->group(function () {
+        Route::get('/maintenance/form', 'index');
+        Route::get('/maintenance/form/{id}', 'edit');
+        Route::put('/maintenance/update-form/{id}', 'update');
+        // Route::post('/maintenance/about/upload', 'upload')->name('ckeditor.upload');
+    });
     //signatures
     Route::controller(App\Http\Controllers\Admin\Maintenance\SignatureController::class)->group(function () {
         Route::get('/maintenance/signatures', 'index');

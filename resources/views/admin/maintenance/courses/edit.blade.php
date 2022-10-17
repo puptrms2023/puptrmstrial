@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-secondary" type="submit">Update</button>
                     </form>
 
                 </div>

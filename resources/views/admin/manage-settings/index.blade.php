@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="text-left">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-secondary">Update</button>
                         </div>
                     </form>
                 </div>

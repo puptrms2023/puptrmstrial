@@ -9,7 +9,7 @@
     </div>
 
     @include('layouts.partials.messages')
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -440,7 +440,7 @@
                     <textarea class="form-control" name="reason" rows="2">{{ $status->reason }}</textarea>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-secondary" type="submit">Update</button>
                 </div>
             </form>
         </div>

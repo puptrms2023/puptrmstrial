@@ -78,7 +78,7 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Update</button>
+                        <button class="btn btn-secondary" type="submit">Update</button>
                     </form>
                 </div>
             </div>
