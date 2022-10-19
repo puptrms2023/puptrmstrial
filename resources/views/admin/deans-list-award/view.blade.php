@@ -58,6 +58,7 @@
                         <option value="2nd-Year">2nd Year</option>
                         <option value="3rd-Year">3rd Year</option>
                         <option value="4th-Year">4th Year</option>
+                        <option value="5th-Year">5th Year</option>
                     </select>
                 </div>
                 <div class="col-auto col-xs-12">
@@ -116,7 +117,7 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <a href="{{ url('admin/deans-list-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
+                        <a href="{{ url('admin/deans-list-award/' . $courses->course_code . '/view-all-students-pdf') }}"
                             target="__blank" class="btn btn-sm btn-primary mt-2 mb-3">
                             <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
                         </a>

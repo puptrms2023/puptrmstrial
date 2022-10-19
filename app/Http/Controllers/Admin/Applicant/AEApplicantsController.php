@@ -37,6 +37,12 @@ class AEApplicantsController extends Controller
             if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                 $model->where('status', $request->get('status'))->get();
             }
+
+            if ($request->get('year') == '4th-Year' || $request->get('year') == '5th-Year') {
+                $year = str_replace('-', ' ', $request->get('year'));
+                $model->where('year_level', $year)->get();
+            }
+
             return DataTables::eloquent($model)
                 ->addColumn('checkbox', function (AcademicExcellence $stud) {
                     return '<input type="checkbox" name="form_checkbox" data-id="' . $stud['id'] . '">';

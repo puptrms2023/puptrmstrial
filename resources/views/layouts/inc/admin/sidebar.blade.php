@@ -138,7 +138,7 @@
                         Excellence</a>
                     <a class="collapse-item
                         {{ Request::is('admin/send-awardees-certificates/non-academic-award') ? 'active' : '' }}"
-                        href={{ url('admin/send-awardees-certificates/non-academic-award') }}>Non-Academic Excellence</a>
+                        href={{ url('admin/send-awardees-certificates/non-academic-award') }}>Non-Academic Award</a>
                 </div>
             </div>
         </li>

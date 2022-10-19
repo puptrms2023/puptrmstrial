@@ -40,7 +40,7 @@
                                         <select data-placeholder="Choose..." name="session_year" id="session_year"
                                             class="form-select" required>
                                             <option value=""></option>
-                                            @for ($y = date('Y', strtotime('- 3 years')); $y <= date('Y', strtotime('+ 1 years')); $y++)
+                                            @for ($y = date('Y', strtotime('- 3 years')); $y <= date('Y', strtotime('+ 1 years')) + 2; $y++)
                                                 <option
                                                     {{ $setting->session_year == ($y -= 1) . '-' . ($y += 1) ? 'selected' : '' }}>
                                                     {{ ($y -= 1) . '-' . ($y += 1) }}
@@ -108,7 +108,7 @@
                                                 src="{{ asset('admin/img/' . $setting->icon) }}" alt="">
                                         </div>
                                         <input type="file" class="form-control" name="icon">
-                                        <input type="hidden" value="{{ $setting->logo }}" name="old_icon">
+                                        <input type="hidden" value="{{ $setting->icon }}" name="old_icon">
                                     </div>
                                 </div>
                             </div>

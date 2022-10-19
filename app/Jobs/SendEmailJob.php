@@ -19,18 +19,16 @@ class SendEmailJob implements ShouldQueue
     public $details;
     public $data;
     public $studno;
-    public $sig;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($details, $data, $studno, $sig)
+    public function __construct($details, $data, $studno)
     {
         $this->details = $details;
         $this->data = $data;
         $this->studno = $studno;
-        $this->sig = $sig;
     }
 
     /**
@@ -40,7 +38,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $email = new CertEmail($this->data, $this->studno, $this->sig);
+        $email = new CertEmail($this->data, $this->studno);
         Mail::to($this->details['email'])->send($email);
     }
 }

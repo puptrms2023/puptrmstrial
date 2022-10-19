@@ -32,7 +32,7 @@
                             <tbody>
                                 @foreach ($sig as $list)
                                     <tr>
-                                        <td>{{ $list->name }}</td>
+                                        <td>{{ $list->rep_name }}</td>
                                         <td>{{ $list->position }}</td>
                                         <td><img src="{{ asset('uploads/signature/' . $list->signature) }}"
                                                 class="img-thumbnail" width="150" alt="Image"></td>

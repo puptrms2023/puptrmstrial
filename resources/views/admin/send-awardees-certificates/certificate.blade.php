@@ -76,6 +76,10 @@
             width: 25%;
             float: left;
         }
+
+        .img-sig {
+            margin-top: -25px;
+        }
     </style>
 </head>
 
@@ -107,28 +111,38 @@
     </div>
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
     <table class="table2">
-        @foreach ($sig as $item)
-            <tr>
-                <td width="21%">
-                    <b>{{ $item['name'] }}</b><br>
-                    Branch Registrar
-                </td>
-                <td width="21%">
-                    <b>Mr. Israel G. Ortega</b><br>
-                    Overall Chair-Recognition 2022
-                </td>
-                <td width="21%">
-                    <b>Ms. Bernadette I. Canlas</b><br>
-                    Head of Student Services
-                </td>
-            </tr>
-        @endforeach
+        <tr>
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . $signature1) }}" width="100" />
+                </div>
+                <b>{{ $name1 }}</b><br>
+                {{ $position1 }}
+            </td>
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . $signature2) }}" width="100" />
+                </div>
+                <b>{{ $name2 }}</b><br>
+                {{ $position2 }}
+            </td>
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . $signature3) }}" width="100" />
+                </div>
+                <b>{{ $name3 }}</b><br>
+                {{ $position3 }}
+            </td>
+        </tr>
     </table>
     <table class="table2">
         <tr>
             <td>
-                <b>Marissa B. Ferrer, DEM, RPsy</b><br>
-                Branch Director
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . $signature4) }}" width="100" />
+                </div>
+                <b>{{ $name4 }}</b><br>
+                {{ $position4 }}
             </td>
         </tr>
     </table>

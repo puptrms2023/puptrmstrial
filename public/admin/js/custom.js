@@ -842,6 +842,7 @@ function togglebulk_delete_plain_table() {
 }
 //Admin Print
 $(function() {
+    //deans list filter by year
     $(".view-accepted").click(function () {
         var course_id = document.getElementById("course_id").value;
         var select = document.getElementById("year");
@@ -868,6 +869,7 @@ $(function() {
         window.open(link, "_blank");
     });
 
+    //president list filter by year
     $(".view-accepted-pl").click(function () {
         var course_id = document.getElementById("course_id").value;
         var select = document.getElementById("year_pl");
@@ -887,6 +889,32 @@ $(function() {
         var year = select.options[select.selectedIndex].value;
         var link =
             "/admin/presidents-list-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-rejected-students-pdf";
+        window.open(link, "_blank");
+    });
+    //academic excellence list filter by year
+    $(".view-accepted-ae").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year_ae");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/academic-excellence-award/" +
+            course_id +
+            "/" +
+            year +
+            "/view-approved-students-pdf";
+        window.open(link, "_blank");
+    });
+
+    $(".view-rejected-ae").click(function () {
+        var course_id = document.getElementById("course_id").value;
+        var select = document.getElementById("year_ae");
+        var year = select.options[select.selectedIndex].value;
+        var link =
+            "/admin/academic-excellence-award/" +
             course_id +
             "/" +
             year +

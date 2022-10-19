@@ -4,10 +4,6 @@
 <head>
     <title>Academic Excellence Applicants</title>
     <style type="text/css">
-        @page {
-            size: a4 portrait;
-        }
-
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -19,11 +15,9 @@
             position: relative;
         }
 
-        .no {
+        .table2 td,
+        th {
             border: none;
-        }
-
-        .text-center {
             text-align: center;
         }
 
@@ -57,13 +51,6 @@
             font-weight: normal;
         }
 
-        .column {
-            float: left;
-            width: 25%;
-            padding: 10px;
-            height: 300px;
-        }
-
         .row:after {
             content: "";
             display: table;
@@ -79,33 +66,31 @@
             padding: 0;
         }
 
-        header {
-            width: 95%;
-            position: fixed;
-            display: block;
-            margin: 0 auto;
+        /**footer**/
+        h4 {
+            overflow: hidden;
+            text-align: center;
         }
 
-        footer {
-            position: fixed;
-            bottom: -60px;
-            left: 50px;
-            right: 50px;
-            height: 165px;
-            /** Extra personal styles **/
-            font-family: "Arial", "sans-serif";
-            font-size: 10px;
+        h4:before,
+        h4:after {
+            background-color: #000;
+            content: "";
+            display: inline-block;
+            height: 1px;
+            position: relative;
+            vertical-align: middle;
+            width: 50%;
         }
 
-        .text {
-            margin-top: 13px;
-            font-family: "Times New Roman", "serif";
-            font-size: 20px;
+        h4:before {
+            right: 0.5em;
+            margin-left: -50%;
         }
 
-        .caps {
-            font-family: "Times New Roman", "serif";
-            font-size: 23px;
+        h4:after {
+            left: 0.5em;
+            margin-right: -50%;
         }
     </style>
 </head>
@@ -160,25 +145,38 @@
             @endforeach
         </body>
     </table>
-    <footer>
-        <div style="margin-top:25px;">
-            <span>General Santos Avenue, Lower
-                Bicutan, Taguig City, Philippines 1632</span><br>
-            <span>Registrar’s Office: (02) 8837 5859 | Direct Line: (02) 8837 5858 to 60</span><br>
-            <span>Website: <a href="www.pup.edu.ph">www.pup.edu.ph</a> | Email: <a
-                    href="taguig@pup.edu.ph">taguig@pup.edu.ph</a> |
-                <a href="taguig.registrar@pup.edu.ph">taguig.registrar@pup.edu.ph</a></span>
-            <div class="text">
-                <span class="caps">T</span>HE <span class="caps">C</span>OUNTRY&rsquo;S 1<sup>st</sup> <span
-                    class="caps">P</span>OLYTECHNIC<span class="caps">U</span>
-            </div>
-        </div>
-    </footer>
-    <footer>
-        <div style="width:28%;float:right;">
-            <img src="admin/img/footer2.png" width="100%" alt="">
-        </div>
-    </footer>
+    <br>
+    <div style="width: 95%; margin: 0 auto;">
+        <h4><i>NOTHING FOLLOWS</i></h4>
+    </div>
+    <table class="table2">
+        <tr>
+            <td>Signed by:</td>
+            @foreach (getSignatories()->take(3) as $list)
+                <td>
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $list->signature) }}" width="100" />
+                    </div>
+                    <b>{{ $list->rep_name }}</b><br>
+                    {{ $list->position }}
+                </td>
+            @endforeach
+        </tr>
+        <tr>
+            <td>Noted by:</td>
+            @foreach (getSignatories() as $list)
+                @if ($loop->last)
+                    <td colspan="3" align="center" height="110">
+                        <div class="img-sig">
+                            <img src="{{ public_path('uploads/signature/' . $list->signature) }}" width="100" />
+                        </div>
+                        <b>{{ $list->rep_name }}</b><br>
+                        {{ $list->position }}
+                    </td>
+                @endif
+            @endforeach
+        </tr>
+    </table>
 </body>
 
 </html>

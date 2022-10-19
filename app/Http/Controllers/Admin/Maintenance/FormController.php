@@ -28,7 +28,10 @@ class FormController extends Controller
         $photo = $request->old_photo;
         $form = Form::find($id);
         if ($request->hasfile('photocard')) {
-            unlink(public_path('uploads/form/' . $photo));
+            $filePath = public_path('uploads/form/');
+            if (file_exists($filePath . $photo)) {
+                @unlink($filePath . $photo);
+            }
             $file = $request->file('photocard');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('uploads/form/', $filename);
@@ -40,6 +43,6 @@ class FormController extends Controller
         $form->requirements = $request->addMoreInputFields;
         $form->save();
 
-        return back()->with('success', 'New requirement has been updated.');
+        return back()->with('success', 'Record has been updated.');
     }
 }

@@ -79,7 +79,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/deans-list-award', 'index');
         Route::get('/deans-list-award/overall', 'overallList');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
-        Route::get('/deans-list-award/{course_code}/view-approved-students-pdf', 'openPdfAll');
+        Route::get('/deans-list-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/deans-list-award/{course_code}', 'achieversView');
         Route::get('/deans-list-award/{course_code}/approve/{id}', 'approved');
@@ -96,7 +96,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/presidents-list-award', 'index');
         Route::get('/presidents-list-award/overall', 'overallList');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
-        Route::get('/presidents-list-award/{course_code}/view-approved-students-pdf', 'openPdfAll');
+        Route::get('/presidents-list-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/presidents-list-award/{course_code}', 'achieversView');
         Route::get('/presidents-list-award/{course_code}/approve/{id}', 'approved');
@@ -112,9 +112,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\Applicant\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
         Route::get('/academic-excellence-award/overall', 'overallList');
-        Route::get('/academic-excellence-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/academic-excellence-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/academic-excellence-award/{course_code}/view-all-students-pdf', 'openPdfAll');
-        Route::get('/academic-excellence-award/{course_code}/view-rejected-students-pdf', 'openPdfRejected');
+        Route::get('/academic-excellence-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/academic-excellence-award/{course_code}', 'achieversView');
         Route::get('/academic-excellence-award/{course_code}/approve/{id}', 'approved');
         Route::get('/academic-excellence-award/{course_code}/reject/{id}', 'rejected');

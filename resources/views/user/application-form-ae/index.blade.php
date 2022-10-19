@@ -81,13 +81,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mt-0 mb-4 hidden">
+                <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
                             <select class="custom-select" name="year_level">
-                                <option value="4th Year">4th Year</option>
+                                <option data-state="4th Year" value="4th Year"
+                                    {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
+                                <option data-state="5th Year" value="5th Year"
+                                    {{ old('year_level') == '5th Year' ? 'selected' : '' }}>5th Year</option>
                             </select>
                         </div>
                     </div>

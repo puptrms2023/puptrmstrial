@@ -20,7 +20,17 @@ function getLogo()
     $photo = Setting::where('id', 1)->value('logo');
     return $photo;
 }
+function getFavicon()
+{
+    $photo = Setting::where('id', 1)->value('icon');
+    return $photo;
+}
 function getSignature()
 {
     return Signature::pluck('name');
+}
+function getSignatories()
+{
+    $names = Signature::all();
+    return $names;
 }

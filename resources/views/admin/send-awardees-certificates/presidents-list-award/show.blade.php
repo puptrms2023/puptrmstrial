@@ -76,6 +76,10 @@
             width: 25%;
             float: left;
         }
+
+        .img-sig {
+            margin-top: -20px;
+        }
     </style>
 </head>
 
@@ -96,7 +100,10 @@
         <tr>
             @foreach ($sig->take(3) as $item)
                 <td width="21%">
-                    <b>{{ $item->name }}</b><br>
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $item->signature) }}" width="100" />
+                    </div>
+                    <b>{{ $item->rep_name }}</b><br>
                     {{ $item->position }}
                 </td>
             @endforeach
@@ -107,7 +114,10 @@
             @foreach ($sig as $item)
                 @if ($loop->last)
                     <td>
-                        <b>{{ $item->name }}</b><br>
+                        <div class="img-sig">
+                            <img src="{{ public_path('uploads/signature/' . $item->signature) }}" width="100" />
+                        </div>
+                        <b>{{ $item->rep_name }}</b><br>
                         {{ $item->position }}
                     </td>
                 @endif

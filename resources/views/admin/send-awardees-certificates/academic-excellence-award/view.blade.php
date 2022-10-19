@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -113,6 +112,7 @@
                         $('.send-email-ae').attr("disabled", false);
                         $('.send-email-ae').html(
                             '<i class="fas fa-paper-plane"></i> Send Certificates');
+                        setInterval('refreshPage()', 1000);
                     },
                 });
 

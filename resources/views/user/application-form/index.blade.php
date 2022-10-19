@@ -97,6 +97,8 @@
                                     {{ old('year_level') == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
                                 <option data-state="4th Year" value="4th Year"
                                     {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
+                                <option data-state="5th Year" value="5th Year"
+                                    {{ old('year_level') == '5th Year' ? 'selected' : '' }}>5th Year</option>
                             </select>
                         </div>
                     </div>
@@ -114,6 +116,8 @@
                                 <option data-state="3rd Year" value="3">President's List </option>
                                 <option data-state="4th Year" value="2">Dean's List</option>
                                 <option data-state="4th Year" value="3">President's List </option>
+                                <option data-state="5th Year" value="2">Dean's List</option>
+                                <option data-state="5th Year" value="3">President's List </option>
                             </select>
                         </div>
                     </div>

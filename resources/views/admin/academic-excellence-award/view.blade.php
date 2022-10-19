@@ -52,14 +52,25 @@
 
     <div class="row">
         <div class="col-md-12 mb-2">
-            <a href="{{ url('admin/academic-excellence-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
-                target="__blank" class="btn btn-secondary">
-                <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
-            </a>
-            <a href="{{ url('admin/academic-excellence-award/' . $courses->course_code . '/view-rejected-students-pdf') }}"
-                target="__blank" class="btn btn-danger">
-                <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
-            </a>
+            <div class="form-row">
+                <div class="col-lg-3 col-xs-12">
+                    <select id="year_ae" class="custom-select">
+                        <option value="All" selected>All</option>
+                        <option value="4th-Year">4th Year</option>
+                        <option value="5th-Year">5th Year</option>
+                    </select>
+                </div>
+                <div class="col-auto col-xs-12">
+                    <button type="button" class="btn btn-secondary view-accepted-ae" formtarget="_blank">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
+                    </button>
+                </div>
+                <div class="col-auto col-xs-12">
+                    <button type="button" class="btn btn-danger view-rejected-ae" formtarget="_blank">
+                        <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -126,7 +137,8 @@
             ajax: {
                 url: "{{ url('admin/academic-excellence-award/' . $courses->course_code) }}",
                 data: function(d) {
-                    (d.status = $("#status").val())
+                    (d.status = $("#status").val()),
+                    (d.year = $("#year_ae").val());
                 },
             },
             columns: [{
@@ -188,7 +200,7 @@
             $('button#bulk_delete').addClass('d-none');
         });
 
-        $("#status").change(function() {
+        $("#year_ae,#status").change(function() {
             table.draw();
         });
 

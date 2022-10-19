@@ -43,7 +43,7 @@ class PLApplicantsController extends Controller
                 $model->where('status', $request->get('status'))->get();
             }
 
-            if ($request->get('year') == '2nd-Year' || $request->get('year') == '3rd-Year' || $request->get('year') == '4th-Year') {
+            if ($request->get('year') == '2nd-Year' || $request->get('year') == '3rd-Year' || $request->get('year') == '4th-Year' || $request->get('year') == '5th-Year') {
                 $year = str_replace('-', ' ', $request->get('year'));
                 $model->where('year_level', $year)->get();
             }
@@ -270,4 +270,5 @@ class PLApplicantsController extends Controller
             'success' => 'The Application form deleted successfully'
         ]);
     }
+
 }

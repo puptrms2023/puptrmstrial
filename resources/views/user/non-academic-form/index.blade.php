@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Non Academic Award Applicant</div>
+        <div class="h3 mb-0 text-gray-800">Non-Academic Award Application Form</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -89,6 +89,8 @@
                                     {{ old('year_level') == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
                                 <option data-state="4th Year" value="4th Year"
                                     {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
+                                <option data-state="5th Year" value="5th Year"
+                                    {{ old('year_level') == '5th Year' ? 'selected' : '' }}>5th Year</option>
                             </select>
                             @if ($errors->has('year_level'))
                                 <span class="text-danger text-left">{{ $errors->first('year_level') }}</span>

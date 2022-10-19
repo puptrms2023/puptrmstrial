@@ -55,11 +55,12 @@
         <div class="col-md-12 mb-2">
             <div class="form-row">
                 <div class="col-lg-3 col-xs-12">
-                    <select id="year" class="custom-select">
+                    <select id="year_pl" class="custom-select">
                         <option value="All" selected>All Year Levels</option>
                         <option value="2nd-Year">2nd Year</option>
                         <option value="3rd-Year">3rd Year</option>
                         <option value="4th-Year">4th Year</option>
+                        <option value="5th-Year">5th Year</option>
                     </select>
                 </div>
                 <div class="col-auto col-xs-12">
@@ -119,7 +120,7 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <a href="{{ url('admin/presidents-list-award/' . $courses->course_code . '/view-approved-students-pdf') }}"
+                        <a href="{{ url('admin/presidents-list-award/' . $courses->course_code . '/view-all-students-pdf') }}"
                             target="__blank" class="btn btn-sm btn-primary mt-2 mb-3">
                             <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
                         </a>
@@ -141,7 +142,7 @@
                 url: "{{ url('admin/presidents-list-award/' . $courses->course_code) }}",
                 data: function(d) {
                     (d.status = $("#status").val()),
-                    (d.year = $("#year").val());
+                    (d.year = $("#year_pl").val());
                 },
             },
             columns: [{
@@ -207,7 +208,7 @@
             $('button#bulk_delete').addClass('d-none');
         });
 
-        $("#year,#status").change(function() {
+        $("#year_pl,#status").change(function() {
             table.draw();
         });
 

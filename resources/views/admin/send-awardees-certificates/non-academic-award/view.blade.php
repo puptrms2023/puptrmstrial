@@ -153,6 +153,7 @@
                         $('.send-email-na').attr("disabled", false);
                         $('.send-email-na').html(
                             '<i class="fas fa-paper-plane"></i> Send Certificates');
+                        setInterval('refreshPage()', 1000);
                     }
                 });
 

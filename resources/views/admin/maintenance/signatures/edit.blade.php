@@ -23,7 +23,7 @@
                             <div class="col-md-12 mb-2">
                                 <label class="small">Name</label>
                                 <span class="text-danger">*</span>
-                                <input type="text" name="name" class="form-control" value="{{ $sig->name }}"
+                                <input type="text" name="name" class="form-control" value="{{ $sig->rep_name }}"
                                     placeholder="Enter name">
                                 @if ($errors->has('name'))
                                     <span class="text-danger text-left">{{ $errors->first('name') }}</span>

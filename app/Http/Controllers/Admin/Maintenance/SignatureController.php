@@ -46,7 +46,7 @@ class SignatureController extends Controller
         file_put_contents($file, $image_base64);
 
         $sign = new Signature;
-        $sign->name = $request->name;
+        $sign->rep_name = $request->name;
         $sign->position = $request->position;
         $sign->signature = $signature;
         $sign->save();
@@ -62,15 +62,16 @@ class SignatureController extends Controller
         ]);
 
         $sign = Signature::find($id);
-        $sign->name = $request->name;
+        $sign->rep_name = $request->name;
         $sign->position = $request->position;
 
         $sign_signature = $request->old_signature;
 
         if (!empty($request->signed)) {
-            unlink(public_path('uploads/signature/' . $sign_signature));
-
-            $folderPath = public_path('uploads/signature/');
+            $filePath = public_path('uploads/signature/');
+            if (file_exists($filePath . $sign_signature)) {
+                @unlink($filePath . $sign_signature);
+            }
 
             $image_parts = explode(";base64,", $request->signed);
 
@@ -82,15 +83,16 @@ class SignatureController extends Controller
 
             $signature = uniqid() . '.' . $image_type;
 
-            $file = $folderPath . $signature;
+            $file = $filePath . $signature;
 
             file_put_contents($file, $image_base64);
 
-            $sign->signature = $signature;
+            $imageName = $signature;
         } else {
-            $sign->signature = $request->old_signature;
+            $imageName = $sign_signature;
         }
 
+        $sign->signature = $imageName;
         $sign->save();
 
         return back()->with('success', 'Name successfully updated with signature');
