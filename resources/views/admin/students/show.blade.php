@@ -214,6 +214,7 @@
                                         <th>Year Level</th>
                                         <th>Image</th>
                                         <th>Remarks</th>
+                                        <th>Status</th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
@@ -235,8 +236,7 @@
                                                 @elseif ($app->nonacad_id == '3')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
-                                                        <P>Sport: {{ $app->sports }}<br>
-                                                            School Organization: {{ $app->orgs->name }}</p>
+                                                        <P>School Organization: {{ $app->orgs->name }}</p>
                                                     </div>
                                                 @elseif ($app->nonacad_id == '4')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
@@ -272,6 +272,17 @@
                                                     class="img-thumbnail img-circle" width="50" alt="Image">
                                             </td>
                                             <td>{{ $app->remarks }}</td>
+                                            <td>
+                                                @if ($app->status == '0')
+                                                    <span class="badge badge-warning">Pending</span>
+                                                @endif
+                                                @if ($app->status == '1')
+                                                    <span class="badge badge-success">Approved</span>
+                                                @endif
+                                                @if ($app->status == '2')
+                                                    <span class="badge badge-danger">Rejected</span>
+                                                @endif
+                                            </td>
                                             <td>{{ \Carbon\Carbon::parse($app->created_at)->format('m/d/Y g:i a') }}</td>
                                         </tr>
                                     @endforeach

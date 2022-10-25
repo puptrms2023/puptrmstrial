@@ -31,12 +31,17 @@
                     <a href="{{ url('user/preview') }}" class="float-right text-white">Mark all as read</a>
                 </h6>
                 @foreach (Auth::user()->unreadNotifications->take(4) as $notification)
-                    @if ($notification->data['award'] == '4')
+                    @if ($notification->data['award'] == 'AE')
                         <a class="dropdown-item d-flex align-items-center"
                             href="{{ url('user/preview/academic-excellence/' . $notification->id) }}">
-                        @else
+                        @elseif ($notification->data['award'] == 'AA' ||
+                            $notification->data['award'] == 'DL' ||
+                            $notification->data['award'] == 'PL')
                             <a class="dropdown-item d-flex align-items-center"
                                 href="{{ url('user/preview/academic-award/' . $notification->id) }}">
+                            @else
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ url('user/preview/non-academic-award/' . $notification->id) }}">
                     @endif
 
                     <div class="mr-3">
@@ -56,14 +61,32 @@
                         </div>
                         <span class="font-weight-bold">
                             Your Application for
-                            @if ($notification->data['award'] == '1')
+                            @if ($notification->data['award'] == 'AA')
                                 Achiever's Award
-                            @elseif ($notification->data['award'] == '2')
+                            @elseif ($notification->data['award'] == 'DL')
                                 Dean's List
-                            @elseif ($notification->data['award'] == '3')
+                            @elseif ($notification->data['award'] == 'PL')
                                 President's List
-                            @elseif ($notification->data['award'] == '4')
+                            @elseif ($notification->data['award'] == 'AE')
                                 Academic Excellence
+                            @elseif ($notification->data['award'] == 'LA')
+                                Leadership Award
+                            @elseif ($notification->data['award'] == 'AYA')
+                                Athlete of the Year Award
+                            @elseif ($notification->data['award'] == 'OOA')
+                                Outstanding Organization Award
+                            @elseif ($notification->data['award'] == 'BTA')
+                                Best Thesis Award
+                            @elseif ($notification->data['award'] == 'GOP')
+                                Graduating Organization Presidents
+                            @elseif ($notification->data['award'] == 'GSA')
+                                Graduating Student Assistants
+                            @elseif ($notification->data['award'] == 'OC')
+                                Outside Competitions
+                            @elseif ($notification->data['award'] == 'GPDT')
+                                Graduating member of PUPT Dance Troupe
+                            @elseif ($notification->data['award'] == 'GPCG')
+                                Graduating member of PUPT Choral Group (CHANTERS)
                             @endif
                             has been
                             @if ($notification->data['status'] == '1')

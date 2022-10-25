@@ -101,7 +101,7 @@ $(document).ready(function () {
             $("#organization").removeClass("show");
             $("#organization").addClass("hidden");
         }
-        if(responseId == "2" || responseId == "3")
+        if(responseId == "2")
         {
             $("#sports").removeClass("hidden");
             $("#sports").addClass("show");

@@ -71,6 +71,7 @@
                                 <th>Year Level</th>
                                 <th>Award Applied</th>
                                 <th>Image</th>
+                                <th>Status</th>
                                 <th>Actions <br>
                                     @can('non-acad excellence delete')
                                         <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
@@ -103,8 +104,7 @@
                                         @elseif ($award->nonacad_id == '3')
                                             <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                             <div class="small">
-                                                <P>Sport: {{ $award->sports }}<br>
-                                                    School Organization: {{ $award->orgs->name }}</p>
+                                                <P>School Organization: {{ $award->orgs->name }}</p>
                                             </div>
                                         @elseif ($award->nonacad_id == '4')
                                             <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
@@ -137,6 +137,18 @@
                                     <td>
                                         <img src="{{ asset('uploads/' . $award->image) }}" class="img-thumbnail img-circle"
                                             width="50" alt="Image">
+                                    </td>
+                                    <td>
+                                        @if ($award->status == '1')
+                                            <span class="badge badge-success">Approved</span>
+                                        @elseif ($award->status == '2')
+                                            <span class="badge badge-danger">Rejected</span>
+                                            <div class="small">
+                                                <P>{{ $award->reason }}</p>
+                                            </div>
+                                        @else
+                                            <span class="badge badge-warning">Pending</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"

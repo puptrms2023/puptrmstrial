@@ -59,7 +59,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-striped table-bordered table-responsive" id="dataTable" width="100%"
+                        cellspacing="0">
                         <thead class="text-primary">
                             <tr>
                                 <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
@@ -71,6 +72,7 @@
                                 <th>Year Level</th>
                                 <th>Award Applied</th>
                                 <th>Photo</th>
+                                <th class="text-center">Status</th>
                                 <th>Actions <br>
                                     @can('non-acad excellence delete')
                                         <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
@@ -103,8 +105,7 @@
                                         @elseif ($award->nonacad_id == '3')
                                             <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                             <div class="small">
-                                                <P>Sport: {{ $award->sports }}<br>
-                                                    School Organization: {{ $award->orgs->name }}</p>
+                                                <P>School Organization: {{ $award->orgs->name }}</p>
                                             </div>
                                         @elseif ($award->nonacad_id == '4')
                                             <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
@@ -137,6 +138,31 @@
                                     <td>
                                         <img src="{{ asset('uploads/' . $award->image) }}" class="img-thumbnail img-circle"
                                             width="50" alt="Image">
+                                    </td>
+                                    <td>
+                                        @if ($award->status == '1')
+                                            <span class="badge badge-success">Approved</span>
+                                        @elseif ($award->status == '2')
+                                            <span class="badge badge-danger">Rejected</span>
+                                            <div class="small">
+                                                <P>{{ $award->reason }}</p>
+                                            </div>
+                                        @else
+                                            <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/approve/' . $award->id) }}"
+                                                class="btn btn-success btn-sm btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <span class="text">Approve</span>
+                                            </a>
+                                            <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/reject/' . $award->id) }}"
+                                                class="btn btn-danger btn-sm btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fa-sharp fa-solid fa-xmark"></i>
+                                                </span>
+                                                <span class="text">Reject</span>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"

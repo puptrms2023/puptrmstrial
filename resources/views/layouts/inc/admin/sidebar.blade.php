@@ -50,6 +50,14 @@
             </div>
         </div>
     </li>
+    @can('student list')
+        <li class="nav-item {{ Request::is('admin/records') || Request::is('admin/records/create') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="{{ url('admin/records') }}">
+                <i class="fa-solid fa-clipboard"></i>
+                <span>Recognition Records</span>
+            </a>
+        </li>
+    @endcan
     @can('menu academic awards')
         <li
             class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}">

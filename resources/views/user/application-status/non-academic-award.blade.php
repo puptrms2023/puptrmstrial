@@ -32,6 +32,7 @@
                                     <th>Year Level</th>
                                     <th>Award Applied</th>
                                     <th>Image</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,8 +57,7 @@
                                             @elseif ($list->nonacad_id == '3')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>Sport: {{ $list->sports }}<br>
-                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                    <P>School Organization: {{ $list->orgs->name }}</p>
                                                 </div>
                                             @elseif ($list->nonacad_id == '4')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
@@ -90,6 +90,20 @@
                                         <td>
                                             <img src="{{ asset('uploads/' . $list->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($list->status == '0')
+                                                <span class="badge badge-warning">Pending</span>
+                                            @endif
+                                            @if ($list->status == '1')
+                                                <span class="badge badge-success">Approved</span>
+                                            @endif
+                                            @if ($list->status == '2')
+                                                <span class="badge badge-danger">Rejected</span>
+                                                <div class="small">
+                                                    <P>{{ $list->reason }}</p>
+                                                </div>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

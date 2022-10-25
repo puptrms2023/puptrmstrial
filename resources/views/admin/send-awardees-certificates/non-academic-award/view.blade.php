@@ -75,8 +75,7 @@
                                             @elseif ($award->nonacad_id == '3')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>Sport: {{ $award->sports }}<br>
-                                                        School Organization: {{ $award->orgs->name }}</p>
+                                                    <P>School Organization: {{ $award->orgs->name }}</p>
                                                 </div>
                                             @elseif ($award->nonacad_id == '4')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>

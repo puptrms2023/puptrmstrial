@@ -46,7 +46,7 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List Applicants</div>
+        <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Dean's List</div>
     </div>
 
     <div class="row">

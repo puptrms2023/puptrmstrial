@@ -48,7 +48,7 @@ class NonAcademicAwardRequest extends FormRequest
             return $input->nonacad_id == '1' || $input->nonacad_id == '3' || $input->nonacad_id == '5' || $input->nonacad_id == '6' || $input->nonacad_id == '7';
         });
         $validator->sometimes('sports', 'required', function ($input) {
-            return $input->nonacad_id == '2' || $input->nonacad_id == '3';
+            return $input->nonacad_id == '2';
         });
         $validator->sometimes('subject', 'required', function ($input) {
             return $input->nonacad_id == '4';

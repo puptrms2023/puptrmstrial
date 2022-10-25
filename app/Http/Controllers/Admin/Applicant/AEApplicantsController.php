@@ -111,16 +111,26 @@ class AEApplicantsController extends Controller
     public function approved($course_code, $id)
     {
         $approve = AcademicExcellence::find($id);
+        $users = User::where('id', $approve->user_id)->get();
+        $award = $approve->award->acad_code;
         $approve->status = 1;
+
         $approve->save();
+
+        Notification::send($users, new StudentApplicantStatus($approve->id, $approve->status, $award));
         return redirect()->back();
     }
 
     public function rejected($course_code, $id)
     {
         $reject = AcademicExcellence::find($id);
+        $users = User::where('id', $reject->user_id)->get();
+        $award = $reject->award->acad_code;
         $reject->status = 2;
+
         $reject->save();
+
+        Notification::send($users, new StudentApplicantStatus($reject->id, $reject->status, $award));
         return redirect()->back();
     }
 
@@ -135,7 +145,7 @@ class AEApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
-        $award = $status->award_applied;
+        $award = $status->award->acad_code;
 
         $users = User::where('id', $status->user_id)->get();
         $status->save();

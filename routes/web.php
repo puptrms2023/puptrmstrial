@@ -132,7 +132,10 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/non-academic-award/{id}', 'view');
         Route::get('/non-academic-award/{nonacad_id}/{id}', 'details');
         Route::post('/non-academic-award/{nonacad_id}/delete-form', 'destroy');
+        Route::get('/non-academic-award/{nonacad_id}/approve/{id}', 'approved');
+        Route::get('/non-academic-award/{nonacad_id}/reject/{id}', 'rejected');
         Route::post('/non-academic-award/delete-form', 'destroy');
+        Route::put('/non-academic-award/{nonacad_id}/update-status/{id}', 'update');
         Route::delete('/non-academic-award/bulk-delete-form', 'deleteAll');
     });
     //Activity Log
@@ -252,6 +255,17 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::get('/maintenance/signatures/{id}', 'edit');
         Route::put('/maintenance/signatures/{id}', 'update');
     });
+    //Recognition Records
+    Route::controller(App\Http\Controllers\Admin\Records\RecordsController::class)->group(function () {
+        Route::get('/records', 'index');
+        Route::get('/records/create', 'create');
+        Route::post('/records/media', 'storeMedia');
+        Route::post('/records-store', 'store');
+        Route::get('/records/{id}', 'edit');
+        Route::put('/records-update/{id}', 'update');
+        Route::post('/delete-records', 'destroy');
+        Route::delete('/records/bulk-delete', 'deleteAll');
+    });
     //Settings
     Route::controller(App\Http\Controllers\Admin\SystemSetting\SettingController::class)->group(function () {
         Route::get('/manage-settings', 'index');
@@ -281,7 +295,7 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::controller(App\Http\Controllers\User\NotificationController::class)->group(function () {
         Route::get('/preview/academic-award/{id}', 'showAA');
         Route::get('/preview/academic-excellence/{id}', 'showAE');
-        Route::get('/preview/{id}', 'showNA');
+        Route::get('/preview/non-academic-award/{id}', 'showNA');
         Route::get('/preview', 'markAsRead');
         Route::get('/all-notifications', 'index');
         Route::post('/delete-notification', 'destroy');
