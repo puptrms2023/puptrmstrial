@@ -17,6 +17,12 @@ class RecordsController extends Controller
         $document = Document::all();
         return view('admin.records.index', compact('document'));
     }
+
+    public function show($id)
+    {
+        $document = Document::find($id);
+        return view('admin.records.view', compact('document'));
+    }
     public function create()
     {
         return view('admin.records.create');
@@ -46,8 +52,8 @@ class RecordsController extends Controller
     {
         $document = Document::create($request->all());
 
-        foreach ($request->input('document_file', []) as $file) {
-            $document->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document_file');
+        if ($request->input('document_file', false)) {
+            $document->addMedia(storage_path('tmp/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
         }
 
         return redirect('admin/records')->with('success', 'File uploaded successfully');
@@ -65,13 +71,8 @@ class RecordsController extends Controller
         $document->update($request->all());
 
         if ($request->input('document_file', false)) { //if not empty
-            foreach ($request->input('document_file', []) as $file) {
-                if (!$document->document_file || $request->input('document_file') !== $document->document_file->file_name) {
-                    $document->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document_file');
-                }
-                // elseif ($document->document_file) {
-                //     $document->document_file->delete();
-                // }
+            if (!$document->document_file || $request->input('document_file') !== $document->document_file->file_name) {
+                $document->addMedia(storage_path('tmp/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
             }
         } elseif ($document->document_file) { //if has exisitng value
             $document->document_file->delete();

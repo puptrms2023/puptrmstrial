@@ -167,7 +167,7 @@
                     data: "year_level"
                 },
                 {
-                    data: "gwa"
+                    data: "avg"
                 },
                 {
                     data: "image",

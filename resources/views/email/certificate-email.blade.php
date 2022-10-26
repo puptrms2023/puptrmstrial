@@ -9,7 +9,7 @@
 
     <p>Dear {{ $data['lname'] }},</p>
 
-    @if ($data['award'] == '1')
+    @if ($data['award'] == 'AA')
         <p>Congratulations! You have been awarded a place on the Achiever's Award for Excellent Academic
             Performance for School Year 2022-2023.
         </p>
@@ -19,7 +19,7 @@
         <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
             academic excellence and wishes you the best of luck for the future.
         </p>
-    @elseif($data['award'] == '2')
+    @elseif($data['award'] == 'DL')
         <p>Congratulations! You have been awarded a place on the Dean's List for Excellent Academic
             Performance for School Year 2022-2023.
         </p>
@@ -28,7 +28,7 @@
         <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
             academic excellence and wishes you the best of luck for the future.
         </p>
-    @elseif($data['award'] == '3')
+    @elseif($data['award'] == 'PL')
         <p>Congratulations! You have been awarded a place on the President's List for Excellent Academic
             Performance for School Year 2022-2023.
         </p>
@@ -38,7 +38,7 @@
         <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
             academic excellence and wishes you the best of luck for the future.
         </p>
-    @elseif($data['award'] == '4')
+    @elseif($data['award'] == 'AE')
         <p>Congratulations! You have been awarded a place on the Academic Excellence.
         </p>
         <p>The Academic Excellence for Excellence Academic Performance acknowledges those who have achieved a

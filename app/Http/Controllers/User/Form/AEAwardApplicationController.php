@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Form;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicExcellenceRequest;
@@ -38,6 +38,10 @@ class AEAwardApplicationController extends Controller
         $award->gwa6 = $data['gwa6'];
         $award->gwa7 = $data['gwa7'];
         $award->gwa8 = $data['gwa8'];
+
+        if (!empty($data['gwa9'])) {
+            $award->gwa9 = $data['gwa9'];
+        }
 
         $award->save();
         $lastid = $award->id;
@@ -131,6 +135,21 @@ class AEAwardApplicationController extends Controller
             $sum->app_id = $lastid;
             $sum->save();
         }
+
+        if (!empty($request->subjects9)) {
+            foreach ($request->subjects9 as $key => $subjects9) {
+                $sum = new SummaryAcadExcell();
+                $sum->subjects = $subjects9;
+                $sum->units = $data['units9'][$key];
+                $sum->grades = $data['grades9'][$key];
+                $sum->user_id = $data['user_id'];
+                $sum->term = $data['term9'];
+                $sum->sy = $data['school_year'];
+                $sum->app_id = $lastid;
+                $sum->save();
+            }
+        }
+
 
         return redirect('user/dashboard')->with('success', 'Your application has been submitted');
     }

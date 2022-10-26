@@ -34,7 +34,7 @@ class NACertificateController extends Controller
             'fname' => $stud->users->first_name,
             'mname' => $stud->users->middle_name,
             'lname' => $stud->users->last_name,
-            'award'  => $stud->nonacad_id,
+            'award'  => $stud->award->nonacad_code,
             'award_name'  => $stud->nonacad->name,
             'sy'  => $stud->school_year
         ];
@@ -92,8 +92,8 @@ class NACertificateController extends Controller
                 'signature4' => $name_sig4
             ];
             $details = ['email' => $user->users->email];
+            SendEmailJob::dispatch($details, $data, $data['studnum']);
         }
-        SendEmailJob::dispatch($details, $data, $data['studnum']);
         NonAcademicApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
     }

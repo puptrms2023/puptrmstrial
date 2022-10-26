@@ -64,13 +64,21 @@ class AEApplicantsController extends Controller
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
                                     width="50" alt="Image">';
                 })
+                ->addColumn('avg', function (AcademicExcellence $stud) {
+                    $totalwithSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9;
+                    if (!empty($stud->gwa9)) {
+                        return number_format((float) $totalwithSummer, 2, '.', '');
+                    } else {
+                        return $stud->gwa;
+                    }
+                })
                 ->addColumn('status', function (AcademicExcellence $data) {
                     return view('admin.academic-excellence-award.action.status', compact('data'));
                 })
                 ->addColumn('action', function ($data) {
                     return view('admin.academic-excellence-award.action.buttons', compact('data'));
                 })
-                ->rawColumns(['checkbox', 'image', 'status', 'action'])
+                ->rawColumns(['checkbox', 'image', 'avg', 'status', 'action'])
                 ->make(true);
         }
 
@@ -104,8 +112,12 @@ class AEApplicantsController extends Controller
         $grades8 = SummaryAcadExcell::where('app_id', $id)
             ->where('term', "8")
             ->get();
+        $grades9 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "9")
+            ->get();
+        $totalwithSummer = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa9) / 9;
 
-        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8'));
+        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8', 'grades9', 'totalwithSummer'));
     }
 
     public function approved($course_code, $id)
@@ -220,6 +232,14 @@ class AEApplicantsController extends Controller
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
                                 width="50" alt="Image">';
                 })
+                ->addColumn('avg', function (AcademicExcellence $stud) {
+                    $totalwithSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9;
+                    if (!empty($stud->gwa9)) {
+                        return number_format((float) $totalwithSummer, 2, '.', '');
+                    } else {
+                        return $stud->gwa;
+                    }
+                })
                 ->addColumn('status', function (AcademicExcellence $data) {
                     if ($data->status == '1') {
                         return '<span class="badge badge-success">Approved</span>';
@@ -232,7 +252,7 @@ class AEApplicantsController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('admin.academic-excellence-award.action.buttons', compact('data'));
                 })
-                ->rawColumns(['checkbox', 'image', 'status', 'action'])
+                ->rawColumns(['checkbox', 'image', 'avg', 'status', 'action'])
                 ->make(true);
         }
 

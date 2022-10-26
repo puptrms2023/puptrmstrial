@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Form;
 
 use App\Models\Summary;
 use App\Http\Controllers\Controller;
@@ -35,6 +35,11 @@ class AcademicAwardController extends Controller
 
         $award->award_applied = $data['award_applied'];
         $award->course_id = $data['course_id'];
+
+        if (!empty($data['summer'])) {
+            $award->summer = $data['summer'];
+        }
+
         $award->save();
         $lastid = $award->id;
 
@@ -60,6 +65,20 @@ class AcademicAwardController extends Controller
             $sum->sy = $data['school_year'];
             $sum->app_id = $lastid;
             $sum->save();
+        }
+
+        if (!empty($request->subjects9)) {
+            foreach ($request->subjects9 as $key => $subjects9) {
+                $sum = new Summary();
+                $sum->subjects = $subjects9;
+                $sum->units = $data['units9'][$key];
+                $sum->grades = $data['grades9'][$key];
+                $sum->user_id = $data['user_id'];
+                $sum->term = $data['term9'];
+                $sum->sy = $data['school_year'];
+                $sum->app_id = $lastid;
+                $sum->save();
+            }
         }
 
         return redirect('user/dashboard')->with('success', 'Your application has been submitted');

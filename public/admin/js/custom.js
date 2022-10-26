@@ -772,6 +772,79 @@ function getGWA8() {
         "0.00" :
         gwa.toFixed(2);
 }
+//Summer Subjects and Grades
+$(document).ready(function() {
+    $("#add_btn9").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects9[]" class="form-control"></td>';
+        html +=
+            '<td><input type="text" name="units9[]" class="form-control units9 multi9" id="units9" min="9" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
+        html +=
+            '<td><input type="text" name="grades9[]" class="form-control grades9 multi9" id="grades9" onkeypress="return isFloatNumber(this,event)"></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove9"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total9[]" class="form-control total9" id="total9" readonly></td>';
+        html += "</tr>";
+        $("#calculation9").append(html);
+    });
+});
+
+$(document).on("click", "#remove9", function() {
+    $(this).closest("tr").remove();
+    grandTotal9();
+    totalUnits9();
+    getGWA9();
+});
+
+$(document).ready(function() {
+    $("#calculation9").on("input", ".multi9", function() {
+        var parent9 = $(this).closest("tr");
+        var unit = $(parent9).find("#units9").val();
+        var grade = $(parent9).find("#grades9").val();
+
+        $(parent9)
+            .find("#total9")
+            .val(unit * grade);
+        grandTotal9();
+        totalUnits9();
+        getGWA9();
+    });
+});
+
+function grandTotal9() {
+    var total_avg9 = 0;
+    $(".total9").each(function() {
+        total_avg9 += Number($(this).val());
+    });
+    document.getElementById("weight9").value = isNaN(total_avg9) ?
+        "0.00" :
+        total_avg9.toFixed(2);
+}
+
+function totalUnits9() {
+    var total_units = 0;
+
+    $(".units9").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits9").value = total_units;
+    document.getElementById("totalUnit9").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA9() {
+    var total_units = $("#totalUnits9").val();
+    var weight = $("#weight9").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa9").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
 //refresh page
 function refreshPage() {
         location.reload();
@@ -840,6 +913,33 @@ function togglebulk_delete_plain_table() {
         $('button#bulk_delete').addClass('d-none');
     }
 }
+//Hide and Show summer using checkbox
+$(document).ready(function() {
+    handleStatusChanged();
+});
+
+function handleStatusChanged() {
+    $('#chkSummer').on('change', function() {
+        toggleStatus();
+    });
+}
+
+function toggleStatus() {
+    if ($('#chkSummer').is(':checked')) {
+        $('#dvSummer :input').removeAttr('disabled');
+    } else {
+        $('#dvSummer :input').attr('disabled', true);
+    }
+}
+$(function() {
+    $("#chkSummer").click(function() {
+        if ($(this).is(":checked")) {
+            $("#dvSummer").show();
+        } else {
+            $("#dvSummer").hide();
+        }
+    });
+});
 //Admin Print
 $(function() {
     //deans list filter by year

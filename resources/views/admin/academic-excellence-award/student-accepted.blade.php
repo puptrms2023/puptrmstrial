@@ -141,7 +141,16 @@
                     <td>{{ $stud->users->first_name }}</td>
                     <td align="center" width="12%">{{ $stud->courses->course_code }}</td>
                     <td align="center" width="15%">{{ $stud->year_level }}</td>
-                    <td width="12%" align="center">{{ $stud->gwa }}</td>
+                    <td width="12%" align="center">
+                        @php
+                            $totalwithSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9;
+                        @endphp
+                        @if (!empty($stud->gwa9))
+                            {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                        @else
+                            {{ $stud->gwa }}
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </body>

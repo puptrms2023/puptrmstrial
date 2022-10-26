@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Status;
 
 use App\Models\StudentApplicant;
 use App\Models\AcademicExcellence;
@@ -26,5 +26,4 @@ class ApplicationStatusController extends Controller
         $status = NonAcademicApplicant::where('user_id', Auth::id())->get();
         return view('user.application-status.non-academic-award', compact('status'));
     }
-
 }

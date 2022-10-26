@@ -92,20 +92,26 @@
         @endif
     </div>
     <div class="description">
-        @if ($award == '1' || $award == '2' || $award == '3' || $award == '4')
+        @if ($award == 'LA' || $award == 'AYA' || $award == 'OOA' || $award == 'BTA')
             for the remarkable performance in this institution, receiving the<br>
             {{ $award_name }} in the S.Y. {{ $sy }}.
-        @elseif ($award == '5' || $award == '6')
+        @elseif ($award == 'GOP' || $award == 'GSA')
             for the remarkable service and performance<br>
             in the institution for the Academic Year {{ $sy }}.
-        @elseif ($award == '7')
+        @elseif ($award == 'OC')
             for the representing the institution/organization on the Academic Year {{ $sy }}.
-        @elseif ($award == '8' || $award == '9')
+        @elseif ($award == 'GPDT' || $award == 'GPCG')
             for the remarkable performance and outstanding participation in<br>
             the {{ $award_name }} for the <br> Academic Year {{ $sy }}.
-        @else
+        @elseif ($award == 'AA' || $award == 'DL' || $award == 'PL' || $award == 'AE')
             for the remarkable academic performance as a student of this institution for obtaning<br>
-            a General Weighted Average of {{ $gwa }} qualified for the {{ $award_name }} for the S.Y.
+            a General Weighted Average of
+            @if (!empty($summer))
+                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+            @else
+                {{ $gwa }}
+            @endif
+            qualified for the {{ $award_name }} for the S.Y.
             {{ $sy }}.
         @endif
     </div>

@@ -38,6 +38,9 @@
                             </thead>
                             <tbody>
                                 @foreach ($status as $item)
+                                    @php
+                                        $totalwithSummer = ($item->gwa1 + $item->gwa2 + $item->gwa3 + $item->gwa4 + $item->gwa5 + $item->gwa6 + $item->gwa7 + $item->gwa8 + $item->gwa9) / 9;
+                                    @endphp
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
                                         <td>{{ $item->users->first_name }}</td>
@@ -49,7 +52,13 @@
                                             <img src="{{ asset('uploads/' . $item->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
-                                        <td class="text-center">{{ $item->gwa }}</td>
+                                        <td class="text-center">
+                                            @if (!empty($item->gwa9))
+                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                            @else
+                                                {{ $item->gwa }}
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>

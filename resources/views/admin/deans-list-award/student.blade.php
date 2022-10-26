@@ -47,6 +47,22 @@
                                 <th width="25%">Second Semester GWA</th>
                                 <td>{{ $status->gwa_2nd }}</td>
                             </tr>
+                            @if ($summer_grades->count() > 0)
+                                <tr>
+                                    <th width="25%">Summer GWA</th>
+                                    <td>{{ $status->summer }}</td>
+                                </tr>
+                            @endif
+                            <tr>
+                                <th width="25%">GWA</th>
+                                <td class="font-weight-bold text-primary">
+                                    @if ($summer_grades->count() > 0)
+                                        {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                    @else
+                                        {{ $status->gwa }}
+                                    @endif
+                                </td>
+                            </tr>
                             <tr>
                                 <th width="25%">Status</th>
                                 <td>
@@ -155,6 +171,45 @@
             </div>
         </div>
     </div>
+
+    @if ($summer_grades->count() > 0)
+        <p>SUMMER</p>
+        <div class="row mb-2">
+            {{-- Fourth Year - 1st Sem --}}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="m-0 font-weight-bold text-primary">Summer Grades
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Grades</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($summer_grades as $grade)
+                                        <tr>
+                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->grades }}</td>
+                                            <td>{{ $grade->units }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <small>GWA: <b>{{ $status->summer }}</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md-6">
             <form

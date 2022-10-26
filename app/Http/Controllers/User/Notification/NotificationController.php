@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Notification;
 
 use App\Models\User;
 use Illuminate\Http\Request;

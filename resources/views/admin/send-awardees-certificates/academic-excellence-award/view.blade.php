@@ -57,7 +57,16 @@
                                         <td>{{ $awardee->users->first_name }}</td>
                                         <td>{{ $awardee->courses->course_code }}</td>
                                         <td>{{ $awardee->year_level }}</td>
-                                        <td>{{ $awardee->gwa }}</td>
+                                        <td>
+                                            @php
+                                                $totalwithSummer = ($awardee->gwa1 + $awardee->gwa2 + $awardee->gwa3 + $awardee->gwa4 + $awardee->gwa5 + $awardee->gwa6 + $awardee->gwa7 + $awardee->gwa8 + $awardee->gwa9) / 9;
+                                            @endphp
+                                            @if (!empty($awardee->gwa9))
+                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                            @else
+                                                {{ $awardee->gwa }}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($awardee->certificate_status == '1')
                                                 <span class="badge badge-success">Sent</span>

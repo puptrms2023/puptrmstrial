@@ -92,7 +92,13 @@
         @endif
     </div>
     <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>
-        a General Weighted Average of {{ $gwa }} qualified for the Academic Excellence for the S.Y.
+        a General Weighted Average of
+        @if (!empty($stud->gwa9))
+            {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+        @else
+            {{ $gwa }}
+        @endif
+        qualified for the Academic Excellence for the S.Y.
         {{ $sy }}.
     </div>
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>

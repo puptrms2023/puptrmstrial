@@ -69,6 +69,14 @@ class PLApplicantsController extends Controller
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
                                     width="50" alt="Image">';
                 })
+                // ->addColumn('avg', function (StudentApplicant $stud) {
+                //     $totalwithSummer = ($stud->gwa_1st + $stud->gwa_2nd + $stud->summer) / 3;
+                //     if (!empty($stud->summer)) {
+                //         return number_format((float) $totalwithSummer, 2, '.', '');
+                //     } else {
+                //         return $stud->gwa;
+                //     }
+                // })
                 ->addColumn('status', function (StudentApplicant $data) {
                     return view('admin.presidents-list-award.action.status', compact('data'));
                 })
@@ -116,7 +124,11 @@ class PLApplicantsController extends Controller
         $grades2 = Summary::where('app_id', $id)
             ->where('term', "2")
             ->get();
-        return view('admin.presidents-list-award.student', compact('status', 'grades', 'grades2'));
+        $summer_grades = Summary::where('app_id', $id)
+            ->where('term', "9")
+            ->get();
+        $totalwithSummer = ($status->gwa_1st + $status->gwa_2nd + $status->summer) / 3;
+        return view('admin.presidents-list-award.student', compact('status', 'grades', 'grades2', 'summer_grades', 'totalwithSummer'));
     }
 
     public function update(Request $request, $course_code, $id)

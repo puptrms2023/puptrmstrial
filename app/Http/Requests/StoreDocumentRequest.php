@@ -24,7 +24,7 @@ class StoreDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'document_file' => 'required|array|min:1',
+            'document_file' => 'required',
             'name' => 'required',
             'description' => 'required'
         ];

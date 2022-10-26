@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Profile;
 
 use App\Models\User;
 use App\Models\Courses;

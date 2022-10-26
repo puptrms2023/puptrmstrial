@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_home_page">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('user/dashboard') }}">
         <div class="sidebar-brand-icon">
             <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
         </div>

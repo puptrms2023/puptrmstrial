@@ -78,6 +78,7 @@
                                         <th>Year Level</th>
                                         <th>First Sem GWA</th>
                                         <th>Second Sem GWA</th>
+                                        <th>Summer</th>
                                         <th>Average</th>
                                         <th>Image</th>
                                         <th>Status</th>
@@ -86,13 +87,27 @@
                                 </thead>
                                 <tbody class="text-uppercase">
                                     @foreach ($academic as $app)
+                                        @php
+                                            $totalwithSummer = ($app->gwa_1st + $app->gwa_2nd + $app->summer) / 3;
+                                        @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-info">{{ $app->award->name }}</span></td>
                                             <td>{{ $app->year_level }}</td>
                                             <td class="text-center">{{ $app->gwa_1st }}</td>
                                             <td class="text-center">{{ $app->gwa_2nd }}</td>
-                                            <td class="text-center">{{ $app->gwa }}</td>
+                                            <td class="text-center">
+                                                @if (!empty($app->summer))
+                                                    {{ number_format((float) $app->summer, 2, '.', '') }}
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if (!empty($app->summer))
+                                                    {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                                @else
+                                                    {{ $app->gwa }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 <img src="{{ asset('uploads/' . $app->image) }}"
                                                     class="img-thumbnail img-circle" width="50" alt="Image">
@@ -121,7 +136,6 @@
                 </div>
             </div>
         </div>
-    @else
     @endif
 
     @if ($excellence->count() > 0)
@@ -140,6 +154,7 @@
                                         <th>2nd year</th>
                                         <th>3rd year</th>
                                         <th>4th year</th>
+                                        <th>Summer</th>
                                         <th>Average</th>
                                         <th>Image</th>
                                         <th>Status</th>
@@ -147,28 +162,34 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-uppercase">
-                                    @php
-                                        $gwa_1st = 0.0;
-                                        $gwa_2nd = 0.0;
-                                        $gwa_3rd = 0.0;
-                                        $gwa_4th = 0.0;
-                                    @endphp
                                     @foreach ($excellence as $app)
                                         @php
                                             $gwa_1st = ($app->gwa1 + $app->gwa2) / 2;
                                             $gwa_2nd = ($app->gwa3 + $app->gwa4) / 2;
                                             $gwa_3rd = ($app->gwa5 + $app->gwa6) / 2;
                                             $gwa_4th = ($app->gwa7 + $app->gwa8) / 2;
+                                            $totalwithSummer = ($app->gwa1 + $app->gwa2 + $app->gwa3 + $app->gwa4 + $app->gwa5 + $app->gwa6 + $app->gwa7 + $app->gwa8 + $app->gwa9) / 9;
                                         @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-success">{{ $app->award->name }}</span></td>
                                             <td>{{ $app->year_level }}</td>
-                                            <td class="text-center">{{ $gwa_1st }}</td>
-                                            <td class="text-center">{{ $gwa_2nd }}</td>
-                                            <td class="text-center">{{ $gwa_3rd }}</td>
-                                            <td class="text-center">{{ $gwa_4th }}</td>
-                                            <td class="text-center">{{ $app->gwa }}</td>
+                                            <td class="text-center">{{ number_format((float) $gwa_1st, 2, '.', '') }}</td>
+                                            <td class="text-center">{{ number_format((float) $gwa_2nd, 2, '.', '') }}</td>
+                                            <td class="text-center">{{ number_format((float) $gwa_3rd, 2, '.', '') }}</td>
+                                            <td class="text-center">{{ number_format((float) $gwa_4th, 2, '.', '') }}</td>
+                                            <td class="text-center">
+                                                @if (!empty($app->gwa9))
+                                                    {{ number_format((float) $app->gwa9, 2, '.', '') }}
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if (!empty($app->gwa9))
+                                                    {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                                @else
+                                                    {{ $app->gwa }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 <img src="{{ asset('uploads/' . $app->image) }}"
                                                     class="img-thumbnail img-circle" width="50" alt="Image">
@@ -197,7 +218,6 @@
                 </div>
             </div>
         </div>
-    @else
     @endif
 
     @if ($non_acad->count() > 0)
@@ -296,7 +316,6 @@
                 </div>
             </div>
         </div>
-    @else
     @endif
 
 @endsection

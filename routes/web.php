@@ -23,7 +23,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
 
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     //Users
-    Route::controller(App\Http\Controllers\Admin\UserController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\User\UserController::class)->group(function () {
         Route::get('/users', 'index');
         Route::get('/users/create', 'create');
         Route::post('/users', 'store');
@@ -40,7 +40,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/delete-permission/{id}', 'destroy');
     });
     //Student
-    Route::controller(App\Http\Controllers\Admin\StudentController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\Student\StudentController::class)->group(function () {
         Route::get('/students', 'index');
         Route::get('/students/{id}', 'edit');
         Route::get('/students/view/{id}', 'show');
@@ -258,6 +258,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     //Recognition Records
     Route::controller(App\Http\Controllers\Admin\Records\RecordsController::class)->group(function () {
         Route::get('/records', 'index');
+        Route::get('/records/view/{id}', 'show');
         Route::get('/records/create', 'create');
         Route::post('/records/media', 'storeMedia');
         Route::post('/records-store', 'store');
@@ -275,24 +276,24 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
 
-    Route::controller(App\Http\Controllers\User\AcademicAwardController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Form\AcademicAwardController::class)->group(function () {
         Route::get('/application-form', 'index');
         Route::post('/application-form', 'store');
     });
-    Route::controller(App\Http\Controllers\User\AEAwardApplicationController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Form\AEAwardApplicationController::class)->group(function () {
         Route::get('/application-form-ae', 'index');
         Route::post('/application-form-ae', 'store');
     });
-    Route::controller(App\Http\Controllers\User\NonAcademicAwardController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Form\NonAcademicAwardController::class)->group(function () {
         Route::get('/non-academic-form', 'index');
         Route::post('/non-academic-form', 'store');
     });
-    Route::controller(App\Http\Controllers\User\ApplicationStatusController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Status\ApplicationStatusController::class)->group(function () {
         Route::get('/application-status/academic-award', 'aaAward');
         Route::get('/application-status/academic-excellence', 'aeAward');
         Route::get('/application-status/non-academic-award', 'naAward');
     });
-    Route::controller(App\Http\Controllers\User\NotificationController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Notification\NotificationController::class)->group(function () {
         Route::get('/preview/academic-award/{id}', 'showAA');
         Route::get('/preview/academic-excellence/{id}', 'showAE');
         Route::get('/preview/non-academic-award/{id}', 'showNA');
@@ -301,16 +302,16 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::post('/delete-notification', 'destroy');
         Route::delete('/bulk-delete-notifications', 'destroyAll');
     });
-    Route::controller(App\Http\Controllers\User\FullCalendarController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Calendar\FullCalendarController::class)->group(function () {
         Route::get('/calendar', 'index');
     });
-    Route::get('/gallery', [App\Http\Controllers\User\GalleryController::class, 'index']);
-    Route::get('/about', [App\Http\Controllers\User\AboutController::class, 'index']);
-    Route::controller(App\Http\Controllers\User\ProfileController::class)->group(function () {
+    Route::get('/gallery', [App\Http\Controllers\User\Gallery\GalleryController::class, 'index']);
+    Route::get('/about', [App\Http\Controllers\User\About\AboutController::class, 'index']);
+    Route::controller(App\Http\Controllers\User\Profile\ProfileController::class)->group(function () {
         Route::get('/profile', 'index');
         Route::put('/update-profile/{id}', 'store');
     });
-    Route::controller(App\Http\Controllers\User\ChangePassController::class)->group(function () {
+    Route::controller(App\Http\Controllers\User\Password\ChangePassController::class)->group(function () {
         Route::get('/change-password', 'index');
         Route::post('/update-password', 'store');
     });

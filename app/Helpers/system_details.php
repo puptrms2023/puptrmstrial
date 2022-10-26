@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AcademicExcellence;
 use App\Models\Setting;
 use App\Models\Signature;
 
@@ -34,3 +35,4 @@ function getSignatories()
     $names = Signature::all();
     return $names;
 }
+

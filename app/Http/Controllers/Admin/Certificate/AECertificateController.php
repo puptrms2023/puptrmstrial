@@ -63,9 +63,11 @@ class AECertificateController extends Controller
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
                 'gwa'  => $user->gwa,
-                'award'  => $user->award_applied,
+                'award'  => $user->award->acad_code,
                 'award_name'  => $user->award->name,
                 'sy'  => $user->school_year,
+                'summer' => $user->gwa9,
+                'totalwithSummer' => ($user->gwa1 + $user->gwa2 + $user->gwa3 + $user->gwa4 + $user->gwa5 + $user->gwa6 + $user->gwa7 + $user->gwa8 + $user->gwa9) / 9,
                 'name1' => $name1,
                 'position1' => $pos1,
                 'signature1' => $name_sig1,
@@ -83,8 +85,8 @@ class AECertificateController extends Controller
                 'signature4' => $name_sig4
             ];
             $details = ['email' => $user->users->email];
+            SendEmailJob::dispatch($details, $data, $data['studnum']);
         }
-        SendEmailJob::dispatch($details, $data, $data['studnum']);
         AcademicExcellence::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
     }
@@ -99,13 +101,14 @@ class AECertificateController extends Controller
             'lname' => $stud->users->last_name,
             'gwa'  => $stud->gwa,
             'award'  => $stud->award_applied,
-            'sy'  => $stud->school_year
+            'sy'  => $stud->school_year,
+            'totalwithSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9
         ];
 
         $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($stud->users->stud_num));
 
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('qrcode', 'sig'));
+        $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('stud', 'qrcode', 'sig'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream($stud->users->last_name . ',' . $stud->users->first_name . '-cert.pdf');
     }

@@ -13,6 +13,7 @@ class CertEmail extends Mailable
     use Queueable, SerializesModels;
     public $data;
     public $studno;
+
     /**
      * Create a new message instance.
      *

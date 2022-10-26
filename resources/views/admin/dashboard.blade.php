@@ -122,7 +122,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Pending</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_deans }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pending }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-regular fa-hourglass-half fa-2x text-gray-300"></i>
@@ -143,7 +143,7 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $analytics_presidents }}
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $completed }}
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Rejected</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_acadexcell }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $rejected }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-regular fa-circle-xmark fa-2x text-gray-300"></i>

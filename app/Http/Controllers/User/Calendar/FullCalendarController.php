@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Calendar;
 
 use App\Models\Event;
 use Illuminate\Http\Request;

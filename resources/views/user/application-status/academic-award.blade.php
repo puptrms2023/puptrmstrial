@@ -33,6 +33,7 @@
                                     <th>Award Applied</th>
                                     <th>1st Sem GWA</th>
                                     <th>2nd Sem GWA</th>
+                                    <th>Summer</th>
                                     <th>Average</th>
                                     <th>Image</th>
                                     <th>Status</th>
@@ -40,6 +41,9 @@
                             </thead>
                             <tbody>
                                 @foreach ($status as $item)
+                                    @php
+                                        $totalwithSummer = ($item->gwa_1st + $item->gwa_2nd + $item->summer) / 3;
+                                    @endphp
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
                                         <td>{{ $item->users->first_name }}</td>
@@ -49,7 +53,18 @@
                                         <td><span class="badge badge-info">{{ $item->award->name }}</span></td>
                                         <td class="text-center">{{ $item->gwa_1st }}</td>
                                         <td class="text-center">{{ $item->gwa_2nd }}</td>
-                                        <td class="text-center">{{ $item->gwa }}</td>
+                                        <td class="text-center">
+                                            @if (!empty($item->summer))
+                                                {{ number_format((float) $item->summer, 2, '.', '') }}
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if (!empty($item->summer))
+                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                            @else
+                                                {{ $item->gwa }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <img src="{{ asset('uploads/' . $item->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
