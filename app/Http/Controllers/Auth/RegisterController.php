@@ -69,6 +69,6 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
-        return redirect('user/dashboard')->with('status', "Welocme to PUPT RMS!.");
+        return redirect('user/dashboard')->with('status', "Welocme to PUPT RMS");
     }
 }

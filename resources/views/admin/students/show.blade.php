@@ -78,7 +78,6 @@
                                         <th>Year Level</th>
                                         <th>First Sem GWA</th>
                                         <th>Second Sem GWA</th>
-                                        <th>Summer</th>
                                         <th>Average</th>
                                         <th>Image</th>
                                         <th>Status</th>
@@ -87,27 +86,13 @@
                                 </thead>
                                 <tbody class="text-uppercase">
                                     @foreach ($academic as $app)
-                                        @php
-                                            $totalwithSummer = ($app->gwa_1st + $app->gwa_2nd + $app->summer) / 3;
-                                        @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-info">{{ $app->award->name }}</span></td>
                                             <td>{{ $app->year_level }}</td>
                                             <td class="text-center">{{ $app->gwa_1st }}</td>
                                             <td class="text-center">{{ $app->gwa_2nd }}</td>
-                                            <td class="text-center">
-                                                @if (!empty($app->summer))
-                                                    {{ number_format((float) $app->summer, 2, '.', '') }}
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
-                                                @if (!empty($app->summer))
-                                                    {{ number_format((float) $totalwithSummer, 2, '.', '') }}
-                                                @else
-                                                    {{ $app->gwa }}
-                                                @endif
-                                            </td>
+                                            <td class="text-center">{{ $app->gwa }}</td>
                                             <td>
                                                 <img src="{{ asset('uploads/' . $app->image) }}"
                                                     class="img-thumbnail img-circle" width="50" alt="Image">

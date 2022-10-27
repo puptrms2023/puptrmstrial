@@ -66,8 +66,6 @@ class PLCertificateController extends Controller
                 'award'  => $user->award->acad_code,
                 'award_name'  => $user->award->name,
                 'sy'  => $user->school_year,
-                'summer' => $user->summer,
-                'totalwithSummer' => ($user->gwa_1st + $user->gwa_2nd + $user->summer) / 3,
                 'name1' => $name1,
                 'position1' => $pos1,
                 'signature1' => $name_sig1,
@@ -101,14 +99,13 @@ class PLCertificateController extends Controller
             'lname' => $stud->users->last_name,
             'gwa'  => $stud->gwa,
             'award'  => $stud->award_applied,
-            'sy'  => $stud->school_year,
-            'totalwithSummer'  => ($stud->gwa_1st + $stud->gwa_2nd + $stud->summer) / 3
+            'sy'  => $stud->school_year
         ];
 
         $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($stud->users->stud_num));
 
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('admin.send-awardees-certificates.presidents-list-award.show', $data, compact('stud', 'qrcode', 'sig'));
+        $pdf->loadView('admin.send-awardees-certificates.presidents-list-award.show', $data, compact('qrcode', 'sig'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream($stud->users->last_name . ',' . $stud->users->first_name . '-cert.pdf');
     }

@@ -42,8 +42,8 @@
                                     <th>First Name</th>
                                     <th>Course</th>
                                     <th>Year Level</th>
-                                    <th>GWA</th>
-                                    <th>Status</th>
+                                    <th class="text-center">GWA</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -56,17 +56,8 @@
                                         <td>{{ $awardee->users->first_name }}</td>
                                         <td>{{ $awardee->courses->course_code }}</td>
                                         <td>{{ $awardee->year_level }}</td>
-                                        <td>
-                                            @php
-                                                $totalwithSummer = ($awardee->gwa_1st + $awardee->gwa_2nd + $awardee->summer) / 3;
-                                            @endphp
-                                            @if (!empty($awardee->summer))
-                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
-                                            @else
-                                                {{ $awardee->gwa }}
-                                            @endif
-                                        </td>
-                                        <td>
+                                        <td class="text-center">{{ $awardee->gwa }}</td>
+                                        <td class="text-center">
                                             @if ($awardee->certificate_status == '1')
                                                 <span class="badge badge-success">Sent</span>
                                             @else

@@ -115,11 +115,7 @@ class DLApplicantsController extends Controller
         $grades2 = Summary::where('app_id', $id)
             ->where('term', "2")
             ->get();
-        $summer_grades = Summary::where('app_id', $id)
-            ->where('term', "9")
-            ->get();
-        $totalwithSummer = ($status->gwa_1st + $status->gwa_2nd + $status->summer) / 3;
-        return view('admin.deans-list-award.student', compact('status', 'grades', 'grades2', 'summer_grades', 'totalwithSummer'));
+        return view('admin.deans-list-award.student', compact('status', 'grades', 'grades2'));
     }
 
     public function update(Request $request, $course_code, $id)
