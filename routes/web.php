@@ -315,4 +315,7 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
         Route::get('/change-password', 'index');
         Route::post('/update-password', 'store');
     });
+    Route::controller(App\Http\Controllers\User\Qrcode\QredirectController::class)->group(function () {
+        Route::get('/check-qr/{id}', 'redirect');
+    });
 });

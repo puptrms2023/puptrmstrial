@@ -36,6 +36,7 @@ class NonAcademicAwardController extends Controller
         $award->placement = $data['placement'];
         $award->designated_office = $data['designation'];
         $award->remarks = $data['remarks'];
+        $award->nonacad_app_id = generateApplicationIdNA();
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');

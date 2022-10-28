@@ -23,6 +23,7 @@ class AEAwardApplicationController extends Controller
         $award->course_id = $data['course_id'];
         $award->school_year = $data['school_year'];
         $award->year_level = $data['year_level'];
+        $award->ae_app_id = generateApplicationIdAE();
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');

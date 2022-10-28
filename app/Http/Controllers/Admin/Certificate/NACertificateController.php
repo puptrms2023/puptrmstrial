@@ -34,12 +34,12 @@ class NACertificateController extends Controller
             'fname' => $stud->users->first_name,
             'mname' => $stud->users->middle_name,
             'lname' => $stud->users->last_name,
-            'award'  => $stud->award->nonacad_code,
+            'award'  => $stud->nonacad_id,
             'award_name'  => $stud->nonacad->name,
             'sy'  => $stud->school_year
         ];
 
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($stud->users->stud_num));
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->nonacad_app_id));
 
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.send-awardees-certificates.non-academic-award.show', $data, compact('qrcode', 'sig'));
@@ -68,11 +68,11 @@ class NACertificateController extends Controller
         $users = NonAcademicApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
             $data = [
-                'studnum' => $user->users->stud_num,
+                'app_id' => shortUrl() . '/user/check-qr/' . $user->nonacad_app_id,
                 'fname' => $user->users->first_name,
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
-                'award'  => $user->nonacad_id,
+                'award'  => $user->nonacad->nonacad_code,
                 'award_name'  => $user->nonacad->name,
                 'sy'  => $user->school_year,
                 'name1' => $name1,
@@ -92,7 +92,7 @@ class NACertificateController extends Controller
                 'signature4' => $name_sig4
             ];
             $details = ['email' => $user->users->email];
-            SendEmailJob::dispatch($details, $data, $data['studnum']);
+            SendEmailJob::dispatch($details, $data, $data['app_id']);
         }
         NonAcademicApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);

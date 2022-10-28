@@ -58,7 +58,7 @@ class PLCertificateController extends Controller
         $users = StudentApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
             $data = [
-                'studnum' => $user->users->stud_num,
+                'app_id' => shortUrl() . '/user/check-qr/' . $user->stud_app_id,
                 'fname' => $user->users->first_name,
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
@@ -83,7 +83,7 @@ class PLCertificateController extends Controller
                 'signature4' => $name_sig4
             ];
             $details = ['email' => $user->users->email];
-            SendEmailJob::dispatch($details, $data, $data['studnum']);
+            SendEmailJob::dispatch($details, $data, $data['app_id']);
         }
         StudentApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
@@ -102,7 +102,7 @@ class PLCertificateController extends Controller
             'sy'  => $stud->school_year
         ];
 
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($stud->users->stud_num));
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->stud_app_id));
 
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.send-awardees-certificates.presidents-list-award.show', $data, compact('qrcode', 'sig'));

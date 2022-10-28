@@ -15,6 +15,7 @@ class StudentApplicant extends Model implements Auditable
 
     protected $fillable = [
         'user_id',
+        'stud_app_id',
         'gwa_1st',
         'gwa_2nd',
         'school_year',

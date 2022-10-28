@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\User\Form;
 
 use App\Models\Summary;
+use App\Models\ShortLink;
+use Illuminate\Support\Str;
+use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicAwardRequest;
-use App\Models\StudentApplicant;
+use AshAllenDesign\ShortURL\Facades\ShortURL;
+use AshAllenDesign\ShortURL\Models\ShortURL as ModelsShortURL;
+use Illuminate\Support\Facades\Auth;
 
 class AcademicAwardController extends Controller
 {
@@ -35,6 +40,7 @@ class AcademicAwardController extends Controller
 
         $award->award_applied = $data['award_applied'];
         $award->course_id = $data['course_id'];
+        $award->stud_app_id = generateApplicationId();
 
         $award->save();
         $lastid = $award->id;

@@ -58,7 +58,7 @@ class AECertificateController extends Controller
         $users = AcademicExcellence::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
             $data = [
-                'studnum' => $user->users->stud_num,
+                'app_id' => shortUrl() . '/user/check-qr/' . $user->ae_app_id,
                 'fname' => $user->users->first_name,
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
@@ -85,7 +85,7 @@ class AECertificateController extends Controller
                 'signature4' => $name_sig4
             ];
             $details = ['email' => $user->users->email];
-            SendEmailJob::dispatch($details, $data, $data['studnum']);
+            SendEmailJob::dispatch($details, $data, $data['app_id']);
         }
         AcademicExcellence::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
@@ -105,7 +105,7 @@ class AECertificateController extends Controller
             'totalwithSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9
         ];
 
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate($stud->users->stud_num));
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->ae_app_id));
 
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('stud', 'qrcode', 'sig'));
