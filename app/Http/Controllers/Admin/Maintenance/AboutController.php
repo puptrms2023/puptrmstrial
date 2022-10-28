@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu module', ['only' => ['index', 'show']]);
+        $this->middleware('permission:about view', ['only' => ['index', 'show']]);
+        $this->middleware('permission:about edit', ['only' => ['update', 'upload']]);
+    }
+
     public function index()
     {
         $about = About::first();

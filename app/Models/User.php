@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Courses;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Courses;
-use Spatie\Permission\Traits\HasRoles;
-use OwenIt\Auditing\Contracts\Auditable;
+use Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
 class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, HasFactory, HasRoles, Notifiable;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable, HasJsonRelationships;
     use \OwenIt\Auditing\Auditable;
+
 
     /**
      * The database table used by the model.
@@ -78,4 +80,8 @@ class User extends Authenticatable implements Auditable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+    // public function notifications()
+    // {
+    //     return $this->hasMany(Notification::class, 'data->user_id');
+    // }
 }

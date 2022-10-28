@@ -29,28 +29,30 @@
             </a>
         </li>
     @endcan
-    <li class="nav-item {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'active' : '' }}">
-        <a class="nav-link {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? '' : 'collapsed' }}"
-            href="#" data-toggle="collapse" data-target="#csvPages" aria-expanded="true" aria-controls="csvPages">
-            <i class="fa-solid fa-file-csv"></i>
-            <span>CSV</span>
-        </a>
-        <div id="csvPages"
-            class="collapse {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'show' : '' }}"
-            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                @can('csv list')
-                    <a class="collapse-item {{ Request::is('admin/import-csv') ? 'active' : '' }}"
-                        href="{{ url('admin/import-csv') }}">Import CSV</a>
-                @endcan
-                @can('parse list')
-                    <a class="collapse-item {{ Request::is('admin/parse-data') ? 'active' : '' }}"
-                        href="{{ url('admin/parse-data') }}">Parse Data</a>
-                @endcan
+    @can('menu csv')
+        <li class="nav-item {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? '' : 'collapsed' }}"
+                href="#" data-toggle="collapse" data-target="#csvPages" aria-expanded="true" aria-controls="csvPages">
+                <i class="fa-solid fa-file-csv"></i>
+                <span>CSV</span>
+            </a>
+            <div id="csvPages"
+                class="collapse {{ Request::is('admin/import-csv') || Request::is('admin/parse-data') ? 'show' : '' }}"
+                aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('csv list')
+                        <a class="collapse-item {{ Request::is('admin/import-csv') ? 'active' : '' }}"
+                            href="{{ url('admin/import-csv') }}">Import CSV</a>
+                    @endcan
+                    @can('parse list')
+                        <a class="collapse-item {{ Request::is('admin/parse-data') ? 'active' : '' }}"
+                            href="{{ url('admin/parse-data') }}">Parse Data</a>
+                    @endcan
+                </div>
             </div>
-        </div>
-    </li>
-    @can('student list')
+        </li>
+    @endcan
+    @can('record list')
         <li class="nav-item {{ Request::is('admin/records') || Request::is('admin/records/*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="{{ url('admin/records') }}">
                 <i class="fa-solid fa-clipboard"></i>
@@ -91,7 +93,7 @@
             </div>
         </li>
     @endcan
-    @can('non-acad excellence list')
+    @can('non-academic award list')
         <li
             class="nav-item {{ Request::is('admin/non-academic-award') || Request::is('admin/non-academic-award/*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="{{ url('admin/non-academic-award') }}">
@@ -167,29 +169,39 @@
             </div>
         </li>
     @endcan
-    <li
-        class="nav-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}">
-        <a class="nav-link {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? '' : 'collapsed' }}"
-            href="#" data-toggle="collapse" data-target="#modulePages" aria-expanded="true"
-            aria-controls="modulePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Module Management</span>
-        </a>
-        <div id="modulePages"
-            class="collapse {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'show' : '' }}"
-            aria-labelledby="" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/form/*') ? 'active' : '' }}"
-                    href="{{ url('admin/maintenance/form') }}">Form</a>
-                <a class="collapse-item {{ Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') ? 'active' : '' }}"
-                    href="{{ url('admin/maintenance/courses') }}">Course</a>
-                <a class="collapse-item {{ Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') ? 'active' : '' }}"
-                    href="{{ url('admin/maintenance/about') }}">About</a>
-                <a class="collapse-item {{ Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}"
-                    href="{{ url('admin/maintenance/signatures') }}">Signature</a>
+    @can('menu module')
+        <li
+            class="nav-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? '' : 'collapsed' }}"
+                href="#" data-toggle="collapse" data-target="#modulePages" aria-expanded="true"
+                aria-controls="modulePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Module Management</span>
+            </a>
+            <div id="modulePages"
+                class="collapse {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'show' : '' }}"
+                aria-labelledby="" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('form list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/form/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/form') }}">Form</a>
+                    @endcan
+                    @can('course list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/courses') }}">Course</a>
+                    @endcan
+                    @can('about view')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/about') }}">About</a>
+                    @endcan
+                    @can('signature list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/signatures') }}">Signature</a>
+                    @endcan
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    @endcan
     @can('menu utilities')
         <li
             class="nav-item {{ Request::is('admin/roles') || Request::is('admin/roles/*') || Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}">

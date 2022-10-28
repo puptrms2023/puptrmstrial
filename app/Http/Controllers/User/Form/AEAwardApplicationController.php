@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\User\Form;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AcademicExcellenceRequest;
-use App\Models\AcademicExcellence;
+use App\Models\User;
 use App\Models\SummaryAcadExcell;
+use App\Models\AcademicExcellence;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\AcademicExcellenceRequest;
+use App\Notifications\AdminNotification;
 
 class AEAwardApplicationController extends Controller
 {
@@ -16,6 +20,9 @@ class AEAwardApplicationController extends Controller
 
     public function store(AcademicExcellenceRequest $request)
     {
+        $users = User::where('role_as', '2')->get();
+        $user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
         $data = $request->validated();
         $award = new AcademicExcellence();
 
@@ -150,6 +157,7 @@ class AEAwardApplicationController extends Controller
                 $sum->save();
             }
         }
+        Notification::send($users, new AdminNotification($user_name, $lastid, 'AE'));
 
 
         return redirect('user/dashboard')->with('success', 'Your application has been submitted');

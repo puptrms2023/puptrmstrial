@@ -10,6 +10,12 @@ use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Sign;
 
 class SignatureController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu module', ['only' => ['index', 'edit', 'update']]);
+        $this->middleware('permission:signature list', ['only' => ['index', 'edit', 'update']]);
+        $this->middleware('permission:signature edit', ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
         $sig = Signature::all();
@@ -61,7 +67,7 @@ class SignatureController extends Controller
             'position' => 'required'
         ]);
 
-        $sign = Signature::find($id);
+        $sign = Signature::findOrFail($id);
         $sign->rep_name = $request->name;
         $sign->position = $request->position;
 
@@ -100,7 +106,27 @@ class SignatureController extends Controller
 
     public function edit($id)
     {
-        $sig = Signature::find($id);
+        $sig = Signature::findOrFail($id);
         return view('admin.maintenance.signatures.edit', compact('sig'));
     }
+
+    // public function checkbox(Request $request)
+    // {
+    //     $request->validate([
+    //         'certificate' => 'nullable',
+    //         'report' => 'nullable'
+    //     ]);
+
+    //     $user = new();
+    //     if ($request->has('certificate')) {
+    //         $cert = $request->certificate;
+    //     }
+
+    //     if ($request->has('report')) {
+    //         $rep = $request->report;
+    //     }
+
+    //     $user->update(['certificate', $cert]);
+    //     return back()->with('success', 'Successfully updated');
+    // }
 }

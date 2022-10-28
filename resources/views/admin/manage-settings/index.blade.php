@@ -114,9 +114,11 @@
                             </div>
                         </div>
 
-                        <div class="text-left">
-                            <button type="submit" class="btn btn-secondary">Update</button>
-                        </div>
+                        @can('settings edit')
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-secondary">Update</button>
+                            </div>
+                        @endcan
                     </form>
                 </div>
             </div>

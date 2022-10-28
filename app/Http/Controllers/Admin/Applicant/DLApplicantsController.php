@@ -19,7 +19,7 @@ class DLApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:deans list list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:deans list edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:deans list edit', ['only' => [ 'update', 'approved', 'rejected']]);
         $this->middleware('permission:deans list delete', ['only' => ['destroy']]);
     }
     public function index()

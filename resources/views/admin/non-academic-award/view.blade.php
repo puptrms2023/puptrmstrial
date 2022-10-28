@@ -59,124 +59,135 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered table-responsive" id="dataTable" width="100%"
-                        cellspacing="0">
-                        <thead class="text-primary">
-                            <tr>
-                                <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
-                                </th>
-                                <th>Student No.</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Course</th>
-                                <th>Year Level</th>
-                                <th>Award Applied</th>
-                                <th>Photo</th>
-                                <th class="text-center">Status</th>
-                                <th>Actions <br>
-                                    @can('non-acad excellence delete')
-                                        <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
-                                            All</button>
-                                    @endcan
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($form as $award)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="text-primary">
                                 <tr>
-                                    <td><input type="checkbox" class="user-checkboxes" data-id="{{ $award->id }}">
-                                    </td>
-                                    <td>{{ $award->users->stud_num }}</td>
-                                    <td>{{ $award->users->first_name }}</td>
-                                    <td>{{ $award->users->last_name }}</td>
-                                    <td>{{ $award->courses->course_code }}</td>
-                                    <td>{{ $award->year_level }}</td>
-                                    <td>
-                                        @if ($award->nonacad_id == '1')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>School Organization: {{ $award->orgs->name }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '2')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>Sport: {{ $award->sports }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '3')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>School Organization: {{ $award->orgs->name }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '4')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>Subject Name: {{ $award->subject_name }}<br>
-                                                    Thesis Title: {{ $award->thesis_title }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '5')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>School Organization: {{ $award->orgs->name }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '6')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>Designation Office: {{ $award->designated_office }}<br>
-                                                    School Organization: {{ $award->orgs->name }}</p>
-                                            </div>
-                                        @elseif ($award->nonacad_id == '7')
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                            <div class="small">
-                                                <P>Competition Name: {{ $award->competition_name }}<br>
-                                                    Placements: {{ $award->placement }}<br>
-                                                    School Organization: {{ $award->orgs->name }}</p>
-                                            </div>
-                                        @else
-                                            <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset('uploads/' . $award->image) }}" class="img-thumbnail img-circle"
-                                            width="50" alt="Image">
-                                    </td>
-                                    <td>
-                                        @if ($award->status == '1')
-                                            <span class="badge badge-success">Approved</span>
-                                        @elseif ($award->status == '2')
-                                            <span class="badge badge-danger">Rejected</span>
-                                            <div class="small">
-                                                <P>{{ $award->reason }}</p>
-                                            </div>
-                                        @else
-                                            <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/approve/' . $award->id) }}"
-                                                class="btn btn-success btn-sm btn-icon-split">
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
-                                                <span class="text">Approve</span>
-                                            </a>
-                                            <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/reject/' . $award->id) }}"
-                                                class="btn btn-danger btn-sm btn-icon-split">
-                                                <span class="icon text-white-50">
-                                                    <i class="fa-sharp fa-solid fa-xmark"></i>
-                                                </span>
-                                                <span class="text">Reject</span>
-                                            </a>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"
-                                            class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
-
-                                        @can('non-acad excellence delete')
-                                            <button type="button" class="btn btn-sm btn-danger deleteFormbtn"
-                                                value="{{ $award->id }}"><i class="fa fa-trash"></i></button>
+                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
+                                    </th>
+                                    <th>Student No.</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Course</th>
+                                    <th>Year Level</th>
+                                    <th>Award Applied</th>
+                                    <th>Photo</th>
+                                    <th class="text-center">Status</th>
+                                    <th>Actions <br>
+                                        @can('non-academic award delete')
+                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                                All</button>
                                         @endcan
-                                    </td>
+                                    </th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($form as $award)
+                                    <tr>
+                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $award->id }}">
+                                        </td>
+                                        <td>{{ $award->users->stud_num }}</td>
+                                        <td>{{ $award->users->first_name }}</td>
+                                        <td>{{ $award->users->last_name }}</td>
+                                        <td>{{ $award->courses->course_code }}</td>
+                                        <td>{{ $award->year_level }}</td>
+                                        <td>
+                                            @if ($award->nonacad_id == '1')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '2')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Sport: {{ $award->sports }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '3')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '4')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Subject Name: {{ $award->subject_name }}<br>
+                                                        Thesis Title: {{ $award->thesis_title }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '5')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '6')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Designation Office: {{ $award->designated_office }}<br>
+                                                        School Organization: {{ $award->orgs->name }}</p>
+                                                </div>
+                                            @elseif ($award->nonacad_id == '7')
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                                <div class="small">
+                                                    <P>Competition Name: {{ $award->competition_name }}<br>
+                                                        Placements: {{ $award->placement }}<br>
+                                                        School Organization: {{ $award->orgs->name }}</p>
+                                                </div>
+                                            @else
+                                                <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset('uploads/' . $award->image) }}"
+                                                class="img-thumbnail img-circle" width="50" alt="Image">
+                                        </td>
+                                        <td>
+                                            @if (auth()->user()->can('non-academic award edit'))
+                                                @if ($award->status == '1')
+                                                    <span class="badge badge-success">Approved</span>
+                                                @elseif ($award->status == '2')
+                                                    <span class="badge badge-danger">Rejected</span>
+                                                    <div class="small">
+                                                        <P>{{ $data->reason }}</p>
+                                                    </div>
+                                                @else
+                                                    <a href="{{ url('admin/non-academic-award/' . $award->courses->course_code . '/approve/' . $award->id) }}"
+                                                        class="btn btn-success btn-sm btn-icon-split">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-check"></i>
+                                                        </span>
+                                                        <span class="text">Approve</span>
+                                                    </a>
+                                                    <a href="{{ url('admin/non-academic-award/' . $award->courses->course_code . '/reject/' . $award->id) }}"
+                                                        class="btn btn-danger btn-sm btn-icon-split">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fa-sharp fa-solid fa-xmark"></i>
+                                                        </span>
+                                                        <span class="text">Reject</span>
+                                                    </a>
+                                                @endif
+                                            @else
+                                                @if ($award->status == '1')
+                                                    <span class="badge badge-success">Approved</span>
+                                                @elseif ($award->status == '2')
+                                                    <span class="badge badge-danger">Rejected</span>
+                                                @else
+                                                    <span class="badge badge-warning">Pending</span>
+                                                @endif
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"
+                                                class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
+                                            @can('non-academic award delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteFormbtn"
+                                                    value="{{ $award->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

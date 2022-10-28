@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Notification;
 
 class NAApplicantsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:non-academic award list', ['only' => ['index', 'overallList', 'view']]);
+        $this->middleware('permission:non-academic award edit', ['only' => ['update', 'approved', 'rejected']]);
+        $this->middleware('permission:non-academic award delete', ['only' => ['destroy', 'deleteAll']]);
+    }
+
     public function index()
     {
         $nonacad = NonAcadAward::all();

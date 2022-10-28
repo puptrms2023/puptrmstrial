@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\User\Form;
 
+use App\Models\User;
 use App\Models\Summary;
 use App\Models\ShortLink;
 use Illuminate\Support\Str;
 use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\AdminNotification;
 use App\Http\Requests\AcademicAwardRequest;
+use Illuminate\Support\Facades\Notification;
 use AshAllenDesign\ShortURL\Facades\ShortURL;
 use AshAllenDesign\ShortURL\Models\ShortURL as ModelsShortURL;
-use Illuminate\Support\Facades\Auth;
 
 class AcademicAwardController extends Controller
 {
@@ -21,6 +24,8 @@ class AcademicAwardController extends Controller
 
     public function store(AcademicAwardRequest $request)
     {
+        $users = User::where('role_as', '2')->get();
+        $user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         $data = $request->validated();
         $award = new StudentApplicant();
@@ -68,6 +73,7 @@ class AcademicAwardController extends Controller
             $sum->app_id = $lastid;
             $sum->save();
         }
+        Notification::send($users, new AdminNotification($user_name, $lastid, $award->award->acad_code));
 
         return redirect('user/dashboard')->with('success', 'Your application has been submitted');
     }

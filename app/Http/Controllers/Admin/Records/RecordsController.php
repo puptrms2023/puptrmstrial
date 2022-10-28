@@ -12,6 +12,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class RecordsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:record list', ['only' => ['index', 'show', 'create', 'store', 'storeMedia', 'update', 'destroy', 'deleteAll']]);
+        $this->middleware('permission:record create', ['only' => ['create', 'storeMedia']]);
+        $this->middleware('permission:record edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:record delete', ['only' => ['destroy', 'deleteAll']]);
+    }
+
     public function index()
     {
         $document = Document::all();

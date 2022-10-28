@@ -19,7 +19,7 @@ class StudentApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:achievers list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:achievers edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:achievers edit', ['only' => ['update', 'approved', 'rejected']]);
         $this->middleware('permission:achievers delete', ['only' => ['destroy']]);
     }
 

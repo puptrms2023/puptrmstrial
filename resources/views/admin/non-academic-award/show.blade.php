@@ -111,29 +111,31 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <form action="{{ url('admin/non-academic-award/' . $form->nonacad_id . '/update-status/' . $form->id) }}"
-                method="POST">
-                @csrf
-                @method('PUT')
+    @can('non-academic award edit')
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{{ url('admin/non-academic-award/' . $form->nonacad_id . '/update-status/' . $form->id) }}"
+                    method="POST">
+                    @csrf
+                    @method('PUT')
 
-                <div class="mb-3">
-                    <label for="">Status</label>
-                    <select class="custom-select my-1 mr-sm-2 status" name="status" required>
-                        <option value="0" {{ $form->status == '0' ? 'selected' : '' }}>Pending</option>
-                        <option value="1" {{ $form->status == '1' ? 'selected' : '' }}>Approve</option>
-                        <option value="2" {{ $form->status == '2' ? 'selected' : '' }}>Reject</option>
-                    </select>
-                </div>
-                <div class="mb-3 hidden" id="reason">
-                    <label for="">Reason</label>
-                    <textarea class="form-control" name="reason" rows="2">{{ $form->reason }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-secondary" type="submit">Update</button>
-                </div>
-            </form>
+                    <div class="mb-3">
+                        <label for="">Status</label>
+                        <select class="custom-select my-1 mr-sm-2 status" name="status" required>
+                            <option value="0" {{ $form->status == '0' ? 'selected' : '' }}>Pending</option>
+                            <option value="1" {{ $form->status == '1' ? 'selected' : '' }}>Approve</option>
+                            <option value="2" {{ $form->status == '2' ? 'selected' : '' }}>Reject</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 hidden" id="reason">
+                        <label for="">Reason</label>
+                        <textarea class="form-control" name="reason" rows="2">{{ $form->reason }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-secondary" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    @endcan
 @endsection

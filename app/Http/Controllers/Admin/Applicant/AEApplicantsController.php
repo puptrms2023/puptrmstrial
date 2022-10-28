@@ -19,7 +19,7 @@ class AEApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:acad excellence list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:acad excellence edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:acad excellence edit', ['only' => [ 'update', 'approved', 'rejected']]);
         $this->middleware('permission:acad excellence delete', ['only' => ['destroy']]);
     }
 

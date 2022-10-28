@@ -40,9 +40,11 @@
                                 <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                             @endif
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-secondary">Update</button>
-                        </div>
+                        @can('about edit')
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-secondary">Update</button>
+                            </div>
+                        @endcan
                     </form>
                 </div>
             </div>

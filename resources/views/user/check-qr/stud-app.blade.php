@@ -24,11 +24,11 @@
             <div class="mt-4">
                 @if (!empty($user_sa))
                     <p>You have received <b>{{ $user_sa->award->name }}</b> for the School Year
-                        {{ $result->school_year }}.<br>
-                        Student Number: <b>{{ $result->users->stud_num }}</b><br>
-                        Name: <b>{{ $result->users->first_name . ' ' . $result->users->last_name }}</b><br>
-                        Course: <b>{{ $result->courses->course }}</b><br>
-                        Year: <b>{{ $result->year_level }}</b>
+                        {{ $user_sa->school_year }}.<br>
+                        Student Number: <b>{{ $user_sa->users->stud_num }}</b><br>
+                        Name: <b>{{ $user_sa->users->first_name . ' ' . $user_sa->users->last_name }}</b><br>
+                        Course: <b>{{ $user_sa->courses->course }}</b><br>
+                        Year: <b>{{ $user_sa->year_level }}</b>
                     </p>
                     <p>Keep Up the Good Work
                     </p>

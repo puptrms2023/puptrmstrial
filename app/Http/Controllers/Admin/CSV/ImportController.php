@@ -15,9 +15,12 @@ class ImportController extends Controller
 {
     function __construct()
     {
+        $this->middleware('permission:menu csv', ['only' => ['index', 'parseImport', 'processImport', 'showParsed']]);
         $this->middleware('permission:csv list', ['only' => ['index', 'parseImport', 'processImport']]);
         $this->middleware('permission:csv create', ['only' => ['parseImport', 'processImport']]);
         $this->middleware('permission:csv delete', ['only' => ['destroy']]);
+        $this->middleware('permission:parse list', ['only' => ['showParsed']]);
+        $this->middleware('permission:parse delete', ['only' => ['destroySIS', 'deleteAll']]);
     }
 
     public function index()

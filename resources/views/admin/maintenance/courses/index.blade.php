@@ -54,7 +54,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Courses
-                        @can('user create')
+                        @can('course create')
                             <a class="btn btn-info btn-sm float-right" href="{{ url('admin/maintenance/courses/create') }}">Add
                                 Course</a>
                         @endcan
@@ -70,8 +70,10 @@
                                     <th>Code</th>
                                     <th>Name</th>
                                     <th>Actions <br>
-                                        <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
-                                            All</button>
+                                        @can('course delete')
+                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                                All</button>
+                                        @endcan
                                     </th>
                                 </tr>
                             </thead>
@@ -84,11 +86,14 @@
                                         <td>{{ $list->course_code }}</td>
                                         <td>{{ $list->course }}</td>
                                         <td>
-                                            <a href="{{ url('admin/maintenance/courses/' . $list->id) }}"
-                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-
-                                            <button type="button" class="btn btn-sm btn-danger deleteCoursebtn"
-                                                value="{{ $list->id }}"><i class="fa fa-trash"></i></button>
+                                            @can('course edit')
+                                                <a href="{{ url('admin/maintenance/courses/' . $list->id) }}"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                            @endcan
+                                            @can('course delete')
+                                                <button type="button" class="btn btn-sm btn-danger deleteCoursebtn"
+                                                    value="{{ $list->id }}"><i class="fa fa-trash"></i></button>
+                                            @endcan
 
                                         </td>
                                     </tr>

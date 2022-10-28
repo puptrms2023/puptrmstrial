@@ -8,6 +8,12 @@ use App\Models\Setting;
 
 class SettingController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:settings view', ['only' => ['index']]);
+        $this->middleware('permission:settings edit', ['only' => ['update']]);
+    }
+
     public function index()
     {
         $setting = Setting::first();

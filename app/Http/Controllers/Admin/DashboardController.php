@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\AcademicAward;
-use App\Models\AcademicExcellence;
 use App\Models\Courses;
-use App\Models\NonAcademicApplicant;
-use App\Models\StudentApplicant;
 use Illuminate\Http\Request;
+use App\Models\AcademicAward;
+use App\Models\StudentApplicant;
+use App\Models\AcademicExcellence;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\NonAcademicApplicant;
+use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
 class DashboardController extends Controller
@@ -17,7 +18,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
         //academic year
         $year = getAcademicYear();
         //analytics

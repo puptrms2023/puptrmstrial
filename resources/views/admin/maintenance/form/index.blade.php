@@ -41,8 +41,10 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/maintenance/form/' . $list->id) }}"
-                                                class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                            @can('form edit')
+                                                <a href="{{ url('admin/maintenance/form/' . $list->id) }}"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

@@ -10,15 +10,20 @@ use Illuminate\Notifications\Notification;
 class AdminNotification extends Notification
 {
     use Queueable;
+    public $user_name;
+    public $form_id;
+    public $award;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user_name, $form_id, $award)
     {
-        //
+        $this->user_name = $user_name;
+        $this->form_id = $form_id;
+        $this->award = $award;
     }
 
     /**
@@ -55,7 +60,9 @@ class AdminNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_name' => $this->user_name,
+            'form_id' => $this->form_id,
+            'award' => $this->award
         ];
     }
 }

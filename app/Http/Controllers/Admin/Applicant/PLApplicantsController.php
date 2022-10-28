@@ -19,7 +19,7 @@ class PLApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:presidents list list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:presidents list edit', ['only' => ['studentApplicationView', 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:presidents list edit', ['only' => ['update', 'approved', 'rejected']]);
         $this->middleware('permission:presidents list delete', ['only' => ['destroy']]);
     }
 

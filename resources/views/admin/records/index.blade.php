@@ -54,7 +54,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Document List
-                        @can('user create')
+                        @can('record create')
                             <a class="btn btn-info btn-sm float-right" href="{{ url('admin/records/create') }}">Add
                                 Document</a>
                         @endcan
@@ -71,8 +71,10 @@
                                     <th>Description</th>
                                     <th>File</th>
                                     <th>Action <br>
-                                        <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
-                                            All</button>
+                                        @can('record delete')
+                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                                All</button>
+                                        @endcan
                                     </th>
                                 </tr>
                             </thead>

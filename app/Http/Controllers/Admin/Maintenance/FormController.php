@@ -8,6 +8,12 @@ use App\Models\Form;
 
 class FormController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:menu module', ['only' => ['index', 'edit', 'update']]);
+        $this->middleware('permission:form list', ['only' => ['index', 'edit', 'update']]);
+        $this->middleware('permission:form edit', ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
         $form = Form::all();

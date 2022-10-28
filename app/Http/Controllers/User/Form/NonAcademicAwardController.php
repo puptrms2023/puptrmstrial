@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\User\Form;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\NonAcademicAwardRequest;
+use App\Models\User;
 use App\Models\NonAcadAward;
-use App\Models\NonAcademicApplicant;
-use App\Models\StudentOrganization;
 use Illuminate\Http\Request;
+use App\Models\StudentOrganization;
+use App\Http\Controllers\Controller;
+use App\Models\NonAcademicApplicant;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\AdminNotification;
+use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\NonAcademicAwardRequest;
 
 class NonAcademicAwardController extends Controller
 {
@@ -20,6 +24,9 @@ class NonAcademicAwardController extends Controller
 
     public function store(NonAcademicAwardRequest $request)
     {
+        $users = User::where('role_as', '2')->get();
+        $user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
         $data = $request->validated();
         $award = new NonAcademicApplicant();
 
@@ -46,6 +53,9 @@ class NonAcademicAwardController extends Controller
         }
 
         $award->save();
+        $lastid = $award->id;
+
+        Notification::send($users, new AdminNotification($user_name, $lastid, $award->nonacad->nonacad_code));
 
         return redirect('user/dashboard')->with('success', 'Your application is received');
     }

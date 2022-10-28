@@ -254,6 +254,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/maintenance/signature-store', 'store');
         Route::get('/maintenance/signatures/{id}', 'edit');
         Route::put('/maintenance/signatures/{id}', 'update');
+        Route::put('/maintenance/signatures-chk', 'checkbox');
     });
     //Recognition Records
     Route::controller(App\Http\Controllers\Admin\Records\RecordsController::class)->group(function () {
@@ -271,6 +272,19 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\SystemSetting\SettingController::class)->group(function () {
         Route::get('/manage-settings', 'index');
         Route::put('/update-settings/{id}', 'update');
+    });
+
+    //Admin Notif
+    Route::controller(App\Http\Controllers\Admin\Notification\NotificationController::class)->group(function () {
+        Route::get('/deans-listers/{id}', 'showDL');
+        Route::get('/presidents-listers/{id}', 'showPL');
+        Route::get('/achiever-awardees/{id}', 'showAA');
+        Route::get('/academic-excellence-awardees/{id}', 'showAE');
+        Route::get('/non-academic-awardees/{id}', 'showNA');
+        Route::get('/preview', 'markAsRead');
+        Route::get('/all-notifications', 'index');
+        Route::post('/delete-notification', 'destroy');
+        Route::delete('/bulk-delete-notifications', 'destroyAll');
     });
 });
 Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
