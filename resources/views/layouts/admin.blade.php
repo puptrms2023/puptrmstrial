@@ -29,6 +29,8 @@
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" />
 
     {{-- <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}"> --}}
     {{-- <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}"> --}}
@@ -84,6 +86,7 @@
         <script src="{{ asset('admin/vendor/ckeditor5/ckeditor.js') }}"></script>
         <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 
         <script>

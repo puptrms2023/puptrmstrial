@@ -152,7 +152,6 @@
             </td>
         </tr>
     </table>
-    {{-- {{ getSignature() }} --}}
     <footer>
         <div class="qr">
             <img src="data:image/png;base64, {!! $qrcode !!}" width="25%" alt="">

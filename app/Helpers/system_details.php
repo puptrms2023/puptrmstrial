@@ -36,7 +36,7 @@ function getSignature()
 }
 function getSignatories()
 {
-    $names = Signature::all();
+    $names = Signature::where('report', '1')->get();
     return $names;
 }
 

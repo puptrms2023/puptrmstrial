@@ -41,21 +41,10 @@ class AACertificateController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $name1 = Signature::where('id', '2')->value('rep_name');
-        $pos1 = Signature::where('id', '2')->value('position');
-        $name_sig1 = Signature::where('id', '2')->value('signature');
-
-        $pos2 = Signature::where('id', '3')->value('position');
-        $name2 = Signature::where('id', '3')->value('rep_name');
-        $name_sig2 = Signature::where('id', '3')->value('signature');
-
-        $pos3 = Signature::where('id', '4')->value('position');
-        $name3 = Signature::where('id', '4')->value('rep_name');
-        $name_sig3 = Signature::where('id', '4')->value('signature');
-
-        $pos4 = Signature::where('id', '5')->value('position');
-        $name4 = Signature::where('id', '5')->value('rep_name');
-        $name_sig4 = Signature::where('id', '5')->value('signature');
+        $name1 = Signature::where('certificate','1')->first();
+        $name2 = Signature::where('certificate','1')->skip(1)->take(1)->first();
+        $name3 = Signature::where('certificate','1')->skip(2)->take(1)->first();
+        $name4 = Signature::where('certificate','1')->skip(3)->take(1)->first();
 
         $users = StudentApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
@@ -68,21 +57,21 @@ class AACertificateController extends Controller
                 'award'  => $user->award->acad_code,
                 'award_name'  => $user->award->name,
                 'sy'  => $user->school_year,
-                'name1' => $name1,
-                'position1' => $pos1,
-                'signature1' => $name_sig1,
+                'name1' => $name1->rep_name,
+                'position1' => $name1->position,
+                'signature1' => $name1->signature,
 
-                'name2' => $name2,
-                'position2' => $pos2,
-                'signature2' => $name_sig2,
+                'name2' => $name2->rep_name,
+                'position2' => $name2->position,
+                'signature2' => $name2->signature,
 
-                'name3' => $name3,
-                'position3' => $pos3,
-                'signature3' => $name_sig3,
+                'name3' => $name3->rep_name,
+                'position3' => $name3->position,
+                'signature3' => $name3->signature,
 
-                'name4' => $name4,
-                'position4' => $pos4,
-                'signature4' => $name_sig4
+                'name4' => $name4->rep_name,
+                'position4' => $name4->position,
+                'signature4' => $name4->signature
             ];
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['app_id']);
@@ -93,7 +82,7 @@ class AACertificateController extends Controller
 
     public function showCertificate($course_code, $id)
     {
-        $sig = Signature::orderBy('id', 'asc')->get();
+        $sig = Signature::where('certificate', '1')->orderBy('id', 'asc')->get();
         $stud = StudentApplicant::with('users')->find($id);
         $data = [
             'fname' => $stud->users->first_name,

@@ -254,7 +254,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/maintenance/signature-store', 'store');
         Route::get('/maintenance/signatures/{id}', 'edit');
         Route::put('/maintenance/signatures/{id}', 'update');
-        Route::put('/maintenance/signatures-chk', 'checkbox');
+        Route::post('/maintenance/signatures-cert/{id}/{status}', 'changeStatusCertificate');
+        Route::post('/maintenance/signatures-report/{id}/{status}', 'changeStatusReports');
+        Route::post('/maintenance/delete-signature', 'destroy');
     });
     //Recognition Records
     Route::controller(App\Http\Controllers\Admin\Records\RecordsController::class)->group(function () {
