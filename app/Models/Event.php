@@ -11,6 +11,6 @@ class Event extends Model implements Auditable
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
     protected $fillable = [
-        'title', 'start', 'end'
+        'title', 'location', 'description', 'options', 'start', 'end'
     ];
 }

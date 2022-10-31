@@ -20,7 +20,7 @@
                         @method('PUT')
 
                         <div class="row mb-3">
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="small">Code</label>
                                 <span class="text-danger">*</span>
                                 <input type="text" name="course_code" class="form-control"
@@ -30,7 +30,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-md-9 mb-3">
                                 <label class="small">Course Name</label>
                                 <span class="text-danger">*</span>
                                 <input type="text" name="course" class="form-control"

@@ -1,6 +1,9 @@
-@extends('layouts.user')
+@extends('layouts.admin')
+
+@section('title', 'Calendar')
 
 @section('content')
+
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">Calendar of Events</div>
         @if (session('status'))
@@ -46,4 +49,5 @@
             calendar.render();
         });
     </script>
+
 @endsection

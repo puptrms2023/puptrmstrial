@@ -209,8 +209,14 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     });
     //fullcalendar
     Route::controller(App\Http\Controllers\Admin\Calendar\FullCalendarController::class)->group(function () {
-        Route::get('/calendar', 'index');
-        Route::post('/calendar-event', 'crud');
+        Route::get('/calendar-events', 'index');
+        Route::get('/calendar-events/calendar', 'calendar');
+        Route::get('/calendar-events/create', 'create');
+        Route::post('/calendar-events', 'store');
+        Route::get('/calendar-events/{id}', 'edit');
+        Route::put('/calendar-events/update/{id}', 'update');
+        Route::post('/calendar-events/delete-event', 'destroy');
+        Route::delete('/calendar-events/bulk-delete', 'deleteAll');
     });
     //Profile
     Route::controller(App\Http\Controllers\Admin\Profile\ProfileController::class)->group(function () {
@@ -320,6 +326,7 @@ Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
     });
     Route::controller(App\Http\Controllers\User\Calendar\FullCalendarController::class)->group(function () {
         Route::get('/calendar', 'index');
+        Route::get('/calendar/{id}', 'show');
     });
     Route::get('/gallery', [App\Http\Controllers\User\Gallery\GalleryController::class, 'index']);
     Route::get('/about', [App\Http\Controllers\User\About\AboutController::class, 'index']);

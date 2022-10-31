@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', 'Courses Maintenance')
+@section('title', 'View Events')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Course</h5>
+                    <h5 class="modal-title">Delete Event</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/maintenance/delete-course') }}" method="POST">
+                <form action="{{ url('admin/calendar-events/delete-event') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the course?</p>
-                        <input type="hidden" name="course_delete_id" id="c_id">
+                        <p>Are you sure you want to delete the event?</p>
+                        <input type="hidden" name="event_delete_id" id="e_id">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -30,7 +30,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Course</h5>
+                    <h5 class="modal-title">Delete Event</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -46,17 +46,17 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Course - Maintenance</div>
+        <div class="h3 mb-0 text-gray-800">Calendar of Events</div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Courses
-                        @can('course create')
-                            <a class="btn btn-info btn-sm float-right" href="{{ url('admin/maintenance/courses/create') }}">Add
-                                Course</a>
+                    <div class="m-0 font-weight-bold text-primary">Events
+                        @can('events create')
+                            <a class="btn btn-info btn-sm float-right" href="{{ url('admin/calendar-events/create') }}">Add
+                                Event</a>
                         @endcan
                     </div>
                 </div>
@@ -67,10 +67,13 @@
                                 <tr>
                                     <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
                                     </th>
-                                    <th>Code</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Location</th>
+                                    <th>Description</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
                                     <th>Actions <br>
-                                        @can('course delete')
+                                        @can('events delete')
                                             <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
                                                 All</button>
                                         @endcan
@@ -78,19 +81,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($course as $list)
+                                @foreach ($events as $list)
                                     <tr>
                                         <td class="text-center"><input type="checkbox" class="user-checkboxes"
                                                 data-id="{{ $list->id }}">
                                         </td>
-                                        <td>{{ $list->course_code }}</td>
-                                        <td>{{ $list->course }}</td>
+                                        <td>{{ $list->title }}</td>
+                                        <td>{{ $list->location }}</td>
+                                        <td>{{ $list->description }}</td>
+                                        <td>{{ $list->start }}</td>
+                                        <td>{{ $list->end }}</td>
                                         <td>
-                                            @can('course edit')
-                                                <a href="{{ url('admin/maintenance/courses/' . $list->id) }}"
+                                            @can('events edit')
+                                                <a href="{{ url('admin/calendar-events/' . $list->id) }}"
                                                     class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                             @endcan
-                                            @can('course delete')
+                                            @can('events delete')
                                                 <button type="button" class="btn btn-sm btn-danger deleteCoursebtn"
                                                     value="{{ $list->id }}"><i class="fa fa-trash"></i></button>
                                             @endcan
@@ -112,8 +118,8 @@
         $('.deleteCoursebtn').click(function(e) {
             e.preventDefault();
 
-            var c_id = $(this).val();
-            $('#c_id').val(c_id)
+            var e_id = $(this).val();
+            $('#e_id').val(e_id)
             $('#deleteModal').modal('show');
 
         });
@@ -124,13 +130,13 @@
             });
             var selectRowsCount = arr.length;
             $('#data-count').text('Are you sure you want to delete the ' + selectRowsCount +
-                ' course?');
+                ' event?');
             $('#deleteModal2').modal('show');
 
             $(document).on('click', '.delbtn', function() {
                 if (selectRowsCount > 0) {
                     $.ajax({
-                        url: "{{ url('admin/maintenance/courses/bulk-delete') }}",
+                        url: "{{ url('admin/calendar-events/bulk-delete') }}",
                         type: "DELETE",
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]')

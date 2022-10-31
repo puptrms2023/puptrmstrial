@@ -8,14 +8,28 @@ use App\Http\Controllers\Controller;
 
 class FullCalendarController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
+        $events = [];
 
-            $data = Event::all();
+        $calendar = Event::get();
 
-            return response()->json($data);
+        foreach ($calendar as $data) {
+
+            $events[] = [
+                'title' => $data->title,
+                'start' => $data->start,
+                'end' => $data->end,
+                'url'   => url('user/calendar', $data->id),
+            ];
         }
-        return view('user.calendar.index');
+
+        return view('user.calendar.index', compact('events'));
+    }
+
+    public function show($id)
+    {
+        $events = Event::findOrFail($id);
+        return view('user.calendar.view', compact('events'));
     }
 }

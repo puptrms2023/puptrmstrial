@@ -1042,6 +1042,52 @@ $(function() {
         }
     });
 });
+
+//date time picker format and calendar radio button
+$(function() {
+    $('#allDay,#startLongDay,#endLongDay').datetimepicker({
+        format: 'L',
+        minDate: new Date()
+    });
+    $('#startTimeDuration,#endTimeDuration,#startAllDay').datetimepicker({
+        minDate: new Date(),
+        icons: {
+            time: "fa-solid fa-clock"
+        }
+    });
+});
+
+$(function() {
+    $("input[name='eventRadio']").click(function() {
+        $('#all-value').val('');
+        $('#longstart-value').val('');
+        $('#longend-value').val('');
+        $('#allid-value').val('');
+        $('#startduration_value').val('');
+        $('#endduration_value').val('');
+        if ($("#inlineRadio1").is(":checked")) {
+            $("#all").show();
+        } else {
+            $("#all").hide();
+        }
+        if ($("#inlineRadio2").is(":checked")) {
+            $("#long").show();
+        } else {
+            $("#long").hide();
+        }
+        if ($("#inlineRadio3").is(":checked")) {
+            $("#alld").show();
+        } else {
+            $("#alld").hide();
+        }
+        if ($("#inlineRadio4").is(":checked")) {
+            $("#duration").show();
+        } else {
+            $("#duration").hide();
+        }
+    });
+});
+
 //confetti
 for (i = 0; i < 100; i++) {
     // Random rotation

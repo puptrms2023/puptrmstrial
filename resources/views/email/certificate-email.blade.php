@@ -7,49 +7,21 @@
 
 <body>
 
-    <p>Dear {{ $data['lname'] }},</p>
+    <h3>Greetings</h3>
 
-    @if ($data['award'] == 'AA')
-        <p>Congratulations! You have been awarded a place on the Achiever's Award for Excellent Academic
-            Performance for School Year 2022-2023.
-        </p>
-        <p>The Achiever's Award for Excellence Academic Performance acknowledges those who have achieved a semester
-            General
-            Weighted Average(GWA) of 1.75, or above, and with no grades lower than 2.50 in all subjects. </p>
-        <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
-            academic excellence and wishes you the best of luck for the future.
-        </p>
-    @elseif($data['award'] == 'DL')
-        <p>Congratulations! You have been awarded a place on the Dean's List for Excellent Academic
-            Performance for School Year 2022-2023.
-        </p>
-        <p>The Dean's List for Excellence Academic Performance acknowledges those who have achieved a semester General
-            Weighted Average(GWA) of 1.51 to 1.75 and with no grades lower than 2.50 in all subjects. </p>
-        <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
-            academic excellence and wishes you the best of luck for the future.
-        </p>
-    @elseif($data['award'] == 'PL')
-        <p>Congratulations! You have been awarded a place on the President's List for Excellent Academic
-            Performance for School Year 2022-2023.
-        </p>
-        <p>The President's List for Excellence Academic Performance acknowledges those who have achieved a semester
-            General
-            Weighted Average(GWA) of 1.00 to 1.50 and with no grades lower than 2.50 in all subjects. </p>
-        <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
-            academic excellence and wishes you the best of luck for the future.
-        </p>
-    @elseif($data['award'] == 'AE')
-        <p>Congratulations! You have been awarded a place on the Academic Excellence.
-        </p>
-        <p>The Academic Excellence for Excellence Academic Performance acknowledges those who have achieved a
-            General Weighted Average(GWA) of 1.75 or above from 1st year to 4th year and with no grades lower than 2.50
-            in all subjects. </p>
-        <p>A certificate is enclosed in recognition of your achievement. The Faculty takes great pride in acknowledging
-            academic excellence and wishes you the best of luck for the future.
-        </p>
-    @else
-        <p>Congratulations!
-    @endif
+    <p>
+        We are pleased to inform you that you are one of the qualified student awardees for the Academic Year 2022-2023.
+        You've displayed an incredible performance and effort at the university.
+    </p>
+
+    <p>
+        Congratulations, Iskolar ng Bayan!
+    </p>
+
+    <b>OFFICE OF THE UNIVERSITY - REGISTRAR<br>
+        PUP-RMS Committee<br>
+        Recognition 2023</b>
+
 
 </body>
 

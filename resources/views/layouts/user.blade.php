@@ -19,7 +19,7 @@
     <link href="{{ asset('admin//vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/vendor/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}">
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
 
@@ -63,12 +63,12 @@
         <script src="{{ asset('admin/js/custom.js') }}"></script>
 
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
-        <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script>
 
         <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+        <script src="{{ asset('assets/js/fullcalendar-5.11.3.js') }}"></script>
 
         <script>
             $(document).ready(function() {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2022 at 12:48 PM
+-- Generation Time: Oct 31, 2022 at 02:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -227,7 +227,62 @@ INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `
 (515, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 66, '{\"id\":66,\"stud_app_id\":\"PUPT-1249591767\",\"user_id\":33,\"school_year\":\"2022-2023\",\"year_level\":\"2nd Year\",\"award_applied\":\"2\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.25\",\"image\":\"1666965623.jpg\",\"status\":0,\"reason\":null,\"course_id\":7,\"certificate_status\":0}', '[]', 'http://127.0.0.1:8000/admin/deans-list-award/bulk-delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-29 10:46:47', '2022-10-29 10:46:47'),
 (516, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 27, '{\"id\":27,\"ae_app_id\":\"PUPT-8803191550\",\"user_id\":33,\"course_id\":7,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"5th Year\",\"gwa1\":\"1.75\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.00\",\"gwa5\":\"1.50\",\"gwa6\":\"1.50\",\"gwa7\":\"1.25\",\"gwa8\":\"1.00\",\"gwa9\":\"1.00\",\"gwa\":\"1.34\",\"image\":\"1666975713.jpg\",\"status\":1,\"reason\":null,\"certificate_status\":1}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/bulk-delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-29 10:47:03', '2022-10-29 10:47:03'),
 (517, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 28, '{\"id\":28,\"ae_app_id\":\"PUPT-8209631201\",\"user_id\":33,\"course_id\":7,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"5th Year\",\"gwa1\":\"1.75\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.00\",\"gwa5\":\"1.50\",\"gwa6\":\"1.50\",\"gwa7\":\"1.25\",\"gwa8\":\"1.00\",\"gwa9\":\"1.00\",\"gwa\":\"1.34\",\"image\":\"1666977306.jpg\",\"status\":0,\"reason\":null,\"certificate_status\":0}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/bulk-delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-29 10:47:03', '2022-10-29 10:47:03'),
-(518, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 29, '{\"id\":29,\"ae_app_id\":\"PUPT-9525460308\",\"user_id\":33,\"course_id\":7,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"4th Year\",\"gwa1\":\"1.25\",\"gwa2\":\"1.75\",\"gwa3\":\"1.75\",\"gwa4\":\"1.25\",\"gwa5\":\"1.25\",\"gwa6\":\"1.00\",\"gwa7\":\"1.75\",\"gwa8\":\"1.50\",\"gwa9\":\"1.00\",\"gwa\":\"1.44\",\"image\":\"1666977929.jpg\",\"status\":0,\"reason\":null,\"certificate_status\":0}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/bulk-delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-29 10:47:03', '2022-10-29 10:47:03');
+(518, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 29, '{\"id\":29,\"ae_app_id\":\"PUPT-9525460308\",\"user_id\":33,\"course_id\":7,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"4th Year\",\"gwa1\":\"1.25\",\"gwa2\":\"1.75\",\"gwa3\":\"1.75\",\"gwa4\":\"1.25\",\"gwa5\":\"1.25\",\"gwa6\":\"1.00\",\"gwa7\":\"1.75\",\"gwa8\":\"1.50\",\"gwa9\":\"1.00\",\"gwa\":\"1.44\",\"image\":\"1666977929.jpg\",\"status\":0,\"reason\":null,\"certificate_status\":0}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/bulk-delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-29 10:47:03', '2022-10-29 10:47:03'),
+(519, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 37, '[]', '{\"title\":\"Praesentium asperior\",\"location\":\"Sequi amet laborum\",\"description\":\"Voluptatibus volupta\",\"options\":\"allday_radio\",\"start\":\"2022-10-30\",\"id\":37}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 09:06:56', '2022-10-30 09:06:56'),
+(520, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 38, '[]', '{\"title\":\"Cum minim vitae quos\",\"location\":\"Ea enim earum modi h\",\"description\":\"Reiciendis et repell\",\"options\":\"longevent_radio\",\"start\":\"2022-10-19\",\"end\":\"2022-10-22\",\"id\":38}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:03:08', '2022-10-30 10:03:08'),
+(521, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 39, '[]', '{\"title\":\"Ipsa expedita dolor\",\"location\":\"Mollitia nemo aperia\",\"description\":\"Ut dolores odio esse\",\"options\":\"allday_duration\",\"start\":\"2022-10-31 18:29\",\"id\":39}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:42:23', '2022-10-30 10:42:23'),
+(522, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 40, '[]', '{\"title\":\"Quam eum repudiandae\",\"location\":\"Temporibus ducimus\",\"description\":\"Voluptate et aut dol\",\"options\":\"time_duration\",\"start\":\"2022-10-30 18:44\",\"end\":\"2022-10-31 18:44\",\"id\":40}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:44:50', '2022-10-30 10:44:50'),
+(523, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 41, '[]', '{\"title\":\"Sapiente unde Nam re\",\"location\":\"Porro qui ut volupta\",\"description\":\"Possimus quis vitae\",\"options\":\"allday_radio\",\"start\":\"2022-11-01\",\"id\":41}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:54:53', '2022-10-30 10:54:53'),
+(524, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 42, '[]', '{\"title\":\"Reprehenderit quia o\",\"location\":\"Sit velit placeat e\",\"description\":\"Quos excepturi nulla\",\"options\":\"longevent_radio\",\"start\":\"2022-11-02\",\"end\":\"2022-11-04\",\"id\":42}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:55:10', '2022-10-30 10:55:10'),
+(525, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 43, '[]', '{\"title\":\"dvdfd\",\"location\":\"fdfd\",\"description\":\"dfdf\",\"options\":\"allday_duration\",\"start\":\"2022-11-05 12:55\",\"id\":43}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:55:58', '2022-10-30 10:55:58'),
+(526, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 44, '[]', '{\"title\":\"Quasi aut fugiat au\",\"location\":\"Nesciunt architecto\",\"description\":\"Voluptas quis mollit\",\"options\":\"time_duration\",\"start\":\"2022-11-07 13:56\",\"end\":\"2022-11-07 21:56\",\"id\":44}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 10:56:48', '2022-10-30 10:56:48'),
+(527, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 45, '[]', '{\"title\":\"Modi veritatis nobis\",\"location\":\"Eiusmod sapiente sit\",\"description\":\"Optio laboriosam o\",\"options\":\"allday_radio\",\"start\":\"2022-10-30\",\"id\":45}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 11:18:39', '2022-10-30 11:18:39'),
+(528, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 46, '[]', '{\"title\":\"Id tempora esse et q\",\"location\":\"Cillum sunt et corpo\",\"description\":\"Architecto id volupt\",\"options\":\"allday_duration\",\"start\":\"2022-10-30 20:02\",\"id\":46}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 12:02:53', '2022-10-30 12:02:53'),
+(529, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 47, '[]', '{\"title\":\"Ratione quas maiores\",\"location\":\"Temporibus repudiand\",\"description\":\"Non dolore nobis qui\",\"options\":\"allday_radio\",\"start\":\"2022-10-30\",\"id\":47}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 12:04:32', '2022-10-30 12:04:32'),
+(530, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 48, '[]', '{\"title\":\"Ullamco non quos eum\",\"location\":\"Do nisi assumenda in\",\"description\":\"Nihil sunt exercita\",\"options\":\"longevent_radio\",\"start\":\"2022-10-31\",\"end\":\"2022-11-04\",\"id\":48}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 12:05:56', '2022-10-30 12:05:56'),
+(531, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 49, '[]', '{\"title\":\"Omnis sint voluptat\",\"location\":\"Asperiores deserunt\",\"description\":\"Nobis elit ullamco\",\"options\":\"allday_duration\",\"start\":\"2022-11-21 20:06\",\"id\":49}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 12:06:20', '2022-10-30 12:06:20'),
+(532, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 50, '[]', '{\"title\":\"Incidunt rerum aliq\",\"location\":\"Earum eaque numquam\",\"description\":\"Ab autem velit cons\",\"options\":\"time_duration\",\"start\":\"2022-11-15 20:06\",\"end\":\"2022-11-16 20:06\",\"id\":50}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 12:06:54', '2022-10-30 12:06:54'),
+(533, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 51, '[]', '{\"title\":\"Fugiat odit explica\",\"location\":\"Placeat culpa fugi\",\"description\":\"Voluptatem laudantiu\",\"options\":\"allday_radio\",\"start\":\"2022-11-02\",\"id\":51}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 18:52:55', '2022-10-30 18:52:55'),
+(534, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"title\":\"Fugiat odit explica\"}', '{\"title\":\"zz\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:23:56', '2022-10-30 19:23:56'),
+(535, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"location\":\"Placeat culpa fugi\"}', '{\"location\":\"zz\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:24:06', '2022-10-30 19:24:06'),
+(536, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"description\":\"Voluptatem laudantiu\"}', '{\"description\":\"zz\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:24:13', '2022-10-30 19:24:13'),
+(537, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"options\":\"allday_radio\",\"start\":\"2022-11-02\",\"end\":null}', '{\"options\":\"longevent_radio\",\"start\":\"2022-10-31\",\"end\":\"2022-11-02\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:24:36', '2022-10-30 19:24:36'),
+(538, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"options\":\"longevent_radio\"}', '{\"options\":\"allday_radio\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:28:16', '2022-10-30 19:28:16'),
+(539, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"title\":\"Ratione quas maiores\"}', '{\"title\":\"fcdsf\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:35:04', '2022-10-30 19:35:04'),
+(540, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"location\":\"Temporibus repudiand\"}', '{\"location\":\"gdgd\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:35:10', '2022-10-30 19:35:10'),
+(541, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"description\":\"Non dolore nobis qui\"}', '{\"description\":\"dd\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:35:15', '2022-10-30 19:35:15'),
+(542, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"start\":\"2022-10-31\"}', '{\"start\":\"2022-11-01\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:35:21', '2022-10-30 19:35:21'),
+(543, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"start\":\"2022-11-01\"}', '{\"start\":\"2022-11-03\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:37:38', '2022-10-30 19:37:38'),
+(544, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"options\":\"allday_radio\",\"start\":\"2022-11-03\",\"end\":null}', '{\"options\":\"longevent_radio\",\"start\":\"2022-10-31\",\"end\":\"2022-11-04\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:39:47', '2022-10-30 19:39:47'),
+(545, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"options\":\"longevent_radio\",\"start\":\"2022-10-31\"}', '{\"options\":\"allday_radio\",\"start\":\"2022-11-04\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:40:13', '2022-10-30 19:40:13'),
+(546, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"options\":\"allday_radio\",\"start\":\"2022-11-04\",\"end\":\"2022-11-04\"}', '{\"options\":\"longevent_radio\",\"start\":\"2022-11-08\",\"end\":\"2022-11-15\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 19:50:09', '2022-10-30 19:50:09'),
+(547, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 47, '{\"options\":\"longevent_radio\"}', '{\"options\":\"allday_radio\"}', 'http://127.0.0.1:8000/admin/calendar-update/47', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:17:29', '2022-10-30 20:17:29'),
+(548, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 51, '{\"options\":\"allday_radio\",\"start\":\"2022-10-31\"}', '{\"options\":\"allday_duration\",\"start\":\"2022-11-11 07:00\"}', 'http://127.0.0.1:8000/admin/calendar-update/51', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:28:39', '2022-10-30 20:28:39'),
+(549, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 52, '[]', '{\"title\":\"Animi vel tempor as\",\"location\":\"Eius rerum sed esse\",\"description\":\"Excepturi officiis v\",\"options\":\"allday_radio\",\"start\":\"2022-11-01\",\"id\":52}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:40:27', '2022-10-30 20:40:27'),
+(550, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 53, '[]', '{\"title\":\"long event\",\"location\":\"Blanditiis quo nulla\",\"description\":\"Itaque nulla qui cor\",\"options\":\"longevent_radio\",\"start\":\"2022-10-31\",\"end\":\"2022-11-02\",\"id\":53}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:40:59', '2022-10-30 20:40:59'),
+(551, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 54, '[]', '{\"title\":\"Sed duis non aut max\",\"location\":\"Quidem aut dolor tem\",\"description\":\"Voluptatibus sint ad\",\"options\":\"allday_duration\",\"start\":\"2022-10-31 04:50\",\"id\":54}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:50:37', '2022-10-30 20:50:37'),
+(552, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 54, '{\"start\":\"2022-10-31 04:50\"}', '{\"start\":\"2022-11-11 11:35\"}', 'http://127.0.0.1:8000/admin/calendar-update/54', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:54:40', '2022-10-30 20:54:40'),
+(553, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 55, '[]', '{\"title\":\"time event\",\"location\":\"dfd\",\"description\":\"fdfd\",\"options\":\"time_duration\",\"start\":\"2022-10-31 04:56\",\"end\":\"2022-11-02 04:56\",\"id\":55}', 'http://127.0.0.1:8000/admin/calendar', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 20:56:25', '2022-10-30 20:56:25'),
+(554, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\Event', 53, '{\"id\":53,\"title\":\"long event\",\"description\":\"Itaque nulla qui cor\",\"options\":\"longevent_radio\",\"location\":\"Blanditiis quo nulla\",\"start\":\"2022-10-31\",\"end\":\"2022-11-02\"}', '[]', 'http://127.0.0.1:8000/admin/calendar-events/delete-event', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 22:24:31', '2022-10-30 22:24:31'),
+(555, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 56, '[]', '{\"title\":\"Repudiandae sint exe\",\"location\":\"Architecto neque del\",\"description\":\"Temporibus minim qui\",\"options\":\"allday_duration\",\"start\":\"2022-11-01 00:00\",\"id\":56}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 22:24:50', '2022-10-30 22:24:50'),
+(556, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 57, '[]', '{\"title\":\"Quas beatae tenetur\",\"location\":\"Quos sunt velit non\",\"description\":\"Proident sed amet\",\"options\":\"allday_radio\",\"start\":\"2022-11-02\",\"id\":57}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 22:25:00', '2022-10-30 22:25:00'),
+(557, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 58, '[]', '{\"title\":\"Saepe a incidunt ve\",\"location\":\"Recusandae Rerum ex\",\"description\":\"Aut qui repellendus\",\"options\":\"longevent_radio\",\"start\":\"2022-11-01\",\"end\":\"2022-11-02\",\"id\":58}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 22:37:19', '2022-10-30 22:37:19'),
+(558, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 59, '[]', '{\"title\":\"Sed architecto qui s\",\"location\":\"Consectetur perspici\",\"description\":\"Delectus incidunt\",\"options\":\"allday_duration\",\"start\":\"2022-10-31 06:40\",\"id\":59}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 22:40:35', '2022-10-30 22:40:35'),
+(559, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 57, '{\"title\":\"Quas beatae tenetur\"}', '{\"title\":\"all day\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/57', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:22:54', '2022-10-30 23:22:54'),
+(560, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 56, '{\"title\":\"Repudiandae sint exe\"}', '{\"title\":\"All Day Event Duration\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/56', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:23:24', '2022-10-30 23:23:24'),
+(561, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 58, '{\"title\":\"Saepe a incidunt ve\",\"description\":\"Aut qui repellendus\",\"location\":\"Recusandae Rerum ex\",\"start\":\"2022-11-01\",\"end\":\"2022-11-02\"}', '{\"title\":\"Long Event\",\"description\":\"Qui iste est aute nu\",\"location\":\"Id labore sequi qui\",\"start\":\"2022-10-31\",\"end\":\"2022-11-01\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/58', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:23:54', '2022-10-30 23:23:54'),
+(562, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 59, '{\"title\":\"Sed architecto qui s\",\"options\":\"allday_duration\",\"start\":\"2022-10-31 06:40\",\"end\":null}', '{\"title\":\"Time Event Duration\",\"options\":\"time_duration\",\"start\":\"2022-10-31 07:24\",\"end\":\"2022-11-01 07:24\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/59', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:24:19', '2022-10-30 23:24:19'),
+(563, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 56, '{\"start\":\"2022-11-01 00:00\"}', '{\"start\":\"2022-11-01 05:00\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/56', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:35:44', '2022-10-30 23:35:44'),
+(564, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 56, '{\"start\":\"2022-11-01 05:00\"}', '{\"start\":\"2022-11-01 17:00\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/56', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:36:03', '2022-10-30 23:36:03'),
+(565, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 60, '[]', '{\"title\":\"Assumenda aut doloru\",\"location\":\"Quia dolor odit vita\",\"description\":\"Aut illum ipsam dol\",\"options\":\"allday_duration\",\"start\":\"2022-11-01 19:37\",\"id\":60}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:38:06', '2022-10-30 23:38:06'),
+(566, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 61, '[]', '{\"title\":\"Blanditiis corporis\",\"location\":\"Cumque cillum quas v\",\"description\":\"Aut voluptas laudant\",\"options\":\"allday_duration\",\"start\":\"2022-10-31 19:41\",\"id\":61}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:41:52', '2022-10-30 23:41:52'),
+(567, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 62, '[]', '{\"title\":\"Facilis reiciendis e\",\"location\":\"Repudiandae voluptat\",\"description\":\"Ipsam quasi laborum\",\"options\":\"time_duration\",\"start\":\"2022-10-31 18:43\",\"end\":\"2022-11-01 22:43\",\"id\":62}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:43:40', '2022-10-30 23:43:40'),
+(568, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 61, '{\"options\":\"allday_duration\",\"start\":\"2022-10-31 19:41\",\"end\":null}', '{\"options\":\"longevent_radio\",\"start\":\"2022-10-31\",\"end\":\"2022-11-01\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/61', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:46:40', '2022-10-30 23:46:40'),
+(569, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 63, '[]', '{\"title\":\"Quo iusto quo placea\",\"location\":\"Et ut eos asperiores\",\"description\":\"Fugiat est optio ip\",\"options\":\"allday_radio\",\"start\":\"2022-11-04\",\"id\":63}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:50:36', '2022-10-30 23:50:36'),
+(570, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 64, '[]', '{\"title\":\"Id adipisicing dolor\",\"location\":\"Eligendi dolore enim\",\"description\":\"Fugit dolorum velit\",\"options\":\"allday_radio\",\"start\":\"2022-11-05\",\"id\":64}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:50:46', '2022-10-30 23:50:46'),
+(571, 'App\\Models\\User', 19, 'updated', 'App\\Models\\Event', 61, '{\"options\":\"longevent_radio\",\"start\":\"2022-10-31\"}', '{\"options\":\"allday_duration\",\"start\":\"2022-11-02 16:51\"}', 'http://127.0.0.1:8000/admin/calendar-events/update/61', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:51:57', '2022-10-30 23:51:57'),
+(572, 'App\\Models\\User', 19, 'created', 'App\\Models\\Event', 65, '[]', '{\"title\":\"Porro maiores accusa\",\"location\":\"Facilis fuga Minima\",\"description\":\"Debitis in dolorem e\",\"options\":\"longevent_radio\",\"start\":\"2022-11-03\",\"end\":\"2022-11-04\",\"id\":65}', 'http://127.0.0.1:8000/admin/calendar-events', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:52:58', '2022-10-30 23:52:58'),
+(573, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\Event', 64, '{\"id\":64,\"title\":\"Id adipisicing dolor\",\"description\":\"Fugit dolorum velit\",\"options\":\"allday_radio\",\"location\":\"Eligendi dolore enim\",\"start\":\"2022-11-05\",\"end\":null}', '[]', 'http://127.0.0.1:8000/admin/calendar-events/delete-event', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36', NULL, '2022-10-30 23:53:22', '2022-10-30 23:53:22');
 
 -- --------------------------------------------------------
 
@@ -1298,8 +1353,11 @@ INSERT INTO `documents` (`id`, `name`, `description`, `document`, `created_at`, 
 CREATE TABLE `events` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `start` date NOT NULL,
-  `end` date NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `options` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `end` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1308,10 +1366,11 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `start`, `end`, `created_at`, `updated_at`) VALUES
-(30, 'koko', '2022-09-16', '2022-09-17', '2022-09-29 11:49:35', '2022-09-30 03:38:38'),
-(31, 'Recognition Day', '2022-09-07', '2022-09-08', '2022-09-29 12:23:17', '2022-09-29 12:23:17'),
-(36, 'fdf', '2022-10-13', '2022-10-14', '2022-10-02 09:07:59', '2022-10-25 10:11:36');
+INSERT INTO `events` (`id`, `title`, `description`, `options`, `location`, `start`, `end`, `created_at`, `updated_at`) VALUES
+(61, 'Blanditiis corporis', 'Aut voluptas laudant', 'allday_duration', 'Cumque cillum quas v', '2022-11-02 16:51', '2022-11-01', '2022-10-30 23:41:52', '2022-10-30 23:51:57'),
+(62, 'Facilis reiciendis e', 'Ipsam quasi laborum', 'time_duration', 'Repudiandae voluptat', '2022-10-31 18:43', '2022-11-01 22:43', '2022-10-30 23:43:40', '2022-10-30 23:43:40'),
+(63, 'Quo iusto quo placea', 'Fugiat est optio ip', 'allday_radio', 'Et ut eos asperiores', '2022-11-04', NULL, '2022-10-30 23:50:36', '2022-10-30 23:50:36'),
+(65, 'Porro maiores accusa', 'Debitis in dolorem e', 'longevent_radio', 'Facilis fuga Minima', '2022-11-03', '2022-11-04', '2022-10-30 23:52:58', '2022-10-30 23:52:58');
 
 -- --------------------------------------------------------
 
@@ -1777,7 +1836,12 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `category_id`, `created_a
 (91, 'settings view', 'web', 18, '2022-10-28 19:58:46', '2022-10-28 19:58:46'),
 (92, 'settings edit', 'web', 18, '2022-10-28 19:58:55', '2022-10-28 19:58:55'),
 (93, 'signature create', 'web', 17, '2022-10-29 09:41:23', '2022-10-29 09:41:23'),
-(94, 'signature delete', 'web', 17, '2022-10-29 09:41:32', '2022-10-29 09:41:32');
+(94, 'signature delete', 'web', 17, '2022-10-29 09:41:32', '2022-10-29 09:41:32'),
+(95, 'events list', 'web', 19, '2022-10-30 22:45:52', '2022-10-30 22:45:52'),
+(96, 'events create', 'web', 19, '2022-10-30 22:46:03', '2022-10-30 22:46:03'),
+(97, 'events edit', 'web', 19, '2022-10-30 22:46:12', '2022-10-30 22:46:12'),
+(98, 'events delete', 'web', 19, '2022-10-30 22:46:40', '2022-10-30 22:46:40'),
+(99, 'calendar show', 'web', 19, '2022-10-30 22:50:21', '2022-10-30 22:50:21');
 
 -- --------------------------------------------------------
 
@@ -1811,7 +1875,8 @@ INSERT INTO `permission_category` (`id`, `name`) VALUES
 (15, 'Course'),
 (16, 'About'),
 (17, 'Signature'),
-(18, 'Settings');
+(18, 'Settings'),
+(19, 'Calendar Events');
 
 -- --------------------------------------------------------
 
@@ -2026,7 +2091,12 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (93, 7),
 (93, 8),
 (94, 7),
-(94, 8);
+(94, 8),
+(95, 7),
+(96, 7),
+(97, 7),
+(98, 7),
+(99, 7);
 
 -- --------------------------------------------------------
 
@@ -2569,7 +2639,7 @@ ALTER TABLE `ae_applicants`
 -- AUTO_INCREMENT for table `audits`
 --
 ALTER TABLE `audits`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=519;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=574;
 
 --
 -- AUTO_INCREMENT for table `awardees`
@@ -2599,7 +2669,7 @@ ALTER TABLE `documents`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -2653,13 +2723,13 @@ ALTER TABLE `non_acad_awards`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `permission_category`
 --
 ALTER TABLE `permission_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

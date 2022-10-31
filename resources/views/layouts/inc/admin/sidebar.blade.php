@@ -237,12 +237,34 @@
     <div class="sidebar-heading">
         PROGRAMS
     </div>
+
     @can('menu calendar')
-        <li class="nav-item {{ Request::is('admin/calendar') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="{{ url('admin/calendar') }}">
+        <li
+            class="nav-item {{ Request::is('admin/calendar-events') || Request::is('admin/calendar-events/*') || Request::is('admin/calendar-events/calendar') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::is('admin/calendar-events') || Request::is('admin/calendar-events/*') || Request::is('admin/calendar-events/calendar') ? '' : 'collapsed' }}"
+                href="#" data-toggle="collapse" data-target="#eventsPages" aria-expanded="true"
+                aria-controls="eventsPages">
                 <i class="fa-solid fa-calendar-week"></i>
                 <span>Calendar of Events</span>
             </a>
+            <div id="eventsPages"
+                class="collapse {{ Request::is('admin/calendar-events') ||
+                Request::is('admin/calendar-events/*') ||
+                Request::is('admin/calendar-events/calendar')
+                    ? 'show'
+                    : '' }}"
+                aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('events list')
+                        <a class="collapse-item {{ Request::is('admin/calendar-events') || Request::is('admin/alendar-events/*') ? 'active' : '' }}"
+                            href="{{ url('admin/calendar-events') }}">Events</a>
+                    @endcan
+                    @can('calendar show')
+                        <a class="collapse-item {{ Request::is('admin/calendar-events/calendar') ? 'active' : '' }}"
+                            href="{{ url('admin/calendar-events/calendar') }}">Calendar</a>
+                    @endcan
+                </div>
+            </div>
         </li>
     @endcan
     @can('gallery list')
