@@ -65,6 +65,9 @@ class NonAcademicAwardRequest extends FormRequest
         $validator->sometimes('placement', 'required', function ($input) {
             return $input->nonacad_id == '7';
         });
+        $validator->sometimes('others', 'required', function ($input) {
+            return $input->org_id == '9';
+        });
     }
 
     public function messages()

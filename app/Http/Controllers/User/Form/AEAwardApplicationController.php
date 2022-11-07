@@ -50,6 +50,12 @@ class AEAwardApplicationController extends Controller
         if (!empty($data['gwa9'])) {
             $award->gwa9 = $data['gwa9'];
         }
+        if (!empty($data['gwa10'])) {
+            $award->gwa10 = $data['gwa10'];
+        }
+        if (!empty($data['gwa11'])) {
+            $award->gwa11 = $data['gwa11'];
+        }
 
         $award->save();
         $lastid = $award->id;
@@ -157,6 +163,35 @@ class AEAwardApplicationController extends Controller
                 $sum->save();
             }
         }
+
+        if (!empty($request->subjects10)) {
+            foreach ($request->subjects10 as $key => $subjects10) {
+                $sum = new SummaryAcadExcell();
+                $sum->subjects = $subjects10;
+                $sum->units = $data['units10'][$key];
+                $sum->grades = $data['grades10'][$key];
+                $sum->user_id = $data['user_id'];
+                $sum->term = $data['term10'];
+                $sum->sy = $data['school_year'];
+                $sum->app_id = $lastid;
+                $sum->save();
+            }
+        }
+
+        if (!empty($request->subjects11)) {
+            foreach ($request->subjects11 as $key => $subjects11) {
+                $sum = new SummaryAcadExcell();
+                $sum->subjects = $subjects11;
+                $sum->units = $data['units11'][$key];
+                $sum->grades = $data['grades11'][$key];
+                $sum->user_id = $data['user_id'];
+                $sum->term = $data['term11'];
+                $sum->sy = $data['school_year'];
+                $sum->app_id = $lastid;
+                $sum->save();
+            }
+        }
+
         Notification::send($users, new AdminNotification($user_name, $lastid, 'AE'));
 
 

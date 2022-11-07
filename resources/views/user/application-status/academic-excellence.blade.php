@@ -40,6 +40,8 @@
                                 @foreach ($status as $item)
                                     @php
                                         $totalwithSummer = ($item->gwa1 + $item->gwa2 + $item->gwa3 + $item->gwa4 + $item->gwa5 + $item->gwa6 + $item->gwa7 + $item->gwa8 + $item->gwa9) / 9;
+                                        $totalwith5thYear = ($item->gwa1 + $item->gwa2 + $item->gwa3 + $item->gwa4 + $item->gwa5 + $item->gwa6 + $item->gwa7 + $item->gwa8 + $item->gwa10 + $item->gwa11) / 10;
+                                        $totalwith5thAndSummer = ($item->gwa1 + $item->gwa2 + $item->gwa3 + $item->gwa4 + $item->gwa5 + $item->gwa6 + $item->gwa7 + $item->gwa8 + $item->gwa9 + $item->gwa10 + $item->gwa11) / 11;
                                     @endphp
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
@@ -53,8 +55,12 @@
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                         <td class="text-center">
-                                            @if (!empty($item->gwa9))
+                                            @if (!empty($item->gwa9) && empty($item->gwa10))
                                                 {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                            @elseif(!empty($item->gwa10 || $item->gwa11) && empty($item->gwa9))
+                                                {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                            @elseif(!empty($item->gwa9 && $item->gwa10))
+                                                {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
                                             @else
                                                 {{ $item->gwa }}
                                             @endif

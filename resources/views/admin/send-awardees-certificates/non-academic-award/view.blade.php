@@ -47,6 +47,7 @@
                                     <th>Year Level</th>
                                     <th>Award Applied</th>
                                     <th>Photo</th>
+                                    <th class="text-center">Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -108,6 +109,13 @@
                                         <td>
                                             <img src="{{ asset('uploads/' . $award->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($award->certificate_status == '1')
+                                                <span class="badge badge-success">Sent</span>
+                                            @else
+                                                <span class="badge badge-warning">Waiting</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/send-awardees-certificates/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"

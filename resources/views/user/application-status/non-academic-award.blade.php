@@ -47,7 +47,11 @@
                                             @if ($list->nonacad_id == '1')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $list->orgs->name }}</p>
+                                                    <P>School Organization: {{ $list->orgs->name }}
+                                                        @if (!empty($list->others))
+                                                            - {{ $list->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($list->nonacad_id == '2')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
@@ -57,7 +61,11 @@
                                             @elseif ($list->nonacad_id == '3')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $list->orgs->name }}</p>
+                                                    <P>School Organization: {{ $list->orgs->name }}
+                                                        @if (!empty($list->others))
+                                                            - {{ $list->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($list->nonacad_id == '4')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
@@ -68,20 +76,32 @@
                                             @elseif ($list->nonacad_id == '5')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $list->orgs->name }}</p>
+                                                    <P>School Organization: {{ $list->orgs->name }}
+                                                        @if (!empty($list->others))
+                                                            - {{ $list->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($list->nonacad_id == '6')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
                                                     <P>Designation Office: {{ $list->designated_office }}<br>
-                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                        School Organization: {{ $list->orgs->name }}
+                                                        @if (!empty($list->others))
+                                                            - {{ $list->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($list->nonacad_id == '7')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                                 <div class="small">
                                                     <P>Competition Name: {{ $list->competition_name }}<br>
                                                         Placements: {{ $list->placement }}<br>
-                                                        School Organization: {{ $list->orgs->name }}</p>
+                                                        School Organization: {{ $list->orgs->name }}
+                                                        @if (!empty($list->others))
+                                                            - {{ $list->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @else
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>

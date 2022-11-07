@@ -176,29 +176,37 @@
     <table class="table2">
         <tr>
             <td>Signed by:</td>
-            @foreach (getSignatories()->take(3) as $list)
-                <td>
-                    <div class="img-sig">
-                        <img src="{{ public_path('uploads/signature/' . $list->signature) }}" width="100" />
-                    </div>
-                    <b>{{ $list->rep_name }}</b><br>
-                    {{ $list->position }}
-                </td>
-            @endforeach
+            <td>
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name1Report()->signature) }}" width="100" />
+                </div>
+                <b>{{ name1Report()->rep_name }}</b><br>
+                {{ name1Report()->position }}
+            </td>
+            <td>
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name2Report()->signature) }}" width="100" />
+                </div>
+                <b>{{ name2Report()->rep_name }}</b><br>
+                {{ name2Report()->position }}
+            </td>
+            <td>
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name3Report()->signature) }}" width="100" />
+                </div>
+                <b>{{ name3Report()->rep_name }}</b><br>
+                {{ name3Report()->position }}
+            </td>
         </tr>
         <tr>
             <td>Noted by:</td>
-            @foreach (getSignatories() as $list)
-                @if ($loop->last)
-                    <td colspan="3" align="center" height="110">
-                        <div class="img-sig">
-                            <img src="{{ public_path('uploads/signature/' . $list->signature) }}" width="100" />
-                        </div>
-                        <b>{{ $list->rep_name }}</b><br>
-                        {{ $list->position }}
-                    </td>
-                @endif
-            @endforeach
+            <td colspan="3" align="center" height="110">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name4Report()->signature) }}" width="100" />
+                </div>
+                <b>{{ name4Report()->rep_name }}</b><br>
+                {{ name4Report()->position }}
+            </td>
         </tr>
     </table>
     <footer>

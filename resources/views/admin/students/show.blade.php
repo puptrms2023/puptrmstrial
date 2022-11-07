@@ -139,6 +139,7 @@
                                         <th>2nd year</th>
                                         <th>3rd year</th>
                                         <th>4th year</th>
+                                        <th>5th year</th>
                                         <th>Summer</th>
                                         <th>Average</th>
                                         <th>Image</th>
@@ -149,28 +150,48 @@
                                 <tbody class="text-uppercase">
                                     @foreach ($excellence as $app)
                                         @php
-                                            $gwa_1st = ($app->gwa1 + $app->gwa2) / 2;
-                                            $gwa_2nd = ($app->gwa3 + $app->gwa4) / 2;
-                                            $gwa_3rd = ($app->gwa5 + $app->gwa6) / 2;
-                                            $gwa_4th = ($app->gwa7 + $app->gwa8) / 2;
                                             $totalwithSummer = ($app->gwa1 + $app->gwa2 + $app->gwa3 + $app->gwa4 + $app->gwa5 + $app->gwa6 + $app->gwa7 + $app->gwa8 + $app->gwa9) / 9;
+                                            $totalwith5thYear = ($app->gwa1 + $app->gwa2 + $app->gwa3 + $app->gwa4 + $app->gwa5 + $app->gwa6 + $app->gwa7 + $app->gwa8 + $app->gwa10 + $app->gwa11) / 10;
+                                            $totalwith5thAndSummer = ($app->gwa1 + $app->gwa2 + $app->gwa3 + $app->gwa4 + $app->gwa5 + $app->gwa6 + $app->gwa7 + $app->gwa8 + $app->gwa9 + $app->gwa10 + $app->gwa11) / 11;
                                         @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-success">{{ $app->award->name }}</span></td>
                                             <td>{{ $app->year_level }}</td>
-                                            <td class="text-center">{{ number_format((float) $gwa_1st, 2, '.', '') }}</td>
-                                            <td class="text-center">{{ number_format((float) $gwa_2nd, 2, '.', '') }}</td>
-                                            <td class="text-center">{{ number_format((float) $gwa_3rd, 2, '.', '') }}</td>
-                                            <td class="text-center">{{ number_format((float) $gwa_4th, 2, '.', '') }}</td>
+                                            <td class="text-center">
+                                                {{ number_format((float) $app->gwa1, 2, '.', '') }}
+                                                {{ number_format((float) $app->gwa2, 2, '.', '') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ number_format((float) $app->gwa3, 2, '.', '') }}
+                                                {{ number_format((float) $app->gwa4, 2, '.', '') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ number_format((float) $app->gwa5, 2, '.', '') }}
+                                                {{ number_format((float) $app->gwa6, 2, '.', '') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ number_format((float) $app->gwa7, 2, '.', '') }}
+                                                {{ number_format((float) $app->gwa8, 2, '.', '') }}
+                                            </td>
+                                            <td class="text-center">
+                                                @if (!empty($app->gwa10))
+                                                    {{ number_format((float) $app->gwa10, 2, '.', '') }}
+                                                    {{ number_format((float) $app->gwa11, 2, '.', '') }}
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 @if (!empty($app->gwa9))
                                                     {{ number_format((float) $app->gwa9, 2, '.', '') }}
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if (!empty($app->gwa9))
+                                                @if (!empty($app->gwa9) && empty($app->gwa10))
                                                     {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                                @elseif(!empty($app->gwa10 || $app->gwa11) && empty($app->gwa9))
+                                                    {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                                @elseif(!empty($app->gwa9 && $app->gwa10))
+                                                    {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
                                                 @else
                                                     {{ $app->gwa }}
                                                 @endif
@@ -231,7 +252,11 @@
                                                 @if ($app->nonacad_id == '1')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
-                                                        <P>School Organization: {{ $app->orgs->name }}</p>
+                                                        <P>School Organization: {{ $app->orgs->name }}
+                                                            @if (!empty($app->others))
+                                                                - {{ $app->others }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 @elseif ($app->nonacad_id == '2')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
@@ -241,7 +266,11 @@
                                                 @elseif ($app->nonacad_id == '3')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
-                                                        <P>School Organization: {{ $app->orgs->name }}</p>
+                                                        <P>School Organization: {{ $app->orgs->name }}
+                                                            @if (!empty($app->others))
+                                                                - {{ $app->others }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 @elseif ($app->nonacad_id == '4')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
@@ -252,20 +281,32 @@
                                                 @elseif ($app->nonacad_id == '5')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
-                                                        <P>School Organization: {{ $app->orgs->name }}</p>
+                                                        <P>School Organization: {{ $app->orgs->name }}
+                                                            @if (!empty($app->others))
+                                                                - {{ $app->others }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 @elseif ($app->nonacad_id == '6')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
                                                         <P>Designation Office: {{ $app->designated_office }}<br>
-                                                            School Organization: {{ $app->orgs->name }}</p>
+                                                            School Organization: {{ $app->orgs->name }}
+                                                            @if (!empty($app->others))
+                                                                - {{ $app->others }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 @elseif ($app->nonacad_id == '7')
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                     <div class="small">
                                                         <P>Competition Name: {{ $app->competition_name }}<br>
                                                             Placements: {{ $app->placement }}<br>
-                                                            School Organization: {{ $app->orgs->name }}</p>
+                                                            School Organization: {{ $app->orgs->name }}
+                                                            @if (!empty($app->others))
+                                                                - {{ $app->others }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 @else
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>

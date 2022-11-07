@@ -42,8 +42,12 @@
                             <tr>
                                 <th width="25%">GWA</th>
                                 <td class="font-weight-bold text-primary">
-                                    @if ($grades9->count() > 0)
+                                    @if (!empty($status->gwa9) && empty($status->gwa10))
                                         {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                    @elseif(!empty($status->gwa10 || $status->gwa11) && empty($status->gwa9))
+                                        {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                    @elseif(!empty($status->gwa9 && $status->gwa10))
+                                        {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
                                     @else
                                         {{ $status->gwa }}
                                     @endif
@@ -427,6 +431,98 @@
     </div>
     {{-- 4th year --}}
 
+    @if ($grades10->count() > 0 && $grades11->count() > 0)
+        {{-- 5th year --}}
+        <p>FIFTH YEAR</p>
+        <div class="row mb-2">
+            {{-- Fifth Year - 1st Sem --}}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="m-0 font-weight-bold text-primary">1st Semester Grades
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Grades</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $gwa = 0;
+                                        $units = 0;
+                                        $total = 0;
+                                    @endphp
+                                    @foreach ($grades10 as $grade)
+                                        <tr>
+                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->grades }}</td>
+                                            <td>{{ $grade->units }}</td>
+                                        </tr>
+                                        @php
+                                            $units += $grade->units;
+                                            $total += $grade->grades * $grade->units;
+                                            $gwa = $total / $units;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <small>GWA: <b>{{ $gwa }}</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Fifth Year - 2nd Sem --}}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="m-0 font-weight-bold text-primary">2nd Semester Grades
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Grades</th>
+                                        <th>Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $gwa = 0;
+                                        $units = 0;
+                                        $total = 0;
+                                    @endphp
+                                    @foreach ($grades11 as $grade)
+                                        <tr>
+                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->grades }}</td>
+                                            <td>{{ $grade->units }}</td>
+                                        </tr>
+                                        @php
+                                            $units += $grade->units;
+                                            $total += $grade->grades * $grade->units;
+                                            $gwa = $total / $units;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <small>GWA: <b>{{ $gwa }}</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if ($grades9->count() > 0)
         <p>SUMMER</p>
         <div class="row mb-2">
@@ -493,4 +589,13 @@
             </div>
         </div>
     @endcan
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            $('.status').on('change', checkPattern);
+            // call to adjust div
+            checkPattern();
+        });
+    </script>
 @endsection

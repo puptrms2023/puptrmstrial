@@ -41,10 +41,10 @@ class AACertificateController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $name1 = Signature::where('certificate','1')->first();
-        $name2 = Signature::where('certificate','1')->skip(1)->take(1)->first();
-        $name3 = Signature::where('certificate','1')->skip(2)->take(1)->first();
-        $name4 = Signature::where('certificate','1')->skip(3)->take(1)->first();
+        $name1 = Signature::where('certificate', '1')->first();
+        $name2 = Signature::where('certificate', '1')->skip(1)->take(1)->first();
+        $name3 = Signature::where('certificate', '1')->skip(2)->take(1)->first();
+        $name4 = Signature::where('certificate', '1')->skip(3)->take(1)->first();
 
         $users = StudentApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
@@ -56,6 +56,9 @@ class AACertificateController extends Controller
                 'gwa'  => $user->gwa,
                 'award'  => $user->award->acad_code,
                 'award_name'  => $user->award->name,
+                'summer' => '',
+                'fifth_1' => '',
+                'fifth_2' => '',
                 'sy'  => $user->school_year,
                 'name1' => $name1->rep_name,
                 'position1' => $name1->position,

@@ -34,10 +34,37 @@ function getSignature()
 {
     return Signature::pluck('name');
 }
-function getSignatories()
+function name1Report()
 {
-    $names = Signature::where('report', '1')->get();
-    return $names;
+    return Signature::where('report', '1')->first();
+}
+function name2Report()
+{
+    return Signature::where('report', '1')->skip(1)->take(1)->first();
+}
+function name3Report()
+{
+    return Signature::where('report', '1')->skip(2)->take(1)->first();
+}
+function name4Report()
+{
+    return Signature::where('report', '1')->skip(3)->take(1)->first();
+}
+function name1Certificate()
+{
+    return Signature::where('certificate', '1')->first();
+}
+function name2Certificate()
+{
+    return Signature::where('certificate', '1')->skip(1)->take(1)->first();
+}
+function name3Certificate()
+{
+    return Signature::where('certificate', '1')->skip(2)->take(1)->first();
+}
+function name4Certificate()
+{
+    return Signature::where('certificate', '1')->skip(3)->take(1)->first();
 }
 
 function generateApplicationId()

@@ -39,10 +39,10 @@ class AECertificateController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $name1 = Signature::where('certificate','1')->first();
-        $name2 = Signature::where('certificate','1')->skip(1)->take(1)->first();
-        $name3 = Signature::where('certificate','1')->skip(2)->take(1)->first();
-        $name4 = Signature::where('certificate','1')->skip(3)->take(1)->first();
+        $name1 = Signature::where('certificate', '1')->first();
+        $name2 = Signature::where('certificate', '1')->skip(1)->take(1)->first();
+        $name3 = Signature::where('certificate', '1')->skip(2)->take(1)->first();
+        $name4 = Signature::where('certificate', '1')->skip(3)->take(1)->first();
 
         $users = AcademicExcellence::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
@@ -56,7 +56,11 @@ class AECertificateController extends Controller
                 'award_name'  => $user->award->name,
                 'sy'  => $user->school_year,
                 'summer' => $user->gwa9,
+                'fifth_1' => $user->gwa10,
+                'fifth_2' => $user->gwa11,
                 'totalwithSummer' => ($user->gwa1 + $user->gwa2 + $user->gwa3 + $user->gwa4 + $user->gwa5 + $user->gwa6 + $user->gwa7 + $user->gwa8 + $user->gwa9) / 9,
+                'totalwith5thYear' => ($user->gwa1 + $user->gwa2 + $user->gwa3 + $user->gwa4 + $user->gwa5 + $user->gwa6 + $user->gwa7 + $user->gwa8 + $user->gwa10 + $user->gwa11) / 10,
+                'totalwith5thAndSummer' => ($user->gwa1 + $user->gwa2 + $user->gwa3 + $user->gwa4 + $user->gwa5 + $user->gwa6 + $user->gwa7 + $user->gwa8 + $user->gwa9 + $user->gwa10 + $user->gwa11) / 11,
                 'name1' => $name1->rep_name,
                 'position1' => $name1->position,
                 'signature1' => $name1->signature,
@@ -82,7 +86,6 @@ class AECertificateController extends Controller
 
     public function showCertificate($course_code, $id)
     {
-        $sig = Signature::where('certificate', '1')->orderBy('id', 'asc')->get();
         $stud = AcademicExcellence::with('users')->find($id);
         $data = [
             'fname' => $stud->users->first_name,
@@ -91,13 +94,15 @@ class AECertificateController extends Controller
             'gwa'  => $stud->gwa,
             'award'  => $stud->award_applied,
             'sy'  => $stud->school_year,
-            'totalwithSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9
+            'totalwithSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9,
+            'totalwith5thYear' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa10 + $stud->gwa11) / 10,
+            'totalwith5thAndSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11
         ];
 
         $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->ae_app_id));
 
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('stud', 'qrcode', 'sig'));
+        $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('stud', 'qrcode'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream($stud->users->last_name . ',' . $stud->users->first_name . '-cert.pdf');
     }

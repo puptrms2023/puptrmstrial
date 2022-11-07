@@ -86,7 +86,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
-                            <select class="custom-select" name="year_level">
+                            <select class="custom-select 5thyear" name="year_level" id="5thyear_onload">
                                 <option data-state="4th Year" value="4th Year"
                                     {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
                                 <option data-state="5th Year" value="5th Year"
@@ -704,6 +704,160 @@
                     </div>
                 </div>
 
+                {{-- 5th year 1st sem --}}
+                <div id="5th_1" class="card shadow mt-0 mb-4 hidden">
+                    <div class="card-header pt-8 pb-1">
+                        <p class="text-primary font-weight-bold">Fifth Year - 1st Semester</p>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-borderless">
+                            <thead>
+                                <tr>
+                                    <th><em>Subject</em> <span class="text-danger">*</span></th>
+                                    <th width="20%"><em>Number of Units</em> <span class="text-danger">*</span></th>
+                                    <th width="20%"><em>Grade</em> <span class="text-danger">*</span></th>
+                                    <th><em>Action</em></th>
+                                    <th width="20%" style="display:none"><em>Total</em></th>
+                                </tr>
+                            </thead>
+                            <tbody id="calculation10">
+                                @forelse (old('subjects10', []) as $i => $subjects10)
+                                    <tr>
+                                        <td><input type="text" name="subjects10[]" value="{{ $subjects10 }}"
+                                                class="form-control"></td>
+                                        <td><input type="text" name="units10[]" value="{{ old('units10')[$i] }}"
+                                                class="form-control units10 multi10" id="units10" min="1"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                onpaste="return false">
+                                        </td>
+                                        <td><input type="text" name="grades10[]" value="{{ old('grades10')[$i] }}"
+                                                class="form-control grades10 multi10" id="grades10"
+                                                onkeypress="return isFloatNumber(this,event)">
+                                        </td>
+                                        <td><button type="button" class="btn btn-secondary" id="remove10"><i
+                                                    class="fa-solid fa-circle-minus"></i></button></td>
+                                        <td style="display:none"><input type="text" name="total10[]"
+                                                class="form-control total10" id="total10"
+                                                value="{{ old('total10')[$i] }}" readonly>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td><input type="text" name="subjects10[]" class="form-control"></td>
+                                        <td><input type="text" name="units10[]" class="form-control units10 multi10"
+                                                id="units10" min="1"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                onpaste="return false">
+                                        </td>
+                                        <td><input type="text" name="grades10[]" class="form-control grades10 multi10"
+                                                id="grades10" onkeypress="return isFloatNumber(this,event)">
+                                        </td>
+                                        <td><button type="button" class="btn btn-secondary" id="remove10"><i
+                                                    class="fa-solid fa-circle-minus"></i></button></td>
+                                        <td style="display:none"><input type="text" name="total10[]"
+                                                class="form-control total10" id="total10" readonly>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="term10" value="10">
+                        <input type="hidden" id="totalUnits10">
+                        <input type="hidden" id="weight10">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="add_btn10">Add Subject</button>
+                        </div>
+                        <p class="text-muted"><small>Total Number of Units: </small><small id="totalUnit10"></small></p>
+                        <div class="row mb-3">
+                            <label class="col-auto col-form-label">GWA:</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext font-weight-bold"
+                                    id="gwa10" name="gwa10" value="{{ old('gwa10') }}">
+                                @if ($errors->has('gwa10'))
+                                    <span class="text-danger text-left">{{ $errors->first('gwa10') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 5th year - 2nd sem --}}
+                <div id="5th_2" class="card shadow mt-0 mb-4 hidden">
+                    <div class="card-header pt-8 pb-1">
+                        <p class="text-primary font-weight-bold">Fifth Year - 2nd Semester</p>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-borderless">
+                            <thead>
+                                <tr>
+                                    <th><em>Subject</em> <span class="text-danger">*</span></th>
+                                    <th width="20%"><em>Number of Units</em> <span class="text-danger">*</span></th>
+                                    <th width="20%"><em>Grade</em> <span class="text-danger">*</span></th>
+                                    <th><em>Action</em></th>
+                                    <th width="20%" style="display:none"><em>Total</em></th>
+                                </tr>
+                            </thead>
+                            <tbody id="calculation11">
+                                @forelse (old('subjects11', []) as $i => $subjects11)
+                                    <tr>
+                                        <td><input type="text" name="subjects11[]" value="{{ $subjects11 }}"
+                                                class="form-control"></td>
+                                        <td><input type="text" name="units11[]" value="{{ old('units11')[$i] }}"
+                                                class="form-control units11 multi11" id="units11" min="1"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                onpaste="return false">
+                                        </td>
+                                        <td><input type="text" name="grades11[]" value="{{ old('grades11')[$i] }}"
+                                                class="form-control grades11 multi11" id="grades11"
+                                                onkeypress="return isFloatNumber(this,event)">
+                                        </td>
+                                        <td><button type="button" class="btn btn-secondary" id="remove11"><i
+                                                    class="fa-solid fa-circle-minus"></i></button></td>
+                                        <td style="display:none"><input type="text" name="total11[]"
+                                                class="form-control total11" id="total11"
+                                                value="{{ old('total11')[$i] }}" readonly>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td><input type="text" name="subjects11[]" class="form-control"></td>
+                                        <td><input type="text" name="units11[]" class="form-control units11 multi11"
+                                                id="units11" min="1"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                onpaste="return false">
+                                        </td>
+                                        <td><input type="text" name="grades11[]" class="form-control grades11 multi11"
+                                                id="grades11" onkeypress="return isFloatNumber(this,event)">
+                                        </td>
+                                        <td><button type="button" class="btn btn-secondary" id="remove11"><i
+                                                    class="fa-solid fa-circle-minus"></i></button></td>
+                                        <td style="display:none"><input type="text" name="total11[]"
+                                                class="form-control total11" id="total11" readonly>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="term11" value="11">
+                        <input type="hidden" id="totalUnits11">
+                        <input type="hidden" id="weight11">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="add_btn11">Add Subject</button>
+                        </div>
+                        <p class="text-muted"><small>Total Number of Units: </small><small id="totalUnit11"></small></p>
+                        <div class="row mb-3">
+                            <label class="col-auto col-form-label">GWA:</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext font-weight-bold"
+                                    id="gwa11" name="gwa11" value="{{ old('gwa11') }}">
+                                @if ($errors->has('gwa11'))
+                                    <span class="text-danger text-left">{{ $errors->first('gwa11') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {{-- summer --}}
                 <div class="col-md-6 mb-3">
                     <div class="form-check">
@@ -713,6 +867,7 @@
                         </label>
                     </div>
                 </div>
+
                 {{-- summer subject --}}
 
                 <div id="dvSummer" class="card shadow mt-0 mb-4 hidden">
@@ -812,7 +967,20 @@
 @section('scripts')
 
     <script>
-        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var year = document.getElementById('5thyear_onload');
+            if (year.value == "5th Year") {
+                $("#5th_1").removeClass("hidden");
+                $("#5th_1").addClass("show");
+                $("#5th_2").removeClass("hidden");
+                $("#5th_2").addClass("show");
+            } else {
+                $("#5th_1").removeClass("show");
+                $("#5th_1").addClass("hidden");
+                $("#5th_2").removeClass("show");
+                $("#5th_2").addClass("hidden");
+            }
+        });
     </script>
 
 @endsection

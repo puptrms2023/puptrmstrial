@@ -42,7 +42,11 @@
                                     @if ($form->nonacad_id == '1')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}</p>
+                                            <P>School Organization: {{ $form->orgs->name }}
+                                                @if (!empty($form->others))
+                                                    - {{ $form->others }}
+                                                @endif
+                                            </p>
                                         </div>
                                     @elseif ($form->nonacad_id == '2')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
@@ -52,7 +56,11 @@
                                     @elseif ($form->nonacad_id == '3')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}</p>
+                                            <P>School Organization: {{ $form->orgs->name }}
+                                                @if (!empty($form->others))
+                                                    - {{ $form->others }}
+                                                @endif
+                                            </p>
                                         </div>
                                     @elseif ($form->nonacad_id == '4')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
@@ -63,20 +71,32 @@
                                     @elseif ($form->nonacad_id == '5')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}</p>
+                                            <P>School Organization: {{ $form->orgs->name }}
+                                                @if (!empty($form->others))
+                                                    - {{ $form->others }}
+                                                @endif
+                                            </p>
                                         </div>
                                     @elseif ($form->nonacad_id == '6')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         <div class="small">
                                             <P>Designation Office: {{ $form->designated_office }}<br>
-                                                School Organization: {{ $form->orgs->name }}</p>
+                                                School Organization: {{ $form->orgs->name }}
+                                                @if (!empty($form->others))
+                                                    - {{ $form->others }}
+                                                @endif
+                                            </p>
                                         </div>
                                     @elseif ($form->nonacad_id == '7')
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         <div class="small">
                                             <P>Competition Name: {{ $form->competition_name }}<br>
                                                 Placements: {{ $form->placement }}<br>
-                                                School Organization: {{ $form->orgs->name }}</p>
+                                                School Organization: {{ $form->orgs->name }}
+                                                @if (!empty($form->others))
+                                                    - {{ $form->others }}
+                                                @endif
+                                            </p>
                                         </div>
                                     @else
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
@@ -138,4 +158,13 @@
             </div>
         </div>
     @endcan
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            $('.status').on('change', checkPattern);
+            // call to adjust div
+            checkPattern();
+        });
+    </script>
 @endsection

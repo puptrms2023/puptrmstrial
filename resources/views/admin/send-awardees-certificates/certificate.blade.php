@@ -106,8 +106,12 @@
         @elseif ($award == 'AA' || $award == 'DL' || $award == 'PL' || $award == 'AE')
             for the remarkable academic performance as a student of this institution for obtaning<br>
             a General Weighted Average of
-            @if (!empty($summer))
+            @if (!empty($summer) && empty($fifth_1))
                 {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+            @elseif(!empty($fifth_1 || $fifth_2) && empty($summer))
+                {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+            @elseif(!empty($summer && $fifth_1))
+                {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
             @else
                 {{ $gwa }}
             @endif

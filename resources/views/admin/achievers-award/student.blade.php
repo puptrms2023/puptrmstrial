@@ -189,3 +189,12 @@
         </div>
     @endcan
 @endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            $('.status').on('change', checkPattern);
+            // call to adjust div
+            checkPattern();
+        });
+    </script>
+@endsection

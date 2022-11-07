@@ -21,7 +21,7 @@ class NACertificateController extends Controller
     public function show($id)
     {
         $nonacad = NonAcadAward::find($id);
-        $form = NonAcademicApplicant::where('nonacad_id', $id)->get();
+        $form = NonAcademicApplicant::where('nonacad_id', $id)->where('status', '1')->get();
         $count = NonAcademicApplicant::where('certificate_status', '1')->where('nonacad_id', $id)->count();
         return view('admin.send-awardees-certificates.non-academic-award.view', compact('count', 'nonacad', 'form'));
     }
@@ -49,10 +49,10 @@ class NACertificateController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $name1 = Signature::where('certificate','1')->first();
-        $name2 = Signature::where('certificate','1')->skip(1)->take(1)->first();
-        $name3 = Signature::where('certificate','1')->skip(2)->take(1)->first();
-        $name4 = Signature::where('certificate','1')->skip(3)->take(1)->first();
+        $name1 = Signature::where('certificate', '1')->first();
+        $name2 = Signature::where('certificate', '1')->skip(1)->take(1)->first();
+        $name3 = Signature::where('certificate', '1')->skip(2)->take(1)->first();
+        $name4 = Signature::where('certificate', '1')->skip(3)->take(1)->first();
 
         $users = NonAcademicApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {

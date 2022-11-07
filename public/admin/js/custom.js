@@ -111,6 +111,41 @@ $(document).ready(function () {
         }
     });
 });
+//other
+$(document).ready(function () {
+    $(".studentorg").change(function () {
+        $('#others').find(':input').val('');
+        var responseId = $(this).val();
+        if (responseId == "9") {
+            $("#others").removeClass("hidden");
+            $("#others").addClass("show");
+        } else {
+            $("#others").removeClass("show");
+            $("#others").addClass("hidden");
+        }
+    });
+});
+//5th yeat tab
+$(document).ready(function () {
+    $(".5thyear").change(function () {
+        var responseId = $(this).val();
+        if (responseId == "5th Year") {
+            $("#5th_1").removeClass("hidden");
+            $("#5th_1").addClass("show");
+            $("#5th_2").removeClass("hidden");
+            $("#5th_2").addClass("show");
+            $('#5th_1 :input').removeAttr('disabled');
+            $('#5th_2 :input').removeAttr('disabled');
+        } else {
+            $("#5th_1").removeClass("show");
+            $("#5th_1").addClass("hidden");
+            $("#5th_2").removeClass("show");
+            $("#5th_2").addClass("hidden");
+            $('#5th_1 :input').attr('disabled', true);
+            $('#5th_2 :input').attr('disabled', true);
+        }
+    });
+});
 // User--------------------------------------------------------------------------
 $(document).ready(function () {
     $(".status").change(function () {
@@ -124,6 +159,16 @@ $(document).ready(function () {
         }
     });
 });
+//show reject select option
+var checkPattern = function() {
+    if ($('.status').val() == '2') {
+        $("#reason").removeClass("hidden");
+        $("#reason").addClass("show");
+    } else {
+        $("#reason").removeClass("show");
+        $("#reason").addClass("hidden");
+    }
+}
 // User--------------------------------------------------------------------------
 
 //Phone Format
@@ -769,6 +814,153 @@ function getGWA8() {
     var gwa = weight / total_units;
 
     document.getElementById("gwa8").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
+//5th year 1st sem
+$(document).ready(function() {
+    $("#add_btn10").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects10[]" class="form-control"></td>';
+        html +=
+            '<td><input type="text" name="units10[]" class="form-control units10 multi10" id="units10" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
+        html +=
+            '<td><input type="text" name="grades10[]" class="form-control grades10 multi10" id="grades10" onkeypress="return isFloatNumber(this,event)"></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove10"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total10[]" class="form-control total10" id="total10" readonly></td>';
+        html += "</tr>";
+        $("#calculation10").append(html);
+    });
+});
+
+$(document).on("click", "#remove10", function() {
+    $(this).closest("tr").remove();
+    grandTotal10();
+    totalUnits10();
+    getGWA10();
+});
+
+$(document).ready(function() {
+    $("#calculation10").on("input", ".multi10", function() {
+        var parent10 = $(this).closest("tr");
+        var unit = $(parent10).find("#units10").val();
+        var grade = $(parent10).find("#grades10").val();
+
+        $(parent10)
+            .find("#total10")
+            .val(unit * grade);
+        grandTotal10();
+        totalUnits10();
+        getGWA10();
+    });
+});
+
+function grandTotal10() {
+    var total_avg10 = 0;
+    $(".total10").each(function() {
+        total_avg10 += Number($(this).val());
+    });
+    document.getElementById("weight10").value = isNaN(total_avg10) ?
+        "0.00" :
+        total_avg10.toFixed(2);
+}
+
+function totalUnits10() {
+    var total_units = 0;
+
+    $(".units10").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits10").value = total_units;
+    document.getElementById("totalUnit10").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA10() {
+    var total_units = $("#totalUnits10").val();
+    var weight = $("#weight10").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa10").value = isNaN(gwa) ?
+        "0.00" :
+        gwa.toFixed(2);
+}
+
+//5th year 2nd -sem
+$(document).ready(function() {
+    $("#add_btn11").on("click", function() {
+        var html = "";
+        html += "<tr>";
+        html +=
+            '<td><input type="text" name="subjects11[]" class="form-control"></td>';
+        html +=
+            '<td><input type="text" name="units11[]" class="form-control units11 multi11" id="units11" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
+        html +=
+            '<td><input type="text" name="grades11[]" class="form-control grades11 multi11" id="grades11" onkeypress="return isFloatNumber(this,event)"></td>';
+        html +=
+            '<td><button type="button" class="btn btn-secondary" id="remove11"><i class="fa-solid fa-circle-minus"></i></button></td>';
+        html +=
+            '<td style="display:none"><input type="text" name="total11[]" class="form-control total11" id="total11" readonly></td>';
+        html += "</tr>";
+        $("#calculation11").append(html);
+    });
+});
+
+$(document).on("click", "#remove11", function() {
+    $(this).closest("tr").remove();
+    grandTotal11();
+    totalUnits11();
+    getGWA11();
+});
+
+$(document).ready(function() {
+    $("#calculation11").on("input", ".multi11", function() {
+        var parent11 = $(this).closest("tr");
+        var unit = $(parent11).find("#units11").val();
+        var grade = $(parent11).find("#grades11").val();
+
+        $(parent11)
+            .find("#total11")
+            .val(unit * grade);
+        grandTotal11();
+        totalUnits11();
+        getGWA11();
+    });
+});
+
+function grandTotal11() {
+    var total_avg11 = 0;
+    $(".total11").each(function() {
+        total_avg11 += Number($(this).val());
+    });
+    document.getElementById("weight11").value = isNaN(total_avg11) ?
+        "0.00" :
+        total_avg11.toFixed(2);
+}
+
+function totalUnits11() {
+    var total_units = 0;
+
+    $(".units11").each(function() {
+        total_units += parseFloat($(this).val());
+    });
+    document.getElementById("totalUnits11").value = total_units;
+    document.getElementById("totalUnit11").innerHTML = isNaN(total_units) ?
+        "0" :
+        total_units.toFixed(2);
+}
+
+function getGWA11() {
+    var total_units = $("#totalUnits11").val();
+    var weight = $("#weight11").val();
+    var gwa = weight / total_units;
+
+    document.getElementById("gwa11").value = isNaN(gwa) ?
         "0.00" :
         gwa.toFixed(2);
 }

@@ -95,7 +95,11 @@
                                             @if ($award->nonacad_id == '1')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                    <P>School Organization: {{ $award->orgs->name }}
+                                                        @if (!empty($award->others))
+                                                            - {{ $award->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($award->nonacad_id == '2')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
@@ -105,7 +109,11 @@
                                             @elseif ($award->nonacad_id == '3')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                    <P>School Organization: {{ $award->orgs->name }}
+                                                        @if (!empty($award->others))
+                                                            - {{ $award->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($award->nonacad_id == '4')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
@@ -116,20 +124,32 @@
                                             @elseif ($award->nonacad_id == '5')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
-                                                    <P>School Organization: {{ $award->orgs->name }}</p>
+                                                    <P>School Organization: {{ $award->orgs->name }}
+                                                        @if (!empty($award->others))
+                                                            - {{ $award->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($award->nonacad_id == '6')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
                                                     <P>Designation Office: {{ $award->designated_office }}<br>
-                                                        School Organization: {{ $award->orgs->name }}</p>
+                                                        School Organization: {{ $award->orgs->name }}
+                                                        @if (!empty($award->others))
+                                                            - {{ $award->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @elseif ($award->nonacad_id == '7')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                                 <div class="small">
                                                     <P>Competition Name: {{ $award->competition_name }}<br>
                                                         Placements: {{ $award->placement }}<br>
-                                                        School Organization: {{ $award->orgs->name }}</p>
+                                                        School Organization: {{ $award->orgs->name }}
+                                                        @if (!empty($award->others))
+                                                            - {{ $award->others }}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             @else
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>

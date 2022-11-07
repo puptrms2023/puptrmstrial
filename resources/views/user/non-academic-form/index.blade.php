@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Student Organization</label>
                                 <span class="text-danger">*</span>
-                                <select id="org-value" class="custom-select" name="org_id">
+                                <select id="org" class="custom-select studentorg" name="org_id">
                                     <option value="">--Select Organization--</option>
                                     @foreach ($organization as $id => $item)
                                         <option value="{{ $id }}" {{ old('org_id') == $id ? 'selected' : '' }}>
@@ -131,6 +131,20 @@
                                 </select>
                                 @if ($errors->has('org_id'))
                                     <span class="text-danger text-left">{{ $errors->first('org_id') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="others" class="card shadow mt-0 mb-4 hidden">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Others:</label>
+                                <span class="text-danger">*</span>
+                                <input id="others-value" type="text" name="others" class="form-control">
+                                @if ($errors->has('others'))
+                                    <span class="text-danger text-left">{{ $errors->first('others') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -247,6 +261,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             var award = document.getElementById('non');
+            var orgs = document.getElementById('org');
+
+            if (orgs.value == "9") {
+                $("#others").removeClass("hidden");
+                $("#others").addClass("show");
+            } else {
+                $("#others").removeClass("show");
+                $("#others").addClass("hidden");
+            }
 
             if (award.value == "1") {
                 $("#organization").removeClass("hidden");

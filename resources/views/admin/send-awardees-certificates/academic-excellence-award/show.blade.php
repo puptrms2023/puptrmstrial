@@ -93,8 +93,12 @@
     </div>
     <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>
         a General Weighted Average of
-        @if (!empty($stud->gwa9))
+        @if (!empty($stud->gwa9) && empty($stud->gwa10))
             {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+        @elseif(!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9))
+            {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+        @elseif(!empty($stud->gwa9 && $stud->gwa10))
+            {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
         @else
             {{ $gwa }}
         @endif
@@ -104,30 +108,44 @@
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
     <table class="table2">
         <tr>
-            @foreach ($sig->take(3) as $item)
-                <td width="21%">
-                    <div class="img-sig">
-                        <img src="{{ public_path('uploads/signature/' . $item->signature) }}" width="100" />
-                    </div>
-                    <b>{{ $item->rep_name }}</b><br>
-                    {{ $item->position }}
-                </td>
-            @endforeach
+
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name1Certificate()->signature) }}" width="100" />
+                </div>
+                <b>{{ name1Certificate()->rep_name }}</b><br>
+                {{ name1Certificate()->position }}
+            </td>
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name2Certificate()->signature) }}"
+                        width="100" />
+                </div>
+                <b>{{ name2Certificate()->rep_name }}</b><br>
+                {{ name2Certificate()->position }}
+            </td>
+            <td width="21%">
+                <div class="img-sig">
+                    <img src="{{ public_path('uploads/signature/' . name3Certificate()->signature) }}"
+                        width="100" />
+                </div>
+                <b>{{ name3Certificate()->rep_name }}</b><br>
+                {{ name3Certificate()->position }}
+            </td>
         </tr>
     </table>
     <table class="table2">
         <tr>
-            @foreach ($sig as $item)
-                @if ($loop->last)
-                    <td>
-                        <div class="img-sig">
-                            <img src="{{ public_path('uploads/signature/' . $item->signature) }}" width="100" />
-                        </div>
-                        <b>{{ $item->rep_name }}</b><br>
-                        {{ $item->position }}
-                    </td>
-                @endif
-            @endforeach
+            @if (!empty(name4Certificate()))
+                <td>
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name4Certificate()->signature) }}"
+                            width="100" />
+                    </div>
+                    <b>{{ name4Certificate()->rep_name }}</b><br>
+                    {{ name4Certificate()->position }}
+                </td>
+            @endif
         </tr>
     </table>
     <footer>

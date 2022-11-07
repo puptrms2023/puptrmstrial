@@ -19,7 +19,7 @@ class AEApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:acad excellence list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:acad excellence edit', ['only' => [ 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:acad excellence edit', ['only' => ['update', 'approved', 'rejected']]);
         $this->middleware('permission:acad excellence delete', ['only' => ['destroy']]);
     }
 
@@ -66,8 +66,14 @@ class AEApplicantsController extends Controller
                 })
                 ->addColumn('avg', function (AcademicExcellence $stud) {
                     $totalwithSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9;
-                    if (!empty($stud->gwa9)) {
+                    $totalwith5thYear = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa10 + $stud->gwa11) / 10;
+                    $totalwith5thAndSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11;
+                    if (!empty($stud->gwa9) && empty($stud->gwa10)) {
                         return number_format((float) $totalwithSummer, 2, '.', '');
+                    } else if (!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9)) {
+                        return number_format((float) $totalwith5thYear, 2, '.', '');
+                    } else if (!empty($stud->gwa9 && $stud->gwa10)) {
+                        return number_format((float) $totalwith5thAndSummer, 2, '.', '');
                     } else {
                         return $stud->gwa;
                     }
@@ -115,9 +121,17 @@ class AEApplicantsController extends Controller
         $grades9 = SummaryAcadExcell::where('app_id', $id)
             ->where('term', "9")
             ->get();
+        $grades10 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "10")
+            ->get();
+        $grades11 = SummaryAcadExcell::where('app_id', $id)
+            ->where('term', "11")
+            ->get();
         $totalwithSummer = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa9) / 9;
+        $totalwith5thYear = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa10 + $status->gwa11) / 10;
+        $totalwith5thAndSummer = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa9 + $status->gwa10 + $status->gwa11) / 11;
 
-        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8', 'grades9', 'totalwithSummer'));
+        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8', 'grades9', 'grades10', 'grades11', 'totalwithSummer', 'totalwith5thYear', 'totalwith5thAndSummer'));
     }
 
     public function approved($course_code, $id)
@@ -234,8 +248,14 @@ class AEApplicantsController extends Controller
                 })
                 ->addColumn('avg', function (AcademicExcellence $stud) {
                     $totalwithSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9) / 9;
-                    if (!empty($stud->gwa9)) {
+                    $totalwith5thYear = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa10 + $stud->gwa11) / 10;
+                    $totalwith5thAndSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11;
+                    if (!empty($stud->gwa9) && empty($stud->gwa10)) {
                         return number_format((float) $totalwithSummer, 2, '.', '');
+                    } else if (!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9)) {
+                        return number_format((float) $totalwith5thYear, 2, '.', '');
+                    } else if (!empty($stud->gwa9 && $stud->gwa10)) {
+                        return number_format((float) $totalwith5thAndSummer, 2, '.', '');
                     } else {
                         return $stud->gwa;
                     }
