@@ -54,7 +54,6 @@
                                     <th>Position</th>
                                     <th>Certificate</th>
                                     <th>Reports</th>
-                                    <th>Signature</th>
                                     <th>Actions </th>
                                 </tr>
                             </thead>
@@ -64,18 +63,19 @@
                                         <td>{{ $list->rep_name }}</td>
                                         <td>{{ $list->position }}</td>
                                         <td class="text-center">
-                                            <input data-id="{{ $list->id }}" class="toggle-class cert" type="checkbox"
-                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
-                                                data-on="Active" data-off="InActive"
-                                                {{ $list->certificate ? 'checked' : '' }}>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input switch-status-cert"
+                                                    data-id="{{ $list->id }}" name="status" type="checkbox"
+                                                    {{ $list->certificate == 1 ? 'checked' : '' }}>
+                                            </div>
                                         </td>
                                         <td class="text-center">
-                                            <input data-id="{{ $list->id }}" class="toggle-class report" type="checkbox"
-                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
-                                                data-on="Active" data-off="InActive" {{ $list->report ? 'checked' : '' }}>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input switch-status-rep"
+                                                    data-id="{{ $list->id }}" name="status" type="checkbox"
+                                                    {{ $list->report == 1 ? 'checked' : '' }}>
+                                            </div>
                                         </td>
-                                        <td><img src="{{ asset('uploads/signature/' . $list->signature) }}"
-                                                class="img-thumbnail" width="150" alt="Image"></td>
                                         <td>
                                             @can('signature edit')
                                                 <a href="{{ url('admin/maintenance/signatures/' . $list->id) }}"
@@ -107,55 +107,46 @@
             $('#deleteModal').modal('show');
 
         });
-        $(function() {
-            $('.cert').change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var user_id = $(this).data('id');
 
-                $.ajax({
-                    type: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
-                            .attr('content')
-                    },
-                    url: '/admin/maintenance/signatures-cert/' + user_id + '/' + status,
-                    data: {
-                        'certificate': status,
-                        'user_id': user_id
-                    },
-                    success: function(data) {
-                        if (data['success']) {
-                            toastr.success(data.success);
-                        } else {
-                            toastr.error(data.error);
-                        }
-                    },
-                });
-            })
-            $('.report').change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var user_id = $(this).data('id');
-
-                $.ajax({
-                    type: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
-                            .attr('content')
-                    },
-                    url: '/admin/maintenance/signatures-report/' + user_id + '/' + status,
-                    data: {
-                        'report': status,
-                        'user_id': user_id
-                    },
-                    success: function(data) {
-                        if (data['success']) {
-                            toastr.success(data.success);
-                        } else {
-                            toastr.error(data.error);
-                        }
-                    },
-                });
-            })
-        })
+        $('.switch-status-cert').change(function() {
+            let status = $(this).prop('checked') === true ? 1 : 0;
+            let signature = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/admin/maintenance/signatures-cert/status/update',
+                data: {
+                    'status': status,
+                    'sig_id': signature
+                },
+                success: function(data) {
+                    if (data['success']) {
+                        toastr.success(data.success);
+                    } else {
+                        toastr.error(data.error);
+                    }
+                }
+            });
+        });
+        $('.switch-status-rep').change(function() {
+            let status = $(this).prop('checked') === true ? 1 : 0;
+            let report = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/admin/maintenance/signatures-report/status/update',
+                data: {
+                    'status': status,
+                    'rep_id': report
+                },
+                success: function(data) {
+                    if (data['success']) {
+                        toastr.success(data.success);
+                    } else {
+                        toastr.error(data.error);
+                    }
+                }
+            });
+        });
     </script>
 @endsection

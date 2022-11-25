@@ -84,6 +84,9 @@ class DashboardController extends Controller
 
         $total_excellence = AcademicExcellence::where('award_applied', '4')->where('status', '1')->where('school_year', $year)->count();
 
+        //total non academic
+        $total_nonacad = NonAcademicApplicant::where('school_year', $year)->count();
+
         //pending
         $stud_applicant_p = StudentApplicant::where('status', '0')->count();
         $acad_excellence_p = AcademicExcellence::where('status', '0')->count();
@@ -102,6 +105,6 @@ class DashboardController extends Controller
         $nonacad_applicants_d = NonAcademicApplicant::where('status', '2')->count();
         $rejected = $stud_applicant_d + $acad_excellence_d + $nonacad_applicants_d;
 
-        return view('admin.dashboard', compact('year', 'analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence', 'pending', 'completed', 'rejected'));
+        return view('admin.dashboard', compact('year', 'total_nonacad', 'analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence', 'pending', 'completed', 'rejected'));
     }
 }

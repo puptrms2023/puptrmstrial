@@ -56,6 +56,13 @@ class NonAcademicAwardController extends Controller
             $award->image = $filename;
         }
 
+        if ($request->file('file')) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $award->file_name = time() . '_' . $request->file->getClientOriginalName();
+            $award->file_path = '/storage/' . $filePath;
+        }
+
         $award->save();
         $lastid = $award->id;
 

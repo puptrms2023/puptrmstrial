@@ -37,6 +37,10 @@
                                 <td>{{ $form->year_level }}</td>
                             </tr>
                             <tr>
+                                <th width="25%">School Year</th>
+                                <td><b>{{ $form->school_year }}</b></td>
+                            </tr>
+                            <tr>
                                 <th width="25%">Award Applied</th>
                                 <td>
                                     @if ($form->nonacad_id == '1')
@@ -101,6 +105,20 @@
                                     @else
                                         <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                     @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="25%">Supporting Documents</th>
+                                <td>
+                                    <a href="{{ asset($form->file_path) }}" class="btn-link text-muted"
+                                        target="_blank">{{ $form->file_name }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="25%">2x2 photo</th>
+                                <td>
+                                    <img src="{{ asset('uploads/' . $form->image) }}" alt="" width="150px"
+                                        height="150px">
                                 </td>
                             </tr>
                             <tr>

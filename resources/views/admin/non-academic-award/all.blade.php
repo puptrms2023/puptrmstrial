@@ -7,7 +7,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,12 +15,12 @@
                 <form action="{{ url('admin/non-academic-award/delete-form') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the submitted application form?</p>
+                        <p>Are you sure you want to move the record to archive?</p>
                         <input type="hidden" name="form_delete_id" id="form_id">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                        <button type="submit" class="btn btn-info" name="delete">Archive</button>
                     </div>
                 </form>
             </div>
@@ -30,7 +30,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="delbtn btn btn-danger">Delete</button>
+                    <button type="button" class="delbtn btn btn-info">Archive</button>
                 </div>
             </div>
         </div>
@@ -54,8 +54,10 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">
-                        Students
-                        <a href="{{ url('admin/non-academic-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        Students | <a href="{{ url('admin/archive-all/non-academic-award/') }}" class="text-info">
+                            View Archive
+                            <a href="{{ url('admin/non-academic-award') }}"
+                                class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -63,7 +65,8 @@
                         <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
-                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
+                                    <th class="text-center info"><input type="checkbox" name="checkAll"
+                                            class="checkAllArchive">
                                     </th>
                                     <th>Student No.</th>
                                     <th>First Name</th>
@@ -75,7 +78,7 @@
                                     <th>Status</th>
                                     <th>Actions <br>
                                         @can('non-academic award delete')
-                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                            <button class="btn btn-sm btn-info d-none" id="bulk_delete">
                                                 All</button>
                                         @endcan
                                     </th>
@@ -84,7 +87,8 @@
                             <tbody>
                                 @foreach ($form as $award)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $award->id }}">
+                                        <td><input type="checkbox" class="user-checkboxes-archive"
+                                                data-id="{{ $award->id }}">
                                         </td>
                                         <td>{{ $award->users->stud_num }}</td>
                                         <td>{{ $award->users->first_name }}</td>
@@ -175,8 +179,9 @@
                                             <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"
                                                 class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
                                             @can('non-academic award delete')
-                                                <button type="button" class="btn btn-sm btn-danger deleteFormbtn"
-                                                    value="{{ $award->id }}"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info deleteFormbtn"
+                                                    value="{{ $award->id }}"><i
+                                                        class="fa-solid fa-box-archive"></i></button>
                                             @endcan
                                         </td>
                                     </tr>

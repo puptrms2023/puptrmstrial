@@ -62,31 +62,102 @@
     @endcan
     @can('menu academic awards')
         <li
-            class="nav-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}">
-            <a class="nav-link {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? '' : 'collapsed' }}"
+            class="nav-item {{ Request::is('admin/achievers-award') ||
+            Request::is('admin/achievers-award/*') ||
+            Request::is('admin/archive/achievers-award/*') ||
+            Request::is('admin/archive-all/achievers-award') ||
+            Request::is('admin/deans-list-award') ||
+            Request::is('admin/deans-list-award/*') ||
+            Request::is('admin/archive/deans-list-award/*') ||
+            Request::is('admin/archive-all/deans-list-award') ||
+            Request::is('admin/presidents-list-award') ||
+            Request::is('admin/presidents-list-award/*') ||
+            Request::is('admin/archive/presidents-list-award/*') ||
+            Request::is('admin/archive-all/presidents-list-award') ||
+            Request::is('admin/academic-excellence-award') ||
+            Request::is('admin/academic-excellence-award/*') ||
+            Request::is('admin/archive/academic-excellence-award/*') ||
+            Request::is('admin/archive-all/academic-excellence-award')
+                ? 'active'
+                : '' }}">
+            <a class="nav-link {{ Request::is('admin/achievers-award') ||
+            Request::is('admin/achievers-award/*') ||
+            Request::is('admin/archive/achievers-award/*') ||
+            Request::is('admin/archive-all/achievers-award') ||
+            Request::is('admin/deans-list-award') ||
+            Request::is('admin/deans-list-award/*') ||
+            Request::is('admin/deans-list-award/*') ||
+            Request::is('admin/archive/deans-list-award/*') ||
+            Request::is('admin/presidents-list-award') ||
+            Request::is('admin/presidents-list-award/*') ||
+            Request::is('admin/archive/presidents-list-award/*') ||
+            Request::is('admin/archive-all/presidents-list-award') ||
+            Request::is('admin/academic-excellence-award') ||
+            Request::is('admin/academic-excellence-award/*') ||
+            Request::is('admin/archive/academic-excellence-award/*') ||
+            Request::is('admin/archive-all/academic-excellence-award')
+                ? ''
+                : 'collapsed' }}"
                 href="#" data-toggle="collapse" data-target="#academicAwardPages" aria-expanded="true"
                 aria-controls="academicAwardPages">
                 <i class="fas fa-award"></i>
                 <span>Academic Awards</span>
             </a>
             <div id="academicAwardPages"
-                class="collapse {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') || Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') || Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') || Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'show' : '' }}"
+                class="collapse {{ Request::is('admin/achievers-award') ||
+                Request::is('admin/achievers-award/*') ||
+                Request::is('admin/archive/achievers-award/*') ||
+                Request::is('admin/archive-all/achievers-award') ||
+                Request::is('admin/deans-list-award') ||
+                Request::is('admin/deans-list-award/*') ||
+                Request::is('admin/archive/deans-list-award/*') ||
+                Request::is('admin/archive-all/deans-list-award') ||
+                Request::is('admin/presidents-list-award') ||
+                Request::is('admin/presidents-list-award/*') ||
+                Request::is('admin/archive/presidents-list-award/*') ||
+                Request::is('admin/archive-all/presidents-list-award') ||
+                Request::is('admin/academic-excellence-award') ||
+                Request::is('admin/academic-excellence-award/*') ||
+                Request::is('admin/archive/academic-excellence-award/*') ||
+                Request::is('admin/archive-all/academic-excellence-award')
+                    ? 'show'
+                    : '' }}"
                 aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     @can('achievers list')
-                        <a class="collapse-item {{ Request::is('admin/achievers-award') || Request::is('admin/achievers-award/*') ? 'active' : '' }}"
+                        <a class="collapse-item {{ Request::is('admin/achievers-award') ||
+                        Request::is('admin/achievers-award/*') ||
+                        Request::is('admin/archive/achievers-award/*') ||
+                        Request::is('admin/archive-all/achievers-award')
+                            ? 'active'
+                            : '' }}"
                             href="{{ url('admin/achievers-award') }}">Achiever's Award</a>
                     @endcan
                     @can('deans list list')
-                        <a class="collapse-item {{ Request::is('admin/deans-list-award') || Request::is('admin/deans-list-award/*') ? 'active' : '' }}"
+                        <a class="collapse-item {{ Request::is('admin/deans-list-award') ||
+                        Request::is('admin/deans-list-award/*') ||
+                        Request::is('admin/archive/deans-list-award/*') ||
+                        Request::is('admin/archive-all/deans-list-award')
+                            ? 'active'
+                            : '' }}"
                             href="{{ url('admin/deans-list-award') }}">Dean's List</a>
                     @endcan
                     @can('presidents list list')
-                        <a class="collapse-item {{ Request::is('admin/presidents-list-award') || Request::is('admin/presidents-list-award/*') ? 'active' : '' }}"
+                        <a class="collapse-item {{ Request::is('admin/presidents-list-award') ||
+                        Request::is('admin/presidents-list-award/*') ||
+                        Request::is('admin/archive/presidents-list-award/*') ||
+                        Request::is('admin/archive-all/presidents-list-award')
+                            ? 'active'
+                            : '' }}"
                             href="{{ url('admin/presidents-list-award') }}">President's List</a>
                     @endcan
                     @can('acad excellence list')
-                        <a class="collapse-item {{ Request::is('admin/academic-excellence-award') || Request::is('admin/academic-excellence-award/*') ? 'active' : '' }}"
+                        <a class="collapse-item {{ Request::is('admin/academic-excellence-award') ||
+                        Request::is('admin/academic-excellence-award/*') ||
+                        Request::is('admin/archive/academic-excellence-award/*') ||
+                        Request::is('admin/archive-all/academic-excellence-award')
+                            ? 'active'
+                            : '' }}"
                             href="{{ url('admin/academic-excellence-award') }}">Academic Excellence</a>
                     @endcan
                 </div>

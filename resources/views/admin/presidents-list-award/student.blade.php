@@ -40,6 +40,10 @@
                                 <td>{{ $status->year_level }}</td>
                             </tr>
                             <tr>
+                                <th width="25%">School Year</th>
+                                <td><b>{{ $status->school_year }}</b></td>
+                            </tr>
+                            <tr>
                                 <th width="25%">First Semester GWA</th>
                                 <td>{{ $status->gwa_1st }}</td>
                             </tr>
@@ -50,6 +54,13 @@
                             <tr>
                                 <th width="25%">GWA</th>
                                 <td class="font-weight-bold text-primary"> {{ $status->gwa }}</td>
+                            </tr>
+                            <tr>
+                                <th width="25%">2x2 photo</th>
+                                <td>
+                                    <img src="{{ asset('uploads/' . $status->image) }}" alt="" width="150px"
+                                        height="150px">
+                                </td>
                             </tr>
                             <tr>
                                 <th width="25%">Status</th>

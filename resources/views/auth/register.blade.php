@@ -18,6 +18,7 @@
 
                                         <div class="mb-3">
                                             <label class="small mb-1">Username</label>
+                                            <span class="text-danger">*</span>
                                             <input class="form-control" name="username" type="text"
                                                 placeholder="Enter your username" value="{{ old('username') }}" required
                                                 autofocus>
@@ -28,6 +29,7 @@
                                         <div class="row gx-3 mb-3">
                                             <div class="col-md-6">
                                                 <label class="small mb-1">First name</label>
+                                                <span class="text-danger">*</span>
                                                 <input class="form-control" name="first_name" type="text"
                                                     placeholder="Enter your first name" value="{{ old('first_name') }}"
                                                     required autofocus>
@@ -49,6 +51,7 @@
                                         <div class="row gx-3 mb-3">
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Last Name</label>
+                                                <span class="text-danger">*</span>
                                                 <input class="form-control" name="last_name" type="text"
                                                     placeholder="Enter your last name" value="{{ old('last_name') }}"
                                                     required autofocus>
@@ -59,6 +62,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Phone number</label>
+                                                <span class="text-danger">*</span>
                                                 <input class="form-control js-phone" name="contact" type="text"
                                                     placeholder="Enter your phone number"
                                                     value="{{ substr(old('contact'), 3) }}" required autofocus>
@@ -70,6 +74,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="small mb-1">Email address</label>
+                                            <span class="text-danger">*</span>
                                             <input class="form-control" name="email" type="email"
                                                 placeholder="Enter your email address" value="{{ old('email') }}" required
                                                 autofocus>
@@ -80,6 +85,7 @@
                                         <div class="row gx-3 mb-3">
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Student Number</label>
+                                                <span class="text-danger">*</span>
                                                 <input name="stud_num" type="text" class="form-control"
                                                     placeholder="Enter your student number" value="{{ old('stud_num') }}"
                                                     onkeydown="limit(this);" onkeyup="limit(this);" required autofocus>
@@ -91,6 +97,7 @@
 
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Course</label>
+                                                <span class="text-danger">*</span>
                                                 <select class="custom-select" name="course_id" id="course_id" required>
                                                     <option value="">--Select Course--</option>
                                                     @foreach ($course as $id => $item)
@@ -109,6 +116,7 @@
                                         <div class="row gx-3 mb-3">
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Password</label>
+                                                <span class="text-danger">*</span>
                                                 <input class="form-control" name="password" type="password"
                                                     placeholder="Enter new password" value="{{ old('password') }}"
                                                     required>
@@ -119,6 +127,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="small mb-1">Confirm Password</label>
+                                                <span class="text-danger">*</span>
                                                 <input class="form-control" name="password_confirmation" type="password"
                                                     placeholder="Confirm new password"
                                                     value="{{ old('password_confirmation') }}" required>

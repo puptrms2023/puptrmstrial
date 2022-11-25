@@ -25,6 +25,7 @@ class NAApplicantsController extends Controller
     {
         $nonacad = NonAcadAward::all();
         $total = NonAcademicApplicant::count();
+
         return view('admin.non-academic-award.index', compact('total', 'nonacad'));
     }
 
@@ -40,7 +41,7 @@ class NAApplicantsController extends Controller
         return view('admin.non-academic-award.all', compact('form'));
     }
 
-    public function view($id)
+    public function view(Request $request, $id)
     {
         $title = NonAcadAward::where('id', $id)->first();
         $form = NonAcademicApplicant::where('nonacad_id', $id)->get();
@@ -94,17 +95,47 @@ class NAApplicantsController extends Controller
         return redirect()->back()->with('success', 'The Application form updated successfully');
     }
 
+    public function openPdfApproved($nonacad_code)
+    {
+        $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
+        $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
+            ->where('status', '1')
+            ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.non-academic-award.student-accepted', array('students' => $students), array('nonacad' => $nonacad));
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('Accepted' . $nonacad->nonacad_code . '.pdf');
+    }
+
+    public function openPdfRejected($nonacad_code)
+    {
+        $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
+        $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
+            ->where('status', '2')
+            ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.non-academic-award.student-rejected', array('students' => $students), array('nonacad' => $nonacad));
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('Rejected' . $nonacad->nonacad_code . '.pdf');
+    }
+
+    public function openPdfAll($nonacad_code)
+    {
+        $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
+        $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
+            ->orderBy('year_level', 'asc')
+            ->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('admin.non-academic-award.student-list', array('students' => $students), array('nonacad' => $nonacad));
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('Non-Academic-Applicants-' . $nonacad->nonacad_code . '.pdf');
+    }
+
     public function destroy(Request $request)
     {
         $form = NonAcademicApplicant::find($request->form_delete_id);
-        if ($form->image) {
-            $path = 'uploads/' . $form->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-        }
         $form->delete();
-        return redirect()->back()->with('success', 'The Application form deleted successfully');
+        return redirect()->back()->with('success', 'The Application form move to archive successfully');
     }
 
     public function deleteAll(Request $request)
@@ -112,7 +143,7 @@ class NAApplicantsController extends Controller
         $ids = $request->ids;
         NonAcademicApplicant::whereIn('id', $ids)->delete();
         return response()->json([
-            'success' => 'User deleted successfully'
+            'success' => 'The Application form move to archive successfully'
         ]);
     }
 }

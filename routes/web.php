@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'login');
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectUser'])->name('home');
+Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']);
 
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(function () {
 
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     //Users
@@ -73,6 +75,32 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('achievers-award/delete-form', 'destroy');
         Route::delete('achievers-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('achievers-award/bulk-delete-form', 'deleteAll');
+    });
+    Route::controller(App\Http\Controllers\Admin\ArchiveController::class)->group(function () {
+        Route::get('/archive/achievers-award/{course_code}', 'archiveAA');
+        Route::get('/archive-all/achievers-award', 'allarchiveAA');
+        Route::get('achievers-award/restore/one/{id}',  'restore')->name('achievers.restore');
+        Route::get('/archive/achievers-award/restore_all/{course_code}', 'restore_all')->name('achievers.restore_all');
+
+        Route::get('/archive/deans-list-award/{course_code}', 'archiveDL');
+        Route::get('/archive-all/deans-list-award', 'allarchiveDL');
+        Route::get('deans-list-award/restore/one/{id}',  'restore')->name('deans.restore');
+        Route::get('/archive/deans-list-award/restore_all/{course_code}', 'restore_all')->name('deans.restore_all');
+
+        Route::get('/archive/presidents-list-award/{course_code}', 'archivePL');
+        Route::get('/archive-all/presidents-list-award', 'allarchivePL');
+        Route::get('presidents-list-award/restore/one/{id}',  'restore')->name('presidents.restore');
+        Route::get('/archive/presidents-list-award/restore_all/{course_code}', 'restore_all')->name('presidents.restore_all');
+
+        Route::get('/archive/academic-excellence-award/{course_code}', 'archiveAE');
+        Route::get('/archive-all/academic-excellence-award', 'allarchiveAE');
+        Route::get('academic-excellence-award/restore/one/{id}',  'restoreAE')->name('excellence.restore');
+        Route::get('/archive/academic-excellence-award/restore_all/{course_code}', 'restore_allAE')->name('excellence.restore_all');
+
+        Route::get('/archive/non-academic-award/{nonacad_id}', 'archiveNA');
+        Route::get('/archive-all/non-academic-award', 'allarchiveNA');
+        Route::get('non-academic-award/restore/one/{id}',  'restoreNA')->name('nonacad.restore');
+        Route::get('/archive/non-academic-award/restore_all/{nonacad_id}', 'restore_allNA')->name('nonacad.restore_all');
     });
     //DL Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\DLApplicantsController::class)->group(function () {
@@ -129,6 +157,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::controller(App\Http\Controllers\Admin\Applicant\NAApplicantsController::class)->group(function () {
         Route::get('/non-academic-award', 'index');
         Route::get('/non-academic-award/all', 'overallList');
+        Route::get('/non-academic-award/{nonacad_code}/view-approved-students-pdf', 'openPdfApproved');
+        Route::get('/non-academic-award/{nonacad_code}/view-all-students-pdf', 'openPdfAll');
+        Route::get('/non-academic-award/{nonacad_code}/view-rejected-students-pdf', 'openPdfRejected');
         Route::get('/non-academic-award/{id}', 'view');
         Route::get('/non-academic-award/{nonacad_id}/{id}', 'details');
         Route::post('/non-academic-award/{nonacad_id}/delete-form', 'destroy');
@@ -260,8 +291,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::post('/maintenance/signature-store', 'store');
         Route::get('/maintenance/signatures/{id}', 'edit');
         Route::put('/maintenance/signatures/{id}', 'update');
-        Route::post('/maintenance/signatures-cert/{id}/{status}', 'changeStatusCertificate');
-        Route::post('/maintenance/signatures-report/{id}/{status}', 'changeStatusReports');
+        Route::get('/maintenance/signatures-cert/status/update', 'changeStatusCertificate');
+        Route::get('/maintenance/signatures-report/status/update', 'changeStatusReports');
         Route::post('/maintenance/delete-signature', 'destroy');
     });
     //Recognition Records
@@ -295,7 +326,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
         Route::delete('/bulk-delete-notifications', 'destroyAll');
     });
 });
-Route::prefix('user')->middleware('auth', 'isUser')->group(function () {
+Route::prefix('user')->middleware('auth', 'verified', 'isUser')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index']);
 
     Route::controller(App\Http\Controllers\User\Form\AcademicAwardController::class)->group(function () {

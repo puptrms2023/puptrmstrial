@@ -19,7 +19,7 @@ class DLApplicantsController extends Controller
     {
         $this->middleware('permission:menu academic awards', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
         $this->middleware('permission:deans list list', ['only' => ['index', 'achieversView', 'approved', 'rejected', 'studentApplicationView', 'update', 'openPdfApproved', 'openPdfRejected', 'openPdfAll', 'overallList']]);
-        $this->middleware('permission:deans list edit', ['only' => [ 'update', 'approved', 'rejected']]);
+        $this->middleware('permission:deans list edit', ['only' => ['update', 'approved', 'rejected']]);
         $this->middleware('permission:deans list delete', ['only' => ['destroy']]);
     }
     public function index()
@@ -252,31 +252,16 @@ class DLApplicantsController extends Controller
     public function destroy(Request $request)
     {
         $form = StudentApplicant::find($request->form_delete_id);
-        if ($form->image) {
-            $path = 'uploads/' . $form->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-        }
         $form->delete();
-        return redirect()->back()->with('success', 'The Application form deleted successfully');
+        return redirect()->back()->with('success', 'The Application form move to archive successfully');
     }
 
     public function deleteAll(Request $request)
     {
-        $bulk_user = explode(',', $request->ids);
-        foreach ($bulk_user as $id) {
-            $i = StudentApplicant::findOrFail($id);
-            $i->delete();
-            $currentPhoto = $i->image;
-
-            $path = public_path('uploads/') . $currentPhoto;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-        }
+        $ids = $request->ids;
+        StudentApplicant::whereIn('id', explode(",", $ids))->delete();
         return response()->json([
-            'success' => 'The Application form deleted successfully'
+            'success' => 'The Application form move to archive successfully'
         ]);
     }
 }

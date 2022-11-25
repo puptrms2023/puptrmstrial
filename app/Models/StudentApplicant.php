@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudentApplicant extends Model implements Auditable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
@@ -24,6 +25,7 @@ class StudentApplicant extends Model implements Auditable
         'award_applied',
     ];
 
+    protected $dates = ['deleted_at'];
     public function courses()
     {
         return $this->belongsTo(Courses::class, 'course_id', 'id');

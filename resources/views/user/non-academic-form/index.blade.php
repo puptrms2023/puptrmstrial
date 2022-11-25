@@ -231,6 +231,15 @@
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-6 mb-3">
+                            <label for="formFile" class="form-label font-weight-bold">Supporting Documents: </label>
+                            <span class="text-danger">*</span>
+                            <input type="file" name="file" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-6 mb-3">
                             <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
                             <span class="text-danger">*</span>
                             <input type="file" name="image" required>

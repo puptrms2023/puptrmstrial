@@ -39,6 +39,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <button type="button" name="add" id="dynamic-ar" class="btn btn-success">Add
+                                </button>
                                 <div class="p-0">
                                     <table class="table table-borderless" id="dynamicAddRemove">
                                         <tr>
@@ -51,17 +53,6 @@
                                                         placeholder="Enter requirements"
                                                         value="{{ $reqs['requirement'] }}"class="form-control" />
                                                 </td>
-
-                                                @if (!$loop->first)
-                                                    <td><button type="button"
-                                                            class="btn btn-secondary remove-input-field"><i
-                                                                class="fa-solid fa-circle-minus"></i></button>
-                                                    </td>
-                                                @else
-                                                    <td><button type="button" name="add" id="dynamic-ar"
-                                                            class="btn btn-success">Add
-                                                        </button></td>
-                                                @endif
                                             </tr>
                                         @endforeach
                                     </table>
@@ -84,7 +75,7 @@
         $("#dynamic-ar").click(function() {
             ++i;
             $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
-                '][requirement]" placeholder="Enter requirements" class="form-control" /></td><td><button type="button" class="btn btn-secondary remove-input-field"><i class="fa-solid fa-circle-minus"></i></button></td></tr>'
+                '][requirement]" placeholder="Enter requirements" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-input-field"><i class="fa-solid fa-circle-minus"></i></button></td></tr>'
             );
         });
         $(document).on('click', '.remove-input-field', function() {

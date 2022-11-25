@@ -7,7 +7,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,12 +15,12 @@
                 <form action="{{ url('admin/non-academic-award/' . $title->id . '/delete-form') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the submitted application form?</p>
+                        <p>Are you sure you want to move the record to archive?</p>
                         <input type="hidden" name="form_delete_id" id="form_id">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                        <button type="submit" class="btn btn-info" name="delete">Archive</button>
                     </div>
                 </form>
             </div>
@@ -30,7 +30,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="delbtn btn btn-danger">Delete</button>
+                    <button type="button" class="delbtn btn btn-info">Archive</button>
                 </div>
             </div>
         </div>
@@ -50,12 +50,26 @@
     </div>
 
     <div class="row">
+        <div class="col-md-12 mb-2">
+            <a href="{{ url('admin/non-academic-award/' . $title->nonacad_code . '/view-approved-students-pdf') }}"
+                target="__blank" class="btn btn-success">
+                <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Approved Students
+            </a>
+            <a href="{{ url('admin/non-academic-award/' . $title->nonacad_code . '/view-rejected-students-pdf') }}"
+                target="__blank" class="btn btn-danger">
+                <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Rejected Students
+            </a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">
-                        Students
-                        <a href="{{ url('admin/non-academic-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                        Students | <a href="{{ url('admin/archive/non-academic-award/' . $title->id) }}" class="text-info">
+                            View Archive
+                            <a href="{{ url('admin/non-academic-award') }}"
+                                class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -63,19 +77,21 @@
                         <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
-                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
+                                    <th class="text-center info"><input type="checkbox" name="checkAll"
+                                            class="checkAllArchive">
                                     </th>
                                     <th>Student No.</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Course</th>
                                     <th>Year Level</th>
+                                    <th>S.Y.</th>
                                     <th>Award Applied</th>
                                     <th>Photo</th>
                                     <th class="text-center">Status</th>
                                     <th>Actions <br>
                                         @can('non-academic award delete')
-                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                            <button class="btn btn-sm btn-info d-none" id="bulk_delete">
                                                 All</button>
                                         @endcan
                                     </th>
@@ -84,13 +100,15 @@
                             <tbody>
                                 @foreach ($form as $award)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $award->id }}">
+                                        <td><input type="checkbox" class="user-checkboxes-archive"
+                                                data-id="{{ $award->id }}">
                                         </td>
                                         <td>{{ $award->users->stud_num }}</td>
                                         <td>{{ $award->users->first_name }}</td>
                                         <td>{{ $award->users->last_name }}</td>
                                         <td>{{ $award->courses->course_code }}</td>
                                         <td>{{ $award->year_level }}</td>
+                                        <td>{{ $award->school_year }}</td>
                                         <td>
                                             @if ($award->nonacad_id == '1')
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
@@ -199,14 +217,19 @@
                                             <a href="{{ url('admin/non-academic-award/' . $award->nonacad_id . '/' . $award->id) }}"
                                                 class="btn btn-secondary btn-sm"><i class="fa-regular fa-eye"></i></a>
                                             @can('non-academic award delete')
-                                                <button type="button" class="btn btn-sm btn-danger deleteFormbtn"
-                                                    value="{{ $award->id }}"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info deleteFormbtn"
+                                                    value="{{ $award->id }}"><i
+                                                        class="fa-solid fa-box-archive"></i></button>
                                             @endcan
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <a href="{{ url('admin/non-academic-award/' . $title->nonacad_code . '/view-all-students-pdf') }}"
+                            target="__blank" class="btn btn-sm btn-primary mt-2 mb-3">
+                            <i class="fa fa-download fa-sm text-white-100"></i>&ensp;Print Report
+                        </a>
                     </div>
                 </div>
             </div>
@@ -230,8 +253,8 @@
                     return c.getAttribute('data-id');
                 });
                 var selectRowsCount = arr.length;
-                $('#data-count').text('Are you sure you want to delete the ' + selectRowsCount +
-                    ' submitted application form?');
+                $('#data-count').text('Are you sure you want to move ' + selectRowsCount +
+                    ' record to archive?');
                 $('#deleteModal2').modal('show');
 
                 $(document).on('click', '.delbtn', function() {

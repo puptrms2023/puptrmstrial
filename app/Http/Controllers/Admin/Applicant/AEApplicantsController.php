@@ -282,31 +282,16 @@ class AEApplicantsController extends Controller
     public function destroy(Request $request)
     {
         $form = AcademicExcellence::find($request->form_delete_id);
-        if ($form->image) {
-            $path = 'uploads/' . $form->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-        }
         $form->delete();
-        return redirect()->back()->with('success', 'The Application form deleted successfully');
+        return redirect()->back()->with('success', 'The Application form move to archive successfully');
     }
 
     public function deleteAll(Request $request)
     {
-        $bulk_user = explode(',', $request->ids);
-        foreach ($bulk_user as $id) {
-            $i = AcademicExcellence::findOrFail($id);
-            $i->delete();
-            $currentPhoto = $i->image;
-
-            $path = public_path('uploads/') . $currentPhoto;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-        }
+        $ids = $request->ids;
+        AcademicExcellence::whereIn('id', explode(",", $ids))->delete();
         return response()->json([
-            'success' => 'The Application form deleted successfully'
+            'success' => 'The Application form move to archive successfully'
         ]);
     }
 }

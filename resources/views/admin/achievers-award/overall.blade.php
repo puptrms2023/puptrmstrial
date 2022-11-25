@@ -7,7 +7,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,12 +15,12 @@
                 <form action="{{ url('admin/achievers-award/delete-form') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the submitted application form?</p>
+                        <p>Are you sure you want to move the record to archive?</p>
                         <input type="hidden" name="form_delete_id" id="form_id">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                        <button type="submit" class="btn btn-info" name="delete">Archive</button>
                     </div>
                 </form>
             </div>
@@ -30,7 +30,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Application Form</h5>
+                    <h5 class="modal-title">Move to Archive</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="delbtn btn btn-danger">Delete</button>
+                    <button type="button" class="delbtn btn btn-info">Archive</button>
                 </div>
             </div>
         </div>
@@ -52,8 +52,10 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Students
-                        <a href="{{ url('admin/achievers-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                    <div class="m-0 font-weight-bold text-primary">Students | <a
+                            href="{{ url('admin/archive-all/achievers-award/') }}" class="text-info">
+                            View Archive
+                            <a href="{{ url('admin/achievers-award') }}" class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -74,13 +76,14 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Course</th>
+                                    <th>S.Y.</th>
                                     <th width="">1st Sem GWA</th>
                                     <th>2nd Sem GWA</th>
                                     <th class="text-center">Image</th>
                                     <th class="text-center">Status</th>
                                     <th>Actions <br>
                                         @can('achievers delete')
-                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
+                                            <button class="btn btn-sm btn-info d-none" id="bulk_delete">
                                                 All</button>
                                         @endcan
                                     </th>
@@ -132,6 +135,9 @@
                     name: "courses.course_code"
                 },
                 {
+                    data: "school_year"
+                },
+                {
                     data: "gwa_1st"
                 },
                 {
@@ -181,9 +187,9 @@
             });
             $(document).on('click', '#bulk_delete', function() {
 
-                $('#data-count').text('Are you sure you want to delete the (' + $(
+                $('#data-count').text('Are you sure you want to move the (' + $(
                         'input[name="form_checkbox"]:checked')
-                    .length + ') submitted application form?');
+                    .length + ') submitted application form to archive?');
                 $('#deleteModal2').modal('show');
 
                 $(document).on('click', '.delbtn', function() {

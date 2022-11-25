@@ -30,6 +30,7 @@
                                     <th>Last Name</th>
                                     <th>Course</th>
                                     <th>Year Level</th>
+                                    <th>S.Y.</th>
                                     <th>Award Applied</th>
                                     <th>1st Sem GWA</th>
                                     <th>2nd Sem GWA</th>
@@ -49,6 +50,7 @@
                                         <td>{{ $item->users->last_name }}</td>
                                         <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
+                                        <td>{{ $item->school_year }}</td>
                                         <td><span class="badge badge-info">{{ $item->award->name }}</span></td>
                                         <td class="text-center">{{ $item->gwa_1st }}</td>
                                         <td class="text-center">{{ $item->gwa_2nd }}</td>

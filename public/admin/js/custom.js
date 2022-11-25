@@ -1066,7 +1066,7 @@ $(document).on('change', 'input[name="form_checkbox"]', function() {
 });
 function togglebulk_delete() {
     if ($('input[name="form_checkbox"]:checked').length > 0) {
-        $('button#bulk_delete').text('Delete (' + $('input[name="form_checkbox"]:checked').length +
+        $('button#bulk_delete').text('Archive (' + $('input[name="form_checkbox"]:checked').length +
                 ')')
             .removeClass('d-none');
     } else {
@@ -1099,6 +1099,38 @@ $(document).on('change', 'input[class="user-checkboxes"]', function() {
 function togglebulk_delete_plain_table() {
     if ($('input[class="user-checkboxes"]:checked').length > 0) {
         $('button#bulk_delete').text('Delete (' + $('input[class="user-checkboxes"]:checked').length +
+                ')')
+            .removeClass('d-none');
+    } else {
+        $('button#bulk_delete').addClass('d-none');
+    }
+}
+//archive multiple data without yajra
+$(document).on('click', 'input[class="checkAllArchive"]', function() {
+    if (this.checked) {
+        $('input[class="user-checkboxes-archive"]').each(function() {
+            this.checked = true;
+        });
+    } else {
+        $('input[class="user-checkboxes-archive"]').each(function() {
+            this.checked = false;
+        });
+    }
+    togglebulk_delete_plain_table_archive();
+});
+$(document).on('change', 'input[class="user-checkboxes-archive"]', function() {
+
+    if ($('input[class="user-checkboxes-archive"]').length == $(
+            'input[class="user-checkboxes-archive"]:checked').length) {
+        $('input[class="checkAllArchive"]').prop('checked', true);
+    } else {
+        $('input[class="checkAllArchive"]').prop('checked', false);
+    }
+    togglebulk_delete_plain_table_archive();
+});
+function togglebulk_delete_plain_table_archive() {
+    if ($('input[class="user-checkboxes-archive"]:checked').length > 0) {
+        $('button#bulk_delete').text('Archive (' + $('input[class="user-checkboxes-archive"]:checked').length +
                 ')')
             .removeClass('d-none');
     } else {

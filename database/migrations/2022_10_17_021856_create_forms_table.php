@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('award_form')->nullable();
             $table->string('photocard')->nullable();
-            $table->json('requirements');
             $table->timestamps();
         });
     }

@@ -10,4 +10,9 @@ class Form extends Model
     use HasFactory;
     protected $fillable = ['award_form', 'photocard', 'requirements'];
     protected $casts = ['requirements' => 'array'];
+
+    public function requirement()
+    {
+        return $this->belongsTo(FormReq::class, 'id', 'form_id');
+    }
 }

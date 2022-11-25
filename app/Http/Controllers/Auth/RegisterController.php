@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Courses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
-use App\Models\Courses;
+use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,8 +68,9 @@ class RegisterController extends Controller
     {
         $user = User::create($request->validated());
 
+        event(new Registered($user));
         auth()->login($user);
 
-        return redirect('user/dashboard')->with('status', "Welocme to PUPT RMS");
+        return redirect(route('verification.notice'));
     }
 }

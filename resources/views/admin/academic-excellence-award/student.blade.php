@@ -40,6 +40,10 @@
                                 <td>{{ $status->year_level }}</td>
                             </tr>
                             <tr>
+                                <th width="25%">School Year</th>
+                                <td><b>{{ $status->school_year }}</b></td>
+                            </tr>
+                            <tr>
                                 <th width="25%">GWA</th>
                                 <td class="font-weight-bold text-primary">
                                     @if (!empty($status->gwa9) && empty($status->gwa10))
@@ -51,6 +55,13 @@
                                     @else
                                         {{ $status->gwa }}
                                     @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="25%">2x2 photo</th>
+                                <td>
+                                    <img src="{{ asset('uploads/' . $status->image) }}" alt="" width="150px"
+                                        height="150px">
                                 </td>
                             </tr>
                             <tr>

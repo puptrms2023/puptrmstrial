@@ -13,10 +13,10 @@ class SignatureController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:menu module', ['only' => ['index', 'edit', 'update','create']]);
-        $this->middleware('permission:signature list', ['only' => ['index', 'edit', 'update','create']]);
+        $this->middleware('permission:menu module', ['only' => ['index', 'edit', 'update', 'create']]);
+        $this->middleware('permission:signature list', ['only' => ['index', 'edit', 'update', 'create']]);
         $this->middleware('permission:signature create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:signature edit', ['only' => ['edit', 'update','changeStatusCertificate','changeStatusReports']]);
+        $this->middleware('permission:signature edit', ['only' => ['edit', 'update', 'changeStatusCertificate', 'changeStatusReports']]);
         $this->middleware('permission:signature delete', ['only' => ['destroy']]);
     }
     public function index()
@@ -115,19 +115,19 @@ class SignatureController extends Controller
 
     public function changeStatusCertificate(Request $request)
     {
-        $sign = Signature::find($request->user_id);
+        $sign = Signature::find($request->sig_id);
         $cert_status = Signature::where('certificate', '1')->count();
 
-        if ($request->certificate == '1') {
+        if ($request->status == '1') {
             if ($cert_status == 4) {
                 return response()->json(['error' => 'You are allowed to check a maximum of 4 options.']);
             } else {
-                $sign->certificate = $request->certificate;
+                $sign->certificate = $request->status;
             }
         }
 
-        if ($request->certificate == '0') {
-            $sign->certificate = $request->certificate;
+        if ($request->status == '0') {
+            $sign->certificate = $request->status;
         }
 
         $sign->save();
@@ -135,19 +135,19 @@ class SignatureController extends Controller
     }
     public function changeStatusReports(Request $request)
     {
-        $sign = Signature::find($request->user_id);
+        $sign = Signature::find($request->rep_id);
         $report_status = Signature::where('report', '1')->count();
 
-        if ($request->report == '1') {
+        if ($request->status == '1') {
             if ($report_status == 4) {
                 return response()->json(['error' => 'You are allowed to check a maximum of 4 options.']);
             } else {
-                $sign->report = $request->report;
+                $sign->report = $request->status;
             }
         }
 
-        if ($request->report == '0') {
-            $sign->report = $request->report;
+        if ($request->status == '0') {
+            $sign->report = $request->status;
         }
 
         $sign->save();

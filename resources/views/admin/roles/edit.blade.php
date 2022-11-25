@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Add Roles
+                    <div class="m-0 font-weight-bold text-primary">Edit Roles
                         <a href="{{ url('admin/roles') }}" class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>

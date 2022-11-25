@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
-class User extends Authenticatable implements Auditable
+class User extends Authenticatable implements Auditable, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, HasRoles, Notifiable, HasJsonRelationships;
     use \OwenIt\Auditing\Auditable;
@@ -39,6 +39,7 @@ class User extends Authenticatable implements Auditable
         'email',
         'username',
         'password',
+        'is_email_verified'
     ];
 
     /**

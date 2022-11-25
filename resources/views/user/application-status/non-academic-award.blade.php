@@ -30,6 +30,7 @@
                                     <th>Last Name</th>
                                     <th>Course</th>
                                     <th>Year Level</th>
+                                    <th>S.Y.</th>
                                     <th>Award Applied</th>
                                     <th>Image</th>
                                     <th>Status</th>
@@ -43,6 +44,7 @@
                                         <td>{{ $list->users->last_name }}</td>
                                         <td>{{ $list->courses->course_code }}</td>
                                         <td>{{ $list->year_level }}</td>
+                                        <td>{{ $list->school_year }}</td>
                                         <td>
                                             @if ($list->nonacad_id == '1')
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>

@@ -75,7 +75,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Award Applied</th>
+                                        <th>Course</th>
                                         <th>Year Level</th>
+                                        <th>S.Y.</th>
                                         <th>First Sem GWA</th>
                                         <th>Second Sem GWA</th>
                                         <th>Average</th>
@@ -89,7 +91,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-info">{{ $app->award->name }}</span></td>
+                                            <td>{{ $app->courses->course_code }}</td>
                                             <td>{{ $app->year_level }}</td>
+                                            <td>{{ $app->school_year }}</td>
                                             <td class="text-center">{{ $app->gwa_1st }}</td>
                                             <td class="text-center">{{ $app->gwa_2nd }}</td>
                                             <td class="text-center">{{ $app->gwa }}</td>
@@ -134,7 +138,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Award Applied</th>
+                                        <th>Course</th>
                                         <th>Year Level</th>
+                                        <th>S.Y.</th>
                                         <th>1st year</th>
                                         <th>2nd year</th>
                                         <th>3rd year</th>
@@ -157,7 +163,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><span class="badge badge-success">{{ $app->award->name }}</span></td>
+                                            <td>{{ $app->courses->course_code }}</td>
                                             <td>{{ $app->year_level }}</td>
+                                            <td>{{ $app->school_year }}</td>
                                             <td class="text-center">
                                                 {{ number_format((float) $app->gwa1, 2, '.', '') }}
                                                 {{ number_format((float) $app->gwa2, 2, '.', '') }}
@@ -237,7 +245,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Award Applied</th>
+                                        <th>Course</th>
                                         <th>Year Level</th>
+                                        <th>S.Y.</th>
                                         <th>Image</th>
                                         <th>Remarks</th>
                                         <th>Status</th>
@@ -312,7 +322,9 @@
                                                     <span class="badge badge-primary">{{ $app->nonacad->name }}</span>
                                                 @endif
                                             </td>
+                                            <td>{{ $app->courses->course_code }}</td>
                                             <td>{{ $app->year_level }}</td>
+                                            <td>{{ $app->school_year }}</td>
                                             <td>
                                                 <img src="{{ asset('uploads/' . $app->image) }}"
                                                     class="img-thumbnail img-circle" width="50" alt="Image">
