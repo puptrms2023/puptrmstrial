@@ -281,8 +281,8 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     Route::controller(App\Http\Controllers\Admin\Maintenance\FormController::class)->group(function () {
         Route::get('/maintenance/form', 'index');
         Route::get('/maintenance/form/{id}', 'edit');
+        Route::post('/maintenance/delete-reqs-form', 'destroy');
         Route::put('/maintenance/update-form/{id}', 'update');
-        // Route::post('/maintenance/about/upload', 'upload')->name('ckeditor.upload');
     });
     //signatures
     Route::controller(App\Http\Controllers\Admin\Maintenance\SignatureController::class)->group(function () {

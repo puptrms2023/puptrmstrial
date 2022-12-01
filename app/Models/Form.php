@@ -13,6 +13,6 @@ class Form extends Model
 
     public function requirement()
     {
-        return $this->belongsTo(FormReq::class, 'id', 'form_id');
+        return $this->hasMany(FormReq::class, 'form_id', 'id');
     }
 }

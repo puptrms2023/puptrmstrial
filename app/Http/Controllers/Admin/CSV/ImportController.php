@@ -59,6 +59,21 @@ class ImportController extends Controller
 
     public function processImport(Request $request)
     {
+        // $validatedData = $request->validate([
+        //     'fields.fields' => 'required',
+        //     'surname' => 'required',
+        //     'first_name' => 'required',
+        //     'middle_name' => 'required',
+        //     'surname' => 'required',
+        //     'course' => 'required',
+        //     'course' => 'required',
+        //     'year_level' => 'required',
+        //     'gwa_1st' => 'required',
+        //     'gwa_2nd' => 'required',
+        //     'applying_for' => 'required',
+        //     'remarks' => 'required',
+        //     'comments' => 'required'
+        // ]);
         $data = CsvData::find($request->csv_data_file_id);
         $csv_data = json_decode($data->csv_data, true);
         foreach ($csv_data as $row) {

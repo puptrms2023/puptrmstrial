@@ -36,8 +36,8 @@
                                                 width="150" alt="Image"></td>
                                         <td>{{ $list->award_form }}</td>
                                         <td>
-                                            @foreach ($list->requirements as $reqs)
-                                                {{ $reqs['requirement'] }}<br>
+                                            @foreach ($list->requirement as $reqs)
+                                                {{ $reqs->requirements }}<br>
                                             @endforeach
                                         </td>
                                         <td>
@@ -55,8 +55,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-
 @endsection

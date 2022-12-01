@@ -13,4 +13,9 @@ class Event extends Model implements Auditable
     protected $fillable = [
         'title', 'location', 'description', 'options', 'start', 'end'
     ];
+
+    public function form()
+    {
+        return $this->hasOne(Form::class, 'form_id', 'id');
+    }
 }

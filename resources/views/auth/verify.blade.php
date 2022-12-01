@@ -1,6 +1,3 @@
-{{-- @extends('layouts.auth-master')
-
-@section('main-content') --}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -33,7 +30,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ url('user/dashboard') }}">
+                href="">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('admin/img/puplogomini.png') }}"></i>
                 </div>
@@ -44,8 +41,45 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
 
-                @include('layouts.inc.user.navbar')
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 sticky-top shadow">
 
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
+                        <div class="text-primary font-weight-bold">PUP Taguig Recognition Management System</div>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Alerts -->
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->username }}</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
                 <div class="container-fluid">
 
                     <div class="container">
@@ -102,7 +136,14 @@
                     </div>
                 </div>
             </div>
-            @include('layouts.inc.user.footer')
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; {{ getSystemAcronym() }}</span>
+                    </div>
+                </div>
+            </footer>
+
         </div>
 
         <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>

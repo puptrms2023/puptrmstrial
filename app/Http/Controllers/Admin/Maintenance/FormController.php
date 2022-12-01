@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Maintenance;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Form;
+use App\Models\FormReq;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FormController extends Controller
 {
@@ -16,19 +17,20 @@ class FormController extends Controller
     }
     public function index()
     {
-        $form = Form::all();
+        $form = Form::with('requirement')->get();
         return view('admin.maintenance.form.index', compact('form'));
     }
     public function edit($id)
     {
         $form = Form::find($id);
-        return view('admin.maintenance.form.edit', compact('form'));
+        $requirements = FormReq::where('form_id', $id)->get();
+        return view('admin.maintenance.form.edit', compact('form', 'requirements'));
     }
     public function update(Request $request, $id)
     {
         $request->validate([
             'image' => 'nullable',
-            'addMoreInputFields.*.requirement' => 'required'
+            'requirements.*.title' => 'required',
         ]);
 
         $photo = $request->old_photo;
@@ -46,9 +48,30 @@ class FormController extends Controller
             $form->photocard = $request->old_photo;
         }
 
-        $form->requirements = $request->addMoreInputFields;
         $form->save();
 
+        foreach ($request->requirements as $key => $requirements) {
+
+            // Update
+            if (isset($requirements['id']) && $requirements['id']) {
+                $req = FormReq::find($requirements['id']);
+                $req->requirements = $requirements['title'];
+                // Create
+            } else {
+                $req = new FormReq();
+                $req->requirements = $requirements['title'];
+                $req->form_id = $id;
+            }
+            $req->save();
+        }
+
         return back()->with('success', 'Record has been updated.');
+    }
+
+    public function destroy(Request $request)
+    {
+        $req = FormReq::find($request->req_delete_id);
+        $req->delete();
+        return redirect()->back()->with('success', 'Requirement deleted successfully');
     }
 }
