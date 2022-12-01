@@ -20,17 +20,19 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group row">
-                            <div class="col-md-5 mb-2">
-                                <label class="text-gray font-weight-bold">Photo Card <span
-                                        class="text-danger">*</span></label>
-                                <div class="mb-2"><img src="{{ asset('uploads/form/' . $form->photocard) }}"
-                                        class="img-thumbnail" alt="image">
+                        @if ($form->photocard)
+                            <div class="form-group row">
+                                <div class="col-md-5 mb-2">
+                                    <label class="text-gray font-weight-bold">Photo Card <span
+                                            class="text-danger">*</span></label>
+                                    <div class="mb-2"><img src="{{ asset('uploads/form/' . $form->photocard) }}"
+                                            class="img-thumbnail" alt="image">
+                                    </div>
+                                    <input type="file" class="form-control" name="photocard">
+                                    <input type="hidden" value="{{ $form->photocard }}" name="old_photo">
                                 </div>
-                                <input type="file" class="form-control" name="photocard">
-                                <input type="hidden" value="{{ $form->photocard }}" name="old_photo">
                             </div>
-                        </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="button" name="add" id="add-btn" class="btn btn-success">Add
@@ -38,7 +40,7 @@
                                 <div class="p-0 mt-2">
                                     <table class="table table-bordered" id="dynamicAddRemove">
                                         <tr>
-                                            <th>Title</th>
+                                            <th>Requirement</th>
                                             <th>Action</th>
                                         </tr>
                                         @foreach ($requirements as $key => $reqs)

@@ -32,8 +32,12 @@
                             <tbody>
                                 @foreach ($form as $list)
                                     <tr>
-                                        <td><img src="{{ asset('uploads/form/' . $list->photocard) }}" class="img-thumbnail"
-                                                width="150" alt="Image"></td>
+                                        <td>
+                                            @if ($list->photocard)
+                                                <img src="{{ asset('uploads/form/' . $list->photocard) }}"
+                                                    class="img-thumbnail" width="150" alt="Image">
+                                            @endif
+                                        </td>
                                         <td>{{ $list->award_form }}</td>
                                         <td>
                                             @foreach ($list->requirement as $reqs)

@@ -9,10 +9,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $acadexcel = Form::where('award_form', 'Academic Excellence')->first();
-        $nonacad = Form::where('award_form', 'Non Academic')->first();
-        $acadaward = Form::where('award_form', 'Academic Award')->first();
+        $acadexcel = Form::with('requirement')->where('award_form', 'Academic Excellence')->first();
+        $nonacad = Form::with('requirement')->where('award_form', 'Non Academic')->first();
+        $acadaward = Form::with('requirement')->where('award_form', 'Academic Award')->first();
+        $deans = Form::with('requirement')->where('award_form', 'Dean\'s List')->first();
+        $presidents = Form::with('requirement')->where('award_form', 'President\'s List')->first();
 
-        return view('user.dashboard', compact('acadexcel', 'acadaward', 'nonacad'));
+        return view('user.dashboard', compact('acadexcel', 'acadaward', 'nonacad', 'deans', 'presidents'));
     }
 }

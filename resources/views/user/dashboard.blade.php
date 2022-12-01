@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ Auth::user()->first_name }}'s Dashboard</h1>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -39,11 +39,9 @@
                         Academic Excellence Award Qualifications
                     </div>
                     <ul class="list-group">
-
-                        @foreach ($acadexcel->requirements as $v)
+                        @foreach ($acadexcel->requirement as $reqs)
                             <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
-                                &ensp;
-                                {{ $v['requirement'] }}
+                                &ensp;{{ $reqs->requirements }}
                             </li>
                         @endforeach
                     </ul>
@@ -69,12 +67,11 @@
                         Non-Academic Award Qualifications
                     </div>
                     <ul class="list-group">
-                        @foreach ($nonacad->requirements as $v)
+                        @foreach ($nonacad->requirement as $reqs)
                             <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
-                                &ensp; {{ $v['requirement'] }}
+                                &ensp;{{ $reqs->requirements }}
                             </li>
                         @endforeach
-
                     </ul>
                 </div>
             </div>
@@ -98,9 +95,9 @@
                         Achiever's Award Qualifications
                     </div>
                     <ul class="list-group">
-                        @foreach ($acadaward->requirements as $v)
+                        @foreach ($acadaward->requirement as $reqs)
                             <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;
-                                {{ $v['requirement'] }}
+                                &ensp;{{ $reqs->requirements }}
                             </li>
                         @endforeach
                     </ul>
@@ -119,24 +116,11 @@
                         Dean's List Qualifications
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;<b>2nd
-                                to 4th year students</b> are only qualified.
-                        </li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;<b>GWA
-                                of 1.51 to 1.75</b> for both first and second semester.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;With
-                            grades <b>NO LOWER THAN 2.50 IN ALL SUBJECTS</b></li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
-                            &ensp;Bonafide student of PUP Taguig Branch.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
-                            &ensp;Officially enrolled for 1st and 2nd semester
-                            of the recent academic year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
-                            &ensp;Regular
-                            Student</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i> &ensp;No
-                            Failed, Withdrawn, Incomplete
-                            and 'P' remarks in any subject enrolled for the recent academic year.</li>
+                        @foreach ($deans->requirement as $reqs)
+                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
+                                &ensp;{{ $reqs->requirements }}
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -152,31 +136,15 @@
                         President's List Qualifications
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;<b>2nd
-                                to 4th year students</b> are only qualified.
-                        </li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>&ensp;<b>GWA
-                                of 1.00 to 1.50</b> for both first and second semester.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;With
-                            grades <b>NO LOWER THAN 2.50 IN ALL SUBJECTS</b></li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;Bonafide student of PUP Taguig Branch.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;Officially enrolled for 1st and 2nd semester
-                            of the recent academic year.</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;Regular
-                            Student</li>
-                        <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                            &ensp;No
-                            Failed, Withdrawn, Incomplete
-                            and 'P' remarks in any subject enrolled for the recent academic year.</li>
+                        @foreach ($presidents->requirement as $reqs)
+                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                                &ensp;{{ $reqs->requirements }}
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 @endsection
