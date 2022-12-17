@@ -442,7 +442,7 @@
     </div>
     {{-- 4th year --}}
 
-    @if ($grades10->count() > 0 && $grades11->count() > 0)
+    @if (count($grades10) > 0 || count($grades11) > 0)
         {{-- 5th year --}}
         <p>FIFTH YEAR</p>
         <div class="row mb-2">

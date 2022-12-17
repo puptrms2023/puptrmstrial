@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CsvData extends Model implements Auditable
+class CsvData extends Model
 {
     use HasFactory;
-    use \OwenIt\Auditing\Auditable;
     protected $table = 'csv_data';
     protected $fillable = ['csv_filename', 'csv_header', 'csv_data'];
 }

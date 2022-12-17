@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\ActivityLog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Audit as ModelsAudit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use OwenIt\Auditing\Models\Audit;
@@ -16,7 +17,8 @@ class ActivityLogController extends Controller
 
     public function index()
     {
-        $activity = Audit::orderBy('id', 'desc')->get();
+        $activity = ModelsAudit::with('user')->orderBy('id', 'desc')->get();
+        // dd($activity);
         return view('admin.user-activity-log.index', compact('activity'));
     }
 

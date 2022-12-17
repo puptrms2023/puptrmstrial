@@ -72,6 +72,11 @@ class User extends Authenticatable implements Auditable, MustVerifyEmail
         $this->attributes['password'] = bcrypt($password);
     }
 
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function courses()
     {
         return $this->belongsTo(Courses::class, 'course_id', 'id');

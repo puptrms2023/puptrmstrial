@@ -49,11 +49,11 @@
                                         <td>{{ $data->school_year }}</td>
                                         <td>
                                             @if (!empty($data->gwa9) && empty($data->gwa10))
-                                                {{ number_dataat((float) $totalwithSummer, 2, '.', '') }}
+                                                {{ round($totalwithSummer, 2) }}
                                             @elseif (!empty($data->gwa10 || $data->gwa11) && empty($data->gwa9))
-                                                {{ number_dataat((float) $totalwith5thYear, 2, '.', '') }}
+                                                {{ round($totalwith5thYear, 2) }}
                                             @elseif (!empty($data->gwa9 && $data->gwa10))
-                                                {{ number_dataat((float) $totalwith5thAndSummer, 2, '.', '') }}
+                                                {{ round($totalwith5thAndSummer, 2) }}
                                             @else
                                                 {{ $data->gwa }}
                                             @endif

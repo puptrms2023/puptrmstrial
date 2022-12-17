@@ -1,4 +1,4 @@
-﻿Email Address,Surname,First Name,Middle Name," Course",Year Level,Contact Number,gwa_1st,gwa_2nd,Applying for:,AVERAGE (1&2),REMARKS,COMMENTS
+﻿Email Address,Surname,First Name,Middle Name," Course",Year Level,Contact Number,gwa_1st,gwa_2nd,Applying for:,Gen Avg,REMARKS,COMMENTS
 copythatencina24@gmail.com,Encina,John Reign,Moral,BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY (BSIT),Second Year,09511217733,1.25,1.14,President's List,1.195000,APPROVED,
 "akiramichaela16@gmail.com ",Sta. Ana,"Akira Michaela ",Dadivas,BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION MAJOR IN MARKETING MANAGEMENT (BSBA-MN),First Year,09637999531,1.41,1.38,Achiever's Award,1.395000,APPROVED,
 reinedelrosario@gmail.com,"Del Rosario ","Ma. Reimilyne ","Magat ",BACHELOR OF SCIENCE IN ACCOUNTANCY (BSA),First Year,09658133570,1.43,1.44,Achiever's Award,1.435000,APPROVED,

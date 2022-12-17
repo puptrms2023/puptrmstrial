@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Course')
+@section('title', 'Add Signature')
 
 @section('content')
 
@@ -8,7 +8,7 @@
         <div class="col-xl-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Add Course
+                    <div class="m-0 font-weight-bold text-primary">Add Signature
                         <a href="{{ url('admin/maintenance/signatures') }}"
                             class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
@@ -43,12 +43,12 @@
                                 <br />
                                 <div id="signaturePad"></div>
                                 <br />
-                                <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
+                                <button id="clear" class="btn btn-success float-right btn-sm">Clear Signature</button>
                                 <textarea id="signature64" name="signed" style="display: none"></textarea>
                             </div>
                         </div>
 
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-secondary" type="submit">Save</button>
                     </form>
 
                 </div>

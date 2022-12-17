@@ -41,7 +41,7 @@
                     @endcan
                     @can('photo delete')
                         <button type="button" class="btn btn-sm btn-block btn-danger deletePhotobtn"
-                            value="{{ $photo->id }}">Delete Gallery</button>
+                            value="{{ $photo->id }}">Delete Photo</button>
                     @endcan
                 </div>
             </div>

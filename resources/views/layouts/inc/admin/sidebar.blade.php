@@ -166,7 +166,12 @@
     @endcan
     @can('non-academic award list')
         <li
-            class="nav-item {{ Request::is('admin/non-academic-award') || Request::is('admin/non-academic-award/*') ? 'active' : '' }}">
+            class="nav-item {{ Request::is('admin/non-academic-award') ||
+            Request::is('admin/non-academic-award/*') ||
+            Request::is('admin/archive/non-academic-award/*') ||
+            Request::is('admin/archive-all/non-academic-award')
+                ? 'active'
+                : '' }}">
             <a class="nav-link collapsed" href="{{ url('admin/non-academic-award') }}">
                 <i class="fas fa-award"></i>
                 <span>Non Academic Awards</span>

@@ -53,8 +53,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-responsive table-sm" id="dataTable" width="100%"
-                            cellspacing="0">
+                        <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
                                     <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
@@ -68,7 +67,10 @@
                                     <th>Email</th>
                                     <th>GWA 1st</th>
                                     <th>GWA 2nd</th>
+                                    <th>Average</th>
+                                    <th>Award</th>
                                     <th>Remarks</th>
+                                    <th>Comments</th>
                                     <th>Actions <br>
                                         @can('parse delete')
                                             <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
@@ -92,7 +94,10 @@
                                         <td>{{ $list->email_address }}</td>
                                         <td>{{ $list->gwa_1st }}</td>
                                         <td>{{ $list->gwa_2nd }}</td>
+                                        <td>{{ $list->gen_avg }}</td>
+                                        <td>{{ $list->applying_for }}</td>
                                         <td>{{ $list->remarks }}</td>
+                                        <td>{{ $list->comments }}</td>
                                         <td>
                                             @can('parse delete')
                                                 <button type="button" class="btn btn-sm btn-danger deleteCSVbtn"

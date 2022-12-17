@@ -10,9 +10,11 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\CsvImportRequest;
 use Maatwebsite\Excel\HeadingRowImport;
+use Illuminate\Support\Facades\Validator;
 
 class ImportController extends Controller
 {
+
     function __construct()
     {
         $this->middleware('permission:menu csv', ['only' => ['index', 'parseImport', 'processImport', 'showParsed']]);
@@ -31,8 +33,21 @@ class ImportController extends Controller
 
     public function parseImport(CsvImportRequest $request)
     {
+        // Validate the header
+        $headings = (new HeadingRowImport)->toArray($request->file('csv_file'));
+
+        foreach ($headings[0] as $childArray) {
+            $headerCount = count($childArray);
+            // $count will be 13 for each iteration
+        }
+
+        if ($request->has('header') && $headerCount != count(expectedHeadings())) {
+            return redirect()->back()->with('error', 'The CSV file has an invalid header');
+        }
+
+
+        // Continue with the rest of the import process
         if ($request->has('header')) {
-            $headings = (new HeadingRowImport)->toArray($request->file('csv_file'));
             $data = Excel::toArray(new AwardeesImport, $request->file('csv_file'))[0];
         } else {
             $data = array_map('str_getcsv', file($request->file('csv_file')->getRealPath()));
@@ -54,26 +69,12 @@ class ImportController extends Controller
             'headings' => $headings ?? null,
             'csv_data' => $csv_data,
             'csv_data_file' => $csv_data_file
-        ])->with('success', 'The CSV file imported successfully');;
+        ])->with('success', 'The CSV file imported successfully');
     }
+
 
     public function processImport(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'fields.fields' => 'required',
-        //     'surname' => 'required',
-        //     'first_name' => 'required',
-        //     'middle_name' => 'required',
-        //     'surname' => 'required',
-        //     'course' => 'required',
-        //     'course' => 'required',
-        //     'year_level' => 'required',
-        //     'gwa_1st' => 'required',
-        //     'gwa_2nd' => 'required',
-        //     'applying_for' => 'required',
-        //     'remarks' => 'required',
-        //     'comments' => 'required'
-        // ]);
         $data = CsvData::find($request->csv_data_file_id);
         $csv_data = json_decode($data->csv_data, true);
         foreach ($csv_data as $row) {

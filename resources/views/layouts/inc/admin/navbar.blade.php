@@ -58,7 +58,7 @@
                             {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
                         <span class="font-weight-bold">
                             {{ $notification->data['user_name'] }}
-                            submiited application for
+                            submitted application for
                             @if ($notification->data['award'] == 'AA')
                                 Achiever's Award
                             @elseif ($notification->data['award'] == 'DL')

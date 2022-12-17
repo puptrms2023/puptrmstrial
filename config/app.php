@@ -230,6 +230,7 @@ return [
         'gwa_1st',
         'gwa_2nd',
         'applying_for',
+        'gen_avg',
         'remarks',
         'comments'
     ]

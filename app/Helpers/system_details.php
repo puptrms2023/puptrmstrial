@@ -107,3 +107,21 @@ function shortUrl()
 {
     return 'http://127.0.0.1:8000';
 }
+function expectedHeadings()
+{
+    return [
+        'email_address',
+        'surname',
+        'first_name',
+        'middle_name',
+        'course',
+        'year_level',
+        'contact_number',
+        'gwa_1st',
+        'gwa_2nd',
+        'applying_for',
+        'gen_avg',
+        'remarks',
+        'comments'
+    ];
+}
