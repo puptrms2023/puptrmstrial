@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AcademicExcellenceRequest extends FormRequest
@@ -100,6 +101,19 @@ class AcademicExcellenceRequest extends FormRequest
         ];
     }
 
+    public function withValidator(Validator $validator)
+    {
+        $validator->sometimes('gwa10', 'required', function ($input) {
+            return $input->year_level == '5th Year';
+        });
+        $validator->sometimes('gwa11', 'required', function ($input) {
+            return $input->year_level == '5th Year';
+        });
+        $validator->sometimes('gwa9', 'required', function ($input) {
+            return $input->summerchk == 'on';
+        });
+    }
+
     public function messages()
     {
         return [
@@ -144,6 +158,9 @@ class AcademicExcellenceRequest extends FormRequest
             'gwa6.required' => 'Field for Third year - 2nd Semester is required',
             'gwa7.required' => 'Field for Fourth Year - 1st Semester is required',
             'gwa8.required' => 'Field for Fourth year - 2nd Semester is required',
+            'gwa9.required' => 'Field for Summer is required',
+            'gwa10.required' => 'Field for Fifth Year - 1st Semester is required',
+            'gwa11.required' => 'Field for Fifth year - 2nd Semester is required',
             'gwa1.lte' => 'Your First Year - 1st Semester GWA did not meet the grade requirement.',
             'gwa2.lte' => 'Your First Year - 2nd Semester GWA did not meet the grade requirement.',
             'gwa3.lte' => 'Your Second Year - 1st Semester GWA did not meet the grade requirement.',

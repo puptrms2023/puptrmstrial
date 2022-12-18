@@ -57,27 +57,16 @@
                             cellspacing="0">
                             <thead class="text-primary">
                                 <tr>
-                                    <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
-                                    </th>
                                     <th>Changed Date</th>
                                     <th>Model</th>
                                     <th>Changed By</th>
                                     <th>URL</th>
                                     <th>Operation</th>
-                                    <th>Actions <br>
-                                        @can('student delete')
-                                            <button class="btn btn-sm btn-danger d-none" id="bulk_delete">
-                                                All</button>
-                                        @endcan
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($activity as $act)
                                     <tr>
-                                        <td><input type="checkbox" class="user-checkboxes" data-id="{{ $act->id }}">
-                                        </td>
-
                                         <td class="font-weight-bold">
                                             {{ \Carbon\Carbon::parse($act->created_at)->format('F d, Y h:i a ') }}</td>
                                         <td>{{ substr($act->auditable_type, 11) }}</td>
@@ -96,12 +85,6 @@
                                             @if ($act->event == 'deleted')
                                                 <span class="badge badge-danger">DELETE</span>
                                             @endif
-                                        </td>
-                                        <td>
-                                            @can('user delete')
-                                                <button type="button" class="btn btn-sm btn-danger deleteUserbtn"
-                                                    value="{{ $act->id }}"><i class="fa fa-trash"></i></button>
-                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

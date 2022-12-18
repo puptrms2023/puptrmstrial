@@ -861,7 +861,7 @@
                 {{-- summer --}}
                 <div class="col-md-6 mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="chkSummer" onchange="toggleStatus()">
+                        <input class="form-check-input" type="checkbox" name="summerchk" id="chkSummer" onchange="toggleStatus()">
                         <label class="form-check-label" for="flexCheckChecked">
                             Summer Subjects
                         </label>
