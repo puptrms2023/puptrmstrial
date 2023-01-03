@@ -54,7 +54,7 @@
 </head>
 
 <body class="bg-image">
-
+    {{-- @include('cookie-consent::index') --}}
     @yield('main-content')
 
     <!-- Scripts -->

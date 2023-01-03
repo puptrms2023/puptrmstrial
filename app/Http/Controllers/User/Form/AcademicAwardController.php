@@ -31,7 +31,7 @@ class AcademicAwardController extends Controller
         $award = new StudentApplicant();
 
         $award->user_id = $data['user_id'];
-        $award->school_year = $data['school_year'];
+        $award->school_year = getAcademicYear();
         $award->gwa_1st = $data['gwa_1st'];
         $award->gwa_2nd = $data['gwa_2nd'];
         $award->year_level = $data['year_level'];
@@ -57,7 +57,7 @@ class AcademicAwardController extends Controller
             $sum->grades = $data['grades'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term'];
-            $sum->sy = $data['school_year'];
+            $sum->sy = getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -69,7 +69,7 @@ class AcademicAwardController extends Controller
             $sum->grades = $data['grades1'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term1'];
-            $sum->sy = $data['school_year'];
+            $sum->sy = getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }

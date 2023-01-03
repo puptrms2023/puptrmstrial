@@ -32,7 +32,6 @@
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
-                                    <th>Image</th>
                                     <th>Average</th>
                                     <th>Status</th>
                                 </tr>
@@ -52,10 +51,6 @@
                                         <td>{{ $item->year_level }}</td>
                                         <td>{{ $item->school_year }}</td>
                                         <td><span class="badge badge-success">{{ $item->award->name }}<span></td>
-                                        <td>
-                                            <img src="{{ asset('uploads/' . $item->image) }}"
-                                                class="img-thumbnail img-circle" width="50" alt="Image">
-                                        </td>
                                         <td class="text-center">
                                             @if (!empty($item->gwa9) && empty($item->gwa10))
                                                 {{ number_format((float) $totalwithSummer, 2, '.', '') }}

@@ -32,7 +32,6 @@
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
-                                    <th>Image</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -108,10 +107,6 @@
                                             @else
                                                 <span class="badge badge-primary">{{ $list->nonacad->name }}</span>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('uploads/' . $list->image) }}"
-                                                class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                         <td class="text-center">
                                             @if ($list->status == '0')

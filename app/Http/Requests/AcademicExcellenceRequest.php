@@ -17,7 +17,6 @@ class AcademicExcellenceRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,32 +24,35 @@ class AcademicExcellenceRequest extends FormRequest
      */
     public function rules()
     {
+        $bannedWords = ['required', 'string', 'max:255', 'regex:/^(?!(?:CIVIC WELFARE TRAINING SERVICE 1|CWTS|NSTP|PHYSICAL FITNESS AND SELF-TESTING ACTIVITIES|RHYTHMIC ACTIVITIES|INDIVIDUAL\/DUAL\/COMBATIVE SPORTS|TEAM SPORTS)$)/i'];
+        $bannedWords1 = ['nullable', 'string', 'max:255', 'regex:/^(?!(?:CIVIC WELFARE TRAINING SERVICE 1|CWTS|NSTP|PHYSICAL FITNESS AND SELF-TESTING ACTIVITIES|RHYTHMIC ACTIVITIES|INDIVIDUAL\/DUAL\/COMBATIVE SPORTS|TEAM SPORTS)$)/i'];
+        $commonRules = ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])];
+        $commonRules1 = ['nullable', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])];
         return [
             'user_id' => 'required',
-            'school_year' => 'required',
             'app_id' => 'nullable',
-            'subjects.*' => 'required|string',
-            'subjects1.*' => 'required|string',
-            'subjects3.*' => 'required|string',
-            'subjects4.*' => 'required|string',
-            'subjects5.*' => 'required|string',
-            'subjects6.*' => 'required|string',
-            'subjects7.*' => 'required|string',
-            'subjects8.*' => 'required|string',
-            'subjects9.*' => 'nullable',
-            'subjects10.*' => 'nullable',
-            'subjects11.*' => 'nullable',
-            'grades.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades1.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades3.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades4.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades5.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades6.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades7.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades8.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades9.*' => ['nullable', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades10.*' => ['nullable', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades11.*' => ['nullable', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
+            'subjects.*' => $bannedWords,
+            'subjects1.*' => $bannedWords,
+            'subjects3.*' => $bannedWords,
+            'subjects4.*' => $bannedWords,
+            'subjects5.*' => $bannedWords,
+            'subjects6.*' => $bannedWords,
+            'subjects7.*' => $bannedWords,
+            'subjects8.*' => $bannedWords,
+            'subjects9.*' => $bannedWords1,
+            'subjects10.*' => $bannedWords1,
+            'subjects11.*' => $bannedWords1,
+            'grades.*' => $commonRules,
+            'grades1.*' => $commonRules,
+            'grades3.*' => $commonRules,
+            'grades4.*' => $commonRules,
+            'grades5.*' => $commonRules,
+            'grades6.*' => $commonRules,
+            'grades7.*' => $commonRules,
+            'grades8.*' => $commonRules,
+            'grades9.*' => $commonRules1,
+            'grades10.*' => $commonRules1,
+            'grades11.*' => $commonRules1,
             'units.*' => 'required|integer|min:1',
             'units1.*' => 'required|integer|min:1',
             'units3.*' => 'required|integer|min:1',
@@ -117,6 +119,18 @@ class AcademicExcellenceRequest extends FormRequest
     public function messages()
     {
         return [
+            'subjects.*.regex' => 'The :input is not allowed',
+            'subjects1.*.regex' => 'The :input is not allowed',
+            'subjects2.*.regex' => 'The :input is not allowed',
+            'subjects3.*.regex' => 'The :input is not allowed',
+            'subjects4.*.regex' => 'The :input is not allowed',
+            'subjects5.*.regex' => 'The :input is not allowed',
+            'subjects6.*.regex' => 'The :input is not allowed',
+            'subjects7.*.regex' => 'The :input is not allowed',
+            'subjects8.*.regex' => 'The :input is not allowed',
+            'subjects9.*.regex' => 'The :input is not allowed',
+            'subjects10.*.regex' => 'The :input is not allowed',
+            'subjects11.*.regex' => 'The :input is not allowed',
             'units.*.min' => 'Enter valid number for units',
             'units1.*.min' => 'Enter valid number for units',
             'units3.*.min' => 'Enter valid number for units',

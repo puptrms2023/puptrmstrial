@@ -8,6 +8,12 @@
 
     </a>
 
+    <div class="sidebar-card d-lg-flex">
+        <p class="text-left text-light">
+            <strong>{{ Auth::user()->full_name }}</strong><br>{{ auth()->user()->roles->pluck('name')[0] ?? '' }}
+        </p>
+    </div>
+
     <hr class="sidebar-divider my-0">
 
     <div class="sidebar-heading mt-4 text-light">
@@ -247,15 +253,15 @@
     @endcan
     @can('menu module')
         <li
-            class="nav-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}">
-            <a class="nav-link {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? '' : 'collapsed' }}"
+            class="nav-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/programs') || Request::is('admin/maintenance/programs/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/programs') || Request::is('admin/maintenance/programs/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? '' : 'collapsed' }}"
                 href="#" data-toggle="collapse" data-target="#modulePages" aria-expanded="true"
                 aria-controls="modulePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Module Management</span>
             </a>
             <div id="modulePages"
-                class="collapse {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'show' : '' }}"
+                class="collapse {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/*') || Request::is('admin/maintenance/programs') || Request::is('admin/maintenance/programs/*') || Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') || Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'show' : '' }}"
                 aria-labelledby="" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     @can('form list')
@@ -263,8 +269,8 @@
                             href="{{ url('admin/maintenance/form') }}">Form</a>
                     @endcan
                     @can('course list')
-                        <a class="collapse-item {{ Request::is('admin/maintenance/courses') || Request::is('admin/maintenance/courses/*') ? 'active' : '' }}"
-                            href="{{ url('admin/maintenance/courses') }}">Course</a>
+                        <a class="collapse-item {{ Request::is('admin/maintenance/programs') || Request::is('admin/maintenance/programs/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/programs') }}">Programs</a>
                     @endcan
                     @can('about view')
                         <a class="collapse-item {{ Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') ? 'active' : '' }}"

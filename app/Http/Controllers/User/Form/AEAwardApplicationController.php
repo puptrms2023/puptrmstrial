@@ -28,7 +28,7 @@ class AEAwardApplicationController extends Controller
 
         $award->user_id = $data['user_id'];
         $award->course_id = $data['course_id'];
-        $award->school_year = $data['school_year'];
+        $award->school_year = getAcademicYear();
         $award->year_level = $data['year_level'];
         $award->ae_app_id = generateApplicationIdAE();
 
@@ -67,7 +67,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -79,7 +79,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades1'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term1'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -90,7 +90,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades3'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term3'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -101,7 +101,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades4'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term4'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -112,7 +112,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades5'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term5'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -123,7 +123,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades6'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term6'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -134,7 +134,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades7'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term7'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -145,7 +145,7 @@ class AEAwardApplicationController extends Controller
             $sum->grades = $data['grades8'][$key];
             $sum->user_id = $data['user_id'];
             $sum->term = $data['term8'];
-            $sum->sy = $data['school_year'];
+            $sum->sy =  getAcademicYear();
             $sum->app_id = $lastid;
             $sum->save();
         }
@@ -158,7 +158,7 @@ class AEAwardApplicationController extends Controller
                 $sum->grades = $data['grades9'][$key];
                 $sum->user_id = $data['user_id'];
                 $sum->term = $data['term9'];
-                $sum->sy = $data['school_year'];
+                $sum->sy =  getAcademicYear();
                 $sum->app_id = $lastid;
                 $sum->save();
             }
@@ -172,7 +172,7 @@ class AEAwardApplicationController extends Controller
                 $sum->grades = $data['grades10'][$key];
                 $sum->user_id = $data['user_id'];
                 $sum->term = $data['term10'];
-                $sum->sy = $data['school_year'];
+                $sum->sy =  getAcademicYear();
                 $sum->app_id = $lastid;
                 $sum->save();
             }
@@ -186,7 +186,7 @@ class AEAwardApplicationController extends Controller
                 $sum->grades = $data['grades11'][$key];
                 $sum->user_id = $data['user_id'];
                 $sum->term = $data['term11'];
-                $sum->sy = $data['school_year'];
+                $sum->sy =  getAcademicYear();
                 $sum->app_id = $lastid;
                 $sum->save();
             }

@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'login');
+
+Route::controller(App\Http\Controllers\PolicyController::class)->group(function () {
+    Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');
+    Route::get('/terms-of-use', 'terms_of_use')->name('terms_of_use');
+});
+
 Auth::routes(['verify' => true]);
 
 
@@ -62,7 +68,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     //Achievers Award Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\StudentApplicantsController::class)->group(function () {
         Route::get('/achievers-award', 'index');
-        Route::get('/achievers-award/overall', 'overallList');
+        Route::get('/achievers-award/overall', 'overallList')->name('achievers');
         Route::get('/achievers-award/{course_code}', 'achieversView');
         Route::get('/achievers-award/{course_code}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/achievers-award/{course_code}/view-all-students-pdf', 'openPdfAll');
@@ -105,7 +111,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     //DL Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\DLApplicantsController::class)->group(function () {
         Route::get('/deans-list-award', 'index');
-        Route::get('/deans-list-award/overall', 'overallList');
+        Route::get('/deans-list-award/overall', 'overallList')->name('deans');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/deans-list-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/deans-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
@@ -122,7 +128,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     //PL Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\PLApplicantsController::class)->group(function () {
         Route::get('/presidents-list-award', 'index');
-        Route::get('/presidents-list-award/overall', 'overallList');
+        Route::get('/presidents-list-award/overall', 'overallList')->name('presidents');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/presidents-list-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/presidents-list-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
@@ -139,7 +145,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     //Academic Excellence Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\AEApplicantsController::class)->group(function () {
         Route::get('/academic-excellence-award', 'index');
-        Route::get('/academic-excellence-award/overall', 'overallList');
+        Route::get('/academic-excellence-award/overall', 'overallList')->name('acad_excellence');
         Route::get('/academic-excellence-award/{course_code}/{year_level}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/academic-excellence-award/{course_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/academic-excellence-award/{course_code}/{year_level}/view-rejected-students-pdf', 'openPdfRejected');
@@ -156,7 +162,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
     //Non Academic Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\NAApplicantsController::class)->group(function () {
         Route::get('/non-academic-award', 'index');
-        Route::get('/non-academic-award/all', 'overallList');
+        Route::get('/non-academic-award/all', 'overallList')->name('nonacademic');
         Route::get('/non-academic-award/{nonacad_code}/view-approved-students-pdf', 'openPdfApproved');
         Route::get('/non-academic-award/{nonacad_code}/view-all-students-pdf', 'openPdfAll');
         Route::get('/non-academic-award/{nonacad_code}/view-rejected-students-pdf', 'openPdfRejected');
@@ -260,15 +266,15 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('/update-password', 'store');
     });
 
-    //course M
+    //programs M
     Route::controller(App\Http\Controllers\Admin\Maintenance\CourseController::class)->group(function () {
-        Route::get('/maintenance/courses', 'index');
-        Route::get('/maintenance/courses/create', 'create');
-        Route::post('/maintenance/courses', 'store');
-        Route::get('/maintenance/courses/{id}', 'edit');
-        Route::put('/maintenance/courses/{id}', 'update');
-        Route::post('/maintenance/delete-course', 'destroy');
-        Route::delete('/maintenance/courses/bulk-delete', 'deleteAll');
+        Route::get('/maintenance/programs', 'index');
+        Route::get('/maintenance/programs/create', 'create');
+        Route::post('/maintenance/programs', 'store');
+        Route::get('/maintenance/programs/{id}', 'edit');
+        Route::put('/maintenance/programs/{id}', 'update');
+        Route::post('/maintenance/delete-programs', 'destroy');
+        Route::delete('/maintenance/programs/bulk-delete', 'deleteAll');
     });
     //about M
     Route::controller(App\Http\Controllers\Admin\Maintenance\AboutController::class)->group(function () {

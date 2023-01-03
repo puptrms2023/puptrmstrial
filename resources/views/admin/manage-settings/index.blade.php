@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page_title', 'Manage System Settings')
+@section('title', 'Settings')
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'PUPT RMS Dashboard')
+@section('title', 'My Dashboard')
 
 @section('content')
 
@@ -17,101 +17,112 @@
 
         <!-- Total Achiever's Award Applicants -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                Total Achiever's Award Applicants</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_achiever }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+            <a class="text-decoration-none" href="{{ route('achievers') }}">
+                <div class="card lift border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    Total Achiever's Award Applicants</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_achiever }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Total Dean's List Applicants -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Total Dean's List Applicants</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_deans }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+            <a class="text-decoration-none" href="{{ route('deans') }}">
+                <div class="card lift border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Total Dean's List Applicants</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_deans }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Total President's List Applicants -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total President's List
-                                Applicants
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $analytics_presidents }}
+            <a class="text-decoration-none" href="{{ route('presidents') }}">
+                <div class="card lift border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total President's
+                                    List
+                                    Applicants
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $analytics_presidents }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Total Academic Excellence -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Academic Excellence</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_acadexcell }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+            <a class="text-decoration-none" href="{{ route('acad_excellence') }}">
+                <div class="card lift border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Total Academic Excellence</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $analytics_acadexcell }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-medal fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
+        </a>
     </div>
 
     <div class="row mt-2">
 
         <!-- Total Non-Academic Award Applicants -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-secondary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                Total Non-Academic Award Applicants</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_nonacad }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa-solid fa-trophy fa-2x text-gray-300"></i>
+            <a class="text-decoration-none" href="{{ route('nonacademic') }}">
+                <div class="card lift border-left-secondary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                    Total Non-Academic Award Applicants</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_nonacad }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-trophy fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Total Dean's List Applicants -->

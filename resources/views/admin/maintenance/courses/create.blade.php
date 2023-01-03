@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Course')
+@section('title', 'Add Program')
 
 @section('content')
 
@@ -8,33 +8,33 @@
         <div class="col-xl-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Add Course
-                        <a href="{{ url('admin/maintenance/courses') }}" class="btn btn-primary btn-sm float-right">Back</a>
+                    <div class="m-0 font-weight-bold text-primary">Add Program
+                        <a href="{{ url('admin/maintenance/programs') }}" class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
                 <div class="card-body">
                     @include('layouts.partials.messages')
 
-                    <form method="POST" action="{{ url('admin/maintenance/courses') }}">
+                    <form method="POST" action="{{ url('admin/maintenance/programs') }}">
                         @csrf
 
                         <div class="row mb-3">
                             <div class="col-md-3 mb-3">
                                 <label class="small">Code</label>
                                 <span class="text-danger">*</span>
-                                <input type="text" name="course_code" class="form-control"
-                                    value="{{ old('course_code') }}"placeholder="Enter code">
-                                @if ($errors->has('course_code'))
-                                    <span class="text-danger text-left">{{ $errors->first('course_code') }}</span>
+                                <input type="text" name="program_code" class="form-control"
+                                    value="{{ old('program_code') }}"placeholder="Program code">
+                                @if ($errors->has('program_code'))
+                                    <span class="text-danger text-left">{{ $errors->first('program_code') }}</span>
                                 @endif
                             </div>
                             <div class="col-md-9 mb-3">
-                                <label class="small">Course Name</label>
+                                <label class="small">Program Name</label>
                                 <span class="text-danger">*</span>
-                                <input type="text" name="course" class="form-control"
-                                    value="{{ old('course') }}"placeholder="Enter course name">
-                                @if ($errors->has('course'))
-                                    <span class="text-danger text-left">{{ $errors->first('course') }}</span>
+                                <input type="text" name="program" class="form-control"
+                                    value="{{ old('program') }}"placeholder="Program name">
+                                @if ($errors->has('program'))
+                                    <span class="text-danger text-left">{{ $errors->first('program') }}</span>
                                 @endif
                             </div>
                         </div>

@@ -27,7 +27,6 @@ class NonAcademicAwardRequest extends FormRequest
         return [
             'user_id' => 'required',
             'course_id' => 'required',
-            'school_year' => 'required',
             'year_level' => 'required',
             'nonacad_id' => 'required',
             'remarks' => 'nullable',

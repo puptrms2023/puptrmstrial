@@ -35,7 +35,6 @@
                                     <th>1st Sem GWA</th>
                                     <th>2nd Sem GWA</th>
                                     <th>Average</th>
-                                    <th>Image</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -55,10 +54,6 @@
                                         <td class="text-center">{{ $item->gwa_1st }}</td>
                                         <td class="text-center">{{ $item->gwa_2nd }}</td>
                                         <td class="text-center">{{ $item->gwa }}</td>
-                                        <td>
-                                            <img src="{{ asset('uploads/' . $item->image) }}"
-                                                class="img-thumbnail img-circle" width="50" alt="Image">
-                                        </td>
                                         <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>

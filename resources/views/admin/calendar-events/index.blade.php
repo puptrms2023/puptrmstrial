@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Events')
+@section('title', 'Events')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">

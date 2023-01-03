@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Students')
+@section('title', 'Students')
 
 @section('content')
 
@@ -60,7 +60,7 @@
                                 <tr>
                                     <th class="text-center info"><input type="checkbox" name="checkAll" class="checkAll">
                                     </th>
-                                    <th>User ID</th>
+                                    <th>Student No.</th>
                                     <th>Username</th>
                                     <th>Name</th>
                                     <th>Email</th>

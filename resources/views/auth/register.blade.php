@@ -138,8 +138,13 @@
                                             </div>
 
                                         </div>
-
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <div class="small mb-3">By signing up, you agree to the <a
+                                                href="{{ route('terms_of_use') }}" style="color:#0d6efd">Terms of
+                                                Use</a> and
+                                            <a href="{{ route('privacy_policy') }}" style="color:#0d6efd">Privacy
+                                                Policy</a>.
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Sign Up</button>
                                     </form>
 
                                     <hr>

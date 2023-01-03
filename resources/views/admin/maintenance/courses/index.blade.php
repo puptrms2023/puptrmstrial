@@ -1,21 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Courses Maintenance')
+@section('title', 'Programs Maintenance')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Course</h5>
+                    <h5 class="modal-title">Delete Program</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/maintenance/delete-course') }}" method="POST">
+                <form action="{{ url('admin/maintenance/delete-programs') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the course?</p>
+                        <p>Are you sure you want to delete the program?</p>
                         <input type="hidden" name="course_delete_id" id="c_id">
                     </div>
                     <div class="modal-footer">
@@ -30,7 +30,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Course</h5>
+                    <h5 class="modal-title">Delete Program</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -46,17 +46,17 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Course - Maintenance</div>
+        <div class="h3 mb-0 text-gray-800">Programs - Maintenance</div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="m-0 font-weight-bold text-primary">Courses
+                    <div class="m-0 font-weight-bold text-primary">Program
                         @can('course create')
-                            <a class="btn btn-info btn-sm float-right" href="{{ url('admin/maintenance/courses/create') }}">Add
-                                Course</a>
+                            <a class="btn btn-info btn-sm float-right" href="{{ url('admin/maintenance/programs/create') }}">Add
+                                Program</a>
                         @endcan
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($course as $list)
+                                @foreach ($programs as $list)
                                     <tr>
                                         <td class="text-center"><input type="checkbox" class="user-checkboxes"
                                                 data-id="{{ $list->id }}">
@@ -87,7 +87,7 @@
                                         <td>{{ $list->course }}</td>
                                         <td>
                                             @can('course edit')
-                                                <a href="{{ url('admin/maintenance/courses/' . $list->id) }}"
+                                                <a href="{{ url('admin/maintenance/programs/' . $list->id) }}"
                                                     class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                             @endcan
                                             @can('course delete')
@@ -124,13 +124,13 @@
             });
             var selectRowsCount = arr.length;
             $('#data-count').text('Are you sure you want to delete the ' + selectRowsCount +
-                ' course?');
+                ' program(s)?');
             $('#deleteModal2').modal('show');
 
             $(document).on('click', '.delbtn', function() {
                 if (selectRowsCount > 0) {
                     $.ajax({
-                        url: "{{ url('admin/maintenance/courses/bulk-delete') }}",
+                        url: "{{ url('admin/maintenance/programs/bulk-delete') }}",
                         type: "DELETE",
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]')

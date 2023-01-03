@@ -19,8 +19,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        $course = Courses::all();
-        return view('admin.maintenance.courses.index', compact('course'));
+        $programs = Courses::all();
+        return view('admin.maintenance.courses.index', compact('programs'));
     }
 
     public function create()
@@ -31,37 +31,37 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'course_code' => 'required',
-            'course' => 'required'
+            'program_code' => 'required|unique:courses,course_code',
+            'program' => 'required|unique:courses,course'
         ]);
 
         $course = new Courses;
-        $course->course_code = $request->course_code;
-        $course->course = $request->course;
+        $course->course_code = $request->program_code;
+        $course->course = $request->program;
         $course->save();
 
-        return redirect('admin/maintenance/courses')->with('success', 'Course added successfully');
+        return redirect('admin/maintenance/programs')->with('success', 'Course added successfully');
     }
 
     public function edit($id)
     {
-        $course = Courses::find($id);
-        return view('admin.maintenance.courses.edit', compact('course'));
+        $program = Courses::find($id);
+        return view('admin.maintenance.courses.edit', compact('program'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'course_code' => 'required',
-            'course' => 'required'
+            'program_code' => 'required|unique:courses,course_code,' . $id,
+            'program' => 'required|unique:courses,course,' . $id,
         ]);
 
         $course = Courses::find($id);
-        $course->course_code = $request->course_code;
-        $course->course = $request->course;
+        $course->course_code = $request->program_code;
+        $course->course = $request->program;
         $course->save();
 
-        return redirect('admin/maintenance/courses')->with('success', 'Course updated successfully');
+        return redirect('admin/maintenance/programs')->with('success', 'Course updated successfully');
     }
 
     public function destroy(Request $request)

@@ -17,7 +17,7 @@ class ActivityLogController extends Controller
 
     public function index()
     {
-        $activity = ModelsAudit::with('user')->orderBy('id', 'desc')->get();
+        $activity = ModelsAudit::with('user')->has('user')->orderBy('id', 'desc')->get();
         // dd($activity);
         return view('admin.user-activity-log.index', compact('activity'));
     }

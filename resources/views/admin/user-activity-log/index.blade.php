@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Activity Log')
+@section('title', 'Activity Log')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">
@@ -60,7 +60,6 @@
                                     <th>Changed Date</th>
                                     <th>Model</th>
                                     <th>Changed By</th>
-                                    <th>URL</th>
                                     <th>Operation</th>
                                 </tr>
                             </thead>
@@ -71,10 +70,8 @@
                                             {{ \Carbon\Carbon::parse($act->created_at)->format('F d, Y h:i a ') }}</td>
                                         <td>{{ substr($act->auditable_type, 11) }}</td>
                                         <td>
-                                            username: <b>{{ $act->user->username }}</b><br>
-                                            email: {{ $act->user->email }}
+                                            <b>{{ $act->user->username }}</b>
                                         </td>
-                                        <td>{{ $act->url }}</td>
                                         <td>
                                             @if ($act->event == 'updated')
                                                 <span class="badge badge-warning">UPDATE</span>

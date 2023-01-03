@@ -20,6 +20,10 @@ function getAcademicYear()
 {
     return Setting::where('id', 1)->value('session_year');
 }
+function getPhone()
+{
+    return Setting::where('id', 1)->value('phone');
+}
 function getLogo()
 {
     $photo = Setting::where('id', 1)->value('logo');

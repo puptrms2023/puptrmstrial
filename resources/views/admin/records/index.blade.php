@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Courses Maintenance')
+@section('title', 'Recognition Records')
 
 @section('content')
     <div class="modal" tabindex="-1" id="deleteModal">

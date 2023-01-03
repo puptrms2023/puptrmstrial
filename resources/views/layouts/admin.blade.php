@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="author" content="{{ getSystemName() }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ getSystemAcronym() }}</title>
+    <title> @yield('title') | {{ getSystemAcronym() }}</title>
 
     <!-- Fonts -->
     <link href="{{ asset('admin/vendor/fontawesome-free-6.2.0-web/css/all.min.css') }}" rel="stylesheet" type="text/css">

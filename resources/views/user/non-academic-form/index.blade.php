@@ -11,6 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
+        <b>School Year: <span class="text-primary">{{ getAcademicYear() }}</span></b>
     </div>
 
     @include('layouts.partials.messages')
@@ -63,17 +64,7 @@
 
                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                 <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="font-weight-bold">School Year</label>
-                            <span class="text-danger">*</span>
-                            <select class="custom-select" name="school_year">
-                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">

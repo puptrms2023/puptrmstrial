@@ -32,7 +32,7 @@ class NonAcademicAwardController extends Controller
 
         $award->user_id = $data['user_id'];
         $award->course_id = $data['course_id'];
-        $award->school_year = $data['school_year'];
+        $award->school_year =  getAcademicYear();
         $award->year_level = $data['year_level'];
         $award->nonacad_id = $data['nonacad_id'];
         $award->org_id = $data['org_id'];

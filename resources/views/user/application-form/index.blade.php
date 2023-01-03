@@ -11,6 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
+        <b>School Year: <span class="text-primary">{{ getAcademicYear() }}</span></b>
     </div>
 
     @include('layouts.partials.messages')
@@ -69,17 +70,6 @@
                     </div>
                 </div>
 
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="font-weight-bold">School Year</label>
-                            <span class="text-danger">*</span>
-                            <select class="custom-select" name="school_year">
-                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -295,4 +285,21 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        function displayAward() {
+            // get the value of the input field with id "GWA"
+            var GWA = document.getElementById("gwa1").value;
+
+            if (GWA >= 1.00 && GWA <= 1.50) {
+                console.log("PRESIDENT'S LIST");
+            } else if (GWA > 1.50 && GWA <= 1.75) {
+                console.log("DEAN'S LIST");
+            } else {
+                console.log("Not eligible for award.");
+            }
+        }
+    </script>
 @endsection

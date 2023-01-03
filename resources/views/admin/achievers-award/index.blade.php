@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'View Achiever Awardees')
+@section('title', 'Achiever\'s Award')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="h3 mb-0 text-gray-800">Courses - Achiever's Awardees</div>
+        <div class="h3 mb-0 text-gray-800">Programs - Achiever's Awardees</div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}

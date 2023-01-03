@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Imported CSV')
+@section('title', 'Parse CSV')
 
 @section('content')
 

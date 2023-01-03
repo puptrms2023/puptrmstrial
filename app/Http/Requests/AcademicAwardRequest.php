@@ -25,30 +25,34 @@ class AcademicAwardRequest extends FormRequest
      */
     public function rules()
     {
+        $bannedWords = ['required', 'string', 'max:255', 'regex:/^(?!(?:CIVIC WELFARE TRAINING SERVICE 1|CWTS|NSTP|PHYSICAL FITNESS AND SELF-TESTING ACTIVITIES|RHYTHMIC ACTIVITIES|INDIVIDUAL\/DUAL\/COMBATIVE SPORTS|TEAM SPORTS)$)/i'];
+        $commonRules = ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])];
+
         return [
             'user_id' => 'required',
             'app_id' => 'nullable',
-            'subjects.*' => 'required|string',
-            'subjects1.*' => 'required|string',
-            'school_year' => 'required',
-            'grades.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
-            'grades1.*' => ['required', 'numeric', 'lt:2.75', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
+            'subjects.*' => $bannedWords,
+            'subjects1.*' => $bannedWords,
+            'grades.*' =>  $commonRules,
+            'grades1.*' =>  $commonRules,
             'units.*' => 'required|integer|min:1',
             'units1.*' => 'required|integer|min:1',
             'term' => 'required',
             'term1' => 'required',
             'total.*' => 'nullable',
             'total1.*' => 'nullable',
-            'year_level' => 'required|string',
+            'year_level' => 'required|string||max:255',
             'image' => 'required|mimes:jpeg,png,jpg',
-            'award_applied' => 'required|string',
-            'course_id' => 'required|string',
+            'award_applied' => 'required|string|max:255',
+            'course_id' => 'required|string|max:255',
         ];
     }
 
     public function messages()
     {
         return [
+            'subjects.*.regex' => 'The :input is not allowed',
+            'subjects1.*.regex' => 'The :input is not allowed',
             'units.*.min' => 'Enter valid number for units',
             'units1.*.min' => 'Enter valid number for units',
             'units9.*.min' => 'Enter valid number for units',

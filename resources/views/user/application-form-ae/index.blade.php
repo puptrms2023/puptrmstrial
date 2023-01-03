@@ -11,6 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
+        <b>School Year: <span class="text-primary">{{ getAcademicYear() }}</span></b>
     </div>
 
     @include('layouts.partials.messages')
@@ -67,20 +68,9 @@
                             application form will be automatically rejected.</p>
                     </div>
                 </div>
+                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
 
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
-                            <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
-                            <label for="" class="font-weight-bold">School Year</label>
-                            <span class="text-danger">*</span>
-                            <select class="custom-select" name="school_year">
-                                <option value="{{ getAcademicYear() }}">{{ getAcademicYear() }}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -861,7 +851,8 @@
                 {{-- summer --}}
                 <div class="col-md-6 mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="summerchk" id="chkSummer" onchange="toggleStatus()">
+                        <input class="form-check-input" type="checkbox" name="summerchk" id="chkSummer"
+                            onchange="toggleStatus()">
                         <label class="form-check-label" for="flexCheckChecked">
                             Summer Subjects
                         </label>

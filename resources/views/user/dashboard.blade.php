@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'PUPTRMS Dashboard')
+@section('title', 'My Dashboard')
 
 @section('content')
 
@@ -25,10 +25,17 @@
             <div class="card border-left-info shadow mb-4">
                 <img src="{{ asset('uploads/form/' . $acadexcel->photocard) }}" class="card-img-top" alt="image">
                 <div class="card-body text-center">
-                    <a href="{{ url('user/application-form-ae') }}"
-                        class="btn btn-sm btn-outline-primary mb-2 mt-2">ACADEMIC
-                        EXCELLENCE
-                        AWARD APPLICATION</a>
+                    @if ($acad_excell_award_count == '0')
+                        <a href="{{ url('user/application-form-ae') }}"
+                            class="btn btn-sm btn-outline-primary mb-2 mt-2">ACADEMIC
+                            EXCELLENCE
+                            AWARD APPLICATION</a>
+                    @else
+                        <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                            data-target="#maxNumber">
+                            ACADEMIC EXCELLENCE AWARD APPLICATION
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -82,9 +89,16 @@
             <div class="card border-left-danger shadow mb-4">
                 <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
                 <div class="card-body text-center">
-                    <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
-                        ACADEMIC AWARD APPLICATION
-                    </a>
+                    @if ($acad_award_count == '0')
+                        <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
+                            ACADEMIC AWARD APPLICATION
+                        </a>
+                    @else
+                        <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                            data-target="#maxNumber">
+                            ACADEMIC AWARD APPLICATION
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -147,4 +161,23 @@
         </div>
     </div>
 
+    <div class="modal fade" id="maxNumber" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="maxNumberLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="maxNumberLabel">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You have already exceeded the maximum number of award application.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
