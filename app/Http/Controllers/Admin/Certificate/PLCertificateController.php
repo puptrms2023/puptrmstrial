@@ -47,7 +47,7 @@ class PLCertificateController extends Controller
         $users = StudentApplicant::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
             $data = [
-                'app_id' => shortUrl() . '/user/check-qr/' . $user->stud_app_id,
+                'app_id' => shortUrl() . '/verify-award/' . $user->stud_app_id,
                 'fname' => $user->users->first_name,
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
@@ -94,7 +94,7 @@ class PLCertificateController extends Controller
             'sy'  => $stud->school_year
         ];
 
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->stud_app_id));
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/verify-award/' . $stud->stud_app_id));
 
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.send-awardees-certificates.presidents-list-award.show', $data, compact('qrcode', 'sig'));

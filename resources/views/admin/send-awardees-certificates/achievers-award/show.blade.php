@@ -88,7 +88,7 @@
         @if ($mname == '')
             {{ $fname . ' ' . $lname }}
         @else
-            {{ $fname . ' ' . $mname . ' ' . $lname }}
+            {{ $fname . ' ' . substr($mname, 0, 1) . '.' . ' ' . $lname }}
         @endif
     </div>
     <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $courses->course)
+@section('title', 'President\'s Listers Certificates')
 
 @section('content')
     <div class="d-sm-flex align-awardees-center justify-content-between mb-4">

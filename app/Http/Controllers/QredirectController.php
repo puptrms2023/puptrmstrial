@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Qrcode;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AcademicExcellence;
@@ -15,7 +15,6 @@ class QredirectController extends Controller
         $user_sa = StudentApplicant::where('stud_app_id', $id)->where('status', '1')->first();
         $user_ae = AcademicExcellence::where('ae_app_id', $id)->where('status', '1')->first();
         $user_na = NonAcademicApplicant::where('nonacad_app_id', $id)->where('status', '1')->first();
-
-        return view('user.check-qr.stud-app', compact('user_sa', 'user_ae', 'user_na'));
+        return view('verify-award.index', compact('user_sa', 'user_ae', 'user_na'));
     }
 }

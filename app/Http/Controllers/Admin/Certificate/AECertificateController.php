@@ -47,7 +47,7 @@ class AECertificateController extends Controller
         $users = AcademicExcellence::whereIn("id", $request->ids)->get();
         foreach ($users as $user) {
             $data = [
-                'app_id' => shortUrl() . '/user/check-qr/' . $user->ae_app_id,
+                'app_id' => shortUrl() . '/verify-award/' . $user->ae_app_id,
                 'fname' => $user->users->first_name,
                 'mname' => $user->users->middle_name,
                 'lname' => $user->users->last_name,
@@ -99,7 +99,7 @@ class AECertificateController extends Controller
             'totalwith5thAndSummer' => ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11
         ];
 
-        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/user/check-qr/' . $stud->ae_app_id));
+        $qrcode = base64_encode(QrCode::format('svg')->color(128, 0, 0)->size(200)->errorCorrection('H')->generate(shortUrl() . '/verify-award/' . $stud->ae_app_id));
 
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.send-awardees-certificates.academic-excellence-award.show', $data, compact('stud', 'qrcode'));

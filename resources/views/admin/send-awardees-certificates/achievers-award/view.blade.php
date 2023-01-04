@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Achiever Awardees Certificates')
 @section('content')
     <div class="d-sm-flex align-awardees-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">{{ $courses->course }} - Achiever's Awardees</div>

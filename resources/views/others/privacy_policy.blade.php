@@ -12,7 +12,7 @@
                             <div class="col-md-12 col-lg-12">
                                 <div class="row">
                                     <div style="font-size: 16px;" class="col-md-10 offset-md-1">
-                                        <p>Last modified: November 4, 2019</p>
+                                        <p>Last modified: November 4, 2022</p>
 
                                         <h4 class="font-weight-semibold">Introduction</h4>
 

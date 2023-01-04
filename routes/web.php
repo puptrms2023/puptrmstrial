@@ -20,7 +20,9 @@ Route::controller(App\Http\Controllers\PolicyController::class)->group(function 
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');
     Route::get('/terms-of-use', 'terms_of_use')->name('terms_of_use');
 });
-
+Route::controller(App\Http\Controllers\QredirectController::class)->group(function () {
+    Route::get('/verify-award/{id}', 'redirect');
+});
 Auth::routes(['verify' => true]);
 
 
@@ -374,8 +376,5 @@ Route::prefix('user')->middleware('auth', 'verified', 'isUser')->group(function 
     Route::controller(App\Http\Controllers\User\Password\ChangePassController::class)->group(function () {
         Route::get('/change-password', 'index');
         Route::post('/update-password', 'store');
-    });
-    Route::controller(App\Http\Controllers\User\Qrcode\QredirectController::class)->group(function () {
-        Route::get('/check-qr/{id}', 'redirect');
     });
 });

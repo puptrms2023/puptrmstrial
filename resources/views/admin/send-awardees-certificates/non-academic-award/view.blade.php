@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Non Academic Award')
+@section('title', 'Non-Academic Award Certificates')
 
 @section('content')
     <div class="d-sm-flex align-awardees-center justify-content-between mb-4">

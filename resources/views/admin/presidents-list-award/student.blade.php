@@ -190,7 +190,14 @@
                     </div>
                     <div class="mb-3 hidden" id="reason">
                         <label for="">Reason</label>
-                        <textarea class="form-control" name="reason" rows="2">{{ $status->reason }}</textarea>
+                        {{-- <select name="reason" class="custom-select my-1 mr-sm-2 others" id="">
+                            <option value="">Reason 1</option>
+                            <option value="">Reason 2</option>
+                            <option value="">Reason 3</option>
+                            <option value="Others">Others</option>
+                        </select> --}}
+                        {{-- here --}}
+                        <textarea class="form-control" id="other_reasons" name="reason" rows="2">{{ $status->reason }}</textarea>
                     </div>
                     <div class="mb-3">
                         <button class="btn btn-secondary" type="submit">Update</button>
