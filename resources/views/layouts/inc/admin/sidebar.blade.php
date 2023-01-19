@@ -280,6 +280,10 @@
                         <a class="collapse-item {{ Request::is('admin/maintenance/signatures') || Request::is('admin/maintenance/signatures/*') ? 'active' : '' }}"
                             href="{{ url('admin/maintenance/signatures') }}">Signature</a>
                     @endcan
+                    @can('signature list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/data-retention') || Request::is('admin/maintenance/data-retention/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/data-retention') }}">Data Retention</a>
+                    @endcan
                 </div>
             </div>
         </li>

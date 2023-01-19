@@ -303,6 +303,12 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::get('/maintenance/signatures-report/status/update', 'changeStatusReports');
         Route::post('/maintenance/delete-signature', 'destroy');
     });
+    // data retention policy
+    Route::controller(App\Http\Controllers\Admin\Maintenance\DataRetentionController::class)->group(function () {
+        Route::get('/maintenance/data-retention', 'index')->name('retention');
+        Route::get('/maintenance/data-retention/{id}', 'edit')->name('retention.edit');
+        Route::put('/maintenance/update-data-retention/{id}', 'update')->name('retention.update');
+    });
     //Recognition Records
     Route::controller(App\Http\Controllers\Admin\Records\RecordsController::class)->group(function () {
         Route::get('/records', 'index');
