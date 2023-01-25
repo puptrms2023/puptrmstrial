@@ -64,7 +64,11 @@
                                             @if ($item->status == '2')
                                                 <span class="badge badge-danger">Rejected</span><br>
                                                 <div class="small">
-                                                    <P>{{ $item->reason }}</p>
+                                                    @if ($item->reason == '1')
+                                                        Others: {{ $item->others }}
+                                                    @else
+                                                        {{ $item->reasons->description }}
+                                                    @endif
                                                 </div>
                                             @endif
                                         </td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Applicant;
 
 use App\Models\User;
+use App\Models\Reason;
 use App\Models\Courses;
 use App\Models\Summary;
 use Illuminate\Http\Request;
@@ -124,7 +125,8 @@ class PLApplicantsController extends Controller
         $grades2 = Summary::where('app_id', $id)
             ->where('term', "2")
             ->get();
-        return view('admin.presidents-list-award.student', compact('status', 'grades', 'grades2'));
+        $reasons = Reason::pluck('description', 'id');
+        return view('admin.presidents-list-award.student', compact('status', 'grades', 'grades2', 'reasons'));
     }
 
     public function update(Request $request, $course_code, $id)
@@ -138,6 +140,7 @@ class PLApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
+        $status->others = $request->others;
         $award = $status->award->acad_code;
 
         $users = User::where('id', $status->user_id)->get();

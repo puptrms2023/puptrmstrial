@@ -163,7 +163,13 @@
                     <td>{{ $stud->users->first_name }}</td>
                     <td align="center">{{ $stud->courses->course_code }}</td>
                     <td align="center">{{ $stud->year_level }}</td>>
-                    <td align="center">{{ $stud->reason }}</td>
+                    <td align="center">
+                        @if ($stud->reason == '1')
+                            Others: {{ $stud->others }}
+                        @else
+                            {{ $stud->reasons->description }}
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </body>

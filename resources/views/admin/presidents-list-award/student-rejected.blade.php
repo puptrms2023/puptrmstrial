@@ -165,7 +165,13 @@
                     <td align="center">{{ $stud->courses->course_code }}</td>
                     <td align="center">{{ $stud->gwa_1st }}</td>
                     <td align="center">{{ $stud->gwa_2nd }}</td>
-                    <td align="center">{{ $stud->reason }}</td>
+                    <td align="center">
+                        @if ($stud->reason == '1')
+                            Others: {{ $stud->others }}
+                        @else
+                            {{ $stud->reasons->description }}
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </body>

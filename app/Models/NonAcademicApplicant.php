@@ -30,4 +30,8 @@ class NonAcademicApplicant extends Model implements Auditable
     {
         return $this->belongsTo(NonAcadAward::class, 'nonacad_id', 'id');
     }
+    public function reasons()
+    {
+        return $this->belongsTo(Reason::class, 'reason', 'id');
+    }
 }

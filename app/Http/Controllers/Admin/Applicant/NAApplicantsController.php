@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin\Applicant;
 
 use App\Models\User;
+use App\Models\Reason;
 use App\Models\NonAcadAward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\NonAcademicApplicant;
-use App\Notifications\NonAcademicStatus;
-use App\Notifications\StudentApplicantStatus;
 use Illuminate\Support\Facades\File;
+use App\Notifications\NonAcademicStatus;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\StudentApplicantStatus;
 
 class NAApplicantsController extends Controller
 {
@@ -32,7 +33,8 @@ class NAApplicantsController extends Controller
     public function details($nonacad_id, $id)
     {
         $form = NonAcademicApplicant::find($id);
-        return view('admin.non-academic-award.show', compact('form'));
+        $reasons = Reason::pluck('description', 'id');
+        return view('admin.non-academic-award.show', compact('form', 'reasons'));
     }
 
     public function overallList()
@@ -84,6 +86,7 @@ class NAApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
+        $status->others = $request->others;
         $award = $status->nonacad->nonacad_code;
 
         $users = User::where('id', $status->user_id)->get();

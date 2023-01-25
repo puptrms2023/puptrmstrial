@@ -4,7 +4,11 @@
     @elseif ($data->status == '2')
         <span class="badge badge-danger">Rejected</span>
         <div class="small">
-            <P>{{ $data->reason }}</p>
+            @if ($data->reason == '1')
+                Others: {{ $data->others }}
+            @else
+                {{ $data->reasons->description }}
+            @endif
         </div>
     @else
         <a href="{{ url('admin/achievers-award/' . $data->courses->course_code . '/approve/' . $data->id) }}"
@@ -28,7 +32,11 @@
     @elseif ($data->status == '2')
         <span class="badge badge-danger">Rejected</span>
         <div class="small">
-            <P>{{ $data->reason }}</p>
+            @if ($data->reason == '1')
+                Others: {{ $data->others }}
+            @else
+                {{ $data->reasons->description }}
+            @endif
         </div>
     @else
         <span class="badge badge-warning">Pending</span>

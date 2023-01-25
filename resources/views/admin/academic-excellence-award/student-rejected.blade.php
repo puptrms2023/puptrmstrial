@@ -180,7 +180,13 @@
                             {{ $stud->gwa }}
                         @endif
                     </td>
-                    <td>{{ $stud->reason }}</td>
+                    <td align="center">
+                        @if ($stud->reason == '1')
+                            Others: {{ $stud->others }}
+                        @else
+                            {{ $stud->reasons->description }}
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </body>

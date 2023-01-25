@@ -43,7 +43,12 @@
 //     });
 
 //   })();
-
+document.addEventListener('DOMContentLoaded', (event) => {
+    $('.status').on('change', checkPattern);
+    checkPattern();
+    $('.reject').on('change', checkPattern2);
+    checkPattern2();
+});
 
 $(document).ready(function () {
     $(".nonacadaward").change(function () {
@@ -151,22 +156,36 @@ $(document).ready(function () {
     $(".status").change(function () {
         var responseId = $(this).val();
         if (responseId == "2") {
-            $("#reason").removeClass("hidden");
-            $("#reason").addClass("show");
+            $("#reject").removeClass("hidden");
+            $("#reject").addClass("show");
+            // $("#others").removeClass("hidden");
+            // $("#others").addClass("show");
         } else {
-            $("#reason").removeClass("show");
-            $("#reason").addClass("hidden");
+            $("#reject").removeClass("show");
+            $("#reject").addClass("hidden");
+            // $("#others").removeClass("show");
+            // $("#others").addClass("hidden");
         }
     });
 });
 //show reject select option
 var checkPattern = function() {
     if ($('.status').val() == '2') {
-        $("#reason").removeClass("hidden");
-        $("#reason").addClass("show");
+        $("#reject").removeClass("hidden");
+        $("#reject").addClass("show");
     } else {
-        $("#reason").removeClass("show");
-        $("#reason").addClass("hidden");
+        $("#reject").removeClass("show");
+        $("#reject").addClass("hidden");
+    }
+}
+//show reason
+var checkPattern2 = function() {
+    if ($('.reject').val() == '1') {
+        $("#others").removeClass("hidden");
+        $("#others").addClass("show");
+    } else {
+        $("#others").removeClass("show");
+        $("#others").addClass("hidden");
     }
 }
 // User--------------------------------------------------------------------------
@@ -216,11 +235,22 @@ $(document).ready(function () {
     $(".status").change(function () {
         var responseId = $(this).val();
         if (responseId == "2") {
-            $("#reason").removeClass("hidden");
-            $("#reason").addClass("show");
+            $("#reject").removeClass("hidden");
+            $("#reject").addClass("show");
         } else {
-            $("#reason").removeClass("show");
-            $("#reason").addClass("hidden");
+            $("#reject").removeClass("show");
+            $("#reject").addClass("hidden");
+        }
+    });
+    //show
+    $(".reject").change(function () {
+        var responseId = $(this).val();
+        if (responseId == "1") {
+            $("#others").removeClass("hidden");
+            $("#others").addClass("show");
+        } else {
+            $("#others").removeClass("show");
+            $("#others").addClass("hidden");
         }
     });
 });

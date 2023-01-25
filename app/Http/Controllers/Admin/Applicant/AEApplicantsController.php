@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Applicant;
 
 use App\Models\User;
+use App\Models\Reason;
 use App\Models\Courses;
 use Illuminate\Http\Request;
 use App\Models\SummaryAcadExcell;
@@ -130,8 +131,9 @@ class AEApplicantsController extends Controller
         $totalwithSummer = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa9) / 9;
         $totalwith5thYear = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa10 + $status->gwa11) / 10;
         $totalwith5thAndSummer = ($status->gwa1 + $status->gwa2 + $status->gwa3 + $status->gwa4 + $status->gwa5 + $status->gwa6 + $status->gwa7 + $status->gwa8 + $status->gwa9 + $status->gwa10 + $status->gwa11) / 11;
+        $reasons = Reason::pluck('description', 'id');
 
-        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8', 'grades9', 'grades10', 'grades11', 'totalwithSummer', 'totalwith5thYear', 'totalwith5thAndSummer'));
+        return view('admin.academic-excellence-award.student', compact('status', 'grades', 'grades2', 'grades3', 'grades4', 'grades5', 'grades6', 'grades7', 'grades8', 'grades9', 'grades10', 'grades11', 'totalwithSummer', 'totalwith5thYear', 'totalwith5thAndSummer', 'reasons'));
     }
 
     public function approved($course_code, $id)
@@ -171,6 +173,7 @@ class AEApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
+        $status->others = $request->others;
         $award = $status->award->acad_code;
 
         $users = User::where('id', $status->user_id)->get();

@@ -184,7 +184,11 @@
                                                 @elseif ($award->status == '2')
                                                     <span class="badge badge-danger">Rejected</span>
                                                     <div class="small">
-                                                        <P>{{ $award->reason }}</p>
+                                                        @if ($award->reason == '1')
+                                                            Others: {{ $award->others }}
+                                                        @else
+                                                            {{ $award->reasons->description }}
+                                                        @endif
                                                     </div>
                                                 @else
                                                     <a href="{{ url('admin/non-academic-award/' . $award->courses->course_code . '/approve/' . $award->id) }}"
@@ -207,6 +211,13 @@
                                                     <span class="badge badge-success">Approved</span>
                                                 @elseif ($award->status == '2')
                                                     <span class="badge badge-danger">Rejected</span>
+                                                    <div class="small">
+                                                        @if ($award->reason == '1')
+                                                            Others: {{ $award->others }}
+                                                        @else
+                                                            {{ $award->reasons->description }}
+                                                        @endif
+                                                    </div>
                                                 @else
                                                     <span class="badge badge-warning">Pending</span>
                                                 @endif

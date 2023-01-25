@@ -8,6 +8,7 @@ use App\Models\Summary;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
+use App\Models\Reason;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Notification;
@@ -108,7 +109,8 @@ class StudentApplicantsController extends Controller
         $grades2 = Summary::where('app_id', $id)
             ->where('term', "2")
             ->get();
-        return view('admin.achievers-award.student', compact('status', 'grades', 'grades2'));
+        $reasons = Reason::pluck('description', 'id');
+        return view('admin.achievers-award.student', compact('status', 'grades', 'grades2', 'reasons'));
     }
 
     public function update(Request $request, $course_code, $id)
@@ -122,6 +124,7 @@ class StudentApplicantsController extends Controller
 
         $status->status = $request->status;
         $status->reason = $request->reason;
+        $status->others = $request->others;
         $award = $status->award->acad_code;
 
         $users = User::where('id', $status->user_id)->get();

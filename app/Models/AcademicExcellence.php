@@ -32,4 +32,8 @@ class AcademicExcellence extends Model implements Auditable
     {
         return $this->belongsTo(AcadAward::class, 'award_applied', 'id');
     }
+    public function reasons()
+    {
+        return $this->belongsTo(Reason::class, 'reason', 'id');
+    }
 }

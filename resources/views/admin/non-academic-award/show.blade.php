@@ -137,7 +137,13 @@
                                     @if ($form->status == '2')
                                         <span class="badge badge-danger">Rejected</span>
                                         @if ($form->reason != '')
-                                            <small> - {{ $form->reason }}</small>
+                                            <small> -
+                                                @if ($form->reason == '1')
+                                                    Others: {{ $form->others }}
+                                                @else
+                                                    {{ $form->reasons->description }}
+                                                @endif
+                                            </small>
                                         @endif
                                     @endif
                                 </td>
@@ -165,10 +171,25 @@
                             <option value="2" {{ $form->status == '2' ? 'selected' : '' }}>Reject</option>
                         </select>
                     </div>
-                    <div class="mb-3 hidden" id="reason">
+                    <div class="mb-3 hidden" id="reject">
                         <label for="">Reason</label>
-                        <textarea class="form-control" name="reason" rows="2">{{ $form->reason }}</textarea>
+                        <select name="reason" id="" class="custom-select reject">
+                            @foreach ($reasons->skip(1) as $id => $item)
+                                <option value="{{ $id }}" {{ $form->reason == $id ? 'selected' : '' }}>
+                                    {{ $item }}
+                                </option>
+                            @endforeach
+                            @foreach ($reasons->take(1) as $id => $item)
+                                <option value="{{ $id }}" {{ $form->reason == $id ? 'selected' : '' }}>
+                                    {{ $item }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="mb-3 hidden" id="others">
+                        <textarea class="form-control" name="others" rows="2">{{ $form->others }}</textarea>
+                    </div>
+
                     <div class="mb-3">
                         <button class="btn btn-secondary" type="submit">Update</button>
                     </div>
@@ -176,13 +197,4 @@
             </div>
         </div>
     @endcan
-@endsection
-@section('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            $('.status').on('change', checkPattern);
-            // call to adjust div
-            checkPattern();
-        });
-    </script>
 @endsection

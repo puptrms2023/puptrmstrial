@@ -118,7 +118,11 @@
                                             @if ($list->status == '2')
                                                 <span class="badge badge-danger">Rejected</span>
                                                 <div class="small">
-                                                    <P>{{ $list->reason }}</p>
+                                                    @if ($list->reason == '1')
+                                                        Others: {{ $list->others }}
+                                                    @else
+                                                        {{ $list->reasons->description }}
+                                                    @endif
                                                 </div>
                                             @endif
                                         </td>
