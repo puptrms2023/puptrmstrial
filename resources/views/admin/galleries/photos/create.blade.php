@@ -29,6 +29,7 @@
                             <div class="col-md-6">
                                 <label for="title">Photo Title</label>
                                 <input type="text" name="title" class="form-control">
+                                <input type="hidden" name="folder_name" value="{{ $gallery->title }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="cover">Photo</label>
@@ -42,7 +43,7 @@
                                 <textarea name="description" rows="2" class="form-control"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-secondary">Create Gallery</button>
+                        <button type="submit" class="btn btn-sm btn-secondary">Save</button>
                     </form>
 
                 </div>

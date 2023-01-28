@@ -19,7 +19,7 @@ class DataRetentionSeeder extends Seeder
         $d = [
 
             [
-                'name' => 'CSV',
+                'name' => 'CSV - Parse Data',
                 'period' => '1',
                 'duration' => 'Years',
             ],
@@ -29,14 +29,19 @@ class DataRetentionSeeder extends Seeder
                 'duration' => 'Years',
             ],
             [
-                'name' => 'Undecided',
-                'period' => '6',
-                'duration' => 'Months',
+                'name' => 'Recognition Records',
+                'period' => '1',
+                'duration' => 'Years',
             ],
             [
-                'name' => 'Recognition Records',
+                'name' => 'Activity Log',
                 'period' => '30',
                 'duration' => 'Days',
+            ],
+            [
+                'name' => 'Notification',
+                'period' => '1',
+                'duration' => 'Years',
             ],
         ];
         foreach ($d as $key => $data) {

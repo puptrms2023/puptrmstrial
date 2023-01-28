@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\SIS;
+use App\Models\Retention;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -10,7 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 
-class DeleteRecord implements ShouldQueue
+class CsvDeleteJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -31,7 +32,16 @@ class DeleteRecord implements ShouldQueue
      */
     public function handle()
     {
-        SIS::where('created_at', '<', now()->subDays(15))
-            ->delete();
+        $record = Retention::where('id', '1')->first();
+        if ($record->duration == 'Months') {
+            SIS::where('created_at', '<', now()->subMonths($record->period))
+                ->delete();
+        } else if ($record->duration == 'Years') {
+            SIS::where('created_at', '<', now()->subYears($record->period))
+                ->delete();
+        } else {
+            SIS::where('created_at', '<', now()->subDays($record->period))
+                ->delete();
+        }
     }
 }

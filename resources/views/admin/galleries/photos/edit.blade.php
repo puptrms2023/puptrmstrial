@@ -16,7 +16,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">Upload Photo
-                        <a href="{{ url('admin/galleries/photos/show/' . $photo->id) }}"
+
+                        <a href="{{ url('admin/galleries/' . $photo->gallery->title . '/' . $photo->photo . '/show') }}"
                             class="btn btn-primary btn-sm float-right">Back</a>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                                 <textarea name="description" rows="2" class="form-control">{{ $photo->description }}</textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-secondary">Save Changes</button>
+                        <button type="submit" class="btn btn-sm btn-secondary">Save</button>
                     </form>
 
                 </div>

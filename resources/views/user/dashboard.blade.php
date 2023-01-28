@@ -13,153 +13,179 @@
         @endif
     </div>
 
-    <div class="card shadow mt-0 mb-4">
-        <div class="card-header pt-3 pb-1">
-            <p class="text-primary font-weight-bold">Read the award qualifications first before you click any award
-                application button.</p>
+    @can('form application')
+        <div class="card shadow mt-0 mb-4">
+            <div class="card-header pt-3 pb-1">
+                <p class="text-primary font-weight-bold">Read the award qualifications first before you click any award
+                    application button.</p>
+            </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card border-left-info shadow mb-4">
-                <img src="{{ asset('uploads/form/' . $acadexcel->photocard) }}" class="card-img-top" alt="image">
-                <div class="card-body text-center">
-                    @if ($acad_excell_award_count == '0')
-                        <a href="{{ url('user/application-form-ae') }}"
-                            class="btn btn-sm btn-outline-primary mb-2 mt-2">ACADEMIC
-                            EXCELLENCE
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card border-left-info shadow mb-4">
+                    <img src="{{ asset('uploads/form/' . $acadexcel->photocard) }}" class="card-img-top" alt="image">
+                    <div class="card-body text-center">
+                        @if ($acad_excell_award_count == '0')
+                            <a href="{{ url('user/application-form-ae') }}"
+                                class="btn btn-sm btn-outline-primary mb-2 mt-2">ACADEMIC
+                                EXCELLENCE
+                                AWARD APPLICATION</a>
+                        @else
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                                data-target="#maxNumber">
+                                ACADEMIC EXCELLENCE AWARD APPLICATION
+                            </button>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <a href="#collapseCard1" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="collapseCard1">
+                        <div class="h6 text-center text-sm font-weight-bold text-success text-uppercase mb-1">
+                            Academic Excellence Award Qualifications
+                        </div>
+                    </a>
+                    <div class="collapse show" id="collapseCard1">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($acadexcel->requirement as $reqs)
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
+                                        &ensp;{{ $reqs->requirements }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card border-left-secondary shadow mb-4">
+                    <img src="{{ asset('uploads/form/' . $nonacad->photocard) }}" class="card-img-top" alt="image">
+                    <div class="card-body text-center">
+                        <a href="{{ url('user/non-academic-form') }}"
+                            class="btn btn-sm btn-outline-primary mb-2 mt-2">NON-ACADEMIC
                             AWARD APPLICATION</a>
-                    @else
-                        <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
-                            data-target="#maxNumber">
-                            ACADEMIC EXCELLENCE AWARD APPLICATION
-                        </button>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-success text-uppercase mb-1">
-                        Academic Excellence Award Qualifications
                     </div>
-                    <ul class="list-group">
-                        @foreach ($acadexcel->requirement as $reqs)
-                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-success"></i>
-                                &ensp;{{ $reqs->requirements }}
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card border-left-secondary shadow mb-4">
-                <img src="{{ asset('uploads/form/' . $nonacad->photocard) }}" class="card-img-top" alt="image">
-                <div class="card-body text-center">
-                    <a href="{{ url('user/non-academic-form') }}"
-                        class="btn btn-sm btn-outline-primary mb-2 mt-2">NON-ACADEMIC
-                        AWARD APPLICATION</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-secondary text-uppercase mb-1">
-                        Non-Academic Award Qualifications
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <a href="#collapseCard2" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="collapseCard2">
+                        <div class="h6 text-center text-sm font-weight-bold text-secondary text-uppercase mb-1">
+                            Non-Academic Award Qualifications
+                        </div>
+                    </a>
+                    <div class="collapse show" id="collapseCard2">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($nonacad->requirement as $reqs)
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
+                                        &ensp;{{ $reqs->requirements }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="list-group">
-                        @foreach ($nonacad->requirement as $reqs)
-                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-secondary"></i>
-                                &ensp;{{ $reqs->requirements }}
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card border-left-danger shadow mb-4">
-                <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
-                <div class="card-body text-center">
-                    @if ($acad_award_count == '0')
-                        <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
-                            ACADEMIC AWARD APPLICATION
-                        </a>
-                    @else
-                        <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
-                            data-target="#maxNumber">
-                            ACADEMIC AWARD APPLICATION
-                        </button>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-danger text-uppercase mb-1">
-                        Achiever's Award Qualifications
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card border-left-danger shadow mb-4">
+                    <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
+                    <div class="card-body text-center">
+                        @if ($acad_award_count == '0')
+                            <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
+                                ACADEMIC AWARD APPLICATION
+                            </a>
+                        @else
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                                data-target="#maxNumber">
+                                ACADEMIC AWARD APPLICATION
+                            </button>
+                        @endif
                     </div>
-                    <ul class="list-group">
-                        @foreach ($acadaward->requirement as $reqs)
-                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;
-                                &ensp;{{ $reqs->requirements }}
-                            </li>
-                        @endforeach
-                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <a href="#collapseCard3" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="collapseCard3">
+                        <div class="h6 text-center text-sm font-weight-bold text-danger text-uppercase mb-1">
+                            Achiever's Award Qualifications
+                        </div>
+                    </a>
+                    <div class="collapse show" id="collapseCard3">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($acadaward->requirement as $reqs)
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;
+                                        &ensp;{{ $reqs->requirements }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-4">
 
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-info text-uppercase mb-1">
-                        Dean's List Qualifications
+            </div>
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <a href="#collapseCard4" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="collapseCard4">
+                        <div class="h6 text-center text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Dean's List Qualifications
+                        </div>
+                    </a>
+                    <div class="collapse show" id="collapseCard4">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($deans->requirement as $reqs)
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
+                                        &ensp;{{ $reqs->requirements }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="list-group">
-                        @foreach ($deans->requirement as $reqs)
-                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-info"></i>
-                                &ensp;{{ $reqs->requirements }}
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-        </div>
-        <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="h6 mb-2 text-center text-sm font-weight-bold text-warning text-uppercase mb-1">
-                        President's List Qualifications
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <a href="#collapseCard5" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="collapseCard5">
+                        <div class="h6 mb-2 text-center text-sm font-weight-bold text-warning text-uppercase mb-1">
+                            President's List Qualifications
+                        </div>
+                    </a>
+                    <div class="collapse show" id="collapseCard5">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($presidents->requirement as $reqs)
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
+                                        &ensp;{{ $reqs->requirements }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="list-group">
-                        @foreach ($presidents->requirement as $reqs)
-                            <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-warning"></i>
-                                &ensp;{{ $reqs->requirements }}
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
+    @endcan
 
     <div class="modal fade" id="maxNumber" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="maxNumberLabel" aria-hidden="true">

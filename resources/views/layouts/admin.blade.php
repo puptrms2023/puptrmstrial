@@ -60,6 +60,11 @@
             @include('layouts.inc.admin.footer')
         </div>
 
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
         <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -77,12 +82,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         {{-- charts --}}
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/data.js"></script>
-        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="{{ asset('admin/vendor/highchart/highcharts.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/data.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/drilldown.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/exporting.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/export-data.js') }}"></script>
+        <script src="{{ asset('admin/vendor/highchart/accessibility.js') }}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="{{ asset('admin/vendor/ckeditor5/ckeditor.js') }}"></script>

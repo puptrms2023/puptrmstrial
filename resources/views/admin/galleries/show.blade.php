@@ -40,12 +40,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach ($photos as $photo)
+                        @foreach ($folder as $data)
                             <div class="col-md-4 mb-4">
                                 <div class="img-hover-zoom img-hover-zoom--xyz shadow-sm">
-                                    <a href="{{ url('admin/galleries/photos/show/' . $photo->id) }}">
-                                        <img src="{{ asset('uploads/galleries/photos/' . $photo->photo) }}" class=""
-                                            width="100%" alt="photo"></a>
+                                    <a href="{{ url('admin/galleries/' . $data['path'] . '/show') }}">
+                                        <img src="{{ Storage::drive('google')->url($data['path']) }} }}" class=""
+                                            width="100%" alt="photo">
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

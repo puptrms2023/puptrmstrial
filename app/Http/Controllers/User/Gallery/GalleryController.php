@@ -11,7 +11,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $galleries = Gallery::orderBy('id', 'desc')->get();
+        $galleries = Gallery::with('photos')->orderBy('id', 'desc')->get();
         return view('user.gallery.index', compact('galleries'));
     }
 }

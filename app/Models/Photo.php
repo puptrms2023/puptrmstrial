@@ -10,4 +10,9 @@ class Photo extends Model implements Auditable
 {
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
+
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class, 'gallery_id', 'id');
+    }
 }

@@ -8,12 +8,6 @@
 
     </a>
 
-    <div class="sidebar-card d-lg-flex">
-        <p class="text-left text-light">
-            <strong>{{ Auth::user()->full_name }}</strong><br>{{ auth()->user()->roles->pluck('name')[0] ?? '' }}
-        </p>
-    </div>
-
     <hr class="sidebar-divider my-0">
 
     <div class="sidebar-heading mt-4 text-light">

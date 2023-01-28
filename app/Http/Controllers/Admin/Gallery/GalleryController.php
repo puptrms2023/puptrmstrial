@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Gallery;
 
+use App\Models\Photo;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Photo;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Yaza\LaravelGoogleDriveStorage\Gdrive;
 
 class GalleryController extends Controller
 {
@@ -38,7 +41,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:galleries,title',
             'cover' => 'required',
             'description' => 'required'
         ]);
@@ -56,6 +59,8 @@ class GalleryController extends Controller
 
         $gallery->cover = $cover_name;
         $gallery->save();
+
+        Gdrive::makeDir($request->title);
         return redirect('admin/galleries')->with('message', 'Gallery uploaded successfully');
     }
 
@@ -63,7 +68,8 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::find($id);
         $photos = Photo::where('gallery_id', $gallery->id)->get();
-        return view('admin.galleries.show', compact('gallery', 'photos'));
+        $folder = Gdrive::all($gallery->title);
+        return view('admin.galleries.show', compact('gallery', 'photos', 'folder'));
     }
 
     public function edit($id)
@@ -74,8 +80,12 @@ class GalleryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:galleries,title,' . $id,
+            'cover' => 'nullable',
+            'description' => 'required'
+        ]);
         $gallery = Gallery::find($id);
-
         $gallery->title = $request->title;
         $gallery->description = $request->description;
 
@@ -93,22 +103,21 @@ class GalleryController extends Controller
             $gallery->cover = $request->old_cover;
         }
         $gallery->save();
+
         return redirect('admin/galleries/show/' . $id)->with('success', 'Gallery updated successfully');
     }
 
     public function destroy(Request $request)
     {
         $id = $request->image_delete_id;
-        $photos = Photo::where('gallery_id', $id)->get();
-        foreach ($photos as $photo) {
-            $photo_name = $photo->photo;
-            unlink(public_path('uploads/galleries/photos/' . $photo_name));
-        }
         DB::table('photos')->where('gallery_id', $id)->delete();
         $gallery = Gallery::find($id);
         $gallery_cover = $gallery->cover;
         unlink(public_path('uploads/galleries/') . $gallery_cover);
         $gallery->delete();
+
+        Gdrive::deleteDir($gallery->title);
+
         return redirect('admin/galleries')->with('success', 'Gallery deleted successfully');
     }
 
@@ -121,44 +130,53 @@ class GalleryController extends Controller
 
     public function photoStore(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'title' => 'required',
             'photo' => 'required',
             'description' => 'required'
         ]);
-
-        $photos = new Photo();
-        $gallery_id = $request->gallery_id;
-
-        $photos->title = $request->title;
-        $photos->description = $request->description;
-        $photos->gallery_id = $gallery_id;
 
         $photo = $request->file('photo');
         $photo_ext = $photo->getClientOriginalExtension();
         $photo_name = rand(123456, 999999) . '.' . $photo_ext;
         $photo_path = public_path('uploads/galleries/photos/');
         $photo->move($photo_path, $photo_name);
-        $photos->photo = $photo_name;
-        $photos->save();
-        return redirect('admin/galleries/show/' . $gallery_id)->with('success', 'Photos uploaded successfully');
+
+        $photoModel = new Photo();
+        $photoModel->title = $validatedData['title'];
+        $photoModel->description = $validatedData['description'];
+        $photoModel->gallery_id = $request->get('gallery_id');
+        $photoModel->photo = $photo_name;
+        $photoModel->save();
+
+        //saving image in google drive
+        $filepath = public_path() . '/uploads/galleries/photos/' . $photo_name;
+        $filename = $request->get('folder_name') . '/' . $photo_name;
+        Storage::disk('google')->put($filename, File::get($filepath));
+
+        //delete image in public path
+        unlink(public_path('uploads/galleries/photos/') . $photo_name);
+
+        return redirect('admin/galleries/show/' . $request->get('gallery_id'))
+            ->with('success', 'File was saved to Google Drive');
     }
 
-    public function photoShow($id)
+    public function photoShow($gallery_name, $photo_name)
     {
-        $photo = Photo::find($id);
+        $photo = Photo::where('photo', $photo_name)->first();
         return view('admin.galleries.photos.show', compact('photo'));
     }
 
-    public function photoEdit($id)
+    public function photoEdit($gallery_name, $photo_name)
     {
-        $photo = Photo::find($id);
+        $photo = Photo::where('photo', $photo_name)->first();
         return view('admin.galleries.photos.edit', compact('photo'));
     }
 
     public function photoUpdate(Request $request, $id)
     {
         $photo = Photo::find($id);
+
         $photo->title = $request->title;
         $photo->description = $request->description;
 
@@ -166,29 +184,38 @@ class GalleryController extends Controller
 
         if ($request->hasFile('photo')) {
 
-            unlink(public_path('uploads/galleries/photos/') . $photo_name);
+            Gdrive::delete($photo->gallery->title . '/' . $photo_name);
+
             $new_photo = $request->file('photo');
             $new_photo_ext = $new_photo->getClientOriginalExtension();
             $new_photo_name = rand(123456, 999999) . '.' . $new_photo_ext;
             $new_photo_path = public_path('uploads/galleries/photos/');
             $new_photo->move($new_photo_path, $new_photo_name);
             $photo->photo = $new_photo_name;
+
+            $filepath = public_path() . '/uploads/galleries/photos/' . $new_photo_name;
+            $filename = $photo->gallery->title . '/' . $new_photo_name;
+            Storage::disk('google')->put($filename, File::get($filepath));
+
+            unlink(public_path('uploads/galleries/photos/') . $new_photo_name);
         } else {
             $photo->photo = $request->old_photo;
         }
 
         $photo->save();
-        return redirect('admin/galleries/photos/show/' . $id)->with('success', 'Photo updated successfully');
+
+        return redirect('admin/galleries/' . $filename . '/show')->with('success', 'Photo updated successfully');
     }
 
     public function photoDelete(Request $request)
     {
-        $photo = Photo::find($request->image_delete_id);
+        $photo = Photo::with('gallery')->where('id', $request->image_delete_id)->first();
         $photo_name = $photo->photo;
         $gallery_id = $photo->gallery_id;
-        unlink(public_path('uploads/galleries/photos/') . $photo_name);
 
+        Gdrive::delete($photo->gallery->title . '/' . $photo_name);
         $photo->delete();
+
         return redirect('admin/galleries/show/' . $gallery_id)->with('success', 'Photo deleted successfully');
     }
 }

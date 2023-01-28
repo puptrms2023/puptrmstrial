@@ -36,7 +36,7 @@
                 </div>
                 <div class="card-body">
                     @can('photo edit')
-                        <a href="{{ url('admin/galleries/photos/edit/' . $photo->id) }}"
+                        <a href="{{ url('admin/galleries/' . $photo->gallery->title . '/' . $photo->photo . '/edit') }}"
                             class="btn btn-sm btn-secondary btn-block">Edit Photo</a>
                     @endcan
                     @can('photo delete')
@@ -61,8 +61,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="{{ asset('uploads/galleries/photos/' . $photo->photo) }}" alt="photo"
-                                class="" width="100%">
+                            <img src="{{ Storage::drive('google')->url($photo->gallery->title . '/' . $photo->photo) }}"
+                                alt="photo" class="" width="100%">
                         </div>
                     </div>
                 </div>

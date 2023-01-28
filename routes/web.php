@@ -241,8 +241,8 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         //photo route
         Route::get('galleries/photos/create/{id}', 'photoCreate');
         Route::post('galleries/photos/store', 'photoStore');
-        Route::get('galleries/photos/show/{id}', 'photoShow');
-        Route::get('galleries/photos/edit/{id}', 'photoEdit');
+        Route::get('galleries/{gallery_name}/{photo_name}/show', 'photoShow');
+        Route::get('galleries/{gallery_name}/{photo_name}/edit', 'photoEdit');
         Route::post('galleries/photos/update/{id}', 'photoUpdate');
         Route::post('galleries/photos/delete', 'photoDelete');
     });

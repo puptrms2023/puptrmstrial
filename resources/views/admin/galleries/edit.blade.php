@@ -23,6 +23,7 @@
                             <div class="col-md-6">
                                 <label for="title">Gallery Title</label>
                                 <input type="text" name="title" value="{{ $gallery->title }}" class="form-control">
+                                <input type="hidden" name="old_folder" value="{{ $gallery->title }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="cover">Gallery Cover</label>
