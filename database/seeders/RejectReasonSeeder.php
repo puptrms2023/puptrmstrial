@@ -16,9 +16,9 @@ class RejectReasonSeeder extends Seeder
     public function run()
     {
         $data = [
-            'Reason 1',
-            'Reason 2',
-            'Reason 3',
+            'Others',
+            'Incomplete academic requirements',
+            'Invalid academic information',
         ];
 
         foreach ($data as $reason) {

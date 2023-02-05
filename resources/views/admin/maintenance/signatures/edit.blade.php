@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Course')
+@section('title', 'Edit Signature Maintenance')
 
 @section('content')
     <div class="row">

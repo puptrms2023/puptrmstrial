@@ -13,6 +13,15 @@
         @endif
     </div>
 
+    @cannot('form application')
+        <div class="bd-callout bd-callout-warning bg-white">
+            <p class="text-dark">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <b>Award Application is not yet open.</b> (S.Y {{ getAcademicYear() }})
+            </p>
+        </div>
+    @endcan
+
     @can('form application')
         <div class="card shadow mt-0 mb-4">
             <div class="card-header pt-3 pb-1">
@@ -22,6 +31,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4">
+                {{-- academic excellenvce --}}
                 <div class="card border-left-info shadow mb-4">
                     <img src="{{ asset('uploads/form/' . $acadexcel->photocard) }}" class="card-img-top" alt="image">
                     <div class="card-body text-center">
@@ -38,8 +48,34 @@
                         @endif
                     </div>
                 </div>
+                {{-- non-academic --}}
+                <div class="card border-left-secondary shadow mb-4">
+                    <img src="{{ asset('uploads/form/' . $nonacad->photocard) }}" class="card-img-top" alt="image">
+                    <div class="card-body text-center">
+                        <a href="{{ url('user/non-academic-form') }}"
+                            class="btn btn-sm btn-outline-primary mb-2 mt-2">NON-ACADEMIC
+                            AWARD APPLICATION</a>
+                    </div>
+                </div>
+                {{-- academic award --}}
+                <div class="card border-left-danger shadow mb-4">
+                    <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
+                    <div class="card-body text-center">
+                        @if ($acad_award_count == '0')
+                            <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
+                                ACADEMIC AWARD APPLICATION
+                            </a>
+                        @else
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                                data-target="#maxNumber">
+                                ACADEMIC AWARD APPLICATION
+                            </button>
+                        @endif
+                    </div>
+                </div>
             </div>
             <div class="col-lg-8">
+                {{-- Academic Excellence Award --}}
                 <div class="card shadow mb-4">
                     <a href="#collapseCard1" class="d-block card-header py-3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="collapseCard1">
@@ -59,20 +95,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card border-left-secondary shadow mb-4">
-                    <img src="{{ asset('uploads/form/' . $nonacad->photocard) }}" class="card-img-top" alt="image">
-                    <div class="card-body text-center">
-                        <a href="{{ url('user/non-academic-form') }}"
-                            class="btn btn-sm btn-outline-primary mb-2 mt-2">NON-ACADEMIC
-                            AWARD APPLICATION</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
+                {{-- Non-Academic Award --}}
                 <div class="card shadow mb-4">
                     <a href="#collapseCard2" class="d-block card-header py-3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="collapseCard2">
@@ -92,27 +115,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card border-left-danger shadow mb-4">
-                    <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
-                    <div class="card-body text-center">
-                        @if ($acad_award_count == '0')
-                            <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
-                                ACADEMIC AWARD APPLICATION
-                            </a>
-                        @else
-                            <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
-                                data-target="#maxNumber">
-                                ACADEMIC AWARD APPLICATION
-                            </button>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
+                {{-- Achiever's Award Qualifications --}}
                 <div class="card shadow mb-4">
                     <a href="#collapseCard3" class="d-block card-header py-3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="collapseCard3">
@@ -124,7 +127,8 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 @foreach ($acadaward->requirement as $reqs)
-                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i> &ensp;
+                                    <li class="list-group-item border-0"><i class="fas fa-solid fa-star text-danger"></i>
+                                        &ensp;
                                         &ensp;{{ $reqs->requirements }}
                                     </li>
                                 @endforeach
@@ -132,13 +136,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-
-            </div>
-            <div class="col-lg-8">
+                {{-- Dean's List Qualifications --}}
                 <div class="card shadow mb-4">
                     <a href="#collapseCard4" class="d-block card-header py-3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="collapseCard4">
@@ -158,12 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-            </div>
-            <div class="col-lg-8">
+                {{-- President's List Qualifications --}}
                 <div class="card shadow mb-4">
                     <a href="#collapseCard5" class="d-block card-header py-3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="collapseCard5">

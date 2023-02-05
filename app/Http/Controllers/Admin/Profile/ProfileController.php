@@ -22,7 +22,6 @@ class ProfileController extends Controller
             'first_name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'middle_name' => 'nullable|max:255|regex:/^([^0-9]*)$/',
             'last_name' => 'required|max:255|regex:/^([^0-9]*)$/',
-            'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
             'username' => 'required|alpha_dash|unique:users,username,' . $id,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $id
         ]);
@@ -32,7 +31,6 @@ class ProfileController extends Controller
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
-        $user->contact = $request->contact;
         $user->course_id = $request->course_id;
         $user->stud_num = $request->stud_num;
         $user->username = $request->username;

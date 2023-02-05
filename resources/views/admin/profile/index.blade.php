@@ -53,14 +53,6 @@
                                     placeholder="Enter your last name" value="{{ Auth::user()->last_name }}" required
                                     autofocus>
                             </div>
-                            @unlessrole('Super-Admin|Admin')
-                                <div class="col-md-6">
-                                    <label class="small mb-1">Phone number</label>
-                                    <input class="form-control js-phone" name="contact" type="text"
-                                        placeholder="Enter your phone number" value="{{ substr(Auth::user()->contact, 3) }}"
-                                        required autofocus>
-                                </div>
-                            @endunlessrole
                         </div>
                         <button class="btn btn-secondary" type="submit">Update</button>
                     </form>
