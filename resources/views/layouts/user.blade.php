@@ -12,16 +12,19 @@
 
     <!-- Fonts -->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('admin/css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin//vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}">
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
+
+     <!-- select2 -->
+     <link href="{{ asset('admin/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <!-- select2-bootstrap4-theme -->
+    <link href="{{ asset('admin/vendor/select2/select2-bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
 
     {{-- <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}">
@@ -66,13 +69,16 @@
 
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
         <script src="{{ asset('admin/js/custom.js') }}"></script>
+        <script src="{{ asset('admin/js/validate.js') }}"></script>
 
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
+        <!-- select2 -->
+        <script src="{{ asset('admin/vendor/select2/select2.min.js') }}"></script>
 
         <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+        <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
+        <script src="{{ asset('admin/vendor/isotope/isotope.pkgd.js') }}"></script>
+        <script src="{{ asset('admin/vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
         <script src="{{ asset('assets/js/fullcalendar-5.11.3.js') }}"></script>
 
         <script>

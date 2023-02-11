@@ -129,3 +129,13 @@ function expectedHeadings()
         'comments'
     ];
 }
+
+
+function format_decimal($number)
+{
+    if (substr((string) $number, -1) >= 5) {
+        return number_format($number, 3);
+    } else {
+        return number_format($number, 2);
+    }
+}

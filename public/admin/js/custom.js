@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkPattern();
     $('.reject').on('change', checkPattern2);
     checkPattern2();
+    initializeSelect2('.selectsub');
 });
 
 $(document).ready(function () {
@@ -254,6 +255,16 @@ $(document).ready(function () {
         }
     });
 });
+//select2
+function initializeSelect2(selector) {
+    $(selector).select2({
+        theme: 'bootstrap4',
+        width: $(selector).data('width') ? $(selector).data('width') : $(selector).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(selector).data('placeholder'),
+        allowClear: Boolean($(selector).data('allow-clear')),
+        closeOnSelect: !$(selector).attr('multiple'),
+    });
+}
 //Award Application Validation Dropdown
 var $selectYear = $('#selectYear'),
 		$selectAward = $('#selectAward'),
@@ -262,13 +273,19 @@ var $selectYear = $('#selectYear'),
 $selectYear.on('change', function() {
 	$selectAward.html($options.filter('[data-state="'+this.value+'"]'));
 }).trigger('change');
+
 //1st Term
 $(document).ready(function () {
     $("#add_btn").on("click", function () {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects[]" class="form-control" required></td>';
+            '<td><select name="subjects[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
+        html += '</select></td>';
         html +=
             '<td><input type="text" name="units[]" class="form-control units multi" id="units" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -279,6 +296,7 @@ $(document).ready(function () {
             '<td style="display:none"><input type="text" name="total[]" class="form-control total" id="total" readonly></td>';
         html += "</tr>";
         $("#calculation").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -287,6 +305,7 @@ $(document).on("click", "#remove", function () {
     grandTotal();
     totalUnits();
     getGWA();
+    displayResult();
 });
 
 $(document).ready(function () {
@@ -301,6 +320,7 @@ $(document).ready(function () {
         grandTotal();
         totalUnits();
         getGWA();
+        displayResult();
     });
 });
 
@@ -340,7 +360,12 @@ $(document).ready(function () {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects1[]" class="form-control" required></td>';
+            '<td><select name="subjects1[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
+        html += '</select></td>';
         html +=
             '<td><input type="text" name="units1[]" class="form-control units1 multi1" id="units1" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -351,6 +376,7 @@ $(document).ready(function () {
             '<td style="display:none"><input type="text" name="total1[]" class="form-control total1" id="total1" readonly></td>';
         html += "</tr>";
         $("#calculation1").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -359,6 +385,7 @@ $(document).on("click", "#remove1", function () {
     grandTotal1();
     totalUnits1();
     getGWA1();
+    displayResult();
 });
 
 $(document).ready(function () {
@@ -373,6 +400,7 @@ $(document).ready(function () {
         grandTotal1();
         totalUnits1();
         getGWA1();
+        displayResult();
     });
 });
 
@@ -1355,6 +1383,15 @@ termsCheckbox.addEventListener('change', (event) => {
         submitButton.disabled = false;
     } else {
         submitButton.disabled = true;
+    }
+});
+
+//redirect
+$("#redirect-to-new-page").click(function(e) {
+    e.preventDefault();
+    var link = $(this).attr("href");
+    if (!$("#exampleModal").hasClass("show")) {
+        window.location.href = link;
     }
 });
 

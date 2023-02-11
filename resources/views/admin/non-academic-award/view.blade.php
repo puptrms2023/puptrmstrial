@@ -177,17 +177,19 @@
                                             <img src="{{ asset('uploads/' . $award->image) }}"
                                                 class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if (auth()->user()->can('non-academic award edit'))
                                                 @if ($award->status == '1')
                                                     <span class="badge badge-success">Approved</span>
                                                 @elseif ($award->status == '2')
                                                     <span class="badge badge-danger">Rejected</span>
                                                     <div class="small">
-                                                        @if ($award->reason == '1')
-                                                            Others: {{ $award->others }}
-                                                        @else
-                                                            {{ $award->reasons->description }}
+                                                        @if (!empty($award->reason))
+                                                            @if ($award->reason == '1')
+                                                                Others: {{ $award->others }}
+                                                            @else
+                                                                {{ $award->reasons->description }}
+                                                            @endif
                                                         @endif
                                                     </div>
                                                 @else
@@ -212,10 +214,12 @@
                                                 @elseif ($award->status == '2')
                                                     <span class="badge badge-danger">Rejected</span>
                                                     <div class="small">
-                                                        @if ($award->reason == '1')
-                                                            Others: {{ $award->others }}
-                                                        @else
-                                                            {{ $award->reasons->description }}
+                                                        @if (!empty($award->reason))
+                                                            @if ($award->reason == '1')
+                                                                Others: {{ $award->others }}
+                                                            @else
+                                                                {{ $award->reasons->description }}
+                                                            @endif
                                                         @endif
                                                     </div>
                                                 @else

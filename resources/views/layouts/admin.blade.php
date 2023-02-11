@@ -11,27 +11,21 @@
 
     <!-- Fonts -->
     <link href="{{ asset('admin/vendor/fontawesome-free-6.2.0-web/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('admin//vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
-
-    <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
-        rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.css" />
+    <link href="{{ asset('admin/vendor/jqueryui/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/keithwood/jquery.signature.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/dropzone/dropzone.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/bootstrap-toggle/bootstrap-toggle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}" rel="stylesheet">
+    <!-- select2 -->
+    <link href="{{ asset('admin/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/select2/select2-bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/tempusdominus/tempusdominus-bootstrap-4.css') }}" rel="stylesheet">
 
     {{-- <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}"> --}}
     {{-- <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon-32x32.png') }}"> --}}
@@ -67,7 +61,7 @@
 
         <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{{ asset('admin/vendor/jqueryui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
         <script src="{{ asset('admin/js/custom.js') }}"></script>
@@ -77,9 +71,8 @@
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
         {{-- calendar --}}
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
-        {{-- <script src="{{ asset('admin/vendor/fullcalendar/fullcalendar.js') }}"></script> --}}
         <script src="{{ asset('assets/js/fullcalendar-5.11.3.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
 
         {{-- charts --}}
         <script src="{{ asset('admin/vendor/highchart/highcharts.js') }}"></script>
@@ -89,14 +82,12 @@
         <script src="{{ asset('admin/vendor/highchart/export-data.js') }}"></script>
         <script src="{{ asset('admin/vendor/highchart/accessibility.js') }}"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="{{ asset('admin/vendor/select2/select2.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/ckeditor5/ckeditor.js') }}"></script>
-        <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js">
-        </script>
+        <script src="{{ asset('admin/vendor/keithwood/jquery.signature.js') }}"></script>
+        <script src="{{ asset('admin/vendor/dropzone/dropzone.min.js') }}"></script>
+        <script src="{{ asset('admin/vendor/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
+        <script src="{{ asset('admin/vendor/tempusdominus/tempusdominus-bootstrap-4.min.js') }}"></script>
 
 
         <script>

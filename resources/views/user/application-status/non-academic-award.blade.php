@@ -26,9 +26,6 @@
                             <thead>
                                 <tr>
                                     <th>Student No.</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Course</th>
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
@@ -39,9 +36,6 @@
                                 @foreach ($status as $list)
                                     <tr>
                                         <td class="font-weight-bold">{{ $list->users->stud_num }}</td>
-                                        <td>{{ $list->users->first_name }}</td>
-                                        <td>{{ $list->users->last_name }}</td>
-                                        <td>{{ $list->courses->course_code }}</td>
                                         <td>{{ $list->year_level }}</td>
                                         <td>{{ $list->school_year }}</td>
                                         <td>

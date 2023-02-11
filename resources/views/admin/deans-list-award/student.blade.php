@@ -53,7 +53,7 @@
                             </tr>
                             <tr>
                                 <th width="25%">GWA</th>
-                                <td class="font-weight-bold text-primary"> {{ $status->gwa }}</td>
+                                <td class="font-weight-bold text-primary"> {{ format_decimal($status->gwa) }}</td>
                             </tr>
                             <tr>
                                 <th width="25%">2x2 photo</th>
@@ -104,6 +104,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -117,7 +118,8 @@
                                 @endphp
                                 @foreach ($grades as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -125,6 +127,7 @@
                                         $units += $grade->units;
                                         $total += $grade->grades * $grade->units;
                                         $gwa = $total / $units;
+                                        $gwa = number_format($gwa, 2, '.', '');
                                     @endphp
                                 @endforeach
                             </tbody>
@@ -145,6 +148,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -158,7 +162,8 @@
                                 @endphp
                                 @foreach ($grades2 as $grade2)
                                     <tr>
-                                        <td>{{ $grade2->subjects }}</td>
+                                        <td>{{ $grade2->subjects->s_code }}</td>
+                                        <td>{{ $grade2->subjects->s_name }}</td>
                                         <td>{{ $grade2->grades }}</td>
                                         <td>{{ $grade2->units }}</td>
                                     </tr>
@@ -166,6 +171,7 @@
                                         $units += $grade2->units;
                                         $total += $grade2->grades * $grade2->units;
                                         $gwa = $total / $units;
+                                        $gwa = number_format($gwa, 2, '.', '');
                                     @endphp
                                 @endforeach
                             </tbody>
@@ -221,4 +227,3 @@
         </div>
     @endcan
 @endsection
-

@@ -4,10 +4,12 @@
     @elseif ($data->status == '2')
         <span class="badge badge-danger">Rejected</span>
         <div class="small">
-            @if ($data->reason == '1')
-                Others: {{ $data->others }}
-            @else
-                {{ $data->reasons->description }}
+            @if (!empty($data->reason))
+                @if ($data->reason == '1')
+                    Others: {{ $data->others }}
+                @else
+                    {{ $data->reasons->description }}
+                @endif
             @endif
         </div>
     @else
@@ -32,10 +34,12 @@
     @elseif ($data->status == '2')
         <span class="badge badge-danger">Rejected</span>
         <div class="small">
-            @if ($data->reason == '1')
-                Others: {{ $data->others }}
-            @else
-                {{ $data->reasons->description }}
+            @if (!empty($data->reason))
+                @if ($data->reason == '1')
+                    Others: {{ $data->others }}
+                @else
+                    {{ $data->reasons->description }}
+                @endif
             @endif
         </div>
     @else

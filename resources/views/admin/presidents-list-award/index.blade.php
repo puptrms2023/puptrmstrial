@@ -26,7 +26,6 @@
             <div class="col-sm-3 mb-4">
                 <a class="card lift h-100" href="{{ url('admin/presidents-list-award/' . $item->course_code) }}">
                     <div class="card border-left-success shadow">
-                        <img src="{{ asset('admin/img/bgimage-login.jpg') }}" class="card-img-top" alt="image">
                         <div class="card-body text-center">
                             <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r mt-3">
                                 {{ $item->course_code }}

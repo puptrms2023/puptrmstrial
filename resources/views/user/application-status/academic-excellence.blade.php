@@ -26,9 +26,6 @@
                             <thead>
                                 <tr>
                                     <th>Student No.</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Course</th>
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
@@ -45,19 +42,16 @@
                                     @endphp
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
-                                        <td>{{ $item->users->first_name }}</td>
-                                        <td>{{ $item->users->last_name }}</td>
-                                        <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
                                         <td>{{ $item->school_year }}</td>
                                         <td><span class="badge badge-success">{{ $item->award->name }}<span></td>
                                         <td class="text-center">
                                             @if (!empty($item->gwa9) && empty($item->gwa10))
-                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                                {{ format_decimal($totalwithSummer) }}
                                             @elseif(!empty($item->gwa10 || $item->gwa11) && empty($item->gwa9))
-                                                {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                                {{ format_decimal($totalwith5thYear) }}
                                             @elseif(!empty($item->gwa9 && $item->gwa10))
-                                                {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
+                                                {{ format_decimal($totalwith5thAndSummer) }}
                                             @else
                                                 {{ $item->gwa }}
                                             @endif

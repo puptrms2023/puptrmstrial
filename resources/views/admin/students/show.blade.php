@@ -96,7 +96,7 @@
                                             <td>{{ $app->school_year }}</td>
                                             <td class="text-center">{{ $app->gwa_1st }}</td>
                                             <td class="text-center">{{ $app->gwa_2nd }}</td>
-                                            <td class="text-center">{{ $app->gwa }}</td>
+                                            <td class="text-center">{{ format_decimal($app->gwa) }}</td>
                                             <td>
                                                 <img src="{{ asset('uploads/' . $app->image) }}"
                                                     class="img-thumbnail img-circle" width="50" alt="Image">

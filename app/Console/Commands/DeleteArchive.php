@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Retention;
+use Illuminate\Console\Command;
+use App\Models\StudentApplicant;
 use App\Models\AcademicExcellence;
 use App\Models\NonAcademicApplicant;
-use App\Models\Retention;
-use App\Models\StudentApplicant;
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class DeleteArchive extends Command
 {
@@ -33,27 +34,98 @@ class DeleteArchive extends Command
     {
         $record = Retention::where('id', '2')->first();
         if ($record->duration == 'Months') {
-            StudentApplicant::where('created_at', '<', now()->subMonths($record->period))
-                ->forceDelete();
-            NonAcademicApplicant::where('created_at', '<', now()->subMonths($record->period))
-                ->forceDelete();
-            AcademicExcellence::where('created_at', '<', now()->subMonths($record->period))
-                ->forceDelete();
+            $academic_award = StudentApplicant::onlyTrashed()->where('created_at', '<', now()->subMonths($record->period))->get();
+            foreach ($academic_award as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $non_academic = NonAcademicApplicant::onlyTrashed()->where('created_at', '<', now()->subMonths($record->period))->get();
+            foreach ($non_academic as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $academic_excellence = AcademicExcellence::onlyTrashed()->where('created_at', '<', now()->subMonths($record->period))->get();
+            foreach ($academic_excellence as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
         } else if ($record->duration == 'Years') {
-            StudentApplicant::where('created_at', '<', now()->subYears($record->period))
-                ->forceDelete();
-            NonAcademicApplicant::where('created_at', '<', now()->subYears($record->period))
-                ->forceDelete();
-            AcademicExcellence::where('created_at', '<', now()->subYears($record->period))
-                ->forceDelete();
+            $academic_award = StudentApplicant::onlyTrashed()->where('created_at', '<', now()->subYears($record->period))->get();
+            foreach ($academic_award as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $non_academic = NonAcademicApplicant::onlyTrashed()->where('created_at', '<', now()->subYears($record->period))->get();
+            foreach ($non_academic as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $academic_excellence = AcademicExcellence::onlyTrashed()->where('created_at', '<', now()->subYears($record->period))->get();
+            foreach ($academic_excellence as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
         } else {
-            StudentApplicant::where('created_at', '<', now()->subDays($record->period))
-                ->forceDelete();
-            NonAcademicApplicant::where('created_at', '<', now()->subDays($record->period))
-                ->forceDelete();
-            AcademicExcellence::where('created_at', '<', now()->subDays($record->period))
-                ->forceDelete();
+            $academic_award = StudentApplicant::onlyTrashed()->where('created_at', '<', now()->subDays($record->period))->get();
+            foreach ($academic_award as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $non_academic = NonAcademicApplicant::onlyTrashed()->where('created_at', '<', now()->subDays($record->period))->get();
+            foreach ($non_academic as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
+            $academic_excellence = AcademicExcellence::onlyTrashed()->where('created_at', '<', now()->subDays($record->period))->get();
+            foreach ($academic_excellence as $data) {
+                $image_path = public_path() . '/uploads/' . $data->image;
+
+                if (file_exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $data->forceDelete();
+            }
         }
-        // echo $record;
     }
 }

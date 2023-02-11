@@ -28,4 +28,8 @@ class Summary extends Model
     {
         return $this->hasMany(StudentApplicant::class);
     }
+    public function subjects()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
 }

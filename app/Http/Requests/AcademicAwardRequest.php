@@ -43,8 +43,9 @@ class AcademicAwardRequest extends FormRequest
             'total1.*' => 'nullable',
             'year_level' => 'required|string||max:255',
             'image' => 'required|mimes:jpeg,png,jpg',
-            'award_applied' => 'required|string|max:255',
             'course_id' => 'required|string|max:255',
+            'gwa_1st' => 'required',
+            'gwa_2nd' => 'required'
         ];
     }
 
@@ -64,31 +65,32 @@ class AcademicAwardRequest extends FormRequest
             'grades9.*.lt' => 'Sorry, you have grades lower than 2.50 in Summer.',
             'gwa_1st.required' => 'Field for 1st Semester is required',
             'gwa_2nd.required' => 'Field for 2nd Semester is required',
-            'gwa_1st.lte' => 'Your 1st Semester GWA did not meet the grade requirement.',
-            'gwa_2nd.lte' => 'Your 2nd Semester GWA did not meet the grade requirement.',
-            'summer.lte' => 'Your Summer GWA did not meet the grade requirement.',
+            'gwa_1st.between' => 'Your 1st Semester GWA did not meet the grade requirement.',
+            'gwa_2nd.between' => 'Your 2nd Semester GWA did not meet the grade requirement.',
+            'gwa_1st.max' => 'Your 1st Semester GWA did not meet the grade requirement.',
+            'gwa_2nd.max' => 'Your 2nd Semester GWA did not meet the grade requirement.',
         ];
     }
 
     public function withValidator(Validator $validator)
     {
-        $validator->sometimes('gwa_1st', 'required|lte:1.75', function ($input) {
-            return $input->award_applied == '1' || $input->award_applied == '2';
-        });
-        $validator->sometimes('gwa_2nd', 'required|lte:1.75', function ($input) {
-            return $input->award_applied == '1' || $input->award_applied == '2';
-        });
-        $validator->sometimes('summer', 'nullable|lte:1.75', function ($input) {
-            return $input->award_applied == '1' || $input->award_applied == '2';
-        });
-        $validator->sometimes('gwa_1st', 'required|lte:1.50', function ($input) {
-            return $input->award_applied == '3';
-        });
-        $validator->sometimes('gwa_2nd', 'required|lte:1.50', function ($input) {
-            return $input->award_applied == '3';
-        });
-        $validator->sometimes('summer', 'nullable|lte:1.50', function ($input) {
-            return $input->award_applied == '3';
-        });
+        // $validator->sometimes('gwa_1st', 'required|numeric|max:1.75', function ($input) {
+        //     return $input->award_applied == '1';
+        // });
+        // $validator->sometimes('gwa_2nd', 'required|numeric|max:1.75', function ($input) {
+        //     return $input->award_applied == '1';
+        // });
+        // $validator->sometimes('gwa_1st', 'required|numeric|between:1.00,1.75', function ($input) {
+        //     return $input->award_applied == '2';
+        // });
+        // $validator->sometimes('gwa_2nd', 'required|numeric|between:1.00,1.75', function ($input) {
+        //     return $input->award_applied == '2';
+        // });
+        // $validator->sometimes('gwa_1st', 'required|numeric|between:1.00,1.50', function ($input) {
+        //     return $input->award_applied == '3';
+        // });
+        // $validator->sometimes('gwa_2nd', 'required|numeric|between:1.00,1.50', function ($input) {
+        //     return $input->award_applied == '3';
+        // });
     }
 }

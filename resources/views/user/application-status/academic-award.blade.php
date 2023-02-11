@@ -26,9 +26,6 @@
                             <thead>
                                 <tr>
                                     <th>Student No.</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Course</th>
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
@@ -45,15 +42,12 @@
                                     @endphp
                                     <tr>
                                         <td class="font-weight-bold">{{ $item->users->stud_num }}</td>
-                                        <td>{{ $item->users->first_name }}</td>
-                                        <td>{{ $item->users->last_name }}</td>
-                                        <td>{{ $item->courses->course_code }}</td>
                                         <td>{{ $item->year_level }}</td>
                                         <td>{{ $item->school_year }}</td>
                                         <td><span class="badge badge-info">{{ $item->award->name }}</span></td>
                                         <td class="text-center">{{ $item->gwa_1st }}</td>
                                         <td class="text-center">{{ $item->gwa_2nd }}</td>
-                                        <td class="text-center">{{ $item->gwa }}</td>
+                                        <td class="text-center">{{ format_decimal($item->gwa) }}</td>
                                         <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>

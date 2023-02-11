@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\AdminNotification;
 use App\Http\Requests\AcademicAwardRequest;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Notification;
 use AshAllenDesign\ShortURL\Facades\ShortURL;
 use AshAllenDesign\ShortURL\Models\ShortURL as ModelsShortURL;
@@ -19,22 +20,48 @@ class AcademicAwardController extends Controller
 {
     public function index()
     {
-        return view('user.application-form.index');
+        $sub = Subject::all();
+        return view('user.application-form.index', compact('sub'));
+        // dd($subjects);
     }
 
     public function store(AcademicAwardRequest $request)
     {
+        $subjects = array_merge($request->subjects, $request->subjects1);
+        $unique_subjects = array_unique($subjects);
+
+        if (count($subjects) > count($unique_subjects)) {
+            return redirect()->back()->with('error', 'Duplicate subjects in the input.');
+        }
+
         $users = User::where('role_as', '2')->get();
         $user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         $data = $request->validated();
         $award = new StudentApplicant();
+        $gwa = ($data['gwa_1st'] + $data['gwa_2nd']) / 2;
 
         $award->user_id = $data['user_id'];
         $award->school_year = getAcademicYear();
         $award->gwa_1st = $data['gwa_1st'];
         $award->gwa_2nd = $data['gwa_2nd'];
         $award->year_level = $data['year_level'];
+
+        if ($data['year_level'] == '1st Year') {
+            if ($gwa <= 1.75) {
+                $award->award_applied = 1;
+            } else {
+                return redirect()->back()->with('error', 'Not eligible');
+            }
+        } else {
+            if ($gwa >= 1.00 && $gwa <= 1.50) {
+                $award->award_applied = 3;
+            } else if ($gwa > 1.50 && $gwa <= 1.75) {
+                $award->award_applied = 2;
+            } else {
+                return redirect()->back()->with('error', 'Not eligible');
+            }
+        }
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');
@@ -43,7 +70,6 @@ class AcademicAwardController extends Controller
             $award->image = $filename;
         }
 
-        $award->award_applied = $data['award_applied'];
         $award->course_id = $data['course_id'];
         $award->stud_app_id = generateApplicationId();
 
@@ -52,7 +78,7 @@ class AcademicAwardController extends Controller
 
         foreach ($request->subjects as $key => $subjects) {
             $sum = new Summary();
-            $sum->subjects = $subjects;
+            $sum->subject_id = $subjects;
             $sum->units = $data['units'][$key];
             $sum->grades = $data['grades'][$key];
             $sum->user_id = $data['user_id'];
@@ -64,7 +90,7 @@ class AcademicAwardController extends Controller
 
         foreach ($request->subjects1 as $key => $subjects1) {
             $sum = new Summary();
-            $sum->subjects = $subjects1;
+            $sum->subject_id = $subjects1;
             $sum->units = $data['units1'][$key];
             $sum->grades = $data['grades1'][$key];
             $sum->user_id = $data['user_id'];

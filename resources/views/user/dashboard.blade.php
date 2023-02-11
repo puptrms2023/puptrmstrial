@@ -62,9 +62,8 @@
                     <img src="{{ asset('uploads/form/' . $acadaward->photocard) }}" class="card-img-top" alt="image">
                     <div class="card-body text-center">
                         @if ($acad_award_count == '0')
-                            <a href="{{ url('user/application-form') }}" class="btn btn-sm btn-outline-primary mt-2 mb-2">
-                                ACADEMIC AWARD APPLICATION
-                            </a>
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
+                                data-target="#exampleModal">ACADEMIC AWARD APPLICATION</button>
                         @else
                             <button type="button" class="btn btn-sm btn-outline-primary mt-2 mb-2" data-toggle="modal"
                                 data-target="#maxNumber">
@@ -180,23 +179,7 @@
         </div>
     @endcan
 
-    <div class="modal fade" id="maxNumber" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="maxNumberLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="maxNumberLabel">Warning</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    You have already exceeded the maximum number of award application.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('user.modals');
+
 @endsection
+

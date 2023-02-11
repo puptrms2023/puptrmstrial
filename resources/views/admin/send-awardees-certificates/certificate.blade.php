@@ -113,7 +113,7 @@
             @elseif(!empty($summer && $fifth_1))
                 {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
             @else
-                {{ $gwa }}
+                {{ format_decimal($gwa) }}
             @endif
             qualified for the {{ $award_name }} for the S.Y.
             {{ $sy }}.

@@ -29,12 +29,12 @@ class Kernel extends ConsoleKernel
         $schedule->job(new NotificationDeleteJob)->daily();
 
         //using commands
-        // $schedule->command('delete:awardees')
-        //     ->daily();
-        // $schedule->command('delete:recognition')
-        //     ->daily();
-        // $schedule->command('delete:archive')
-        //     ->daily();
+        $schedule->command('delete:awardees')
+            ->daily();
+        $schedule->command('delete:recognition')
+            ->daily();
+        $schedule->command('delete:archive')
+            ->daily();
     }
 
     protected function scheduleTimezone()
