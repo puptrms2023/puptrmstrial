@@ -53,7 +53,7 @@
                             </tr>
                             <tr>
                                 <th width="25%">GWA</th>
-                                <td class="font-weight-bold text-primary"> {{ format_decimal($status->gwa) }}</td>
+                                <td class="font-weight-bold text-primary"> {{ $status->gwa }}</td>
                             </tr>
                             <tr>
                                 <th width="25%">2x2 photo</th>

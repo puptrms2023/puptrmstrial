@@ -35,22 +35,6 @@
                 </a>
             </div>
         @endforeach
-        {{-- @foreach ($nonacad as $item)
-            <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-                <a class="card lift border-left-secondary " href="{{ url('admin/non-academic-award/' . $item->id) }}">
-                    <div class="card border-0">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Dōtonbori Canal</h5>
-                            <p class="card-text mb-4">{{ $item->name }}</p>
-                            <a href="#" class="btn btn-primary mt-auto align-self-start">Book now</a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach --}}
     </div>
-
-
-
 
 @endsection

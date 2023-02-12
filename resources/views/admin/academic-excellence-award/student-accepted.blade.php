@@ -170,11 +170,11 @@
                             $totalwith5thAndSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11;
                         @endphp
                         @if (!empty($stud->gwa9) && empty($stud->gwa10))
-                            {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                            {{ number_format((float) $totalwithSummer, 3, '.', '') }}
                         @elseif(!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9))
-                            {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                            {{ number_format((float) $totalwith5thYear, 3, '.', '') }}
                         @elseif(!empty($stud->gwa9 && $stud->gwa10))
-                            {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
+                            {{ number_format((float) $totalwith5thAndSummer, 3, '.', '') }}
                         @else
                             {{ $stud->gwa }}
                         @endif

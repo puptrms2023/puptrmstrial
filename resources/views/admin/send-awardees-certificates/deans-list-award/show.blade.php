@@ -92,7 +92,7 @@
         @endif
     </div>
     <div class="description">for the remarkable academic performance as a student of this institution for obtaning<br>
-        a General Weighted Average of {{ format_decimal($gwa) }} qualified for the Dean's List Award for the S.Y.
+        a General Weighted Average of {{ $gwa }} qualified for the Dean's List Award for the S.Y.
         {{ $sy }}.
     </div>
     <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>

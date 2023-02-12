@@ -47,11 +47,11 @@
                                         <td><span class="badge badge-success">{{ $item->award->name }}<span></td>
                                         <td class="text-center">
                                             @if (!empty($item->gwa9) && empty($item->gwa10))
-                                                {{ format_decimal($totalwithSummer) }}
+                                                {{ number_format((float) $totalwithSummer, 3, '.', '') }}
                                             @elseif(!empty($item->gwa10 || $item->gwa11) && empty($item->gwa9))
-                                                {{ format_decimal($totalwith5thYear) }}
+                                                {{ number_format((float) $totalwith5thYear, 3, '.', '') }}
                                             @elseif(!empty($item->gwa9 && $item->gwa10))
-                                                {{ format_decimal($totalwith5thAndSummer) }}
+                                                {{ number_format((float) $totalwith5thAndSummer, 3, '.', '') }}
                                             @else
                                                 {{ $item->gwa }}
                                             @endif

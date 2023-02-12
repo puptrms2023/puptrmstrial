@@ -47,7 +47,7 @@
                                         <td><span class="badge badge-info">{{ $item->award->name }}</span></td>
                                         <td class="text-center">{{ $item->gwa_1st }}</td>
                                         <td class="text-center">{{ $item->gwa_2nd }}</td>
-                                        <td class="text-center">{{ format_decimal($item->gwa) }}</td>
+                                        <td class="text-center">{{ $item->gwa }}</td>
                                         <td class="text-center">
                                             @if ($item->status == '0')
                                                 <span class="badge badge-warning">Pending</span>

@@ -70,11 +70,11 @@ class AEApplicantsController extends Controller
                     $totalwith5thYear = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa10 + $stud->gwa11) / 10;
                     $totalwith5thAndSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11;
                     if (!empty($stud->gwa9) && empty($stud->gwa10)) {
-                        return number_format((float) $totalwithSummer, 2, '.', '');
+                        return number_format((float) $totalwithSummer, 3, '.', '');
                     } else if (!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9)) {
-                        return number_format((float) $totalwith5thYear, 2, '.', '');
+                        return number_format((float) $totalwith5thYear, 3, '.', '');
                     } else if (!empty($stud->gwa9 && $stud->gwa10)) {
-                        return number_format((float) $totalwith5thAndSummer, 2, '.', '');
+                        return number_format((float) $totalwith5thAndSummer, 3, '.', '');
                     } else {
                         return $stud->gwa;
                     }
@@ -254,11 +254,11 @@ class AEApplicantsController extends Controller
                     $totalwith5thYear = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa10 + $stud->gwa11) / 10;
                     $totalwith5thAndSummer = ($stud->gwa1 + $stud->gwa2 + $stud->gwa3 + $stud->gwa4 + $stud->gwa5 + $stud->gwa6 + $stud->gwa7 + $stud->gwa8 + $stud->gwa9 + $stud->gwa10 + $stud->gwa11) / 11;
                     if (!empty($stud->gwa9) && empty($stud->gwa10)) {
-                        return number_format((float) $totalwithSummer, 2, '.', '');
+                        return number_format((float) $totalwithSummer, 3, '.', '');
                     } else if (!empty($stud->gwa10 || $stud->gwa11) && empty($stud->gwa9)) {
-                        return number_format((float) $totalwith5thYear, 2, '.', '');
+                        return number_format((float) $totalwith5thYear, 3, '.', '');
                     } else if (!empty($stud->gwa9 && $stud->gwa10)) {
-                        return number_format((float) $totalwith5thAndSummer, 2, '.', '');
+                        return number_format((float) $totalwith5thAndSummer, 3, '.', '');
                     } else {
                         return $stud->gwa;
                     }

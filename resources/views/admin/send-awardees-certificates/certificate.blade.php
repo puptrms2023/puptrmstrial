@@ -107,13 +107,13 @@
             for the remarkable academic performance as a student of this institution for obtaning<br>
             a General Weighted Average of
             @if (!empty($summer) && empty($fifth_1))
-                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                {{ number_format((float) $totalwithSummer, 3, '.', '') }}
             @elseif(!empty($fifth_1 || $fifth_2) && empty($summer))
-                {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                {{ number_format((float) $totalwith5thYear, 3, '.', '') }}
             @elseif(!empty($summer && $fifth_1))
-                {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
+                {{ number_format((float) $totalwith5thAndSummer, 3, '.', '') }}
             @else
-                {{ format_decimal($gwa) }}
+                {{ $gwa }}
             @endif
             qualified for the {{ $award_name }} for the S.Y.
             {{ $sy }}.

@@ -58,7 +58,7 @@
                                         <td>{{ $awardee->users->first_name }}</td>
                                         <td>{{ $awardee->courses->course_code }}</td>
                                         <td>{{ $awardee->year_level }}</td>
-                                        <td class="text-center">{{ format_decimal($awardee->gwa) }}</td>
+                                        <td class="text-center">{{ $awardee->gwa }}</td>
                                         <td class="text-center">
                                             @if ($awardee->certificate_status == '1')
                                                 <span class="badge badge-success">Sent</span>

@@ -17,12 +17,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('app_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('subject_id');
             $table->tinyInteger('term');
-            $table->string('subjects');
             $table->integer('units');
-            $table->decimal('grades', 10,2);
+            $table->decimal('grades', 10, 2);
             $table->string('sy');
             $table->timestamps();
+            $table->foreign('app_id')->references('id')->on('ae_applicants')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
@@ -33,6 +36,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('summary_ae', function (Blueprint $table) {
+            $table->dropForeign(['foreign_key_column']);
+        });
         Schema::dropIfExists('summary_ae');
     }
 };

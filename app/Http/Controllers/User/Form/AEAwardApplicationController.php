@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\User\Form;
 
 use App\Models\User;
+use App\Models\Subject;
 use App\Models\SummaryAcadExcell;
 use App\Models\AcademicExcellence;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\AdminNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\AcademicExcellenceRequest;
-use App\Notifications\AdminNotification;
 
 class AEAwardApplicationController extends Controller
 {
     public function index()
     {
-        return view('user.application-form-ae.index');
+        $sub = Subject::all();
+        return view('user.application-form-ae.index', compact('sub'));
     }
 
     public function store(AcademicExcellenceRequest $request)
@@ -62,7 +64,7 @@ class AEAwardApplicationController extends Controller
 
         foreach ($request->subjects as $key => $subjects) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects;
+            $sum->subject_id = $subjects;
             $sum->units = $data['units'][$key];
             $sum->grades = $data['grades'][$key];
             $sum->user_id = $data['user_id'];
@@ -74,7 +76,7 @@ class AEAwardApplicationController extends Controller
 
         foreach ($request->subjects1 as $key => $subjects1) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects1;
+            $sum->subject_id = $subjects1;
             $sum->units = $data['units1'][$key];
             $sum->grades = $data['grades1'][$key];
             $sum->user_id = $data['user_id'];
@@ -85,7 +87,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects3 as $key => $subjects3) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects3;
+            $sum->subject_id = $subjects3;
             $sum->units = $data['units3'][$key];
             $sum->grades = $data['grades3'][$key];
             $sum->user_id = $data['user_id'];
@@ -96,7 +98,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects4 as $key => $subjects4) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects4;
+            $sum->subject_id = $subjects4;
             $sum->units = $data['units4'][$key];
             $sum->grades = $data['grades4'][$key];
             $sum->user_id = $data['user_id'];
@@ -107,7 +109,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects5 as $key => $subjects5) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects5;
+            $sum->subject_id = $subjects5;
             $sum->units = $data['units5'][$key];
             $sum->grades = $data['grades5'][$key];
             $sum->user_id = $data['user_id'];
@@ -118,7 +120,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects6 as $key => $subjects6) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects6;
+            $sum->subject_id = $subjects6;
             $sum->units = $data['units6'][$key];
             $sum->grades = $data['grades6'][$key];
             $sum->user_id = $data['user_id'];
@@ -129,7 +131,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects7 as $key => $subjects7) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects7;
+            $sum->subject_id = $subjects7;
             $sum->units = $data['units7'][$key];
             $sum->grades = $data['grades7'][$key];
             $sum->user_id = $data['user_id'];
@@ -140,7 +142,7 @@ class AEAwardApplicationController extends Controller
         }
         foreach ($request->subjects8 as $key => $subjects8) {
             $sum = new SummaryAcadExcell();
-            $sum->subjects = $subjects8;
+            $sum->subject_id = $subjects8;
             $sum->units = $data['units8'][$key];
             $sum->grades = $data['grades8'][$key];
             $sum->user_id = $data['user_id'];
@@ -153,7 +155,7 @@ class AEAwardApplicationController extends Controller
         if (!empty($request->subjects9)) {
             foreach ($request->subjects9 as $key => $subjects9) {
                 $sum = new SummaryAcadExcell();
-                $sum->subjects = $subjects9;
+                $sum->subject_id = $subjects9;
                 $sum->units = $data['units9'][$key];
                 $sum->grades = $data['grades9'][$key];
                 $sum->user_id = $data['user_id'];
@@ -167,7 +169,7 @@ class AEAwardApplicationController extends Controller
         if (!empty($request->subjects10)) {
             foreach ($request->subjects10 as $key => $subjects10) {
                 $sum = new SummaryAcadExcell();
-                $sum->subjects = $subjects10;
+                $sum->subject_id = $subjects10;
                 $sum->units = $data['units10'][$key];
                 $sum->grades = $data['grades10'][$key];
                 $sum->user_id = $data['user_id'];
@@ -181,7 +183,7 @@ class AEAwardApplicationController extends Controller
         if (!empty($request->subjects11)) {
             foreach ($request->subjects11 as $key => $subjects11) {
                 $sum = new SummaryAcadExcell();
-                $sum->subjects = $subjects11;
+                $sum->subject_id = $subjects11;
                 $sum->units = $data['units11'][$key];
                 $sum->grades = $data['grades11'][$key];
                 $sum->user_id = $data['user_id'];

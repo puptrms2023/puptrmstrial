@@ -47,11 +47,11 @@
                                 <th width="25%">GWA</th>
                                 <td class="font-weight-bold text-primary">
                                     @if (!empty($status->gwa9) && empty($status->gwa10))
-                                        {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                        {{ number_format((float) $totalwithSummer, 3, '.', '') }}
                                     @elseif(!empty($status->gwa10 || $status->gwa11) && empty($status->gwa9))
-                                        {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                        {{ number_format((float) $totalwith5thYear, 3, '.', '') }}
                                     @elseif(!empty($status->gwa9 && $status->gwa10))
-                                        {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
+                                        {{ number_format((float) $totalwith5thAndSummer, 3, '.', '') }}
                                     @else
                                         {{ $status->gwa }}
                                     @endif
@@ -109,6 +109,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -122,7 +123,8 @@
                                 @endphp
                                 @foreach ($grades as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -151,6 +153,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -164,7 +167,8 @@
                                 @endphp
                                 @foreach ($grades2 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -197,6 +201,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -210,7 +215,8 @@
                                 @endphp
                                 @foreach ($grades3 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -239,6 +245,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -252,7 +259,8 @@
                                 @endphp
                                 @foreach ($grades4 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -285,6 +293,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -298,7 +307,8 @@
                                 @endphp
                                 @foreach ($grades5 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -327,6 +337,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -340,7 +351,8 @@
                                 @endphp
                                 @foreach ($grades6 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -373,6 +385,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -386,7 +399,8 @@
                                 @endphp
                                 @foreach ($grades7 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -415,6 +429,7 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Subject Code</th>
                                     <th>Subject Name</th>
                                     <th>Grades</th>
                                     <th>Units</th>
@@ -428,7 +443,8 @@
                                 @endphp
                                 @foreach ($grades8 as $grade)
                                     <tr>
-                                        <td>{{ $grade->subjects }}</td>
+                                        <td>{{ $grade->subjects->s_code }}</td>
+                                        <td>{{ $grade->subjects->s_name }}</td>
                                         <td>{{ $grade->grades }}</td>
                                         <td>{{ $grade->units }}</td>
                                     </tr>
@@ -464,6 +480,7 @@
                             <table class="table table-bordered table-sm" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Subject Code</th>
                                         <th>Subject Name</th>
                                         <th>Grades</th>
                                         <th>Units</th>
@@ -477,7 +494,8 @@
                                     @endphp
                                     @foreach ($grades10 as $grade)
                                         <tr>
-                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->subjects->s_code }}</td>
+                                            <td>{{ $grade->subjects->s_name }}</td>
                                             <td>{{ $grade->grades }}</td>
                                             <td>{{ $grade->units }}</td>
                                         </tr>
@@ -507,6 +525,7 @@
                             <table class="table table-bordered table-sm" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Subject Code</th>
                                         <th>Subject Name</th>
                                         <th>Grades</th>
                                         <th>Units</th>
@@ -520,7 +539,8 @@
                                     @endphp
                                     @foreach ($grades11 as $grade)
                                         <tr>
-                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->subjects->s_code }}</td>
+                                            <td>{{ $grade->subjects->s_name }}</td>
                                             <td>{{ $grade->grades }}</td>
                                             <td>{{ $grade->units }}</td>
                                         </tr>
@@ -555,6 +575,7 @@
                             <table class="table table-bordered table-sm" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Subject Code</th>
                                         <th>Subject Name</th>
                                         <th>Grades</th>
                                         <th>Units</th>
@@ -563,7 +584,8 @@
                                 <tbody>
                                     @foreach ($grades9 as $grade)
                                         <tr>
-                                            <td>{{ $grade->subjects }}</td>
+                                            <td>{{ $grade->subjects->s_code }}</td>
+                                            <td>{{ $grade->subjects->s_name }}</td>
                                             <td>{{ $grade->grades }}</td>
                                             <td>{{ $grade->units }}</td>
                                         </tr>

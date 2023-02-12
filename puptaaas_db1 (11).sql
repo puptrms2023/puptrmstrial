@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2023 at 10:11 PM
+-- Generation Time: Feb 12, 2023 at 11:18 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -40,7 +40,7 @@ CREATE TABLE `about` (
 --
 
 INSERT INTO `about` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(3, 'Samples', '<p><strong>Content</strong></p><p>The PUPT Recognition Management System (PUPT-RMS) strives to establish a systematic process for recording, evaluating and verifying student awardee\'s information for university awarding and recognition pursuance. Thus, the project is particularly notable to the involved population in the institution.&nbsp;</p><p><strong>Students&nbsp;</strong></p><p>The PUPT-RMS will be storage for students who applied and qualified for a specific award. Implementing a reliable, dynamic, and efficient repository can assist the student awardees in tracking the application process. Students can also access their initial inputted information if there is a need to change the submitted academic record&nbsp;</p><p><strong>Branch Staff&nbsp;</strong></p><p>The PUPT-RMS can improve the verification process of the university staff and assigned personnel. It can reduce the usual workload in fulfilling the said position at every recognition ceremony since the system has adequate and inclusive features, which are essential for the institution in conducting an efficient and smooth application acceptance.&nbsp;</p><p><strong>PUP Taguig Community</strong>&nbsp;</p><p>The integration of the application system will support the PUP Taguig community, strengthening the academic needs and promoting an efficient service using the project within the university Converting the manual-based awarding application process to an automated and standardized technology system-based process can accommodate and answer all the concerns and requests from the faculty, staff, and students. The PUPT Recognition Management System (PUPT-RMS) can provide an objective platform and be a communication medium between the officer-in-charge and the awardees. Lastly, it also covers all the latest academic updates and comprehensive event information about the university.</p>', '2022-10-15 11:50:42', '2022-10-15 16:49:00');
+(3, 'Samples', '<p><strong>Content</strong></p><p>The PUPT Recognition Management System (PUPT-RMS) strives to establish a systematic process for recording, evaluating and verifying student awardee\'s information for university awarding and recognition pursuance. Thus, the project is particularly notable to the involved population in the institution.&nbsp;</p><figure class=\"image image-style-side\"><img src=\"http://127.0.0.1:8000/uploads/1676141155.jpg\"></figure><p><strong>Students&nbsp;</strong></p><p>The PUPT-RMS will be storage for students who applied and qualified for a specific award. Implementing a reliable, dynamic, and efficient repository can assist the student awardees in tracking the application process. Students can also access their initial inputted information if there is a need to change the submitted academic record&nbsp;</p><p><strong>Branch Staff&nbsp;</strong></p><p>The PUPT-RMS can improve the verification process of the university staff and assigned personnel. It can reduce the usual workload in fulfilling the said position at every recognition ceremony since the system has adequate and inclusive features, which are essential for the institution in conducting an efficient and smooth application acceptance.&nbsp;</p><p><strong>PUP Taguig Community</strong>&nbsp;</p><p>The integration of the application system will support the PUP Taguig community, strengthening the academic needs and promoting an efficient service using the project within the university Converting the manual-based awarding application process to an automated and standardized technology system-based process can accommodate and answer all the concerns and requests from the faculty, staff, and students. The PUPT Recognition Management System (PUPT-RMS) can provide an objective platform and be a communication medium between the officer-in-charge and the awardees. Lastly, it also covers all the latest academic updates and comprehensive event information about the university.</p>', '2022-10-15 11:50:42', '2023-02-11 18:53:33');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE `ae_applicants` (
   `gwa9` decimal(10,2) DEFAULT NULL,
   `gwa10` decimal(10,2) DEFAULT NULL,
   `gwa11` decimal(10,2) DEFAULT NULL,
-  `gwa` decimal(10,2) GENERATED ALWAYS AS ((`gwa1` + `gwa2` + `gwa3` + `gwa4` + `gwa5` + `gwa6` + `gwa7` + `gwa8`) / 8) VIRTUAL,
+  `gwa` decimal(10,3) GENERATED ALWAYS AS ((`gwa1` + `gwa2` + `gwa3` + `gwa4` + `gwa5` + `gwa6` + `gwa7` + `gwa8`) / 8) VIRTUAL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Accepted,2=Rejected',
   `certificate_status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=pending,1=sent',
@@ -359,7 +359,83 @@ INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `
 (230, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 11, '{\"status\":0,\"reason\":null}', '{\"status\":\"1\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/deans-list-award/BSED-MT/update-status/11', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-01-28 19:19:26', '2023-01-28 19:19:26'),
 (231, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\User', 105, '{\"id\":105,\"stud_num\":\"2022-00738-TG-0\",\"username\":\"rose123\",\"first_name\":\"Maris\",\"middle_name\":\"Woodward\",\"last_name\":\"Clements\",\"email\":\"roseann@gmail.com\",\"contact\":\"+639563335851\",\"course_id\":\"6\",\"role_as\":0,\"email_verified_at\":\"2023-01-29 02:10:36\",\"password\":\"$2y$10$R8HHZa0KskbLD4OIun9Fn.ibfOgqAPgwywhUusjV5dCms.8iQ0uxa\",\"remember_token\":null,\"is_email_verified\":0}', '[]', 'http://127.0.0.1:8000/admin/delete-student', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-01-28 20:22:41', '2023-01-28 20:22:41'),
 (232, NULL, NULL, 'created', 'App\\Models\\User', 106, '[]', '{\"first_name\":\"Hayley\",\"middle_name\":\"Reese\",\"last_name\":\"Atkinson\",\"contact\":\"+639386344235\",\"course_id\":\"2\",\"stud_num\":\"2022-00267-TG-0\",\"email\":\"vakyv@gmail.com\",\"username\":\"kizexolewe\",\"password\":\"$2y$10$Mx.sEjJl7vwjLxYb6o1QOOFeqkUb9j83\\/7pLFMcQJPSH2zDVusiom\",\"id\":106}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-01-28 20:32:55', '2023-01-28 20:32:55'),
-(233, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"email_verified_at\":null}', '{\"email_verified_at\":\"2023-01-29 04:33:32\"}', 'http://127.0.0.1:8000/email/verify/106/ebcc912b156e0f3c11aa50631869f8ffa0792e7d?expires=1674941579&signature=332ec0ce190d64cdd34165b6b5fb44ed3f83fa0cc153e12bb07a1eb4aea7b2ea', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-01-28 20:33:32', '2023-01-28 20:33:32');
+(233, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"email_verified_at\":null}', '{\"email_verified_at\":\"2023-01-29 04:33:32\"}', 'http://127.0.0.1:8000/email/verify/106/ebcc912b156e0f3c11aa50631869f8ffa0792e7d?expires=1674941579&signature=332ec0ce190d64cdd34165b6b5fb44ed3f83fa0cc153e12bb07a1eb4aea7b2ea', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-01-28 20:33:32', '2023-01-28 20:33:32'),
+(234, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 106, '{\"username\":\"kizexolewe\"}', '{\"username\":\"rose123\"}', 'http://127.0.0.1:8000/admin/update-student/106', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 17:27:38', '2023-02-05 17:27:38'),
+(235, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"2CGKTSZwSGbHyzgvoY2RzGs8HCrEos0Jv9tjMmaEAOtfIZQeE9Ct4TIMgIzY\"}', '{\"remember_token\":\"ZRnrO37VDN8SykybumhvlGR7RApwKzTLg5IIAYpLWHMZMFeK6dyVWNiRU8vH\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 17:27:46', '2023-02-05 17:27:46'),
+(236, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"ZRnrO37VDN8SykybumhvlGR7RApwKzTLg5IIAYpLWHMZMFeK6dyVWNiRU8vH\"}', '{\"remember_token\":\"GfUTCPwvn4BGDmZTeb4kmhnjgNTvH9JR0q9daa1MY0RKhAsu7FHcePXfTi7i\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 17:28:38', '2023-02-05 17:28:38');
+INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `auditable_id`, `old_values`, `new_values`, `url`, `ip_address`, `user_agent`, `tags`, `created_at`, `updated_at`) VALUES
+(237, NULL, NULL, 'updated', 'App\\Models\\User', 106, '{\"password\":\"$2y$10$Mx.sEjJl7vwjLxYb6o1QOOFeqkUb9j83\\/7pLFMcQJPSH2zDVusiom\",\"remember_token\":null}', '{\"password\":\"$2y$10$CvGf\\/Th8256.9HTJJykFo.xtYg.M6mG8Kq1MCqvzdEjzqMzCxnQ0q\",\"remember_token\":\"fBASryn66apXvuWQiHouI15hvXZ7K2SjysWO1yA7k4QWm0IeIWPdPFAzGpG9\"}', 'http://127.0.0.1:8000/password/reset', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 17:29:49', '2023-02-05 17:29:49'),
+(238, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 12, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.50\",\"year_level\":\"4th Year\",\"image\":\"1675623521.png\",\"award_applied\":\"3\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-5726219370\",\"id\":12}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 18:58:41', '2023-02-05 18:58:41'),
+(239, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 12, '{\"id\":12,\"stud_app_id\":\"PUPT-5726219370\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"award_applied\":\"3\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.38\",\"image\":\"1675623521.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/presidents-list-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 18:59:54', '2023-02-05 18:59:54'),
+(240, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 13, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.75\",\"year_level\":\"3rd Year\",\"image\":\"1675624934.png\",\"award_applied\":\"2\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-1805178697\",\"id\":13}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:22:15', '2023-02-05 19:22:15'),
+(241, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 13, '{\"id\":13,\"stud_app_id\":\"PUPT-1805178697\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"3rd Year\",\"award_applied\":\"2\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.75\",\"gwa\":\"1.38\",\"image\":\"1675624934.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/deans-list-award/BSBA-HR/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:22:35', '2023-02-05 19:22:35'),
+(242, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 14, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"2.00\",\"year_level\":\"1st Year\",\"image\":\"1675625287.png\",\"award_applied\":\"1\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-9649129821\",\"id\":14}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:28:07', '2023-02-05 19:28:07'),
+(243, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 14, '{\"id\":14,\"stud_app_id\":\"PUPT-9649129821\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"award_applied\":\"1\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"2.00\",\"gwa\":\"1.88\",\"image\":\"1675625287.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/achievers-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:29:24', '2023-02-05 19:29:24'),
+(244, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 15, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"2.00\",\"year_level\":\"1st Year\",\"image\":\"1675625395.png\",\"award_applied\":\"1\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-8304171335\",\"id\":15}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:29:55', '2023-02-05 19:29:55'),
+(245, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 15, '{\"id\":15,\"stud_app_id\":\"PUPT-8304171335\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"award_applied\":\"1\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"2.00\",\"gwa\":\"1.88\",\"image\":\"1675625395.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/achievers-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:31:21', '2023-02-05 19:31:21'),
+(246, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 16, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"year_level\":\"1st Year\",\"image\":\"1675625542.png\",\"award_applied\":\"1\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-4112416134\",\"id\":16}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:32:22', '2023-02-05 19:32:22'),
+(247, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 16, '{\"id\":16,\"stud_app_id\":\"PUPT-4112416134\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"award_applied\":\"1\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.25\",\"image\":\"1675625542.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/achievers-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:32:43', '2023-02-05 19:32:43'),
+(248, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 17, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.67\",\"gwa_2nd\":\"1.00\",\"year_level\":\"2nd Year\",\"image\":\"1675625742.png\",\"award_applied\":\"2\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-2164413550\",\"id\":17}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:35:42', '2023-02-05 19:35:42'),
+(249, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 17, '{\"id\":17,\"stud_app_id\":\"PUPT-2164413550\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"2nd Year\",\"award_applied\":\"2\",\"gwa_1st\":\"1.67\",\"gwa_2nd\":\"1.00\",\"gwa\":\"1.34\",\"image\":\"1675625742.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/deans-list-award/BSBA-HR/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-05 19:35:56', '2023-02-05 19:35:56'),
+(250, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 18, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"year_level\":\"3rd Year\",\"image\":\"1675693050.png\",\"award_applied\":\"3\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-9354966306\",\"id\":18}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 14:17:30', '2023-02-06 14:17:30'),
+(251, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 18, '{\"id\":18,\"stud_app_id\":\"PUPT-9354966306\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"3rd Year\",\"award_applied\":\"3\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.25\",\"image\":\"1675693050.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/presidents-list-award/BSBA-HR/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 14:18:16', '2023-02-06 14:18:16'),
+(252, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 19, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.00\",\"year_level\":\"2nd Year\",\"image\":\"1675694115.png\",\"award_applied\":\"2\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-5351963098\",\"id\":19}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 14:35:16', '2023-02-06 14:35:16'),
+(253, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 19, '{\"id\":19,\"stud_app_id\":\"PUPT-5351963098\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"2nd Year\",\"award_applied\":\"2\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.00\",\"gwa\":\"1.13\",\"image\":\"1675694115.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/deans-list-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 14:35:42', '2023-02-06 14:35:42'),
+(254, 'App\\Models\\User', 106, 'created', 'App\\Models\\NonAcademicApplicant', 2, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"nonacad_id\":\"1\",\"org_id\":\"8\",\"sports\":null,\"subject_name\":null,\"thesis_title\":null,\"competition_name\":null,\"placement\":null,\"designated_office\":null,\"remarks\":null,\"nonacad_app_id\":\"PUPT-7417190588\",\"image\":\"1675710043.png\",\"file_name\":\"1675710046_Hopkins-20230120.pdf\",\"file_path\":\"\\/storage\\/uploads\\/1675710043_Hopkins-20230120.pdf\",\"id\":2}', 'http://127.0.0.1:8000/user/non-academic-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 19:00:47', '2023-02-06 19:00:47'),
+(255, 'App\\Models\\User', 19, 'updated', 'App\\Models\\NonAcademicApplicant', 2, '{\"status\":0}', '{\"status\":1}', 'http://127.0.0.1:8000/admin/non-academic-award/BSBA-HR/approve/2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 19:03:35', '2023-02-06 19:03:35'),
+(256, 'App\\Models\\User', 19, 'updated', 'App\\Models\\NonAcademicApplicant', 2, '{\"status\":1,\"reason\":null}', '{\"status\":\"0\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/non-academic-award/1/update-status/2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 19:04:51', '2023-02-06 19:04:51'),
+(257, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"remember_token\":\"fBASryn66apXvuWQiHouI15hvXZ7K2SjysWO1yA7k4QWm0IeIWPdPFAzGpG9\"}', '{\"remember_token\":\"gZYp40TPxL8vgf8qgSazhhD7rxaqXjaBT35i6KNJdRlthgunbczJIokpVunt\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-06 19:12:13', '2023-02-06 19:12:13'),
+(258, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 20, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.50\",\"year_level\":\"2nd Year\",\"image\":\"1675761291.png\",\"award_applied\":\"3\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-4473207437\",\"id\":20}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-07 09:14:52', '2023-02-07 09:14:52'),
+(259, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 20, '{\"id\":20,\"stud_app_id\":\"PUPT-4473207437\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"2nd Year\",\"award_applied\":\"3\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.38\",\"image\":\"1675761291.png\",\"status\":0,\"course_id\":2,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/presidents-list-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-07 09:17:02', '2023-02-07 09:17:02'),
+(260, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 21, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.50\",\"gwa_2nd\":\"1.00\",\"year_level\":\"3rd Year\",\"award_applied\":3,\"image\":\"1676133536.png\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-3800602839\",\"id\":21}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 16:38:58', '2023-02-11 16:38:58'),
+(261, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 22, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"1.25\",\"year_level\":\"2nd Year\",\"award_applied\":3,\"image\":\"1676133880.png\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-3931045614\",\"id\":22}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 16:44:40', '2023-02-11 16:44:40'),
+(262, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 22, '{\"status\":0}', '{\"status\":2}', 'http://127.0.0.1:8000/admin/presidents-list-award/BSBA-HR/reject/22', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:20:22', '2023-02-11 17:20:22'),
+(263, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 23, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"1.00\",\"year_level\":\"4th Year\",\"award_applied\":3,\"image\":\"1676136496.png\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-3065523465\",\"id\":23}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:28:16', '2023-02-11 17:28:16'),
+(264, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 24, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.75\",\"year_level\":\"1st Year\",\"award_applied\":1,\"image\":\"1676137197.png\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-1828562217\",\"id\":24}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:39:57', '2023-02-11 17:39:57'),
+(265, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":0}', '{\"status\":2}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/reject/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:44:58', '2023-02-11 17:44:58'),
+(266, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":0}', '{\"status\":1}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/approve/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:46:30', '2023-02-11 17:46:30'),
+(267, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":1,\"reason\":null}', '{\"status\":\"2\",\"reason\":\"3\"}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/update-status/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:46:58', '2023-02-11 17:46:58'),
+(268, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":2}', '{\"status\":\"0\"}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/update-status/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:49:07', '2023-02-11 17:49:07'),
+(269, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":0}', '{\"status\":2}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/reject/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:49:12', '2023-02-11 17:49:12'),
+(270, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":2,\"reason\":null}', '{\"status\":\"0\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/update-status/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:53:57', '2023-02-11 17:53:57'),
+(271, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 24, '{\"status\":0}', '{\"status\":2}', 'http://127.0.0.1:8000/admin/achievers-award/BSBA-HR/reject/24', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:54:03', '2023-02-11 17:54:03'),
+(272, 'App\\Models\\User', 19, 'updated', 'App\\Models\\NonAcademicApplicant', 2, '{\"status\":0,\"reason\":2}', '{\"status\":\"2\",\"reason\":\"3\"}', 'http://127.0.0.1:8000/admin/non-academic-award/1/update-status/2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 17:57:29', '2023-02-11 17:57:29'),
+(273, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 24, '{\"id\":24,\"stud_app_id\":\"PUPT-1828562217\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"award_applied\":\"1\",\"gwa_1st\":\"1.25\",\"gwa_2nd\":\"1.75\",\"gwa\":\"1.500\",\"image\":\"1676137197.png\",\"status\":2,\"course_id\":2,\"certificate_status\":0,\"reason\":2,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/achievers-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 18:00:10', '2023-02-11 18:00:10'),
+(274, 'App\\Models\\User', 106, 'created', 'App\\Models\\StudentApplicant', 25, '[]', '{\"user_id\":\"106\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"1.75\",\"year_level\":\"4th Year\",\"award_applied\":2,\"image\":\"1676142308.png\",\"course_id\":\"2\",\"stud_app_id\":\"PUPT-1700018381\",\"id\":25}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:05:09', '2023-02-11 19:05:09'),
+(275, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 25, '{\"status\":0}', '{\"status\":2}', 'http://127.0.0.1:8000/admin/deans-list-award/BSBA-HR/reject/25', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:07:26', '2023-02-11 19:07:26'),
+(276, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 25, '{\"status\":2,\"reason\":null}', '{\"status\":\"0\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/deans-list-award/BSBA-HR/update-status/25', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:10:13', '2023-02-11 19:10:13'),
+(277, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 25, '{\"status\":0}', '{\"status\":1}', 'http://127.0.0.1:8000/admin/deans-list-award/BSBA-HR/approve/25', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:10:27', '2023-02-11 19:10:27'),
+(278, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"remember_token\":\"gZYp40TPxL8vgf8qgSazhhD7rxaqXjaBT35i6KNJdRlthgunbczJIokpVunt\"}', '{\"remember_token\":\"uKnqQvrayveBwtcLiEdbQgNfRv62uMUXB07VxXeppvDuP4Rd4rYIhbfaIVTl\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:44:07', '2023-02-11 19:44:07'),
+(279, NULL, NULL, 'created', 'App\\Models\\User', 107, '[]', '{\"first_name\":\"Dakota\",\"middle_name\":\"Farley\",\"last_name\":\"Stone\",\"contact\":\"+639805636632\",\"course_id\":\"7\",\"stud_num\":\"2022-00961-TG-0\",\"email\":\"qodifaj@gmail.com\",\"username\":\"nalyzedyre\",\"password\":\"$2y$10$G4m.KXr5q6N03mIjy.Oziu4shBUdHMlFnvrzljTHoYcE366hxnSsG\",\"id\":107}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:44:35', '2023-02-11 19:44:35'),
+(280, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\User', 107, '{\"id\":107,\"stud_num\":\"2022-00961-TG-0\",\"username\":\"nalyzedyre\",\"first_name\":\"Dakota\",\"middle_name\":\"Farley\",\"last_name\":\"Stone\",\"email\":\"qodifaj@gmail.com\",\"contact\":\"+639805636632\",\"course_id\":\"7\",\"role_as\":0,\"email_verified_at\":null,\"password\":\"$2y$10$G4m.KXr5q6N03mIjy.Oziu4shBUdHMlFnvrzljTHoYcE366hxnSsG\",\"remember_token\":null,\"is_email_verified\":0}', '[]', 'http://127.0.0.1:8000/admin/delete-student', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:46:30', '2023-02-11 19:46:30'),
+(281, NULL, NULL, 'created', 'App\\Models\\User', 108, '[]', '{\"first_name\":\"Tyrone\",\"middle_name\":\"Lott\",\"last_name\":\"House\",\"contact\":\"+639806359279\",\"course_id\":\"3\",\"stud_num\":\"2022-00673-TG-0\",\"email\":\"heqolyjeva@gmail.com\",\"username\":\"qihytoheqe\",\"password\":\"$2y$10$ZShejxHrwaR9HspZfXrEZOrR.eLOT48Xuvoq8iQnveAc7eg1YHqXe\",\"id\":108}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:46:36', '2023-02-11 19:46:36'),
+(282, 'App\\Models\\User', 108, 'updated', 'App\\Models\\User', 108, '{\"email_verified_at\":null}', '{\"email_verified_at\":\"2023-02-12 03:46:59\"}', 'http://127.0.0.1:8000/email/verify/108/a1e943bfed51461acf7919a9fbb0b86074b61cce?expires=1676148397&signature=32153b8336fa5834331a29517b1d0e6a936f84cc03dce8bde9111a0d21cf7ba1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:46:59', '2023-02-11 19:46:59'),
+(283, 'App\\Models\\User', 108, 'created', 'App\\Models\\StudentApplicant', 26, '[]', '{\"user_id\":\"108\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.38\",\"gwa_2nd\":\"1.13\",\"year_level\":\"4th Year\",\"award_applied\":3,\"image\":\"1676144980.png\",\"course_id\":\"3\",\"stud_app_id\":\"PUPT-7623858766\",\"id\":26}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 19:49:41', '2023-02-11 19:49:41'),
+(284, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"remember_token\":\"uKnqQvrayveBwtcLiEdbQgNfRv62uMUXB07VxXeppvDuP4Rd4rYIhbfaIVTl\"}', '{\"remember_token\":\"2H4lYq0Q7sXfZWtwEnp7EzaDl3dKMurYkZ8czmRffTLcestNETfuyeFqEaaY\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:15:42', '2023-02-11 20:15:42'),
+(285, NULL, NULL, 'created', 'App\\Models\\User', 109, '[]', '{\"first_name\":\"Miranda\",\"middle_name\":\"Mays\",\"last_name\":\"Snider\",\"contact\":\"+639492102988\",\"course_id\":\"10\",\"stud_num\":\"2022-00062-TG-0\",\"email\":\"ceja@gmail.com\",\"username\":\"hojosif\",\"password\":\"$2y$10$\\/6GCEHSPHNAXewte3Nf6DOB1hGPPGNdmOFTiO0qNGvR2jOMMvgJ9W\",\"id\":109}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:15:52', '2023-02-11 20:15:52'),
+(286, 'App\\Models\\User', 109, 'updated', 'App\\Models\\User', 109, '{\"email_verified_at\":null}', '{\"email_verified_at\":\"2023-02-12 04:16:40\"}', 'http://127.0.0.1:8000/email/verify/109/18083df8815ea6ab1f277ced9e9d4cf44ec22ead?expires=1676150153&signature=e0808667cf76faf7a2af9f72069138cd95d36c6887cc2beb8cf7cd5abff55876', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:16:40', '2023-02-11 20:16:40'),
+(287, 'App\\Models\\User', 109, 'created', 'App\\Models\\StudentApplicant', 27, '[]', '{\"user_id\":\"109\",\"school_year\":\"2022-2023\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"year_level\":\"1st Year\",\"award_applied\":1,\"image\":\"1676146639.png\",\"course_id\":\"10\",\"stud_app_id\":\"PUPT-7650897318\",\"id\":27}', 'http://127.0.0.1:8000/user/application-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:17:19', '2023-02-11 20:17:19'),
+(288, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 27, '{\"status\":0}', '{\"status\":1}', 'http://127.0.0.1:8000/admin/achievers-award/DICT/approve/27', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:25:30', '2023-02-11 20:25:30'),
+(289, 'App\\Models\\User', 19, 'updated', 'App\\Models\\StudentApplicant', 26, '{\"status\":0,\"reason\":null}', '{\"status\":\"1\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/presidents-list-award/BSBA-MM/update-status/26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:25:53', '2023-02-11 20:25:53'),
+(290, NULL, NULL, 'created', 'App\\Models\\User', 110, '[]', '{\"first_name\":\"Kevin\",\"middle_name\":\"Britt\",\"last_name\":\"Delaney\",\"contact\":\"+639138431723\",\"course_id\":\"11\",\"stud_num\":\"2022-00178-TG-0\",\"email\":\"wulyceh@gmail.com\",\"username\":\"hagaxizuq\",\"password\":\"$2y$10$T3\\/oawzGTBb21Labgw7fV.ALCAf3Jv1FGNKZCMtHmUfBNNwpPx2oa\",\"id\":110}', 'http://127.0.0.1:8000/register', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:36:45', '2023-02-11 20:36:45'),
+(291, 'App\\Models\\User', 110, 'updated', 'App\\Models\\User', 110, '{\"email_verified_at\":null}', '{\"email_verified_at\":\"2023-02-12 04:37:14\"}', 'http://127.0.0.1:8000/email/verify/110/d28c1d5c9254e3c2c1aaf0fa4505e06b45065295?expires=1676151406&signature=5137df2b6c378c9b24aa9094943a9422dcb52ba2c1c663b6e1928789afbf2c00', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-11 20:37:14', '2023-02-11 20:37:14'),
+(292, 'App\\Models\\User', 19, 'updated', 'App\\Models\\User', 19, '{\"remember_token\":\"GfUTCPwvn4BGDmZTeb4kmhnjgNTvH9JR0q9daa1MY0RKhAsu7FHcePXfTi7i\"}', '{\"remember_token\":\"zlDJTDWAJdk5tzrJD2qn0AZAKHpehvMUiZi47mgXqd8IIp8IehEAuA1vR6d3\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 07:22:21', '2023-02-12 07:22:21'),
+(293, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 4, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"ae_app_id\":\"PUPT-7490929755\",\"image\":\"1676189905.png\",\"gwa1\":\"1.50\",\"gwa2\":\"1.25\",\"gwa3\":\"1.25\",\"gwa4\":\"1.75\",\"gwa5\":\"1.25\",\"gwa6\":\"1.75\",\"gwa7\":\"1.50\",\"gwa8\":\"1.50\",\"gwa9\":\"1.50\",\"id\":4}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 08:18:25', '2023-02-12 08:18:25'),
+(294, 'App\\Models\\User', 106, 'updated', 'App\\Models\\User', 106, '{\"remember_token\":\"2H4lYq0Q7sXfZWtwEnp7EzaDl3dKMurYkZ8czmRffTLcestNETfuyeFqEaaY\"}', '{\"remember_token\":\"RHV3yXiFZ1WQCUPCK44N2dva6LciFixVwrUfW67cmW9EoiFJpFWxllEs4SgP\"}', 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 08:31:38', '2023-02-12 08:31:38'),
+(295, 'App\\Models\\User', 109, 'created', 'App\\Models\\AcademicExcellence', 5, '[]', '{\"user_id\":\"109\",\"course_id\":\"10\",\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"ae_app_id\":\"PUPT-5244313812\",\"image\":\"1676190775.png\",\"gwa1\":\"1.00\",\"gwa2\":\"1.25\",\"gwa3\":\"1.25\",\"gwa4\":\"1.75\",\"gwa5\":\"1.50\",\"gwa6\":\"1.75\",\"gwa7\":\"1.75\",\"gwa8\":\"1.75\",\"id\":5}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 08:32:55', '2023-02-12 08:32:55'),
+(296, 'App\\Models\\User', 19, 'updated', 'App\\Models\\AcademicExcellence', 4, '{\"status\":0,\"reason\":null}', '{\"status\":\"1\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/academic-excellence-award/BSBA-HR/update-status/4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 08:57:41', '2023-02-12 08:57:41'),
+(297, 'App\\Models\\User', 19, 'updated', 'App\\Models\\AcademicExcellence', 5, '{\"status\":0,\"reason\":null}', '{\"status\":\"1\",\"reason\":\"2\"}', 'http://127.0.0.1:8000/admin/academic-excellence-award/DICT/update-status/5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 08:58:04', '2023-02-12 08:58:04'),
+(298, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 4, '{\"id\":4,\"ae_app_id\":\"PUPT-7490929755\",\"user_id\":106,\"course_id\":2,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"4th Year\",\"gwa1\":\"1.50\",\"gwa2\":\"1.25\",\"gwa3\":\"1.25\",\"gwa4\":\"1.75\",\"gwa5\":\"1.25\",\"gwa6\":\"1.75\",\"gwa7\":\"1.50\",\"gwa8\":\"1.50\",\"gwa9\":\"1.50\",\"gwa10\":null,\"gwa11\":null,\"gwa\":\"1.469\",\"image\":\"1676189905.png\",\"status\":1,\"certificate_status\":0,\"reason\":2,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/BSBA-HR/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 09:09:41', '2023-02-12 09:09:41'),
+(299, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 6, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"5th Year\",\"ae_app_id\":\"PUPT-2457638376\",\"image\":\"1676193213.png\",\"gwa1\":\"1.25\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.50\",\"gwa5\":\"1.25\",\"gwa6\":\"1.25\",\"gwa7\":\"1.75\",\"gwa8\":\"1.75\",\"gwa10\":\"0.00\",\"gwa11\":\"0.00\",\"id\":6}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 09:13:33', '2023-02-12 09:13:33'),
+(300, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 7, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"5th Year\",\"ae_app_id\":\"PUPT-9239857498\",\"image\":\"1676196345.png\",\"gwa1\":\"1.25\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.50\",\"gwa5\":\"1.25\",\"gwa6\":\"1.25\",\"gwa7\":\"1.75\",\"gwa8\":\"1.75\",\"gwa10\":\"0.00\",\"gwa11\":\"0.00\",\"id\":7}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:05:45', '2023-02-12 10:05:45'),
+(301, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 8, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"5th Year\",\"ae_app_id\":\"PUPT-4722192034\",\"image\":\"1676196389.png\",\"gwa1\":\"1.25\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.50\",\"gwa5\":\"1.25\",\"gwa6\":\"1.25\",\"gwa7\":\"1.75\",\"gwa8\":\"1.75\",\"gwa10\":\"0.00\",\"gwa11\":\"0.00\",\"id\":8}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:06:29', '2023-02-12 10:06:29'),
+(302, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 9, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"5th Year\",\"ae_app_id\":\"PUPT-4964474530\",\"image\":\"1676196421.png\",\"gwa1\":\"1.25\",\"gwa2\":\"1.25\",\"gwa3\":\"1.50\",\"gwa4\":\"1.50\",\"gwa5\":\"1.25\",\"gwa6\":\"1.25\",\"gwa7\":\"1.75\",\"gwa8\":\"1.75\",\"gwa10\":\"0.00\",\"gwa11\":\"0.00\",\"id\":9}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:07:01', '2023-02-12 10:07:01'),
+(303, 'App\\Models\\User', 106, 'created', 'App\\Models\\AcademicExcellence', 10, '[]', '{\"user_id\":\"106\",\"course_id\":\"2\",\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"ae_app_id\":\"PUPT-2006334851\",\"image\":\"1676196839.png\",\"gwa1\":\"1.25\",\"gwa2\":\"1.00\",\"gwa3\":\"1.50\",\"gwa4\":\"1.75\",\"gwa5\":\"1.00\",\"gwa6\":\"1.75\",\"gwa7\":\"1.25\",\"gwa8\":\"1.50\",\"gwa9\":\"1.00\",\"id\":10}', 'http://127.0.0.1:8000/user/application-form-ae', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:14:00', '2023-02-12 10:14:00'),
+(304, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\AcademicExcellence', 10, '{\"id\":10,\"ae_app_id\":\"PUPT-2006334851\",\"user_id\":106,\"course_id\":2,\"school_year\":\"2022-2023\",\"award_applied\":4,\"year_level\":\"4th Year\",\"gwa1\":\"1.25\",\"gwa2\":\"1.00\",\"gwa3\":\"1.50\",\"gwa4\":\"1.75\",\"gwa5\":\"1.00\",\"gwa6\":\"1.75\",\"gwa7\":\"1.25\",\"gwa8\":\"1.50\",\"gwa9\":\"1.00\",\"gwa10\":null,\"gwa11\":null,\"gwa\":\"1.375\",\"image\":\"1676196839.png\",\"status\":0,\"certificate_status\":0,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/academic-excellence-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:15:22', '2023-02-12 10:15:22'),
+(305, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 27, '{\"id\":27,\"stud_app_id\":\"PUPT-7650897318\",\"user_id\":109,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"award_applied\":\"1\",\"gwa_1st\":\"1.00\",\"gwa_2nd\":\"1.50\",\"gwa\":\"1.250\",\"image\":\"1676146639.png\",\"status\":1,\"course_id\":10,\"certificate_status\":1,\"reason\":null,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/achievers-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:17:23', '2023-02-12 10:17:23'),
+(306, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 25, '{\"id\":25,\"stud_app_id\":\"PUPT-1700018381\",\"user_id\":106,\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"award_applied\":\"2\",\"gwa_1st\":\"1.75\",\"gwa_2nd\":\"1.75\",\"gwa\":\"1.750\",\"image\":\"1676142308.png\",\"status\":1,\"course_id\":2,\"certificate_status\":0,\"reason\":2,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/deans-list-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:17:31', '2023-02-12 10:17:31'),
+(307, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\StudentApplicant', 26, '{\"id\":26,\"stud_app_id\":\"PUPT-7623858766\",\"user_id\":108,\"school_year\":\"2022-2023\",\"year_level\":\"4th Year\",\"award_applied\":\"3\",\"gwa_1st\":\"1.38\",\"gwa_2nd\":\"1.13\",\"gwa\":\"1.255\",\"image\":\"1676144980.png\",\"status\":1,\"course_id\":3,\"certificate_status\":0,\"reason\":2,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/presidents-list-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:17:40', '2023-02-12 10:17:40'),
+(308, 'App\\Models\\User', 19, 'deleted', 'App\\Models\\NonAcademicApplicant', 2, '{\"id\":2,\"nonacad_app_id\":\"PUPT-7417190588\",\"user_id\":106,\"course_id\":2,\"school_year\":\"2022-2023\",\"year_level\":\"1st Year\",\"nonacad_id\":1,\"org_id\":8,\"sports\":null,\"subject_name\":null,\"thesis_title\":null,\"competition_name\":null,\"placement\":null,\"designated_office\":null,\"image\":\"1675710043.png\",\"file_name\":\"1675710046_Hopkins-20230120.pdf\",\"file_path\":\"\\/storage\\/uploads\\/1675710043_Hopkins-20230120.pdf\",\"remarks\":null,\"certificate_status\":0,\"status\":2,\"reason\":3,\"others\":null}', '[]', 'http://127.0.0.1:8000/admin/non-academic-award/delete-form', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', NULL, '2023-02-12 10:17:48', '2023-02-12 10:17:48');
 
 -- --------------------------------------------------------
 
@@ -1721,7 +1797,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (67, '2023_01_25_183501_create_reasons_table', 51),
 (68, '2023_01_25_185633_add_others_to_student_applicants_table', 52),
 (69, '2023_01_25_231253_add_others_to_ae_applicants_table', 53),
-(70, '2023_01_25_232524_add_others_to_non_academic_applicants_table', 54);
+(70, '2023_01_25_232524_add_others_to_non_academic_applicants_table', 54),
+(71, '2022_09_05_140027_create_table_summary', 55),
+(72, '2022_09_28_095437_create_summary_ae_table', 56);
 
 -- --------------------------------------------------------
 
@@ -1757,7 +1835,10 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (7, 'App\\Models\\User', 47),
 (7, 'App\\Models\\User', 63),
 (9, 'App\\Models\\User', 90),
-(10, 'App\\Models\\User', 106);
+(10, 'App\\Models\\User', 106),
+(10, 'App\\Models\\User', 108),
+(10, 'App\\Models\\User', 109),
+(10, 'App\\Models\\User', 110);
 
 -- --------------------------------------------------------
 
@@ -1792,6 +1873,13 @@ CREATE TABLE `non_academic_applicants` (
   `reason` bigint(20) UNSIGNED DEFAULT NULL,
   `others` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `non_academic_applicants`
+--
+
+INSERT INTO `non_academic_applicants` (`id`, `nonacad_app_id`, `user_id`, `course_id`, `school_year`, `year_level`, `nonacad_id`, `org_id`, `sports`, `subject_name`, `thesis_title`, `competition_name`, `placement`, `designated_office`, `image`, `file_name`, `file_path`, `remarks`, `certificate_status`, `status`, `created_at`, `updated_at`, `deleted_at`, `reason`, `others`) VALUES
+(2, 'PUPT-7417190588', 106, 2, '2022-2023', '1st Year', 1, 8, NULL, NULL, NULL, NULL, NULL, NULL, '1675710043.png', '1675710046_Hopkins-20230120.pdf', '/storage/uploads/1675710043_Hopkins-20230120.pdf', NULL, 0, 2, '2023-02-06 19:00:46', '2023-02-12 10:17:48', '2023-02-12 10:17:48', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -1846,87 +1934,177 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
 ('0059a6c9-7f1e-45fb-b867-a34bba54d004', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":1,\"status\":\"2\",\"award\":\"LA\"}', NULL, '2023-01-25 15:37:22', '2023-01-25 15:37:22'),
 ('01c4fbd8-eee0-44fe-a87d-c49166c59ca4', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AE\"}', NULL, '2023-01-03 19:50:37', '2023-01-03 19:50:37'),
+('03beaee2-d29b-454a-a558-d91701b9833f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":16,\"award\":\"AA\"}', NULL, '2023-02-05 19:32:22', '2023-02-05 19:32:22'),
 ('04753c0c-fed9-461d-8fb1-c997e730f34f', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 96, '{\"form_id\":9,\"status\":\"2\",\"award\":\"AA\"}', NULL, '2023-01-25 15:54:55', '2023-01-25 15:54:55'),
+('04e6036d-ce5f-436f-839c-f3b849f08aff', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 109, '{\"form_id\":27,\"status\":1,\"award\":\"AA\"}', NULL, '2023-02-11 20:25:31', '2023-02-11 20:25:31'),
+('05067971-8eee-48bc-b92a-2ccf8c1fd815', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Miranda Snider\",\"form_id\":5,\"award\":\"AE\"}', NULL, '2023-02-12 08:32:57', '2023-02-12 08:32:57'),
 ('082b75d0-1192-4458-81ca-0c02d9492cf4', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 105, '{\"form_id\":11,\"status\":\"1\",\"award\":\"DL\"}', '2023-01-28 19:31:45', '2023-01-28 19:19:27', '2023-01-28 19:19:27'),
 ('094fe93a-8a5f-44ec-9650-629b819cc97c', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Zephania Roy\",\"form_id\":45,\"award\":\"AE\"}', NULL, '2022-12-14 13:11:21', '2022-12-14 13:11:21'),
+('09a3dee2-0338-405a-9756-0a2de4f20418', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":12,\"award\":\"PL\"}', NULL, '2023-02-05 18:58:44', '2023-02-05 18:58:44'),
+('0cc2eef5-62f7-4357-9b28-22e7c0bca3b0', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":18,\"award\":\"PL\"}', NULL, '2023-02-06 14:17:33', '2023-02-06 14:17:33'),
+('0d458747-ab9b-407e-aa79-505252a134e9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":15,\"award\":\"AA\"}', NULL, '2023-02-05 19:29:55', '2023-02-05 19:29:55'),
+('0db2bf5b-867b-4147-b813-90ed7d4ec6a3', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":24,\"award\":\"AA\"}', NULL, '2023-02-11 17:39:59', '2023-02-11 17:39:59'),
+('0db470d0-3601-41ad-98a9-2a3b98a777c0', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":20,\"award\":\"PL\"}', NULL, '2023-02-07 09:14:56', '2023-02-07 09:14:56'),
 ('0e149a08-a160-42cd-9996-ef4c2b4f5880', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Zephania Roy\",\"form_id\":44,\"award\":\"AE\"}', NULL, '2022-12-14 13:04:58', '2022-12-14 13:04:58'),
+('11967827-9f81-4ab0-b688-a8817d5d343d', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":15,\"award\":\"AA\"}', NULL, '2023-02-05 19:29:55', '2023-02-05 19:29:55'),
 ('145f944a-75ab-4b14-9853-adf0f67f2925', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Maris Clements\",\"form_id\":11,\"award\":\"DL\"}', NULL, '2023-01-28 19:19:04', '2023-01-28 19:19:04'),
+('14c676fb-c1b8-4e62-beb9-2a50713a6ca1', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":13,\"award\":\"DL\"}', NULL, '2023-02-05 19:22:17', '2023-02-05 19:22:17'),
+('16386e09-b4b4-4e0a-ac86-eb9bd4e9836a', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":14,\"award\":\"AA\"}', NULL, '2023-02-05 19:28:08', '2023-02-05 19:28:08'),
+('17238134-d2f2-4a66-a2f2-9d3ea8fed82c', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":17,\"award\":\"DL\"}', NULL, '2023-02-05 19:35:43', '2023-02-05 19:35:43'),
+('17aa4df5-6e16-4e12-becc-f2de89d62e35', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":25,\"award\":\"DL\"}', NULL, '2023-02-11 19:05:15', '2023-02-11 19:05:15'),
 ('19c4220d-5e07-405d-b202-e94d8c1c6deb', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Zephania Roy\",\"form_id\":44,\"award\":\"AE\"}', NULL, '2022-12-14 13:04:58', '2022-12-14 13:04:58'),
+('1b1bc08d-4d4d-4e38-903b-b5b00694df08', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":16,\"award\":\"AA\"}', NULL, '2023-02-05 19:32:22', '2023-02-05 19:32:22'),
 ('1c949cbb-6ff3-4cb0-9408-58db6e2948ce', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"PL\"}', NULL, '2023-01-03 21:21:56', '2023-01-03 21:21:56'),
 ('1dbae922-c552-40b5-9030-c3dd80a629e7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AA\"}', NULL, '2023-01-03 18:32:12', '2023-01-03 18:32:12'),
 ('1eb5e30b-b422-4c8a-a909-b272e0156723', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 96, '{\"form_id\":9,\"status\":\"2\",\"award\":\"AA\"}', NULL, '2023-01-25 14:48:16', '2023-01-25 14:48:16'),
+('1ff33b35-85b6-4609-8d40-a6d6edaf5366', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":18,\"award\":\"PL\"}', NULL, '2023-02-06 14:17:34', '2023-02-06 14:17:34'),
 ('255eed95-6f10-4085-bc4c-8c38ac8ca825', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"AE\"}', NULL, '2023-01-03 20:15:15', '2023-01-03 20:15:15'),
 ('271e336e-8a5a-4b02-86fd-775fa6dfe453', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 98, '{\"form_id\":5,\"status\":\"1\",\"award\":\"PL\"}', NULL, '2023-01-19 20:41:25', '2023-01-19 20:41:25'),
+('28b3e56a-2a5f-4684-a5a8-bafe5ad51cf0', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":4,\"award\":\"AE\"}', NULL, '2023-02-12 08:18:33', '2023-02-12 08:18:33'),
 ('2b63220e-cab1-4d09-81ac-55d1679dd804', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":77,\"award\":\"AA\"}', NULL, '2022-12-20 14:13:07', '2022-12-20 14:13:07'),
+('2b973a18-8738-4352-9810-11ed5707a6e7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Miranda Snider\",\"form_id\":27,\"award\":\"AA\"}', NULL, '2023-02-11 20:17:21', '2023-02-11 20:17:21'),
+('2daa0c9a-831d-4f92-aeae-b68bb947f5f7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":17,\"award\":\"DL\"}', NULL, '2023-02-05 19:35:43', '2023-02-05 19:35:43'),
+('2db582fa-3dff-4b11-adca-b93a7257654f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":24,\"award\":\"AA\"}', NULL, '2023-02-11 17:39:59', '2023-02-11 17:39:59'),
 ('2dc56155-32c5-4752-89e5-d6b9091468cc', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 96, '{\"form_id\":9,\"status\":\"2\",\"award\":\"AA\"}', NULL, '2023-01-25 15:54:46', '2023-01-25 15:54:46'),
+('2e82b67b-6285-4e24-971b-9760536447f4', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":13,\"award\":\"DL\"}', NULL, '2023-02-05 19:22:17', '2023-02-05 19:22:17'),
+('2fad7155-046a-4459-a4a4-b45ca4e30e5c', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":2,\"award\":\"LA\"}', NULL, '2023-02-06 19:00:52', '2023-02-06 19:00:52'),
+('303d0934-9335-469f-99ee-de62431a06be', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":24,\"status\":2,\"award\":\"AA\"}', NULL, '2023-02-11 17:54:03', '2023-02-11 17:54:03'),
 ('3056db9c-6332-47a7-aba5-29f49de1295c', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":3,\"status\":\"2\",\"award\":\"AE\"}', NULL, '2023-01-25 15:22:20', '2023-01-25 15:22:20'),
 ('308a473c-c7d8-4a65-bae8-da3dafe1f280', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"AE\"}', NULL, '2023-01-25 15:06:02', '2023-01-25 15:06:02'),
 ('314569ac-d65e-4bad-8b4a-16d3b7637196', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":5,\"award\":\"PL\"}', NULL, '2023-01-04 17:18:32', '2023-01-04 17:18:32'),
 ('318b04e9-e9a9-4509-813f-dd8850d5c532', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":78,\"award\":\"DL\"}', NULL, '2022-12-20 15:37:08', '2022-12-20 15:37:08'),
 ('32f4dc57-0cc4-42b3-b7ba-ccf8724d1067', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":8,\"award\":\"DL\"}', NULL, '2023-01-25 11:32:29', '2023-01-25 11:32:29'),
+('346cf083-70ca-4c8d-95eb-cfe84a0a3a3d', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":18,\"award\":\"PL\"}', NULL, '2023-02-06 14:17:33', '2023-02-06 14:17:33'),
+('347ebb81-bd85-47fb-8cb3-ba71d572f019', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":2,\"award\":\"LA\"}', NULL, '2023-02-06 19:00:53', '2023-02-06 19:00:53'),
 ('34b5f963-2f00-4991-908d-2a201b1f0709', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"AE\"}', NULL, '2023-01-25 15:06:02', '2023-01-25 15:06:02'),
 ('35e58a7c-458a-452e-bd7e-c4e551534be7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":7,\"award\":\"DL\"}', NULL, '2023-01-25 09:58:13', '2023-01-25 09:58:13'),
+('3706eced-19d7-4d9b-89aa-3132f2ee7737', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":19,\"award\":\"DL\"}', NULL, '2023-02-06 14:35:17', '2023-02-06 14:35:17'),
+('37dac3a6-93a1-4009-8047-20b264ef2da4', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":17,\"award\":\"DL\"}', NULL, '2023-02-05 19:35:43', '2023-02-05 19:35:43'),
+('3898d92e-54ce-468b-a31a-2df53788ca60', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":19,\"award\":\"DL\"}', NULL, '2023-02-06 14:35:17', '2023-02-06 14:35:17'),
+('3aca0b62-32fa-4b34-b30b-0b8ebd00b42f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":9,\"award\":\"AE\"}', NULL, '2023-02-12 10:07:08', '2023-02-12 10:07:08'),
 ('3c128295-52a0-4fc0-94de-c5f9781397f3', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 96, '{\"form_id\":9,\"status\":\"2\",\"award\":\"AA\"}', NULL, '2023-01-25 14:53:04', '2023-01-25 14:53:04'),
 ('3cc1efee-57dc-4e94-aec0-d1d5527941fa', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":46,\"award\":\"AE\"}', NULL, '2022-12-20 15:37:47', '2022-12-20 15:37:47'),
+('3ea7d04d-c9af-4d96-9722-9218a9fcec87', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":10,\"award\":\"AE\"}', NULL, '2023-02-12 10:14:00', '2023-02-12 10:14:00'),
+('3ec95a02-b804-41c5-aca7-51fc283c32e1', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":2,\"status\":\"2\",\"award\":\"LA\"}', NULL, '2023-02-11 17:57:29', '2023-02-11 17:57:29'),
 ('3fe69f0c-d7c8-45ac-8913-4624ad89a95b', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Maris Clements\",\"form_id\":11,\"award\":\"DL\"}', NULL, '2023-01-28 19:19:03', '2023-01-28 19:19:03'),
 ('4017dc3d-70ea-4ba3-909e-9e1599d864e5', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":8,\"award\":\"DL\"}', NULL, '2023-01-25 11:32:29', '2023-01-25 11:32:29'),
+('4132e087-7020-4404-841e-a2db1cd9c2e2', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":12,\"award\":\"PL\"}', '2023-02-05 18:59:55', '2023-02-05 18:58:44', '2023-02-05 18:58:44'),
+('41de9ab3-d5b5-43d6-af3c-1203a0eafaed', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":25,\"award\":\"DL\"}', NULL, '2023-02-11 19:05:15', '2023-02-11 19:05:15'),
 ('4604f444-cc4c-4657-98c1-f3e102467614', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Maris Clements\",\"form_id\":11,\"award\":\"DL\"}', NULL, '2023-01-28 19:19:03', '2023-01-28 19:19:03'),
+('49e8c079-4614-40a4-b465-70114da715f9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":15,\"award\":\"AA\"}', NULL, '2023-02-05 19:29:55', '2023-02-05 19:29:55'),
+('4bae6b45-b4f5-49ce-be99-662f025d49b1', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":17,\"award\":\"DL\"}', NULL, '2023-02-05 19:35:43', '2023-02-05 19:35:43'),
+('4bc8940d-47b3-4503-862d-b4e23f22cb6f', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 108, '{\"form_id\":26,\"status\":\"1\",\"award\":\"PL\"}', NULL, '2023-02-11 20:25:53', '2023-02-11 20:25:53'),
+('4e2493af-4664-4574-b68f-97ab787b4f08', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":20,\"award\":\"PL\"}', NULL, '2023-02-07 09:14:56', '2023-02-07 09:14:56'),
 ('5168cf66-74c6-4bd4-826e-461da63403c9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Zephania Roy\",\"form_id\":45,\"award\":\"AE\"}', NULL, '2022-12-14 13:11:21', '2022-12-14 13:11:21'),
 ('51f66f7a-2501-45a7-89c5-12600e6d04bd', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Yuli Lowery\",\"form_id\":9,\"award\":\"AA\"}', NULL, '2023-01-25 14:37:40', '2023-01-25 14:37:40'),
 ('55b9ffe4-9c90-4cdf-a72a-5710591543f1', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":76,\"award\":\"DL\"}', NULL, '2022-12-20 13:25:58', '2022-12-20 13:25:58'),
 ('5868d2fe-3701-4a7e-9af8-85e561612d2f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":4,\"award\":\"DL\"}', NULL, '2023-01-04 13:51:11', '2023-01-04 13:51:11'),
+('5acb6e9b-f085-43d0-a358-092f9cc6eddd', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":22,\"award\":\"PL\"}', NULL, '2023-02-11 16:44:46', '2023-02-11 16:44:46'),
 ('5bd8d232-b375-482e-bbfe-382464a1f57a', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AA\"}', NULL, '2023-01-03 18:32:12', '2023-01-03 18:32:12'),
+('5d8bdd82-a220-403b-9d97-f82d3edaadfb', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Tyrone House\",\"form_id\":26,\"award\":\"PL\"}', NULL, '2023-02-11 19:49:46', '2023-02-11 19:49:46'),
+('5ed632e1-6ca9-49fd-ba85-d201cc819b5b', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":19,\"award\":\"DL\"}', NULL, '2023-02-06 14:35:17', '2023-02-06 14:35:17'),
+('602e420a-c148-4182-aa8e-3783b81b8d3e', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":22,\"status\":2,\"award\":\"PL\"}', NULL, '2023-02-11 17:20:23', '2023-02-11 17:20:23'),
+('60a06240-463b-48b5-9fe5-ce6c5040b129', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":16,\"award\":\"AA\"}', NULL, '2023-02-05 19:32:22', '2023-02-05 19:32:22'),
 ('61c677ac-9271-43dc-92f9-e80805fa233b', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AA\"}', NULL, '2023-01-03 18:32:12', '2023-01-03 18:32:12'),
 ('647e7e03-e44b-49e1-b200-e2775e47aceb', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":75,\"award\":\"AA\"}', '2022-11-25 12:40:43', '2022-11-25 11:12:02', '2022-11-25 11:12:02'),
 ('66c00605-32ad-42a3-929b-3d3b00609eb7', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":1,\"status\":\"2\",\"award\":\"LA\"}', NULL, '2023-01-25 15:39:33', '2023-01-25 15:39:33'),
+('66eb9789-c1fa-429b-97dd-4d6c96a37142', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Miranda Snider\",\"form_id\":27,\"award\":\"AA\"}', NULL, '2023-02-11 20:17:21', '2023-02-11 20:17:21'),
+('68d5f952-db44-4e2a-89c5-60e44466c93e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Tyrone House\",\"form_id\":26,\"award\":\"PL\"}', NULL, '2023-02-11 19:49:46', '2023-02-11 19:49:46'),
+('695c58cd-98cd-4d08-8613-b6bced93b24f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":13,\"award\":\"DL\"}', NULL, '2023-02-05 19:22:17', '2023-02-05 19:22:17'),
 ('69b90c4a-f1fa-4e1f-a840-d27d129ad981', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"PL\"}', NULL, '2023-01-03 20:21:16', '2023-01-03 20:21:16'),
 ('6a243504-0902-4c3b-af4d-7c456c7159ad', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 104, '{\"form_id\":45,\"status\":1,\"award\":\"AE\"}', NULL, '2022-12-14 13:12:04', '2022-12-14 13:12:04'),
 ('6ae4428b-acb0-4c86-aad7-3277aa3257e3', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":3,\"status\":\"2\",\"award\":\"AE\"}', NULL, '2023-01-25 15:19:56', '2023-01-25 15:19:56'),
+('6e87b210-d1bd-49f8-bfcc-5fda7f90e4cc', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Tyrone House\",\"form_id\":26,\"award\":\"PL\"}', NULL, '2023-02-11 19:49:46', '2023-02-11 19:49:46'),
 ('75aac172-eb5d-47cd-ba5e-9e49d45415d5', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"AE\"}', NULL, '2023-01-25 15:06:02', '2023-01-25 15:06:02'),
 ('7944be8a-a5d4-49f5-8aaf-9fcbf51270e4', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"PL\"}', NULL, '2023-01-03 21:21:56', '2023-01-03 21:21:56'),
 ('79be38cb-985a-4810-a2fb-c72b4a1d7b6f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Yuli Lowery\",\"form_id\":9,\"award\":\"AA\"}', NULL, '2023-01-25 14:37:40', '2023-01-25 14:37:40'),
+('7b8aad8c-ee6f-4cf4-bb35-4978b55ab687', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Miranda Snider\",\"form_id\":5,\"award\":\"AE\"}', NULL, '2023-02-12 08:32:57', '2023-02-12 08:32:57'),
+('7be9f4f5-bb15-4b9a-9401-5f5279247d0d', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":22,\"award\":\"PL\"}', NULL, '2023-02-11 16:44:46', '2023-02-11 16:44:46'),
 ('7cbd9f3e-582c-4fb4-bf35-8e0ae84d53a5', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":4,\"award\":\"DL\"}', NULL, '2023-01-04 13:51:11', '2023-01-04 13:51:11'),
 ('7e30051b-4cc8-4ceb-a900-f1c78ce5a1ff', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"AE\"}', NULL, '2023-01-03 20:15:15', '2023-01-03 20:15:15'),
 ('7f40db5c-0ec0-4d84-a4fd-b05bb0a33f57', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"LA\"}', NULL, '2023-01-25 15:29:02', '2023-01-25 15:29:02'),
 ('841ce0a9-09da-4da0-a6f0-a7ea660e53ff', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":7,\"award\":\"DL\"}', NULL, '2023-01-25 09:58:13', '2023-01-25 09:58:13'),
 ('84da87b4-f9db-4b53-a0fa-c2f81a062914', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":77,\"award\":\"AA\"}', NULL, '2022-12-20 14:13:07', '2022-12-20 14:13:07'),
+('85fe0d87-48ce-4488-a172-4b59374ed803', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":14,\"award\":\"AA\"}', NULL, '2023-02-05 19:28:08', '2023-02-05 19:28:08'),
+('86d1bc57-a5a3-4481-83d6-80adc17ac589', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":24,\"award\":\"AA\"}', NULL, '2023-02-11 17:39:59', '2023-02-11 17:39:59'),
 ('8777a3da-c38e-45e3-8e3c-2dab4da54026', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 91, '{\"form_id\":10,\"status\":\"2\",\"award\":\"PL\"}', NULL, '2023-01-25 15:02:06', '2023-01-25 15:02:06'),
+('87da99c3-640d-4b58-90c1-77b8950311ed', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Miranda Snider\",\"form_id\":5,\"award\":\"AE\"}', NULL, '2023-02-12 08:32:57', '2023-02-12 08:32:57'),
 ('87de91bf-7cae-4c23-9541-6e4b89402a59', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":3,\"award\":\"PL\"}', NULL, '2023-01-03 21:21:56', '2023-01-03 21:21:56'),
 ('88a662e9-cb34-4a90-b92e-8f31a9c38b9c', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":6,\"award\":\"AA\"}', NULL, '2023-01-20 10:08:08', '2023-01-20 10:08:08'),
 ('8923e931-96b9-4c59-8f3b-24fc8ed18eef', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":4,\"award\":\"DL\"}', NULL, '2023-01-04 13:51:11', '2023-01-04 13:51:11'),
 ('89a13a1b-8e99-47b2-aef3-0488312a038e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Zephania Roy\",\"form_id\":44,\"award\":\"AE\"}', NULL, '2022-12-14 13:04:58', '2022-12-14 13:04:58'),
+('89a4f771-e300-4240-95f5-fe8de342742b', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":4,\"award\":\"AE\"}', NULL, '2023-02-12 08:18:33', '2023-02-12 08:18:33'),
 ('9094f685-5b2e-4d1e-9c17-941c8cf5b39e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"PL\"}', NULL, '2023-01-03 20:21:15', '2023-01-03 20:21:15'),
 ('93678780-3b77-4bd2-b612-13c6551186a3', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Yuli Lowery\",\"form_id\":9,\"award\":\"AA\"}', NULL, '2023-01-25 14:37:41', '2023-01-25 14:37:41'),
+('955397d3-cb72-4048-93ea-f1e4d7f7aede', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":9,\"award\":\"AE\"}', NULL, '2023-02-12 10:07:07', '2023-02-12 10:07:07'),
+('96478bb7-ed68-45a2-95e7-7566007be412', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":24,\"status\":2,\"award\":\"AA\"}', NULL, '2023-02-11 17:49:12', '2023-02-11 17:49:12'),
 ('965a78c5-2e17-40e2-a4a7-5670cb64441f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":78,\"award\":\"DL\"}', NULL, '2022-12-20 15:37:08', '2022-12-20 15:37:08'),
 ('968816f2-9bfb-4b8d-b351-0100443cfc9e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":46,\"award\":\"AE\"}', NULL, '2022-12-20 15:37:47', '2022-12-20 15:37:47'),
 ('9d188e00-ebcd-4262-9025-0b29ecad1d84', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":78,\"award\":\"DL\"}', NULL, '2022-12-20 15:37:08', '2022-12-20 15:37:08'),
+('a232d016-2dbe-4585-bb25-6253ca51778c', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":4,\"status\":\"1\",\"award\":\"AE\"}', NULL, '2023-02-12 08:57:42', '2023-02-12 08:57:42'),
+('a278d963-3e48-47a0-871d-a4cc352ce9b3', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":4,\"award\":\"AE\"}', NULL, '2023-02-12 08:18:33', '2023-02-12 08:18:33'),
 ('a4b35aa8-66b6-45e8-87d4-d076c8d288a3', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"LA\"}', NULL, '2023-01-25 15:29:02', '2023-01-25 15:29:02'),
+('a5478905-065a-4cf8-8c22-c283eba127b8', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":24,\"status\":2,\"award\":\"AA\"}', NULL, '2023-02-11 17:44:58', '2023-02-11 17:44:58'),
 ('a56457c0-4dca-4794-9497-05d3c435e19b', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 91, '{\"form_id\":10,\"status\":\"2\",\"award\":\"PL\"}', NULL, '2023-01-25 15:02:42', '2023-01-25 15:02:42'),
 ('a64be309-7749-465f-8cfd-a6beb5d0aa9a', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":76,\"award\":\"DL\"}', NULL, '2022-12-20 13:25:58', '2022-12-20 13:25:58'),
+('a8acbf53-d974-435a-9d0a-01dc5d901962', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":25,\"award\":\"DL\"}', NULL, '2023-02-11 19:05:15', '2023-02-11 19:05:15'),
+('a9142289-d479-4e67-87db-e065a7d71825', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":19,\"award\":\"DL\"}', NULL, '2023-02-06 14:35:17', '2023-02-06 14:35:17'),
 ('ac0ea1f6-6f8b-432d-aa7f-f40e9a639f6f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":8,\"award\":\"DL\"}', NULL, '2023-01-25 11:32:29', '2023-01-25 11:32:29'),
+('ac26f453-2277-4725-91a7-3b8898c8ca1d', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":9,\"award\":\"AE\"}', NULL, '2023-02-12 10:07:08', '2023-02-12 10:07:08'),
 ('ae19ece2-4b00-4633-98df-21c4bed051a9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Nathaniel Robbins\",\"form_id\":10,\"award\":\"PL\"}', NULL, '2023-01-25 14:57:09', '2023-01-25 14:57:09'),
+('af8da003-e2a8-4b81-93c8-c19870e648ac', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":20,\"award\":\"PL\"}', '2023-02-07 09:17:03', '2023-02-07 09:14:56', '2023-02-07 09:14:56'),
+('afbdcfed-f922-48fc-b84e-f3556f618442', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":22,\"award\":\"PL\"}', NULL, '2023-02-11 16:44:46', '2023-02-11 16:44:46'),
+('b5969b96-d35a-4de9-a4cf-be00fdd9bfec', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":10,\"award\":\"AE\"}', NULL, '2023-02-12 10:14:00', '2023-02-12 10:14:00'),
 ('b611797d-786e-4265-a3b7-15163e4ef37a', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":5,\"award\":\"PL\"}', NULL, '2023-01-04 17:18:32', '2023-01-04 17:18:32'),
+('b68e4faa-2597-4b27-9fe5-f78fd43722c3', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 109, '{\"form_id\":5,\"status\":\"1\",\"award\":\"AE\"}', NULL, '2023-02-12 08:58:04', '2023-02-12 08:58:04'),
 ('b6c92b3a-96b7-47ea-860a-f42618a84ad5', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 104, '{\"form_id\":44,\"status\":1,\"award\":\"AE\"}', NULL, '2022-12-14 13:06:01', '2022-12-14 13:06:01'),
 ('b7373dc6-d529-43d8-a086-6c6a506b62f2', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":39,\"award\":\"LA\"}', '2022-12-13 13:37:23', '2022-11-25 13:13:27', '2022-11-25 13:13:27'),
 ('bab943be-bcb5-44a1-a57f-4f709c52b983', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":7,\"award\":\"DL\"}', NULL, '2023-01-25 09:58:13', '2023-01-25 09:58:13'),
 ('bc8d60b8-d8dd-4229-bec3-36aadb1b9dba', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":38,\"award\":\"LA\"}', '2022-11-25 12:31:37', '2022-11-25 12:30:52', '2022-11-25 12:30:52'),
 ('bf5de2cf-2765-47d5-8673-01f4d416ff66', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":46,\"award\":\"AE\"}', NULL, '2022-12-20 15:37:47', '2022-12-20 15:37:47'),
+('c0bab518-955e-4fa0-9fb4-3568f7af71b5', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":10,\"award\":\"AE\"}', NULL, '2023-02-12 10:14:00', '2023-02-12 10:14:00'),
+('c0da6e72-5a46-4d40-81ef-74618ba139f7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":10,\"award\":\"AE\"}', NULL, '2023-02-12 10:14:00', '2023-02-12 10:14:00'),
 ('c105c2a3-084a-4a6a-a4b5-8260f8c55b2e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":77,\"award\":\"AA\"}', NULL, '2022-12-20 14:13:07', '2022-12-20 14:13:07'),
 ('c7baf476-0e15-4e30-b078-248aa4b926aa', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":6,\"award\":\"AA\"}', NULL, '2023-01-20 10:08:08', '2023-01-20 10:08:08'),
 ('c89fc5db-420a-4d33-bfff-691bbf8a7305', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":3,\"status\":\"2\",\"award\":\"AE\"}', NULL, '2023-01-25 15:19:49', '2023-01-25 15:19:49'),
+('c964f994-0687-4e98-b707-4f085b192184', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":25,\"award\":\"DL\"}', NULL, '2023-02-11 19:05:15', '2023-02-11 19:05:15'),
+('ca6a85b9-b832-4463-93e3-27367da14b73', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":14,\"award\":\"AA\"}', NULL, '2023-02-05 19:28:08', '2023-02-05 19:28:08'),
 ('cc2bce76-ee04-444b-bf90-e73b80ce9d99', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Nathaniel Robbins\",\"form_id\":10,\"award\":\"PL\"}', NULL, '2023-01-25 14:57:09', '2023-01-25 14:57:09'),
+('cc3b7d58-23f7-4a4b-9850-e986db4aaf38', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":2,\"award\":\"LA\"}', NULL, '2023-02-06 19:00:53', '2023-02-06 19:00:53'),
 ('cdb87c1f-4cda-4a83-884c-73ca2cf9c1ac', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":3,\"status\":\"2\",\"award\":\"AE\"}', NULL, '2023-01-25 15:21:18', '2023-01-25 15:21:18'),
+('cf50fc03-6bfa-4415-8182-a9d499af00e1', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":18,\"award\":\"PL\"}', NULL, '2023-02-06 14:17:34', '2023-02-06 14:17:34'),
 ('cf65e316-f317-47b1-91d2-ba6002610d1b', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":3,\"status\":\"2\",\"award\":\"AE\"}', NULL, '2023-01-25 15:19:38', '2023-01-25 15:19:38'),
+('cfad8af5-81d1-4089-8c49-54c820771f52', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Tyrone House\",\"form_id\":26,\"award\":\"PL\"}', NULL, '2023-02-11 19:49:45', '2023-02-11 19:49:45'),
+('d1c24d28-4af4-46f7-9e46-8b98f86112ec', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Miranda Snider\",\"form_id\":27,\"award\":\"AA\"}', NULL, '2023-02-11 20:17:21', '2023-02-11 20:17:21'),
 ('d1e979f1-63d8-40de-920c-4296a9a15f5f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"PL\"}', NULL, '2023-01-03 20:21:16', '2023-01-03 20:21:16'),
+('d31ae1ed-d26a-4548-9fd4-462ffd2a99ff', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":14,\"award\":\"AA\"}', NULL, '2023-02-05 19:28:08', '2023-02-05 19:28:08'),
 ('d36b4fa3-5874-4ed2-b9ce-1bd7611afc29', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Ifeoma Acevedo\",\"form_id\":2,\"award\":\"AE\"}', NULL, '2023-01-03 20:15:15', '2023-01-03 20:15:15'),
+('d6d3d69b-0017-48db-9a02-395fee8b50ad', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":13,\"award\":\"DL\"}', NULL, '2023-02-05 19:22:17', '2023-02-05 19:22:17'),
+('d803c198-ff4f-4d47-84fb-2d627acdfa47', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":20,\"award\":\"PL\"}', NULL, '2023-02-07 09:14:56', '2023-02-07 09:14:56'),
+('d8d4baff-b4f9-4f98-af9e-16c5a3b2ad2f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":2,\"award\":\"LA\"}', NULL, '2023-02-06 19:00:53', '2023-02-06 19:00:53'),
 ('d939672e-2445-4271-88e0-8327160ff0a8', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AE\"}', NULL, '2023-01-03 19:50:37', '2023-01-03 19:50:37'),
+('dbbda82c-543d-4e6d-af4d-bc700f8867c4', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":25,\"status\":2,\"award\":\"DL\"}', NULL, '2023-02-11 19:07:26', '2023-02-11 19:07:26'),
 ('dccf6d6a-320d-4929-bdc0-067e438f1552', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Zephania Roy\",\"form_id\":45,\"award\":\"AE\"}', NULL, '2022-12-14 13:11:21', '2022-12-14 13:11:21'),
+('dcecb734-9416-4358-8481-4ed415dd6e89', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Miranda Snider\",\"form_id\":5,\"award\":\"AE\"}', NULL, '2023-02-12 08:32:57', '2023-02-12 08:32:57'),
 ('e35e203f-377c-4f97-913c-e536cdd628cb', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 91, '{\"form_id\":10,\"status\":\"2\",\"award\":\"PL\"}', NULL, '2023-01-25 15:04:03', '2023-01-25 15:04:03'),
+('e3dc3c57-8252-450c-b0d7-6eece7a83080', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Miranda Snider\",\"form_id\":27,\"award\":\"AA\"}', NULL, '2023-02-11 20:17:21', '2023-02-11 20:17:21'),
+('e51824c3-d0d6-4e28-bd64-a5e9b43a7807', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":24,\"award\":\"AA\"}', NULL, '2023-02-11 17:39:59', '2023-02-11 17:39:59'),
 ('e610fb43-2d27-46fb-898a-886d6d86f421', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 95, '{\"form_id\":73,\"status\":1,\"award\":\"DL\"}', NULL, '2022-11-25 08:45:36', '2022-11-25 08:45:36'),
+('e8cfc369-6f6f-4660-bf9e-6c32b01d7e2e', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":16,\"award\":\"AA\"}', NULL, '2023-02-05 19:32:22', '2023-02-05 19:32:22'),
+('e8d67fa9-28de-41e0-9245-b9454d99d2a8', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":12,\"award\":\"PL\"}', NULL, '2023-02-05 18:58:44', '2023-02-05 18:58:44'),
 ('e8fee42d-1703-4654-ba89-11a0b4b9d82a', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"AE\"}', NULL, '2023-01-03 19:50:37', '2023-01-03 19:50:37'),
 ('ea0d0fa9-8195-4ec4-ac58-430bf26ef718', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 91, '{\"form_id\":10,\"status\":\"2\",\"award\":\"PL\"}', NULL, '2023-01-25 15:02:13', '2023-01-25 15:02:13'),
+('ed22631a-886d-41f8-9f71-8520ecc901d9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":15,\"award\":\"AA\"}', NULL, '2023-02-05 19:29:55', '2023-02-05 19:29:55'),
+('ed62f9a0-304e-4e3f-9149-c222d225385c', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":24,\"status\":1,\"award\":\"AA\"}', NULL, '2023-02-11 17:46:30', '2023-02-11 17:46:30'),
+('ed846b7a-e17c-405b-bcb0-f0b09ca8564f', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":22,\"award\":\"PL\"}', NULL, '2023-02-11 16:44:46', '2023-02-11 16:44:46'),
+('ef00a7ce-c303-4e24-a1b5-1fb0501706f9', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 19, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":4,\"award\":\"AE\"}', '2023-02-12 08:21:07', '2023-02-12 08:18:33', '2023-02-12 08:18:33'),
 ('ef64f477-337f-4039-90c3-4e6ab1c3feda', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 33, '{\"form_id\":1,\"status\":\"2\",\"award\":\"LA\"}', NULL, '2023-01-25 15:39:38', '2023-01-25 15:39:38'),
+('f04da009-8d07-4df5-b362-08e13d7d4832', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":12,\"award\":\"PL\"}', NULL, '2023-02-05 18:58:44', '2023-02-05 18:58:44'),
+('f3c45651-f00a-4894-88fd-2ca5b7902fce', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":25,\"status\":1,\"award\":\"DL\"}', NULL, '2023-02-11 19:10:28', '2023-02-11 19:10:28'),
+('f48eb72e-9545-443e-8cf9-de80e4654eba', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Hayley Atkinson\",\"form_id\":9,\"award\":\"AE\"}', NULL, '2023-02-12 10:07:08', '2023-02-12 10:07:08'),
 ('f53bb813-7207-4677-8605-4fc618bdfae7', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 45, '{\"user_name\":\"Faith Hopkins\",\"form_id\":43,\"award\":\"AE\"}', NULL, '2022-12-13 13:57:08', '2022-12-13 13:57:08'),
+('f703585a-b17d-41c5-b537-6aba0fb6666a', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":24,\"status\":\"2\",\"award\":\"AA\"}', NULL, '2023-02-11 17:46:58', '2023-02-11 17:46:58'),
+('f76686f0-1ce8-4005-a473-3ba620b50c96', 'App\\Notifications\\StudentApplicantStatus', 'App\\Models\\User', 106, '{\"form_id\":2,\"status\":1,\"award\":\"LA\"}', NULL, '2023-02-06 19:03:37', '2023-02-06 19:03:37'),
 ('f922a676-114e-4faa-a5c5-e419a58e260b', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Faith Hopkins\",\"form_id\":76,\"award\":\"DL\"}', NULL, '2022-12-20 13:25:58', '2022-12-20 13:25:58'),
 ('f9b72a6e-477c-4c75-9c3c-6babbf023f9c', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 90, '{\"user_name\":\"Nathaniel Robbins\",\"form_id\":10,\"award\":\"PL\"}', NULL, '2023-01-25 14:57:09', '2023-01-25 14:57:09'),
 ('fbbe9147-02b3-4c27-9b9a-7fa0baab5241', 'App\\Notifications\\AdminNotification', 'App\\Models\\User', 47, '{\"user_name\":\"Faith Hopkins\",\"form_id\":1,\"award\":\"LA\"}', NULL, '2023-01-25 15:29:02', '2023-01-25 15:29:02'),
@@ -2126,8 +2304,8 @@ CREATE TABLE `reasons` (
 
 INSERT INTO `reasons` (`id`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Others', '2023-01-25 10:38:59', '2023-01-25 10:38:59'),
-(2, 'Reason 1', '2023-01-25 10:38:59', '2023-01-25 10:38:59'),
-(3, 'Reason 2', '2023-01-25 10:38:59', '2023-01-25 10:38:59');
+(2, 'Incomplete academic requirements', '2023-01-25 10:38:59', '2023-01-25 10:38:59'),
+(3, 'Invalid academic information', '2023-01-25 10:38:59', '2023-01-25 10:38:59');
 
 -- --------------------------------------------------------
 
@@ -2150,8 +2328,8 @@ CREATE TABLE `retention` (
 
 INSERT INTO `retention` (`id`, `name`, `period`, `duration`, `created_at`, `updated_at`) VALUES
 (1, 'CSV - Parse Data', 1, 'Years', '2023-01-28 18:53:05', '2023-01-28 18:53:05'),
-(2, 'Archives - Award Applicants', 1, 'Years', '2023-01-28 18:53:05', '2023-01-28 18:53:05'),
-(3, 'Recognition Records', 1, 'Years', '2023-01-28 18:53:05', '2023-01-28 18:53:05'),
+(2, 'Archives - Award Applicants', 2, 'Months', '2023-01-28 18:53:05', '2023-02-06 14:19:30'),
+(3, 'Recognition Records', 2, 'Months', '2023-01-28 18:53:05', '2023-02-05 17:03:02'),
 (4, 'Activity Log', 30, 'Days', '2023-01-28 18:53:05', '2023-01-28 18:53:05'),
 (5, 'Notification', 5, 'Days', '2023-01-28 18:53:05', '2023-01-28 19:16:57');
 
@@ -2468,8 +2646,7 @@ INSERT INTO `signatures` (`id`, `rep_name`, `position`, `signature`, `created_at
 (2, 'Ms. Liwanag Maliksi', 'Guidance Cancelor', '639e26748b7fc.png', '2022-10-29 06:11:10', '2022-12-17 20:28:43', 1, 1),
 (3, 'Mr. Israel G. Ortega', 'Overall Chair-Recognition 2022', '634fe621e4f83.png', '2022-10-16 08:33:31', '2022-11-25 08:31:55', 0, 1),
 (4, 'Ms. Bernadette I. Canlas', 'Head of Student Services', '634fe6178d78d.png', '2022-10-16 10:37:36', '2022-10-29 06:47:45', 1, 1),
-(5, 'Marissa B. Ferrer, DEM, RPsy', 'PUP Taguig Branch Director', '63504d1f7b916.png', '2022-10-16 10:39:41', '2022-11-23 10:14:14', 1, 1),
-(27, 'Rose Ann Bonador', 'student', '63669323508b4.png', '2022-11-05 16:45:23', '2022-11-05 19:29:44', 0, 0);
+(5, 'Marissa B. Ferrer, DEM, RPsy', 'PUP Taguig Branch Director', '63504d1f7b916.png', '2022-10-16 10:39:41', '2022-11-23 10:14:14', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2486,7 +2663,7 @@ CREATE TABLE `student_applicants` (
   `award_applied` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1=AA,2=DL,3=PL',
   `gwa_1st` decimal(10,2) NOT NULL,
   `gwa_2nd` decimal(10,2) NOT NULL,
-  `gwa` decimal(10,2) GENERATED ALWAYS AS ((`gwa_1st` + `gwa_2nd`) / 2) VIRTUAL,
+  `gwa` decimal(10,3) GENERATED ALWAYS AS ((`gwa_1st` + `gwa_2nd`) / 2) VIRTUAL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Accepted,2=Rejected',
   `course_id` bigint(20) NOT NULL,
@@ -2529,6 +2706,523 @@ INSERT INTO `student_organizations` (`id`, `name`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `s_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `s_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `s_code`, `s_name`) VALUES
+(1, 'GEED 001', 'Understanding the Self'),
+(2, 'GEED 002', 'Readings in Philippines History'),
+(3, 'GEED 003', 'The Contemporary World'),
+(4, 'GEED 004', 'Mathematics in the Modern World'),
+(5, 'GEED 005', 'Purposive Communication'),
+(6, 'GEED 006', 'Art Appreciation'),
+(7, 'GEED 007', 'Science, Technology, and Society'),
+(8, 'GEED 008', 'Ethics'),
+(9, 'GEED 012', 'Living in the IT Era'),
+(10, 'GEED 020', 'Politics, Governance and Citizenship'),
+(11, 'GEED 024', 'Business Logic'),
+(12, 'GEED 037', 'Understanding the Self'),
+(13, 'BUMA 011', 'Operations Management (TOM)'),
+(14, 'BUMA 012', 'Strategic Management'),
+(15, 'LAW 101', 'Law on Obligations and Contracts'),
+(16, 'LAW 012', 'Business Laws and Regulations'),
+(17, 'LAW 013', 'Regulatory Framework and Legal Issues in Business'),
+(18, 'BUMA 020', 'Management Science'),
+(19, 'BUMA 023', 'International Business and Trade'),
+(20, 'ACCO 309', 'Accounting Research Methods'),
+(21, 'ACCO 401', 'Accountancy Internship'),
+(22, 'ACCO 402', 'Accountancy Research'),
+(23, 'STAT 203', 'Statistical Analysis with Software Application'),
+(24, 'ACCO 211', 'Governance, Business Ethics, Risk Management, and Internal Control'),
+(25, 'ECON 351', 'Managerial Economics'),
+(26, 'ECON 306', 'Economic Development'),
+(27, 'ACCO 101', 'Financial Accounting and Reporting'),
+(28, 'ACCO 103', 'Conceptual Framework and Accounting Standard'),
+(29, 'ACCO 102', 'Intermediate Accounting 1'),
+(30, 'ACCO 201', 'Intermediate Accounting 2'),
+(31, 'ACCO 209', 'Intermediate Accounting 3'),
+(32, 'ACCO 207', 'Financial Markets'),
+(33, 'ACCO 204', 'Financial Management'),
+(34, 'ACCO 305', 'Accounting Information System'),
+(35, 'ACCO 210', 'IT Application Tools in Business and Accounting'),
+(36, 'ACCO 202', 'Cost Accounting and Control'),
+(37, 'ACCO 205', 'Strategic Cost Management'),
+(38, 'ACCO 310', 'Strategic Business Analysis with Contemporary Issues and Trends'),
+(39, 'ACCO 208', 'Business Taxation'),
+(40, 'ACCO 203', 'Income Taxation'),
+(41, 'ACCO 303 ', 'Auditing and Assurance Principles'),
+(42, 'ACCO 306 ', 'Auditing and Assurance: Concepts and Applications'),
+(43, 'ACCO 307 ', 'Auditing and Assurance: Specialized Industries'),
+(44, 'ACCO 308 ', 'Auditing in CIS Environment'),
+(45, 'ACCO 206 ', 'Accounting for Special Transactions'),
+(46, 'ACCO 301 ', 'Accounting for Business Combinations'),
+(47, 'ACCO 302', 'Accounting for Government and Non-Profit Organizations'),
+(48, 'GEED 032', 'Filipinolohiya at Pambansang Kaunlaran'),
+(49, 'GEED 035', 'Panitikang Filipino'),
+(50, 'ACCO 304', 'Transfer Taxes, Local Taxation, and Preferential Taxation'),
+(51, 'LAW 014', 'Updates in Regulatory Framework'),
+(52, 'ACCO 403', 'Integrated Review Course in Financial Accounting and Reporting'),
+(53, 'ACCO 404', 'Integrated Review Course in Advanced Financial Accounting and Reporting'),
+(54, 'ACCO 405', 'Integrated Review Course in Auditing and Assurance Principle'),
+(55, 'ACCO 406', 'Integrated Review Course in Applied Auditing'),
+(56, 'ACCO 407', 'Integrated Review Course in Regulatory Framework for Business Transactions'),
+(57, 'ACCO 408', 'Integrated Review Course in Taxation'),
+(58, 'ACCO 409', 'Integrated Review Course in Management Services'),
+(59, 'MATH 101', 'Calculus 1'),
+(60, 'MATH 103', 'Calculus 2'),
+(61, 'STAT 012', 'Engineering Data Analysis'),
+(62, 'MATH 209', 'Differential Equations'),
+(63, 'CHEM 108', 'Chemistry for Engineers'),
+(64, 'PHYS 106', 'Physics for Engineers'),
+(65, 'ENSC 014', 'Computer-Aided Drafting'),
+(66, 'ENSC 023', 'Engineering Economics'),
+(67, 'ENSC 024', 'Engineering Management'),
+(68, 'ENSC 029', 'Technopreneurship 101'),
+(69, 'PHYS 107', 'Physics 2'),
+(70, 'ENSC 027', 'Materials Science and Engineering'),
+(71, 'CMPE 012', 'Computer Programming'),
+(72, 'ELEN 013', 'Circuits 1'),
+(73, 'ELEN 014', 'Circuits 2'),
+(74, 'ENSC 025', 'Environmental Science and engineering'),
+(75, 'ECEN 101', 'Basic Electronics 1'),
+(76, 'ECEN 102', 'Basic Electronics 2'),
+(77, 'ECEN 201', 'Electronics 1: Electronics Devices and Circuits Theory'),
+(78, 'ECEN 202', 'Communications 1: Principles of Communication Systems'),
+(79, 'ECEN 203', 'Advanced Engineering Mathematics for ECE'),
+(80, 'ECEN 204', 'Electronics 2: Electronic Circuit Analysis and Design'),
+(81, 'ECEN 205', 'Digital Electronics 1: Logic Circuits and Switching Theory'),
+(82, 'ECEN 206', 'Communications 2: Modulation and Coding Techniques'),
+(83, 'ECEN 301', 'Electromagnetics'),
+(84, 'ECEN 302', 'Signal, Spectra, Signal Processing'),
+(85, 'ECEN 303', 'Communications 3: Data Communications'),
+(86, 'ECEN 304', 'Communications 4: Transmission Media and Antenna System & Design'),
+(87, 'ECEN 305', 'ECE Laws, Contracts, Ethics, Standards & Safety'),
+(88, 'ECEN 306', 'Methods of Research'),
+(89, 'ECEN 307', 'Design 1/Capstone Project 1'),
+(90, 'ECEN 308', 'Feedback and Control Systems'),
+(91, 'ECEN 309', 'Digital Electronics 2: Microprocessor, Microcontroller Systems and Design'),
+(92, 'ECEN 310', 'Electronics 3: Electronic Systems and Design'),
+(93, 'ECEN 401', 'Design 2/Capstone Project 2'),
+(94, 'ECEN 402', 'Integrative Course for Electronics Engineering 1'),
+(95, 'ECEN 403', 'Emerging Technologies'),
+(96, 'ECEN 404', 'Integrative Course for Electronics Engineering 2'),
+(97, 'ECEN 405', 'Seminars, Colloquium & Field Trips'),
+(98, 'ECE-ELEC 1', 'ECE Elective 1'),
+(99, 'ECE-ELEC 2', 'ECE Elective 2'),
+(100, 'ECE-ELEC 3', 'ECE Elective 3'),
+(101, 'ECE-ELEC 4', 'ECE Elective 4'),
+(102, 'ECEN 207', 'On The Job Training for Electronics Engineering Industries'),
+(103, 'ECEN 311', 'On The Job Training for Electronics Engineering Industries'),
+(104, 'GEED 037', 'Buhay at Mga Sinulat ni Rizal'),
+(105, 'GEED 019', 'The Entrepreneurial Mind'),
+(106, 'GEED 012', 'Technical Communications'),
+(107, 'MATH 101', 'Calculus 1'),
+(108, 'MATH 103', 'Calculus 2'),
+(109, 'STAT 012', 'Engineering Data Analysis'),
+(110, 'MATH 209', 'Differential Equations'),
+(111, 'CHEM 108', 'Chemistry for Engineers'),
+(112, 'PHYS 106', 'Physics for Engineers'),
+(113, 'ENSC 111', 'Engineering Drawing'),
+(114, 'ENSC 121', 'Computer-Aided Drafting'),
+(115, 'CMPE 011', 'Computer Fundamentals & Programming'),
+(116, 'ENSC 201', 'Statics of Rigid Bodies'),
+(117, 'ENSC 202', 'Dynamics of Rigid Bodies'),
+(118, 'ENSC 212', 'Mechanics of Deformable Bodies'),
+(119, 'ENSC 301', 'Engineering Economics'),
+(120, 'ENSC 302', 'Engineering Management'),
+(121, 'ENSC 411', 'Technopreneurship 101'),
+(122, 'ELEN 016', 'Basic Electrical Engineering'),
+(123, 'ECEN 012', 'Basic Electronics'),
+(124, 'MEEN 301', 'DC and AC Machinery'),
+(125, 'REMA 101', 'Railway Engineering System (Rolling Stock Engineering)'),
+(126, 'MEEN 101', 'Mechanical Engineering Orientation'),
+(127, 'MEEN 206', 'Advanced Mathematics for ME'),
+(128, 'MEEN 303', 'Fluid Mechanics'),
+(129, 'MEEN 304', 'Machine Elements'),
+(130, 'MEEN 311', 'Materials Science and Engineering for ME'),
+(131, 'MEEN 201', 'Thermodynamics 1'),
+(132, 'MEEN 204', 'Thermodynamics 2'),
+(133, 'MEEN 310', 'Combustion Engineering'),
+(134, 'MEEN 302', 'Heat Transfer'),
+(135, 'MEEN 312', 'ME Laboratory 1'),
+(136, 'MEEN 407', 'ME Laboratory 2'),
+(137, 'MEEN 412', 'Manufacturing and Industrial Processes with Plant Visits'),
+(138, 'MEEN 411', 'Basic Occupational Safety and Health'),
+(139, 'MEEN 411', 'Workshop Theory and Practice'),
+(140, 'MEEN 205', 'Machine Stop Theory'),
+(141, 'MEEN 403', 'Control Engineering'),
+(142, 'MEEN 404', 'Control Engineering Laboratory'),
+(143, 'MEEN 309', 'Fluid Machineries'),
+(144, 'MEEN 308', 'Refrigeration Systems'),
+(145, 'MEEN 402', 'Airconditioning and Ventilation Systems'),
+(146, 'MEEN 305', 'Vibration Engineering'),
+(147, 'MEEN 306', 'Computer Applications for ME'),
+(148, 'MEEN 415', 'ME Integrative Course'),
+(149, 'MEEN 313', 'CAD/CAM Operation (2D & 3D)'),
+(150, 'MEEN 203', 'Auto Engine Rebuilding 1 & 2'),
+(151, 'MEEN 207', 'RAC Servicing 1 & 2'),
+(152, 'MEEN 314', 'Shielded Metal Arc Welding'),
+(153, 'MEEN 406', 'Machine Design 1'),
+(154, 'MEEN 410', 'Machine Design 2'),
+(155, 'MEEN 413', 'ME Laboratory 3'),
+(156, 'MEEN 408', 'Industrial Plant Engineering'),
+(157, 'MEEN 405', 'Power Plant Design with Renewable Energy'),
+(158, 'MEEN 414', 'ME Laws, Ethics, Codes & Standards'),
+(159, 'MEEN 401', 'ME Project Study 1'),
+(160, 'MEEN 409', 'ME Project Study 2'),
+(161, 'MEEN 208', 'On-the-Job Training 1'),
+(162, 'MEEN 315', 'On-the-Job Training 2'),
+(163, 'MEEN 351 OPTION 1', 'ME Elective 1: Engine Friction & Lubrication'),
+(164, 'MEEN 352 OPTION 2', 'ME Elective 1: Safety of Motor Vehicles'),
+(165, 'MEEN 353 OPTION 3', 'ME Elective 1: Engine Emission & Control'),
+(166, 'MEEN 361 OPTION 1', 'ME Elective 2: Solar Energy and Wind Energy Utilization'),
+(167, 'MEEN 362 OPTION 2', 'ME Elective 2: Nuclear Energy'),
+(168, 'MEEN 363 OPTION 3', 'ME Elective 2: Energy Management in BuiLdings'),
+(169, 'MEEN 471 OPTION 1', 'ME Elective 3: Design of Building Piping System and Air-Conditioning Ductworks'),
+(170, 'MEEN 472 OPTION 2', 'ME Elective 3: Design of Thermal System'),
+(171, 'MEEN 473 OPTION 3', 'ME Elective 3: Indoor Environmental Quality in Buildings'),
+(172, 'GEED 018', 'Gender and Society'),
+(173, 'ENGDL 035', 'Technical Communication'),
+(174, 'ACCO 20213', 'Accounting Principles'),
+(175, 'BUMA 20063', 'Principles of Management and Organization'),
+(176, 'COMP 20013', 'Introduction to Computing'),
+(177, 'COMP 20023', 'Computer Programming 1'),
+(178, 'COMP 20033', 'Computer Programming 2'),
+(179, 'COMP 20043', 'Discrete Structures 1'),
+(180, 'COMP 20063', 'Data Structures and Algorithms'),
+(181, 'COMP 20083', 'Object Oriented Programming'),
+(182, 'COMP 20093', 'Information Management'),
+(183, 'COMP 20103', 'Operating Systems'),
+(184, 'COMP 20123', 'Fundamentals of Research'),
+(185, 'COMP 20133', 'Applications Development and Emerging Technologies'),
+(186, 'COMP 20143', 'Human Computer Interaction'),
+(187, 'COMP 20163', 'Web Development'),
+(188, 'COMP 20173', 'Data Communication and Networking'),
+(189, 'COMP 20193', 'Network Administration'),
+(190, 'COMP 20203', 'Quantitative Methods with Modeling and Simulation'),
+(191, 'COMP 20213', 'Database Administration'),
+(192, 'COMP 20233', 'Technopreneurship'),
+(193, 'COMP 20243', 'Systems Analysis and Design'),
+(194, 'COMP 20333', 'Social and Professional Issues in IT'),
+(195, 'GEED 10013', 'Buhay at Mga Sinulat ni Rizal'),
+(196, 'GEED 10023', 'Understanding the Self'),
+(197, 'GEED 10033', 'Readings in Philippine History'),
+(198, 'GEED 10043', 'The Contemporary World'),
+(199, 'GEED 10053', 'Mathematics in the Modern World'),
+(200, 'GEED 10063', 'Purposive Communication'),
+(201, 'GEED 10073', 'Art Appreciation'),
+(202, 'GEED 10083', 'Science, Technology and Society'),
+(203, 'GEED 10093', 'Ethics'),
+(204, 'GEED 10103', 'Filipinohiya at Pambansang Kaunlaran'),
+(205, 'GEED 10113', 'Pagsasalin sa Kontekstong Filipino'),
+(206, 'GEED 10223', 'World Literature'),
+(207, 'GEED 20023', 'Politics, Governance and Citizenship'),
+(208, 'GEED 20093', 'Reading Visual Arts'),
+(209, 'GEED 20113', 'People and the Earth\'s Ecosystem'),
+(210, 'INTE 30013', 'Programming 3 (Structured Programming)'),
+(211, 'INTE 30023', 'Integrative Programming and Technologies 1'),
+(212, 'INTE 30033', 'System Integration and Architecture 1'),
+(213, 'INTE 30043', 'Multimedia'),
+(214, 'INTE 30063', 'Information Assurance and Security 1'),
+(215, 'INTE 30073', 'Information Assurance and Security 2'),
+(216, 'INTE 30083', 'System Administration and Maintenance'),
+(217, 'INTE 40016', 'Practicum (500 Hours)'),
+(218, 'INTE 40163', 'Capstone Project 1'),
+(219, 'INTE 40173', 'Capstone Project 2'),
+(220, 'INTE-E1', 'IT Elective 1'),
+(221, 'INTE-E2', 'IT Elective 2'),
+(222, 'INTE-E3', 'IT Elective 3'),
+(223, 'INTE-E4', 'IT Elective 4'),
+(224, 'ACCO 014', 'Principles of Accounting'),
+(225, 'COMP 001', 'Introduction to Computing'),
+(226, 'COMP 002', 'Computer Programming 1'),
+(227, 'COMP 003', 'Computer Programming 2'),
+(228, 'COMP 004', 'Discrete Structure 1'),
+(229, 'COMP 006', 'Data Structures and Algorithms'),
+(230, 'COMP 007', 'Operating Systems'),
+(231, 'COMP 008', 'Data Communication and Networking'),
+(232, 'COMP 009', 'Object Oriented Programming'),
+(233, 'COMP 010', 'Information Management'),
+(234, 'COMP 012', 'Network Administration'),
+(235, 'COMP 013', 'Human Computer Interaction'),
+(236, 'COMP 014', 'Qualitative Methods with Modeling and Simulation'),
+(237, 'COMP 015', 'Fundamentals of Research'),
+(238, 'COMP 016', 'Web Development'),
+(239, 'COMP 017', 'Multimedia'),
+(240, 'COMP 018', 'Database Administration'),
+(241, 'COMP 019', 'Applications Development and Emerging Technologies'),
+(242, 'COMP 023', 'Social and Professional Issues in Computing'),
+(243, 'COMP 023', 'IT Social and Professional Issues'),
+(244, 'COMP 024', 'Technopreneurship'),
+(245, 'GEED 010', 'People and the Earth\'s Ecosystem'),
+(246, 'GEED 028', 'Reading Visual Arts'),
+(247, 'GEED 033', 'Pagsasalin sa Kontekstong Filipino'),
+(248, 'HRMA 001', 'Principles of Management and Organization'),
+(249, 'INTE 201', 'Programming 3 (Structured Programming)'),
+(250, 'INTE 202', 'Integrative Programming and Technologies 1'),
+(251, 'INTE 301', 'System Integration and Architecture 1'),
+(252, 'INTE 302', 'Information Assurance and Security 1'),
+(253, 'INTE 303', 'Capstone Project 1'),
+(254, 'INTE 401', 'Information Assurance and Security 2'),
+(255, 'INTE 402', 'Capstone Project 2'),
+(256, 'INTE 403', 'System Administration and Maintenance'),
+(257, 'INTE 404', 'Practicum (500 Hours)'),
+(258, 'INTE-E1', 'IT Elective 1'),
+(259, 'INTE-E2', 'IT Elective 2'),
+(260, 'INTE-E3', 'IT Elective 3'),
+(261, 'INTE-E4', 'IT Elective 4'),
+(262, 'INTE-FE1', 'BSIT Free Elective 1'),
+(263, 'INTE-FE2', 'BSIT Free Elective 2'),
+(264, 'ACCO 013', 'Taxation (Income Taxation)'),
+(265, 'ACCO 018', 'Business Management Accounting'),
+(266, 'ADPR 101', 'Advertising'),
+(267, 'BUMA 011', 'Operations and Management (TQM)'),
+(268, 'BUMA 012', 'Strategic Management'),
+(269, 'BUMA 013', 'Good Governance and Social Responsibilities'),
+(270, 'BUMA 014', 'International Business and Trade'),
+(271, 'BUMA 015', 'Business Research'),
+(272, 'BUMA 016', 'Fundamentals of Business Analytics'),
+(273, 'BUMA 017', 'Feasibility Study'),
+(274, 'CWTS 001', 'National Service Training Program 1'),
+(275, 'CWTS 002', 'National Service Training Program 2'),
+(276, 'ECON 012', 'Basic Microeconomics (Eco)'),
+(277, 'ENGL 011', 'Business Communication'),
+(278, 'FIMA 202', 'Financial Management'),
+(279, 'GEED 013', 'Panitikang Pilipino'),
+(280, 'GEED 026', 'Philippine Pop Culture'),
+(281, 'HRMA 101', 'Human Resource Management'),
+(282, 'LAW 015', 'Business Law (Obligations and Contract)'),
+(283, 'MARK 101', 'Applied Marketing'),
+(284, 'MARK 102', 'Services Marketing'),
+(285, 'MARK 103', 'Consumer Behavior'),
+(286, 'MARK 104', 'Product Management'),
+(287, 'MARK 201', 'Marketing Analytics'),
+(288, 'MARK 202', 'Distribution Management'),
+(289, 'MARK 203', 'Pricing Strategy'),
+(290, 'MARK 204', 'E-commerce and Internet Marketing'),
+(291, 'MARK 205', 'Integrated Marketing Communication'),
+(292, 'MARK 206', 'Professional Salesmanship'),
+(293, 'MARK 207', 'Marketing Research'),
+(294, 'MARK 251', 'Business Process Outsourcing'),
+(295, 'MARK 253', 'Personal Finance'),
+(296, 'MARK 301', 'Marketing Management'),
+(297, 'MARK 302', 'Retail Management'),
+(298, 'MARK 303', 'Entrepreneurial Marketing Management'),
+(299, 'MARK 361', 'International Marketing'),
+(300, 'MARK 362', 'Franchising'),
+(301, 'MARK 363', 'Sales Management'),
+(302, 'MARK 371', 'New Market Development'),
+(303, 'MARK 372', 'Direct Marketing'),
+(304, 'MARK 373', 'Environmental Marketing'),
+(305, 'MARK 401', 'Strategic Marketing Management'),
+(306, 'MARK 403', 'Marketing Management Internship (600 Hours)'),
+(307, 'MARK 481', 'Seminar-Workshop on Trends and Issues in Marketing'),
+(308, 'MARK 482', 'Agricultural/Industrial Marketing'),
+(309, 'MARK 483', 'Cooperative Marketing'),
+(310, 'OFAD 252', 'Keyboarding and Document Processing'),
+(311, 'BUMA 011', 'Operations and Management (TQM)'),
+(312, 'BUMA 012', 'Strategic Management'),
+(313, 'BUMA 013', 'Good Governance and Social Responsibilities'),
+(314, 'BUMA 014', 'International Business and Trade'),
+(315, 'BUMA 015', 'Business Research'),
+(316, 'BUMA 016', 'Thesis'),
+(317, 'BUMA 018', 'Fundamentals of Business Analytics'),
+(318, 'ECON 012', 'Basic Microeconomics'),
+(319, 'ENGL 011', 'Business Communication'),
+(320, 'ENTR 309', 'Entrepreneurial Management'),
+(321, 'HRMA 101', 'Service Culture'),
+(322, 'HRMA 102', 'Administrative and Office Management'),
+(323, 'HRMA 103', 'Human Resource Management'),
+(324, 'HRMA 201', 'Training and Development'),
+(325, 'HRMA 202', 'Enterprise Risk Management'),
+(326, 'HRMA 203', 'Business Process Outsourcing'),
+(327, 'HRMA 204', 'Recruitment and Selection'),
+(328, 'HRMA 251', 'Environmental Management System'),
+(329, 'HRMA 301', 'Human Resource (HR) Analytics'),
+(330, 'HRMA 302', 'Performance Management'),
+(331, 'HRMA 303', 'Compensation Administration'),
+(332, 'HRMA 304', 'Labor Law and Legislation'),
+(333, 'HRMA 305', 'Organization Development'),
+(334, 'HRMA 361', 'Project Management'),
+(335, 'HRMA 362', 'Enterprise Resource Planning (ERP)'),
+(336, 'HRMA 371', 'Personal Finance'),
+(337, 'HRMA 401', 'Strategic Human Resource Management'),
+(338, 'HRMA 402', 'Strategic Innovation and Design Thinking'),
+(339, 'HRMA 403', 'Special Topics in Human Resource Management'),
+(340, 'HRMA 404', 'Labor Relations and Negotiations'),
+(341, 'HRMA 405', 'Introduction to Knowledge Management'),
+(342, 'HRMA 406', 'Internship (600 Hours)'),
+(343, 'HRMA 481', 'Logistics Management'),
+(344, 'HRMA 482', 'Managerial Accounting'),
+(345, 'LAW 015', 'Business Law (Obligation and Contracts)'),
+(346, 'GEED 017', 'Philippine Indigenous Communities'),
+(347, 'BUMA 011', 'Operations Management (TQM)'),
+(348, 'BUMA 012', 'Strategic Management'),
+(349, 'OFAD 102', 'Foundation of Shorthand'),
+(350, 'OFAD 103', 'Administrative Office Procedures and Records Management'),
+(351, 'OFAD 201', 'Personal and Professional Development'),
+(352, 'OFAD 101', 'Keyboarding and Documents Processing with Lab'),
+(353, 'OFAD 104', 'Advanced Shorthand'),
+(354, 'OFAD 205', 'Internet Research for Business'),
+(355, 'ENGL 017', 'Business Report Writing'),
+(356, 'OFAD 302', 'Machine Shorthand 1'),
+(357, 'ENTR 101', 'Entrepreneurial Behavior & Competencies'),
+(358, 'OFAD 105', 'Principles of Public and Customer Relations'),
+(359, 'LAW 015', 'Business Law'),
+(360, 'ACCO 013', 'Income Taxation'),
+(361, 'OFAD 301', 'Events Management'),
+(362, 'COMP 101', 'Integrated Software Applications With Laboratory (MIS Concept, Desktop Publishing, Word Processing, Spreadsheet, and Presentation'),
+(363, 'OFAD 204', 'Office Administration Internship 1 – 300 Hours'),
+(364, 'OFAD 203', 'Transcription and Speed Building with Laboratory'),
+(365, 'COMP 106', 'Introduction to Database Management System'),
+(366, 'COMP 107', 'Introduction to Cyber Ethics'),
+(367, 'OFAD 203', 'Web Design for Business'),
+(368, 'OFAD 371', 'Filipino Stenography'),
+(369, 'OFAD 351', 'Legal Office'),
+(370, 'OFAD 461', 'Legal Office Internship – 300 Hours'),
+(371, 'OFAD 402', 'International Studies in Business'),
+(372, 'OFAD 451', 'Machine Shorthand 2'),
+(373, 'OFAD 361', 'Legal Terminology with Transcription for Court Stenographers and Legal Office Associates'),
+(374, 'OFAD 303', 'Fundamentals of Research'),
+(375, 'OFAD 402', 'Thesis Writing'),
+(376, 'OFAD 352', 'Medical Office Procedures'),
+(377, 'OFAD 362', 'Medical Terminology / Human Anatomy and Physiology with Transcription for Medical Administrative Professionals'),
+(378, 'OFAD 462', 'Medical Office Internship – 300 Hours'),
+(379, 'ACCO 017', 'Corporation Accounting'),
+(380, 'BUMA 019', 'Customer Analytics'),
+(381, 'BUMA 023', 'International Studies in Business'),
+(382, 'SEEN 101', 'Introduction to Linguistics'),
+(383, 'SEEN 102', 'Language, Culture, and Society'),
+(384, 'PATHFit 1', 'Movement Competency Training'),
+(385, 'GEED 004', 'Mathematics in the Modern World'),
+(386, 'GEED 006', 'Art Appreciation'),
+(387, 'GEED 005', 'Purposive Communication'),
+(388, 'GEED 008', 'Ethics'),
+(389, 'SEEN 103', 'Structure of English'),
+(390, 'SEEN 104', 'Principles and Theories of Language Acquisition and Learning'),
+(391, 'GEED 007', 'Science, Technology & Society'),
+(392, 'SEEN 205', 'Language Programs and Policies in Multilingual Societies'),
+(393, 'SEEN 206', 'Language Learning Material Development'),
+(394, 'SEEN 213', 'Children and Adolescent Literature'),
+(395, 'SEEN 208', 'Teaching and Assessment of the Macro Skills'),
+(396, 'SEEN 209', 'Teaching and Assessment of Grammar'),
+(397, 'EDUC 011', 'The Child and Adolescent Learner and Learning Principles'),
+(398, 'EDUC 012', 'The Teaching Profession'),
+(399, 'SEEN 210', 'Speech and Theater Arts'),
+(400, 'SEEN 215', 'Survey of Philippine Literature in English'),
+(401, 'SEEN 216', 'Survey of the Afro-Asian Literature'),
+(402, 'EDUC 015', 'Technology for Teaching and Learning 1'),
+(403, 'EDUC 019', 'The Teacher and the Community School Culture and Organizational Leadership'),
+(404, 'GEED 009', 'Environmental Science'),
+(405, 'SEEN 318', 'Contemporary, Popular, and Emergent Literature'),
+(406, 'SEEN 317', 'Survey of English and American Literature'),
+(407, 'SEEN 311', 'Language Education Research'),
+(408, 'SEEN 322 ', 'Technology for Teaching and Learning 2 (Technology in Language Education)'),
+(409, 'EDUC 018', 'Foundation of Special and Inclusive Education'),
+(410, 'EDUC 014', 'Building and Enhancing New Literacies Across the Curriculum'),
+(411, 'EDUC 016', 'Assessment in Learning 1'),
+(412, 'SEEN 320', 'Technical Writing'),
+(413, 'SEEN 312', 'Thesis Writing'),
+(414, 'SEEN 307', 'Teaching and Assessment of Literature Studies'),
+(415, 'SEEN 319', 'Literary Criticism'),
+(416, 'EDUC 017', 'Assessment in Learning 2'),
+(417, 'EDUC 020', 'The Teacher and the School Curriculum'),
+(418, 'EDUC 013', 'Facilitating Learner-Centered Teaching'),
+(419, 'SEEN 314', 'Mythology and Folklore'),
+(420, 'SEEN 321', 'Campus Journalism'),
+(421, 'EDUC 022', 'Field Study 1'),
+(422, 'EDUC 023', 'Field Study 2'),
+(423, 'EDUC 021', 'Integrative Course in Education'),
+(424, 'SEEN 423', 'Remedial Instruction'),
+(425, 'SEEN 424', 'Creative Writing'),
+(426, 'EDUC 024', 'Teaching Internship'),
+(427, 'SEMA 101', 'History of Mathematics'),
+(428, 'SEMA 102', 'College and Advanced Algebra'),
+(429, 'SEMA 104', 'Plane and Solid Geometry'),
+(430, 'SEMA 103', 'Trigonometry'),
+(431, 'SEMA 205', 'Logic and Set Theory'),
+(432, 'GEED 009', 'Environmental Science'),
+(433, 'SEMA 206', 'Elementary Statistics and Probability'),
+(434, 'GEED 037', 'Life and Works of Rizal / Buhay at mga Gawa ni Rizal'),
+(435, 'EDUC 011', 'The Child and Adolescent Learner and Learning Principles'),
+(436, 'EDUC 012', 'The Teaching Profession'),
+(437, 'SEMA 207', 'Calculus 1 with Analytic Geometry'),
+(438, 'SEMA 201', 'Modern Geometry'),
+(439, 'SEMA 212', 'Number Theory'),
+(440, 'SEMA 213', 'Linear Algebra'),
+(441, 'SEMA 214', 'Advanced Statistics'),
+(442, 'EDUC 015', 'Technology for Teaching and Learning 1'),
+(443, 'EDUC 019', 'The Teacher and the Community School Culture and Organizational Leadership'),
+(444, 'SEMA 308', 'Calculus 2'),
+(445, 'SEMA 315', 'Problem Solving, Mathematical Investigation and Modeling'),
+(446, 'SEMA 316', 'Principles and Strategies in Teaching Mathematics'),
+(447, 'SEMA 311', 'Mathematics of Investment'),
+(448, 'EDUC 018', 'Foundation of Special and Inclusive Education'),
+(449, 'EDUC 014', 'Building and Enhancing New Literacies Across the Curriculum'),
+(450, 'EDUC 016', 'Assessment in Learning 1'),
+(451, 'SEMA 319', 'Thesis Writing'),
+(452, 'SEMA 317', 'Abstract Algebra'),
+(453, 'SEMA 321', 'Assessment and Evaluation in Mathematics'),
+(454, 'EDUC 017', 'Assessment in Learning 2'),
+(455, 'EDUC 020', 'The Teacher and the School Curriculum'),
+(456, 'EDUC 013', 'Facilitating Learner-Centered Teaching'),
+(457, 'SEMA 320', 'Technology for Teaching and Learning 2-Instrumentation and Technology in Mathematics'),
+(458, 'SEMA 309', 'Calculus 3'),
+(459, 'EDUC 022', 'Field Study 1'),
+(460, 'EDUC 023', 'Field Study 2'),
+(461, 'SEMA 422', 'Methods of Proof'),
+(462, 'EDUC 021', 'Integrative Course in Education'),
+(463, 'EDUC 024', 'Teaching Internship'),
+(464, 'ITEC 101', 'Keyboarding and Documents Processing with Laboratory'),
+(465, 'ITEC 102', 'Basic Computer Hardware Servicing'),
+(466, 'ITEC 103', 'Hardware/Software Installation and Maintenance'),
+(467, 'INTE 202', 'Integrative Programming and Technologies'),
+(468, 'INTE 201', 'Computer Programming 3'),
+(469, 'COMP 030', 'Business Intelligence'),
+(470, 'COMP 014', 'Quantitative Methods with Modeling and Simulation'),
+(471, 'ITEC 201', 'Practicum 1 (Junior Programmer 1/Junior Programmer 2 - 300 hours)'),
+(472, 'INTE 351', 'Systems Analysis and Design'),
+(473, 'COMP 025', 'Project Management'),
+(474, 'ITEC 301', 'Advance Programming'),
+(475, 'COMP 027', 'Mobile Application Development (SMP PLUS)'),
+(476, 'ITEC 302', 'Capstone'),
+(477, 'ITEC 303', 'Practicum 2 (Computer Programming Specialist - 300 hours)'),
+(478, 'ITEC 304', 'Seminar on Issues and Trends in Information Technology'),
+(479, 'COMP 101', 'Integrated Software Applications with Laboratory'),
+(480, 'OMTE 101', 'Advanced Keyboarding and Documents Processing with Laboratory'),
+(481, 'OFAD 101', 'Personal and Professional Development for Office Administration'),
+(482, 'OMTE 201', 'Accounting Principles'),
+(483, 'OFAD 361', 'Legal Technology'),
+(484, 'OFAD 351', 'Legal Office Procedures'),
+(485, 'OMTE 201', 'Legal Transcription'),
+(486, 'OMTE 203', 'Practicum 1 (Office Management 300 hrs)'),
+(487, 'OFAD 202', 'Web Design for Business'),
+(488, 'OMTE 301', 'Practicum 2 (Legal Office Management 300 hrs)'),
+(489, 'OMTE 303', 'Seminar on Issues and Trends in Office Management Technology'),
+(490, 'OFAD 362', 'Medical Terminology'),
+(491, 'ACCO 017', 'Corporate Accounting'),
+(492, 'OMTE 202', 'Medical Transcription'),
+(493, 'OMTE 202', 'Medical Transcription'),
+(494, 'OMTE 302', 'Practicum 2 (Medical Office Management 300 hrs)'),
+(495, 'OMTE 001', 'Principles of Management and Organization'),
+(496, 'OFAD 201', 'Administrative Office Procedures and Record Management'),
+(497, 'OFAD 201', 'Personal and Professional Development for Office Administration'),
+(498, 'OMTE 102', 'Accounting Principles'),
+(499, 'OFAD 362', 'Medical Terminology - Human Anatomy and Physiology');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `summary`
 --
 
@@ -2536,11 +3230,11 @@ CREATE TABLE `summary` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `app_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `subject_id` bigint(20) UNSIGNED NOT NULL,
   `term` tinyint(4) NOT NULL,
-  `subjects` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `units` int(11) NOT NULL,
   `grades` decimal(10,2) NOT NULL,
-  `sy` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sy` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2555,8 +3249,8 @@ CREATE TABLE `summary_ae` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `app_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `subject_id` bigint(20) UNSIGNED DEFAULT NULL,
   `term` tinyint(4) DEFAULT NULL,
-  `subjects` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `units` int(11) DEFAULT NULL,
   `grades` decimal(10,2) DEFAULT NULL,
   `sy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2594,11 +3288,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `stud_num`, `username`, `first_name`, `middle_name`, `last_name`, `email`, `contact`, `course_id`, `role_as`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_email_verified`) VALUES
-(19, NULL, 'superadmin', 'Philip', NULL, 'Barry', 'superadmin@gmail.com', '+639297205140', NULL, 2, '2022-11-27 08:00:33', '$2y$10$R5utIqHSmzIb0jU47PDdwOdkk0r2j2pTnohhjl6qFvrek5BVqJJm2', '2CGKTSZwSGbHyzgvoY2RzGs8HCrEos0Jv9tjMmaEAOtfIZQeE9Ct4TIMgIzY', '2022-08-23 11:10:10', '2022-12-20 17:51:18', 0),
+(19, NULL, 'superadmin', 'Philip', NULL, 'Barry', 'superadmin@gmail.com', '+639297205140', NULL, 2, '2022-11-27 08:00:33', '$2y$10$R5utIqHSmzIb0jU47PDdwOdkk0r2j2pTnohhjl6qFvrek5BVqJJm2', 'zlDJTDWAJdk5tzrJD2qn0AZAKHpehvMUiZi47mgXqd8IIp8IehEAuA1vR6d3', '2022-08-23 11:10:10', '2022-12-20 17:51:18', 0),
 (45, '2022-10000-TG-0', 'admin', 'Admin', 'Knox Cox', 'admin', 'admin@gmail.com', '+639609121702', '6', 2, '2022-11-23 19:38:11', '$2y$10$0u.GXMus8f.5bLvLBQ/MqewiQ1w5ZS8EtgErPsJRGaCkzyI7MpfPa', NULL, '2022-10-01 13:48:19', '2022-11-23 19:38:11', 0),
 (47, '2022-00023-TG-3', 'official', 'Branch', NULL, 'Official', 'branchofficial@gmail.com', '+639999999999', '1', 2, '2022-11-27 08:01:14', '$2y$10$nEasvorx29QlRBrA9Jm5SeNTLU6ub8ZZkrLowNQZQCTaDhcYXR6M2', NULL, '2022-10-02 11:01:48', '2022-11-27 08:01:14', 0),
 (90, NULL, 'gyjivoxovy', 'Ishmael', 'Griffith', 'Dickson', 'susifu@gmail.com', '+639532893609', NULL, 2, '2022-12-14 11:18:15', '$2y$10$KPuRJHy6ytYQ9Nht7Sb46OFfxcj9GHBoUSMb1phOU462Z2RHzwy02', NULL, '2022-10-13 05:54:04', '2022-12-14 11:18:15', 0),
-(106, '2022-00267-TG-0', 'kizexolewe', 'Hayley', 'Reese', 'Atkinson', 'vakyv@gmail.com', '+639386344235', '2', 0, '2023-01-28 20:33:32', '$2y$10$Mx.sEjJl7vwjLxYb6o1QOOFeqkUb9j83/7pLFMcQJPSH2zDVusiom', NULL, '2023-01-28 20:32:55', '2023-01-28 20:33:32', 0);
+(106, '2022-00267-TG-0', 'rose123', 'Hayley', 'Reese', 'Atkinson', 'vakyv@gmail.com', '+639386344235', '2', 0, '2023-01-28 20:33:32', '$2y$10$CvGf/Th8256.9HTJJykFo.xtYg.M6mG8Kq1MCqvzdEjzqMzCxnQ0q', 'RHV3yXiFZ1WQCUPCK44N2dva6LciFixVwrUfW67cmW9EoiFJpFWxllEs4SgP', '2023-01-28 20:32:55', '2023-02-05 17:29:48', 0),
+(108, '2022-00673-TG-0', 'qihytoheqe', 'Tyrone', 'Lott', 'House', 'heqolyjeva@gmail.com', '+639806359279', '3', 0, '2023-02-11 19:46:59', '$2y$10$ZShejxHrwaR9HspZfXrEZOrR.eLOT48Xuvoq8iQnveAc7eg1YHqXe', NULL, '2023-02-11 19:46:36', '2023-02-11 19:46:59', 0),
+(109, '2022-00062-TG-0', 'hojosif', 'Miranda', 'Mays', 'Snider', 'ceja@gmail.com', '+639492102988', '10', 0, '2023-02-11 20:16:40', '$2y$10$/6GCEHSPHNAXewte3Nf6DOB1hGPPGNdmOFTiO0qNGvR2jOMMvgJ9W', NULL, '2023-02-11 20:15:51', '2023-02-11 20:16:40', 0),
+(110, '2022-00178-TG-0', 'hagaxizuq', 'Kevin', 'Britt', 'Delaney', 'wulyceh@gmail.com', '+639138431723', '11', 0, '2023-02-11 20:37:14', '$2y$10$T3/oawzGTBb21Labgw7fV.ALCAf3Jv1FGNKZCMtHmUfBNNwpPx2oa', NULL, '2023-02-11 20:36:45', '2023-02-11 20:37:14', 0);
 
 -- --------------------------------------------------------
 
@@ -2855,12 +3552,19 @@ ALTER TABLE `student_organizations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `summary`
 --
 ALTER TABLE `summary`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `summary_app_id_foreign_sa` (`app_id`),
-  ADD KEY `summary_user_id_foreign` (`user_id`);
+  ADD KEY `summary_app_id_foreign` (`app_id`),
+  ADD KEY `summary_user_id_foreign` (`user_id`),
+  ADD KEY `summary_subject_id_foreign` (`subject_id`);
 
 --
 -- Indexes for table `summary_ae`
@@ -2868,7 +3572,8 @@ ALTER TABLE `summary`
 ALTER TABLE `summary_ae`
   ADD PRIMARY KEY (`id`),
   ADD KEY `summary_ae_app_id_foreign` (`app_id`),
-  ADD KEY `summary_ae_user_id_foreign` (`user_id`);
+  ADD KEY `summary_ae_user_id_foreign` (`user_id`),
+  ADD KEY `summary_ae_subject_id_foreign` (`subject_id`);
 
 --
 -- Indexes for table `users`
@@ -2898,13 +3603,13 @@ ALTER TABLE `acad_awards`
 -- AUTO_INCREMENT for table `ae_applicants`
 --
 ALTER TABLE `ae_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `audits`
 --
 ALTER TABLE `audits`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
 
 --
 -- AUTO_INCREMENT for table `awardees`
@@ -2964,7 +3669,7 @@ ALTER TABLE `galleries`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -2976,13 +3681,13 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `non_academic_applicants`
 --
 ALTER TABLE `non_academic_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `non_acad_awards`
@@ -3048,7 +3753,7 @@ ALTER TABLE `signatures`
 -- AUTO_INCREMENT for table `student_applicants`
 --
 ALTER TABLE `student_applicants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `student_organizations`
@@ -3057,22 +3762,28 @@ ALTER TABLE `student_organizations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500;
+
+--
 -- AUTO_INCREMENT for table `summary`
 --
 ALTER TABLE `summary`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `summary_ae`
 --
 ALTER TABLE `summary_ae`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Constraints for dumped tables
@@ -3126,7 +3837,8 @@ ALTER TABLE `student_applicants`
 -- Constraints for table `summary`
 --
 ALTER TABLE `summary`
-  ADD CONSTRAINT `summary_app_id_foreign_sa` FOREIGN KEY (`app_id`) REFERENCES `student_applicants` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `summary_app_id_foreign` FOREIGN KEY (`app_id`) REFERENCES `student_applicants` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `summary_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `summary_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
@@ -3134,6 +3846,7 @@ ALTER TABLE `summary`
 --
 ALTER TABLE `summary_ae`
   ADD CONSTRAINT `summary_ae_app_id_foreign` FOREIGN KEY (`app_id`) REFERENCES `ae_applicants` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `summary_ae_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `summary_ae_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 

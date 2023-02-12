@@ -64,11 +64,11 @@
                                                 $totalwith5thAndSummer = ($awardee->gwa1 + $awardee->gwa2 + $awardee->gwa3 + $awardee->gwa4 + $awardee->gwa5 + $awardee->gwa6 + $awardee->gwa7 + $awardee->gwa8 + $awardee->gwa9 + $awardee->gwa10 + $awardee->gwa11) / 11;
                                             @endphp
                                             @if (!empty($awardee->gwa9) && empty($awardee->gwa10))
-                                                {{ number_format((float) $totalwithSummer, 2, '.', '') }}
+                                                {{ number_format((float) $totalwithSummer, 3, '.', '') }}
                                             @elseif(!empty($awardee->gwa10 || $awardee->gwa11) && empty($awardee->gwa9))
-                                                {{ number_format((float) $totalwith5thYear, 2, '.', '') }}
+                                                {{ number_format((float) $totalwith5thYear, 3, '.', '') }}
                                             @elseif(!empty($awardee->gwa9 && $awardee->gwa10))
-                                                {{ number_format((float) $totalwith5thAndSummer, 2, '.', '') }}
+                                                {{ number_format((float) $totalwith5thAndSummer, 3, '.', '') }}
                                             @else
                                                 {{ $awardee->gwa }}
                                             @endif

@@ -441,7 +441,12 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects3[]" class="form-control" required></td>';
+            '<td><select name="subjects3[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
+        html += '</select></td>';
         html +=
             '<td><input type="text" name="units3[]" class="form-control units3 multi3" id="units3" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -452,6 +457,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total3[]" class="form-control total3" id="total3" readonly></td>';
         html += "</tr>";
         $("#calculation3").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -515,7 +521,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects4[]" class="form-control" required></td>';
+            '<td><select name="subjects4[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units4[]" class="form-control units4 multi4" id="units4" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 14) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -526,6 +536,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total4[]" class="form-control total4" id="total4" readonly></td>';
         html += "</tr>";
         $("#calculation4").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -589,7 +600,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects5[]" class="form-control" required></td>';
+            '<td><select name="subjects5[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units5[]" class="form-control units5 multi5" id="units5" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -600,6 +615,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total5[]" class="form-control total5" id="total5" readonly></td>';
         html += "</tr>";
         $("#calculation5").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -662,7 +678,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects6[]" class="form-control" required></td>';
+            '<td><select name="subjects6[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units6[]" class="form-control units6 multi6" id="units6" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -673,6 +693,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total6[]" class="form-control total6" id="total6" readonly></td>';
         html += "</tr>";
         $("#calculation6").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -735,7 +756,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects7[]" class="form-control" required></td>';
+            '<td><select name="subjects7[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units7[]" class="form-control units7 multi7" id="units7" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -746,6 +771,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total7[]" class="form-control total7" id="total7" readonly></td>';
         html += "</tr>";
         $("#calculation7").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -808,7 +834,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects8[]" class="form-control" required></td>';
+            '<td><select name="subjects8[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub" required>';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units8[]" class="form-control units8 multi8" id="units8" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false" required></td>';
         html +=
@@ -819,6 +849,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total8[]" class="form-control total8" id="total8" readonly></td>';
         html += "</tr>";
         $("#calculation8").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -881,7 +912,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects10[]" class="form-control"></td>';
+            '<td><select name="subjects10[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub">';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units10[]" class="form-control units10 multi10" id="units10" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
         html +=
@@ -892,6 +927,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total10[]" class="form-control total10" id="total10" readonly></td>';
         html += "</tr>";
         $("#calculation10").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -955,7 +991,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects11[]" class="form-control"></td>';
+            '<td><select name="subjects11[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub">';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units11[]" class="form-control units11 multi11" id="units11" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
         html +=
@@ -966,6 +1006,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total11[]" class="form-control total11" id="total11" readonly></td>';
         html += "</tr>";
         $("#calculation11").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
@@ -1028,7 +1069,11 @@ $(document).ready(function() {
         var html = "";
         html += "<tr>";
         html +=
-            '<td><input type="text" name="subjects9[]" class="form-control"></td>';
+            '<td><select name="subjects9[]" data-placeholder="Select subject" data-allow-clear="1" class="selectsub">';
+        html += '<option selected="selected"></option>';
+        for (var i = 0; i < sub.length; i++) {
+            html += '<option value="' + sub[i].id + '">' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+        }
         html +=
             '<td><input type="text" name="units9[]" class="form-control units9 multi9" id="units9" min="9" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" onpaste="return false"></td>';
         html +=
@@ -1039,6 +1084,7 @@ $(document).ready(function() {
             '<td style="display:none"><input type="text" name="total9[]" class="form-control total9" id="total9" readonly></td>';
         html += "</tr>";
         $("#calculation9").append(html);
+        initializeSelect2('.selectsub');
     });
 });
 
