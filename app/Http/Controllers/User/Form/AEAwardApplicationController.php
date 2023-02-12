@@ -22,6 +22,14 @@ class AEAwardApplicationController extends Controller
 
     public function store(AcademicExcellenceRequest $request)
     {
+
+        $subjects = array_merge($request->subjects, $request->subjects1, $request->subjects3, $request->subjects4, $request->subjects5, $request->subjects6, $request->subjects7, $request->subjects8);
+        $unique_subjects = array_unique($subjects);
+
+        if (count($subjects) > count($unique_subjects)) {
+            return redirect()->back()->with('error', 'Duplicate subjects in the input.');
+        }
+
         $users = User::where('role_as', '2')->get();
         $user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
