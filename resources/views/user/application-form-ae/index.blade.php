@@ -300,7 +300,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard3">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -404,7 +404,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard4">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -508,7 +508,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard5">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -612,7 +612,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard6">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -716,7 +716,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard7">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -820,7 +820,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard8">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -925,7 +925,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard9">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -1031,7 +1031,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard10">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
@@ -1150,7 +1150,7 @@
                     </a>
                     <div class="collapse show" id="collapseCard11">
                         <div class="card-body">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-responsive">
                                 <thead>
                                     <tr>
                                         <th><em>Subject</em> <span class="text-danger">*</span></th>
