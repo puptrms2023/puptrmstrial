@@ -149,9 +149,13 @@
                 $(this).attr("disabled", true);
                 $(this).html('<i class="fa fa-spinner fa-spin"></i> Send Certificates');
                 console.log(ids);
+
+                var fullURL =
+                    "{{ url(config('app.url') . '/admin/send-awardees-certificates/non-academic-award/' . $nonacad->id . '/send') }}";
+
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('admin/send-awardees-certificates/non-academic-award/' . $nonacad->id . '/send') }}",
+                    url: fullURL,
                     data: {
                         ids: ids
                     },
