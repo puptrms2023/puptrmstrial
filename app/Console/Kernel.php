@@ -35,6 +35,10 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('delete:archive')
             ->daily();
+
+        $schedule->command('queue:work --stop-when-empty')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     protected function scheduleTimezone()
