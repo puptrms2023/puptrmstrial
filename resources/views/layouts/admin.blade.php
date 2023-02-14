@@ -59,6 +59,9 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+        <script>
+            var baseURL = "{{ config('app.url') }}";
+        </script>
         <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('admin/vendor/jqueryui/jquery-ui.min.js') }}"></script>

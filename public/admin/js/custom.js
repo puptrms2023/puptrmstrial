@@ -1276,7 +1276,7 @@ $(function() {
         var select = document.getElementById("year");
         var year = select.options[select.selectedIndex].value;
         var link =
-            "/admin/deans-list-award/" +
+            baseURL + "/admin/deans-list-award/" +
             course_id +
             "/" +
             year +
@@ -1288,8 +1288,7 @@ $(function() {
         var course_id = document.getElementById("course_id").value;
         var select = document.getElementById("year");
         var year = select.options[select.selectedIndex].value;
-        var link =
-            "/admin/deans-list-award/" +
+        var link = baseURL + "/admin/deans-list-award/" +
             course_id +
             "/" +
             year +
@@ -1303,7 +1302,7 @@ $(function() {
         var select = document.getElementById("year_pl");
         var year = select.options[select.selectedIndex].value;
         var link =
-            "/admin/presidents-list-award/" +
+            baseURL + "/admin/presidents-list-award/" +
             course_id +
             "/" +
             year +
@@ -1316,7 +1315,7 @@ $(function() {
         var select = document.getElementById("year_pl");
         var year = select.options[select.selectedIndex].value;
         var link =
-            "/admin/presidents-list-award/" +
+            baseURL + "/admin/presidents-list-award/" +
             course_id +
             "/" +
             year +
@@ -1329,7 +1328,7 @@ $(function() {
         var select = document.getElementById("year_ae");
         var year = select.options[select.selectedIndex].value;
         var link =
-            "/admin/academic-excellence-award/" +
+            baseURL + "/admin/academic-excellence-award/" +
             course_id +
             "/" +
             year +
@@ -1342,7 +1341,7 @@ $(function() {
         var select = document.getElementById("year_ae");
         var year = select.options[select.selectedIndex].value;
         var link =
-            "/admin/academic-excellence-award/" +
+            baseURL + "/admin/academic-excellence-award/" +
             course_id +
             "/" +
             year +

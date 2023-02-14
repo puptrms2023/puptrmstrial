@@ -100,11 +100,11 @@
                 $(this).attr("disabled", true);
                 $(this).html('<i class="fa fa-spinner fa-spin"></i> Send Certificates');
 
-                var fullURL = "{{ config('app.url') }}/admin/send-awardees-certificates/presidents-list-award/" + course_id + "/send";
-
                 $.ajax({
                     type: 'POST',
-                    url: fullURL,
+                    url: baseURL + "/admin/send-awardees-certificates/presidents-list-award/" +
+                        course_id +
+                        "/send",
                     data: {
                         ids: ids
                     },

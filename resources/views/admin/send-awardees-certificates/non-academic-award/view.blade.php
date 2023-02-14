@@ -150,12 +150,10 @@
                 $(this).html('<i class="fa fa-spinner fa-spin"></i> Send Certificates');
                 console.log(ids);
 
-                var fullURL =
-                    "{{ url(config('app.url') . '/admin/send-awardees-certificates/non-academic-award/' . $nonacad->id . '/send') }}";
-
                 $.ajax({
                     type: 'POST',
-                    url: fullURL,
+                    url: baseURL + '/admin/send-awardees-certificates/non-academic-award/' +
+                        {{ $nonacad->id }} + '/send',
                     data: {
                         ids: ids
                     },
