@@ -18,14 +18,19 @@
             <div class="col-sm-3 mb-4">
                 <a class="card lift h-100"
                     href="{{ url('admin/send-awardees-certificates/academic-excellence-award/' . $item->course_code) }}">
-                    <div class="card border-left-warning shadow">
-                        <img src="{{ asset('admin/img/bgimage-login.jpg') }}" class="card-img-top" alt="image">
+                    <div class="card border-left-success shadow">
+                        {{-- <div class="position-absolute top-0 end-0 mt-2 me-2">
+                            <div class="bg-danger rounded-circle text-white d-flex align-items-center justify-content-center"
+                                style="width: 20px; height: 20px;">
+                                {{ $item->ae_applicants->certificate_status->count() }}
+                            </div>
+                        </div> --}}
                         <div class="card-body text-center">
-                            <div class="text-md card-text font-weight-bold text-warning text-uppercase pl-6 mt-4r mt-3">
+                            <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r mt-3">
                                 {{ $item->course_code }}
                             </div>
                             <div class="col-12 mb-3">
-                                <i class="fas fa-solid fa-award fa-2x text-warning "></i>
+                                <i class="fas fa-solid fa-award fa-2x text-success "></i>
                             </div>
                         </div>
                     </div>

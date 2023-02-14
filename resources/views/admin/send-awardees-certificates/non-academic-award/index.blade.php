@@ -16,10 +16,9 @@
     <div class="row">
         @foreach ($nonacad as $item)
             <div class="col-lg-3 mb-3 d-flex align-items-stretch">
-                <a class="card lift border-left-secondary"
+                <a class="card lift border-left-secondary w-100"
                     href="{{ url('admin/send-awardees-certificates/non-academic-award/' . $item->id) }}">
                     <div class="card border-0">
-                        <img src="{{ asset('admin/img/bgimage-login.jpg') }}" class="card-img-top" alt="image">
                         <div class="card-body d-flex flex-column text-center">
                             <div class="card-text font-weight-bold text-secondary text-uppercase">
                                 {{ $item->name }}

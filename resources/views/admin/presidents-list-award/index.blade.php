@@ -25,13 +25,13 @@
         @foreach ($courses as $item)
             <div class="col-sm-3 mb-4">
                 <a class="card lift h-100" href="{{ url('admin/presidents-list-award/' . $item->course_code) }}">
-                    <div class="card border-left-success shadow">
+                    <div class="card border-left-warning shadow">
                         <div class="card-body text-center">
-                            <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r mt-3">
+                            <div class="text-md card-text font-weight-bold text-warning text-uppercase pl-6 mt-4r mt-3">
                                 {{ $item->course_code }}
                             </div>
                             <div class="col-12 mb-3">
-                                <i class="fas fa-solid fa-award fa-2x text-success "></i>
+                                <i class="fas fa-solid fa-award fa-2x text-warning "></i>
                             </div>
                         </div>
                     </div>
