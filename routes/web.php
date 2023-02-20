@@ -383,4 +383,7 @@ Route::prefix('user')->middleware('auth', 'verified', 'isUser')->group(function 
         Route::get('/change-password', 'index');
         Route::post('/update-password', 'store');
     });
+    Route::controller(App\Http\Controllers\User\MyAwards\MyAwardsController::class)->group(function () {
+        Route::get('/my-awards', 'index');
+    });
 });

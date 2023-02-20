@@ -1,5 +1,7 @@
 @extends('layouts.user')
 
+@section('title', 'Calendar of Events')
+
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">Calendar of Events</div>
@@ -44,6 +46,15 @@
             });
 
             calendar.render();
+
+            // add media query for small screens
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                calendar.setOption('headerToolbar', {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: ''
+                });
+            }
         });
     </script>
 @endsection

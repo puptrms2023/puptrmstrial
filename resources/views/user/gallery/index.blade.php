@@ -1,5 +1,7 @@
 @extends('layouts.user')
 
+@section('title', 'Recognition Gallery')
+
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="h3 mb-0 text-gray-800">Gallery</div>
@@ -23,9 +25,9 @@
                         </a>
                     </div>
                 @endforeach
-                {{-- <img class="img-fluid"
-                            src="{{ Storage::drive('google')->url($value->title . '/' . $value->photos->photo) }}"
-                            title="{{ $value->description }}"> --}}
+                <img class="img-fluid"
+                    src="{{ Storage::drive('google')->url($value->title . '/' . $value->photos->photo) }}"
+                    title="{{ $value->description }}">
             </div>
         @endforeach
     </div>

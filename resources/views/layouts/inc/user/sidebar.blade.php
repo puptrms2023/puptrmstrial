@@ -20,6 +20,12 @@
             <span>Home</span>
         </a>
     </li>
+    <li class="nav-item {{ Request::is('user/my-awards') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('user/my-awards') }}">
+            <i class="fa-solid fa-award"></i>
+            <span>My Awards</span>
+        </a>
+    </li>
 
     <!--Nav Item - Utilities Collapse Menu -->
 

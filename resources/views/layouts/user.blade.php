@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ getSystemAcronym() }}</title>
+    <title> @yield('title') | {{ getSystemAcronym() }}</title>
 
     <!-- Fonts -->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -19,9 +19,10 @@
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}">
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.icon8.com/fonts/icon8.css">
 
-     <!-- select2 -->
-     <link href="{{ asset('admin/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <!-- select2 -->
+    <link href="{{ asset('admin/vendor/select2/select2.min.css') }}" rel="stylesheet">
     <!-- select2-bootstrap4-theme -->
     <link href="{{ asset('admin/vendor/select2/select2-bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
@@ -80,6 +81,7 @@
         <script src="{{ asset('admin/vendor/isotope/isotope.pkgd.js') }}"></script>
         <script src="{{ asset('admin/vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
         <script src="{{ asset('assets/js/fullcalendar-5.11.3.js') }}"></script>
+        <script src="https://cdn.icon8.com/js/icon8.js"></script>
 
         <script>
             $(document).ready(function() {

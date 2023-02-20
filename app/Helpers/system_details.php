@@ -139,3 +139,28 @@ function format_decimal($number)
         return number_format($number, 2);
     }
 }
+
+function awardIcon($award)
+{
+    if ($award == 'AA' || $award == 'DL' || $award == 'PL' || $award == 'AE') {
+        return '<img src="https://img.icons8.com/color/48/null/medal.png" />';
+    } else if ($award == 'LA') {
+        return '<img src="https://img.icons8.com/color/48/null/leadership--v2.png"/>';
+    } else if ($award == 'AYA') {
+        return '<img src="https://img.icons8.com/color/48/null/trophy.png"/>';
+    } else if ($award == 'OOA') {
+        return '<img src="https://img.icons8.com/color/48/null/conference-foreground-selected.png"/>';
+    } else if ($award == 'BTA') {
+        return '<img src="https://img.icons8.com/color/48/null/signing-a-document.png"/>';
+    } else if ($award == 'GOP') {
+        return '<img src="https://img.icons8.com/color/48/null/podium-with-speaker.png"/>';
+    } else if ($award == 'GSA') {
+        return '<img src="https://img.icons8.com/color/48/null/yours.png"/>';
+    } else if ($award == 'OC') {
+        return '<img src="https://img.icons8.com/color/48/null/contest.png"/>';
+    } else if ($award == 'GPDT') {
+        return '<img src="https://img.icons8.com/color/48/null/tango.png"/>';
+    } else if ($award == 'GPCG') {
+        return '<img src="https://img.icons8.com/color/48/null/choir--v2.png"/>';
+    }
+}

@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Achievers Award Status')
+@section('title', 'Academic Award Status')
 
 @section('content')
 

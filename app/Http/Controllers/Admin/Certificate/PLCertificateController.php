@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin\Certificate;
 
 use App\Models\Courses;
+use App\Models\MyAward;
+use App\Models\Signature;
 use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
-use App\Models\Signature;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PLCertificateController extends Controller
@@ -76,6 +77,13 @@ class PLCertificateController extends Controller
             ];
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['app_id']);
+
+            MyAward::create([
+                'user_id' => $user->users->id,
+                'award_acronym' => 'PL',
+                'award_name' => 'President\'s List',
+                'school_year' => $user->school_year
+            ]);
         }
         StudentApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
