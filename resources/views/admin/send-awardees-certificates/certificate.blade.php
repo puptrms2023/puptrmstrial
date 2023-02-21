@@ -80,6 +80,10 @@
         .img-sig {
             margin-top: -25px;
         }
+
+        .highlight {
+            font-size: 17px;
+        }
     </style>
 </head>
 
@@ -88,13 +92,13 @@
         @if ($mname == '')
             {{ $fname . ' ' . $lname }}
         @else
-            {{ $fname . ' ' . substr($mname, 0, 1) . '.' . ' ' . $lname }}
+            {{ $fname . ' ' . $mname . ' ' . $lname }}
         @endif
     </div>
     <div class="description">
         @if ($award == 'LA' || $award == 'AYA' || $award == 'OOA' || $award == 'BTA')
             for the remarkable performance in this institution, receiving the<br>
-            {{ $award_name }} in the S.Y. {{ $sy }}.
+            <span class="highlight">{{ $award_name }}</span> in the S.Y. {{ $sy }}.
         @elseif ($award == 'GOP' || $award == 'GSA')
             for the remarkable service and performance<br>
             in the institution for the Academic Year {{ $sy }}.
@@ -102,10 +106,10 @@
             for the representing the institution/organization on the Academic Year {{ $sy }}.
         @elseif ($award == 'GPDT' || $award == 'GPCG')
             for the remarkable performance and outstanding participation in<br>
-            the {{ $award_name }} for the <br> Academic Year {{ $sy }}.
+            the <span class="highlight">{{ $award_name }}</span> for the <br> Academic Year {{ $sy }}.
         @elseif ($award == 'AA' || $award == 'DL' || $award == 'PL' || $award == 'AE')
             for the remarkable academic performance as a student of this institution for obtaning<br>
-            a General Weighted Average of
+            a <span class="highlight">General Weighted Average</span> of
             @if (!empty($summer) && empty($fifth_1))
                 {{ number_format((float) $totalwithSummer, 3, '.', '') }}
             @elseif(!empty($fifth_1 || $fifth_2) && empty($summer))
@@ -119,27 +123,33 @@
             {{ $sy }}.
         @endif
     </div>
-    <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
+    <div class="date"><span class="highlight">Given this day, {{ date('jS \of F Y') }}</span> via Google Mail</div>
     <table class="table2">
         <tr>
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . $signature1) }}" width="100" />
-                </div>
+                @if ($signature1 != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $signature1) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ $name1 }}</b><br>
                 {{ $position1 }}
             </td>
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . $signature2) }}" width="100" />
-                </div>
+                @if ($signature2 != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $signature2) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ $name2 }}</b><br>
                 {{ $position2 }}
             </td>
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . $signature3) }}" width="100" />
-                </div>
+                @if ($signature3 != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $signature3) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ $name3 }}</b><br>
                 {{ $position3 }}
             </td>
@@ -148,9 +158,11 @@
     <table class="table2">
         <tr>
             <td>
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . $signature4) }}" width="100" />
-                </div>
+                @if ($signature4 != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . $signature4) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ $name4 }}</b><br>
                 {{ $position4 }}
             </td>

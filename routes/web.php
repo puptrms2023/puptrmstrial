@@ -302,6 +302,7 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::get('/maintenance/signatures-cert/status/update', 'changeStatusCertificate');
         Route::get('/maintenance/signatures-report/status/update', 'changeStatusReports');
         Route::post('/maintenance/delete-signature', 'destroy');
+        Route::post('/maintenance/delete-image-signature', 'destroyImage');
     });
     // data retention policy
     Route::controller(App\Http\Controllers\Admin\Maintenance\DataRetentionController::class)->group(function () {

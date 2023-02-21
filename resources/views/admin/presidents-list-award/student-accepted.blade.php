@@ -177,23 +177,29 @@
         <tr>
             <td>Signed by:</td>
             <td>
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name1Report()->signature) }}" width="100" />
-                </div>
+                @if (name1Report()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name1Report()->signature) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ name1Report()->rep_name }}</b><br>
                 {{ name1Report()->position }}
             </td>
             <td>
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name2Report()->signature) }}" width="100" />
-                </div>
+                @if (name2Report()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name2Report()->signature) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ name2Report()->rep_name }}</b><br>
                 {{ name2Report()->position }}
             </td>
             <td>
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name3Report()->signature) }}" width="100" />
-                </div>
+                @if (name3Report()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name3Report()->signature) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ name3Report()->rep_name }}</b><br>
                 {{ name3Report()->position }}
             </td>
@@ -201,9 +207,11 @@
         <tr>
             <td>Noted by:</td>
             <td colspan="3" align="center" height="110">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name4Report()->signature) }}" width="100" />
-                </div>
+                @if (name4Report()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name4Report()->signature) }}" width="100" />
+                    </div>
+                @endif
                 <b>{{ name4Report()->rep_name }}</b><br>
                 {{ name4Report()->position }}
             </td>

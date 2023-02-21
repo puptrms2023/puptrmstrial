@@ -95,6 +95,13 @@
 
         <script>
             $(document).ready(function() {
+
+                if ($(window).width() < 768) {
+                    $(".sidebar").addClass("toggled");
+                    $(".nav-link").addClass("collapsed");
+                    $("#collapseUtilities").removeClass("show");
+                }
+
                 toastr.options.timeOut = 40000;
                 @if (Session::has('success'))
                     toastr.options = {

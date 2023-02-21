@@ -49,6 +49,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $('.reject').on('change', checkPattern2);
     checkPattern2();
     initializeSelect2('.selectsub');
+
+    const uploadButton = document.getElementById('upload_sig');
+const imageDiv = document.getElementById('upload_signature');
+
+// Add click event listeners to the buttons
+uploadButton.addEventListener('click', () => {
+    imageDiv.classList.remove('hidden');
+    digitalDiv.classList.add('hidden');
+});
 });
 
 $(document).ready(function () {

@@ -14,7 +14,7 @@
             margin: 0;
             height: 8.27in;
             width: 11.69in;
-            background-image: url('admin/img/cert_layout1.jpg');
+            background-image: url('admin/img/non_academic_awards.jpg');
             background-size: 11.69in 8.27in;
             background-repeat: no-repeat;
         }
@@ -80,6 +80,10 @@
         .img-sig {
             margin-top: -30px;
         }
+
+        .highlight {
+            font-size: 17px;
+        }
     </style>
 </head>
 
@@ -88,13 +92,13 @@
         @if ($mname == '')
             {{ $fname . ' ' . $lname }}
         @else
-            {{ $fname . ' ' . substr($mname, 0, 1) . '.' . ' ' . $lname }}
+            {{ $fname . ' ' . $mname . ' ' . $lname }}
         @endif
     </div>
     <div class="description">
         @if ($award == '1' || $award == '2' || $award == '3' || $award == '4')
             for the remarkable performance in this institution, receiving the<br>
-            {{ $award_name }} in the S.Y. {{ $sy }}.
+            <span class="highlight">{{ $award_name }}</span> in the S.Y. {{ $sy }}.
         @elseif ($award == '5' || $award == '6')
             for the remarkable service and performance<br>
             in the institution for the Academic Year {{ $sy }}.
@@ -102,34 +106,40 @@
             for the representing the institution/organization on the Academic Year {{ $sy }}.
         @elseif ($award == '8' || $award == '9')
             for the remarkable performance and outstanding participation in<br>
-            the {{ $award_name }} for the <br> Academic Year {{ $sy }}.
+            the <span class="highlight">{{ $award_name }}</span> for the <br> Academic Year {{ $sy }}.
         @endif
 
     </div>
-    <div class="date">Given this day, {{ date('jS \of F Y') }} via Google Mail</div>
+    <div class="date"><span class="highlight">Given this day, {{ date('jS \of F Y') }}</span> via Google Mail</div>
     <table class="table2">
         <tr>
-
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name1Certificate()->signature) }}" width="100" />
-                </div>
+                @if (name1Certificate()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name1Certificate()->signature) }}"
+                            width="100" />
+                    </div>
+                @endif
                 <b>{{ name1Certificate()->rep_name }}</b><br>
                 {{ name1Certificate()->position }}
             </td>
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name2Certificate()->signature) }}"
-                        width="100" />
-                </div>
+                @if (name1Certificate()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name2Certificate()->signature) }}"
+                            width="100" />
+                    </div>
+                @endif
                 <b>{{ name2Certificate()->rep_name }}</b><br>
                 {{ name2Certificate()->position }}
             </td>
             <td width="21%">
-                <div class="img-sig">
-                    <img src="{{ public_path('uploads/signature/' . name3Certificate()->signature) }}"
-                        width="100" />
-                </div>
+                @if (name3Certificate()->signature != null)
+                    <div class="img-sig">
+                        <img src="{{ public_path('uploads/signature/' . name3Certificate()->signature) }}"
+                            width="100" />
+                    </div>
+                @endif
                 <b>{{ name3Certificate()->rep_name }}</b><br>
                 {{ name3Certificate()->position }}
             </td>
@@ -139,10 +149,12 @@
         <tr>
             @if (!empty(name4Certificate()))
                 <td>
-                    <div class="img-sig">
-                        <img src="{{ public_path('uploads/signature/' . name4Certificate()->signature) }}"
-                            width="100" />
-                    </div>
+                    @if (name4Certificate()->signature != null)
+                        <div class="img-sig">
+                            <img src="{{ public_path('uploads/signature/' . name4Certificate()->signature) }}"
+                                width="100" />
+                        </div>
+                    @endif
                     <b>{{ name4Certificate()->rep_name }}</b><br>
                     {{ name4Certificate()->position }}
                 </td>

@@ -6,9 +6,8 @@ $(document).ready(function() {
         'searchable': false,
         'orderable': false
     }],
-    'order': [
-        [1, 'asc']
-    ]
+    "aaSorting": [],
+    'order': []
 }).on('draw', function() {
     $('input[class="user-checkboxes"]').each(function() {
         this.checked = false;

@@ -16,7 +16,8 @@
                 <div class="card-body">
                     @include('layouts.partials.messages')
 
-                    <form method="POST" action="{{ url('admin/maintenance/signature-store') }}">
+                    <form method="POST" action="{{ url('admin/maintenance/signature-store') }}"
+                        enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -39,12 +40,17 @@
                                 @endif
                             </div>
                             <div class="col-md-12 mb-2">
-                                <label class="small">Signature:</label>
+                                <label class="small">Signature (Optional)</label>
                                 <br />
                                 <div id="signaturePad"></div>
                                 <br />
+                                <button type="button" id="upload_sig" class="btn btn-sm btn-info">Upload Image
+                                    Signature</button>
                                 <button id="clear" class="btn btn-success float-right btn-sm">Clear Signature</button>
                                 <textarea id="signature64" name="signed" style="display: none"></textarea>
+                            </div>
+                            <div id="upload_signature" class="col-md-12 mt-2 hidden">
+                                <input type="file" class="form-control" name="image_signature">
                             </div>
                         </div>
 

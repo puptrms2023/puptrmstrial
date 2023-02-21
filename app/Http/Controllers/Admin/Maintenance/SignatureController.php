@@ -21,7 +21,7 @@ class SignatureController extends Controller
     }
     public function index()
     {
-        $sig = Signature::all();
+        $sig = Signature::orderBy('id', 'desc')->get();
         return view('admin.maintenance.signatures.index', compact('sig'));
     }
 
@@ -33,31 +33,36 @@ class SignatureController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:signatures,rep_name',
             'position' => 'required',
-            'signed' => 'nullable'
+            'signed' => 'nullable',
+            'image_signature' => 'nullable|mimes:jpeg,png,jpg,svg'
         ]);
+
+        $sign = new Signature;
 
         $folderPath = public_path('uploads/signature/');
 
-        $image_parts = explode(";base64,", $request->signed);
+        if ($request->has('signed') && !empty($request->signed)) {
+            // Handle signed request
+            $image_parts = explode(";base64,", $request->signed);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $signature = uniqid() . '.' . $image_type;
+            $file = $folderPath . $signature;
+            file_put_contents($file, $image_base64);
+            $sign->signature = $signature;
+        } elseif ($request->hasFile('image_signature')) {
+            // Handle image_signature request
+            $file = $request->file('image_signature');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move($folderPath, $filename);
+            $sign->signature = $filename;
+        }
 
-        $image_type_aux = explode("image/", $image_parts[0]);
-
-        $image_type = $image_type_aux[1];
-
-        $image_base64 = base64_decode($image_parts[1]);
-
-        $signature = uniqid() . '.' . $image_type;
-
-        $file = $folderPath . $signature;
-
-        file_put_contents($file, $image_base64);
-
-        $sign = new Signature;
         $sign->rep_name = $request->name;
         $sign->position = $request->position;
-        $sign->signature = $signature;
         $sign->save();
 
         return redirect('admin/maintenance/signatures')->with('success', 'Form successfully submitted with signature');
@@ -66,8 +71,10 @@ class SignatureController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'position' => 'required'
+            'name' => 'required|unique:signatures,rep_name,' . $id,
+            'position' => 'required',
+            'signed' => 'nullable',
+            'image_signature' => 'nullable|mimes:jpeg,png,jpg,svg'
         ]);
 
         $sign = Signature::findOrFail($id);
@@ -76,8 +83,9 @@ class SignatureController extends Controller
 
         $sign_signature = $request->old_signature;
 
+        $filePath = public_path('uploads/signature/');
+
         if (!empty($request->signed)) {
-            $filePath = public_path('uploads/signature/');
             if (file_exists($filePath . $sign_signature)) {
                 @unlink($filePath . $sign_signature);
             }
@@ -96,16 +104,23 @@ class SignatureController extends Controller
 
             file_put_contents($file, $image_base64);
 
-            $imageName = $signature;
-        } else {
-            $imageName = $sign_signature;
+            $sign->signature = $signature;
+        } elseif ($request->hasFile('image_signature')) {
+            if (file_exists($filePath . $sign_signature)) {
+                @unlink($filePath . $sign_signature);
+            }
+            $file = $request->file('image_signature');
+            $signature = time() . '.' . $file->getClientOriginalExtension();
+            $file->move($filePath, $signature);
+
+            $sign->signature = $signature;
         }
 
-        $sign->signature = $imageName;
         $sign->save();
 
         return back()->with('success', 'Name successfully updated with signature');
     }
+
 
     public function edit($id)
     {
@@ -165,5 +180,16 @@ class SignatureController extends Controller
         }
         $form->delete();
         return redirect()->back()->with('success', 'User deleted successfully');
+    }
+
+    public function destroyImage(Request $request)
+    {
+        $form = Signature::find($request->signature_delete_id);
+        $filename = public_path() . '/uploads/signature/' . $form->signature;
+        File::delete($filename);
+
+        $form->signature = null;
+        $form->save();
+        return redirect()->back()->with('success', 'Signature deleted successfully');
     }
 }
