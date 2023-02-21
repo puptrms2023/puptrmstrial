@@ -114,7 +114,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: '/admin/maintenance/signatures-cert/status/update',
+                url: baseURL + '/admin/maintenance/signatures-cert/status/update',
                 data: {
                     'status': status,
                     'sig_id': signature
@@ -134,7 +134,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: '/admin/maintenance/signatures-report/status/update',
+                url: baseURL + '/admin/maintenance/signatures-report/status/update',
                 data: {
                     'status': status,
                     'rep_id': report
