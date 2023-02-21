@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MyAward extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'award_acronym', 'award_name', 'school_year'];
+    protected $fillable = ['user_id', 'award_acronym', 'award_name', 'school_year','application_id'];
 }

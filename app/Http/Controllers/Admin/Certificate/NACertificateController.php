@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Certificate;
 
+use App\Models\MyAward;
+use App\Models\Signature;
 use App\Jobs\SendEmailJob;
 use App\Models\NonAcadAward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\NonAcademicApplicant;
-use App\Models\Signature;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class NACertificateController extends Controller
@@ -82,6 +83,16 @@ class NACertificateController extends Controller
             ];
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['app_id']);
+
+            MyAward::updateOrCreate(
+                ['application_id' => $user->nonacad_app_id],
+                [
+                    'user_id' => $user->users->id,
+                    'award_acronym' => $user->nonacad->nonacad_code,
+                    'award_name' => $user->nonacad->name,
+                    'school_year' => $user->school_year
+                ]
+            );
         }
         NonAcademicApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);

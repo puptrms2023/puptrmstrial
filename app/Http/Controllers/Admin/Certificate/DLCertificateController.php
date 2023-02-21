@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Certificate;
 
 use App\Models\Courses;
+use App\Models\MyAward;
 use App\Models\Signature;
 use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
@@ -77,6 +78,16 @@ class DLCertificateController extends Controller
             ];
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['app_id']);
+
+            MyAward::updateOrCreate(
+                ['application_id' => $user->stud_app_id],
+                [
+                    'user_id' => $user->users->id,
+                    'award_acronym' => $user->award->acad_code,
+                    'award_name' => $user->award->name,
+                    'school_year' => $user->school_year
+                ]
+            );
         }
         StudentApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);

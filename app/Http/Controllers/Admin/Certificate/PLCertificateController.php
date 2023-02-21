@@ -78,12 +78,15 @@ class PLCertificateController extends Controller
             $details = ['email' => $user->users->email];
             SendEmailJob::dispatch($details, $data, $data['app_id']);
 
-            MyAward::create([
-                'user_id' => $user->users->id,
-                'award_acronym' => 'PL',
-                'award_name' => 'President\'s List',
-                'school_year' => $user->school_year
-            ]);
+            MyAward::updateOrCreate(
+                ['application_id' => $user->stud_app_id],
+                [
+                    'user_id' => $user->users->id,
+                    'award_acronym' => $user->award->acad_code,
+                    'award_name' => $user->award->name,
+                    'school_year' => $user->school_year
+                ]
+            );
         }
         StudentApplicant::whereIn("id", $request->ids)->update(['certificate_status' => 1]);
         return response()->json(['success' => 'Send email successfully']);
