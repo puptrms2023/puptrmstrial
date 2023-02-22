@@ -8,14 +8,12 @@
         "php": "^8.0.2",
         "ashallendesign/short-url": "^7.3",
         "barryvdh/laravel-dompdf": "^2.0",
-        "doctrine/dbal": "^3.4",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.3",
-        "league/flysystem-aws-s3-v3": "3.0",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
         "masbug/flysystem-google-drive-ext": "^2.2",
@@ -71,10 +69,7 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        },
-        "google/apiclient-services": [
-            "Drive"
-        ]
+        }
     },
     "config": {
         "optimize-autoloader": true,
