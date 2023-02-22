@@ -17,17 +17,13 @@
             <div class="portfolio-item row">
                 @foreach ($gallery->photos as $value)
                     <div class="item col-lg-4 col-md-4 col-6 col-sm">
-                        <a href="{{ Storage::drive('google')->url($gallery->title . '/' . $value->photo) }}"
+                        <a href="{{ Storage::cloud()->url($gallery->title . '/' . $value->photo) }}"
                             class="fancylight popup-btn" data-fancybox-group="light">
-                            <img class="img-fluid"
-                                src="{{ Storage::drive('google')->url($gallery->title . '/' . $value->photo) }}"
+                            <img class="img-fluid" src="{{ Storage::cloud()->url($gallery->title . '/' . $value->photo) }}"
                                 title="{{ $value->description }}">
                         </a>
                     </div>
                 @endforeach
-                <img class="img-fluid"
-                    src="{{ Storage::drive('google')->url($value->title . '/' . $value->photos->photo) }}"
-                    title="{{ $value->description }}">
             </div>
         @endforeach
     </div>

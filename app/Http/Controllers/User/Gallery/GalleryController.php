@@ -12,10 +12,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $postId = '650738827053421';
-        $fb = new Facebook;
-        $post = $fb->get('/' . $postId . '?fields=id,permalink_url,message,created_time,attachments')->getGraphNode();
         $galleries = Gallery::with('photos')->orderBy('id', 'desc')->get();
-        return view('user.gallery.index', compact('post'));
+        return view('user.gallery.index', compact('galleries'));
     }
 }
