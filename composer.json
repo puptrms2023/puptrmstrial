@@ -10,14 +10,15 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "doctrine/dbal": "^3.4",
         "guzzlehttp/guzzle": "^7.2",
-        "joelbutcher/laravel-facebook-graph": "^1.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.3",
+        "league/flysystem-aws-s3-v3": "3.0",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
+        "masbug/flysystem-google-drive-ext": "^2.2",
         "nesbot/carbon": "^2.62",
         "owen-it/laravel-auditing": "^13.0",
         "psr/simple-cache": "1.0",
@@ -26,8 +27,7 @@
         "spatie/laravel-medialibrary": "10.2.*",
         "spatie/laravel-permission": "^5.5",
         "staudenmeir/eloquent-json-relations": "^1.1",
-        "yajra/laravel-datatables-oracle": "^10.1",
-        "yaza/laravel-google-drive-storage": "^1.1"
+        "yajra/laravel-datatables-oracle": "^10.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -74,7 +74,6 @@
         }
     },
     "config": {
-        "platform-check": false,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,

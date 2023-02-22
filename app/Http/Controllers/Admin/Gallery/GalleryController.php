@@ -60,7 +60,7 @@ class GalleryController extends Controller
         $gallery->cover = $cover_name;
         $gallery->save();
 
-        Gdrive::makeDir($request->title);
+        Storage::cloud()->makeDirectory($request->title);
         return redirect('admin/galleries')->with('message', 'Gallery uploaded successfully');
     }
 
@@ -68,7 +68,10 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::find($id);
         $photos = Photo::where('gallery_id', $gallery->id)->get();
-        $folder = Gdrive::all($gallery->title);
+
+        // Get root directory contents...
+        $folder = collect(Storage::cloud()->listContents($gallery->title, false));
+
         return view('admin.galleries.show', compact('gallery', 'photos', 'folder'));
     }
 
@@ -116,7 +119,7 @@ class GalleryController extends Controller
         unlink(public_path('uploads/galleries/') . $gallery_cover);
         $gallery->delete();
 
-        Gdrive::deleteDir($gallery->title);
+        Storage::cloud()->deleteDirectory($gallery->title);
 
         return redirect('admin/galleries')->with('success', 'Gallery deleted successfully');
     }
@@ -152,7 +155,7 @@ class GalleryController extends Controller
         //saving image in google drive
         $filepath = public_path() . '/uploads/galleries/photos/' . $photo_name;
         $filename = $request->get('folder_name') . '/' . $photo_name;
-        Storage::disk('google')->put($filename, File::get($filepath));
+        Storage::cloud()->put($filename, File::get($filepath));
 
         //delete image in public path
         unlink(public_path('uploads/galleries/photos/') . $photo_name);
@@ -184,7 +187,7 @@ class GalleryController extends Controller
 
         if ($request->hasFile('photo')) {
 
-            Gdrive::delete($photo->gallery->title . '/' . $photo_name);
+            Storage::cloud()->delete($photo->gallery->title . '/' . $photo_name);
 
             $new_photo = $request->file('photo');
             $new_photo_ext = $new_photo->getClientOriginalExtension();
@@ -195,7 +198,7 @@ class GalleryController extends Controller
 
             $filepath = public_path() . '/uploads/galleries/photos/' . $new_photo_name;
             $filename = $photo->gallery->title . '/' . $new_photo_name;
-            Storage::disk('google')->put($filename, File::get($filepath));
+            Storage::cloud()->put($filename, File::get($filepath));
 
             unlink(public_path('uploads/galleries/photos/') . $new_photo_name);
         } else {
@@ -213,7 +216,7 @@ class GalleryController extends Controller
         $photo_name = $photo->photo;
         $gallery_id = $photo->gallery_id;
 
-        Gdrive::delete($photo->gallery->title . '/' . $photo_name);
+        Storage::cloud()->delete($photo->gallery->title . '/' . $photo_name);
         $photo->delete();
 
         return redirect('admin/galleries/show/' . $gallery_id)->with('success', 'Photo deleted successfully');

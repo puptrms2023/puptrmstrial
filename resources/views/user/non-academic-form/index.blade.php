@@ -89,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+                @include('user.non-academic-form.leadership')
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
