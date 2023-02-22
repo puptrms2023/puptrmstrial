@@ -11,4 +11,4 @@
 - Run <code>php artisan list  </code> and look for delete command
 - That's it: launch the main URL and login with default credentials user: superadmin - 11111111 | 
 admin: admin - 11111111
-- Set up Google keys using this link https://github.com/yaza-putu/laravel-google-drive-storage
+- Set up Google keys using this link https://github.com/erikn69/laravel-google-drive-ext-demo
