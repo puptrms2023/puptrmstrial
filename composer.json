@@ -20,7 +20,7 @@
         "masbug/flysystem-google-drive-ext": "^2.2",
         "nesbot/carbon": "^2.62",
         "owen-it/laravel-auditing": "^13.0",
-        "psr/simple-cache": "1.0",
+        "psr/simple-cache": "^3.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "10.2.*",
