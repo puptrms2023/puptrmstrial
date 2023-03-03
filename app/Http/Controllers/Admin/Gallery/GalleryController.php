@@ -58,10 +58,14 @@ class GalleryController extends Controller
         $cover->move($cover_path, $cover_name);
 
         $gallery->cover = $cover_name;
-        $gallery->save();
+        $gallery_saved = $gallery->save();
 
-        Storage::cloud()->makeDirectory($request->title);
-        return redirect('admin/galleries')->with('message', 'Gallery uploaded successfully');
+        if ($gallery_saved) {
+            Storage::cloud()->makeDirectory($request->title);
+            return redirect('admin/galleries')->with('success', 'Gallery uploaded successfully');
+        } else {
+            return redirect('admin/galleries')->with('error', 'Error: Gallery upload failed');
+        }
     }
 
     public function show($id)
@@ -150,18 +154,23 @@ class GalleryController extends Controller
         $photoModel->description = $validatedData['description'];
         $photoModel->gallery_id = $request->get('gallery_id');
         $photoModel->photo = $photo_name;
-        $photoModel->save();
+        $photo_saved = $photoModel->save();
 
-        //saving image in google drive
-        $filepath = public_path() . '/uploads/galleries/photos/' . $photo_name;
-        $filename = $request->get('folder_name') . '/' . $photo_name;
-        Storage::cloud()->put($filename, File::get($filepath));
+        if ($photo_saved) {
+            //saving image in google drive
+            $filepath = public_path() . '/uploads/galleries/photos/' . $photo_name;
+            $filename = $request->get('folder_name') . '/' . $photo_name;
+            Storage::cloud()->put($filename, File::get($filepath));
 
-        //delete image in public path
-        unlink(public_path('uploads/galleries/photos/') . $photo_name);
+            //delete image in public path
+            unlink(public_path('uploads/galleries/photos/') . $photo_name);
 
-        return redirect('admin/galleries/show/' . $request->get('gallery_id'))
-            ->with('success', 'File was saved to Google Drive');
+            return redirect('admin/galleries/show/' . $request->get('gallery_id'))
+                ->with('success', 'File was saved to Google Drive');
+        } else {
+            return redirect('admin/galleries/show/' . $request->get('gallery_id'))
+                ->with('error', 'Error: Failed to save photo');
+        }
     }
 
     public function photoShow($gallery_name, $photo_name)

@@ -14,7 +14,7 @@
             margin: 0;
             height: 8.27in;
             width: 11.69in;
-            background-image: url('admin/img/achievers_award.jpg');
+            background-image: url('admin/img/AA.jpg');
             background-size: 11.69in 8.27in;
             background-repeat: no-repeat;
         }

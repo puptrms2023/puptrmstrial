@@ -14,7 +14,7 @@
             margin: 0;
             height: 8.27in;
             width: 11.69in;
-            background-image: url('admin/img/cert_layout1.jpg');
+            background-image: url('{{ asset('admin/img/' . $award . '.jpg') }}');
             background-size: 11.69in 8.27in;
             background-repeat: no-repeat;
         }
@@ -85,6 +85,15 @@
             font-size: 17px;
         }
     </style>
+    @if (!in_array($award, ['AA', 'PL', 'AE', 'DL']))
+        <style type="text/css">
+            body {
+                background-image: url('{{ asset('admin/img/NA.jpg') }}');
+                background-size: 11.69in 8.27in;
+                background-repeat: no-repeat;
+            }
+        </style>
+    @endif
 </head>
 
 <body>

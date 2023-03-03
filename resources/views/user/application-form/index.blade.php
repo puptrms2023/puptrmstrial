@@ -307,7 +307,7 @@
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-6">
-                            <label for="formFile" class="form-label font-weight-bold">AVG GWA:</label>
+                            <label for="formFile" class="form-label font-weight-bold">AVE GWA:</label>
                             <span id="avg"></span>
                             <div id="result" class="text-primary fw-bold"></div>
                         </div>
@@ -323,18 +323,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check small mb-4">
-                    <input type="checkbox" class="form-check-input" id="termsCheckbox">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        I understand and agree that by filling out this form, I am allowing the recognition committee of the
-                        PUP
-                        Taguig Recognition Management System to collect, process, use, share and disclose my personal
-                        information and also to store it as long as necessary for the fulfillment of the stated purpose and
-                        in
-                        accordance with applicable laws, including the Data Privacy Act of 2012 and its implementing Rules
-                        and
-                        Regulations.
-                    </label>
+                <div class="mb-4">
+                    <div class="form-check small">
+                        <input type="checkbox" class="form-check-input" id="termsCheckbox1">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I hereby declare that all information given about is true and correct to the best of my
+                            knowledge and ability.
+                        </label>
+                    </div>
+                    <div class="form-check small">
+                        <input type="checkbox" class="form-check-input" id="termsCheckbox2">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I understand and agree that by filling out this form, I am allowing the recognition committee of
+                            the
+                            PUP
+                            Taguig Recognition Management System to collect, process, use, share and disclose my personal
+                            information and also to store it as long as necessary for the fulfillment of the stated purpose
+                            and
+                            in
+                            accordance with applicable laws, including the Data Privacy Act of 2012 and its implementing
+                            Rules
+                            and
+                            Regulations.
+                        </label>
+                    </div>
                 </div>
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary" id="form_submit">Submit</button>

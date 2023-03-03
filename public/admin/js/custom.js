@@ -1,48 +1,4 @@
-// 'use strict';
-//   (() => {
-//     const modified_inputs = new Set();
-//     const defaultValue = 'defaultValue';
-//     // store default values
-//     addEventListener('beforeinput', evt => {
-//       const target = evt.target;
-//       if (!(defaultValue in target.dataset)) {
-//         target.dataset[defaultValue] = ('' + (target.value || target.textContent)).trim();
-//       }
-//     });
 
-//     // detect input modifications
-//     addEventListener('input', evt => {
-//       const target = evt.target;
-//       let original = target.dataset[defaultValue];
-
-//       let current = ('' + (target.value || target.textContent)).trim();
-
-//       if (original !== current) {
-//         if (!modified_inputs.has(target)) {
-//           modified_inputs.add(target);
-//         }
-//       } else if (modified_inputs.has(target)) {
-//         modified_inputs.delete(target);
-//       }
-//     });
-
-//     addEventListener(
-//       'saved',
-//       function(e) {
-//         modified_inputs.clear()
-//       },
-//       false
-//     );
-
-//     addEventListener('beforeunload', evt => {
-//       if (modified_inputs.size) {
-//         const unsaved_changes_warning = 'Changes you made may not be saved.';
-//         evt.returnValue = unsaved_changes_warning;
-//         return unsaved_changes_warning;
-//       }
-//     });
-
-//   })();
 document.addEventListener('DOMContentLoaded', (event) => {
     $('.status').on('change', checkPattern);
     checkPattern();
@@ -60,71 +16,72 @@ uploadButton.addEventListener('click', () => {
 });
 });
 
+
 $(document).ready(function () {
-    $(".nonacadaward").change(function () {
-        $('#sports-value').val('');
-        $('#comp-value').val('');
-        $('#placement-value').val('');
-        $('#subject-value').val('');
-        $('#thesis-value').val('');
-        $('#designation-value').val('');
-        $("#org-value").val("").trigger( "change" );
+    $(".nonacadaward").change(function() {
+        // Reset all form values
+        $('#sports-value, #comp-value, #placement-value, #subject-value, #thesis-value, #designation-value').val('');
+        $("#org-value").val("").trigger("change");
+
+        // Get selected response ID
         var responseId = $(this).val();
+
+        // Show/hide fields based on response ID
         if (responseId == "1") {
-            $("#organization").removeClass("hidden");
-            $("#organization").addClass("show");
+          $("#organization, #leadership_fields").show();
         } else {
-            $("#organization").removeClass("show");
-            $("#organization").addClass("hidden");
+          $("#organization, #leadership_fields").hide();
         }
+
         if (responseId == "2") {
-            $("#sports").removeClass("hidden");
-            $("#sports").addClass("show");
+          $("#sports").show();
         } else {
-            $("#sports").removeClass("show");
-            $("#sports").addClass("hidden");
+          $("#sports").hide();
         }
+
+        if (responseId == "3") {
+          $("#organization, #outstanding_fields").show();
+        } else {
+          $("#organization, #outstanding_fields").hide();
+        }
+
         if (responseId == "4") {
-            $("#subject_name").removeClass("hidden");
-            $("#subject_name").addClass("show");
-            $("#thesis").removeClass("hidden");
-            $("#thesis").addClass("show");
+          $("#subject_name, #thesis").show();
+          $("#supporting").addClass("hidden");
         } else {
-            $("#subject_name").removeClass("show");
-            $("#subject_name").addClass("hidden");
-            $("#thesis").removeClass("show");
-            $("#thesis").addClass("hidden");
+          $("#subject_name, #thesis").hide();
+          $("#supporting").removeClass("hidden");
         }
+
+        if (responseId == "3" || responseId == "4") {
+            $("#photo_two").addClass("hidden");
+
+          } else {
+            $("#photo_two").removeClass("hidden");
+          }
+
         if (responseId == "6") {
-            $("#sa").removeClass("hidden");
-            $("#sa").addClass("show");
+          $("#sa").show();
         } else {
-            $("#sa").removeClass("show");
-            $("#sa").addClass("hidden");
+          $("#sa").hide();
         }
+
         if (responseId == "7") {
-            $("#outside").removeClass("hidden");
-            $("#outside").addClass("show");
+          $("#outside").show();
         } else {
-            $("#outside").removeClass("show");
-            $("#outside").addClass("hidden");
+          $("#outside").hide();
         }
-        if (responseId == "1" || responseId == "3" || responseId == "5"  || responseId == "6" || responseId == "7")  {
-            $("#organization").removeClass("hidden");
-            $("#organization").addClass("show");
+
+        if (responseId == "1" || responseId == "5" || responseId == "6" || responseId == "7") {
+          $("#organization").show();
         } else {
-            $("#organization").removeClass("show");
-            $("#organization").addClass("hidden");
+          $("#organization").hide();
         }
-        if(responseId == "2")
-        {
-            $("#sports").removeClass("hidden");
-            $("#sports").addClass("show");
-        } else {
-            $("#sports").removeClass("show");
-            $("#sports").addClass("hidden");
-        }
-    });
+
+        // Check if the #idPic element is visible after the show/hide logic is applied
+        console.log($("#supporting").is(":visible"));
+      });
+
 });
 //other
 $(document).ready(function () {
@@ -235,7 +192,7 @@ function isFloatNumber(item, evt) {
 //select
 $(document).ready(function() {
     $('#session_year').select2({
-        theme: 'bootstrap-5',
+        theme: 'bootstrap4',
         allowClear: true
     });
 });
@@ -1425,20 +1382,31 @@ $(function() {
 });
 
 //data privacy policy
-const submitButton = document.querySelector('#form_submit');
-const termsCheckbox = document.querySelector('#termsCheckbox');
+// get the checkbox elements
+const checkbox1 = document.getElementById("termsCheckbox1");
+const checkbox2 = document.getElementById("termsCheckbox2");
 
-// Disable the submit button by default
+// get the submit button element
+const submitButton = document.getElementById("form_submit");
+
+// disable the submit button initially
 submitButton.disabled = true;
 
-// Add an event listener to the checkbox that enables/disables the submit button
-termsCheckbox.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-});
+// add an event listener to the checkboxes
+checkbox1.addEventListener("change", updateButtonState);
+checkbox2.addEventListener("change", updateButtonState);
+
+function updateButtonState() {
+  // check if both checkboxes are checked
+  if (checkbox1.checked && checkbox2.checked) {
+    // enable the submit button
+    submitButton.disabled = false;
+  } else {
+    // disable the submit button
+    submitButton.disabled = true;
+  }
+}
+
 
 //redirect
 $("#redirect-to-new-page").click(function(e) {
@@ -1448,4 +1416,5 @@ $("#redirect-to-new-page").click(function(e) {
         window.location.href = link;
     }
 });
+
 

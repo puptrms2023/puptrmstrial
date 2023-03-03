@@ -21,6 +21,9 @@ Route::controller(App\Http\Controllers\PolicyController::class)->group(function 
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');
     Route::get('/terms-of-use', 'terms_of_use')->name('terms_of_use');
 });
+
+Route::post('contact-us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.us.store');
+
 Route::controller(App\Http\Controllers\QredirectController::class)->group(function () {
     Route::get('/verify-award/{id}', 'redirect');
 });

@@ -14,7 +14,7 @@
             margin: 0;
             height: 8.27in;
             width: 11.69in;
-            background-image: url('admin/img/acad_excellence.jpg');
+            background-image: url('admin/img/AE.jpg');
             background-size: 11.69in 8.27in;
             background-repeat: no-repeat;
         }

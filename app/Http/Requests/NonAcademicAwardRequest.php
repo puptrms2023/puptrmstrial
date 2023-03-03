@@ -38,7 +38,7 @@ class NonAcademicAwardRequest extends FormRequest
             'competition' => 'nullable',
             'placement' => 'nullable',
             'image' => 'required|mimes:jpeg,png,jpg',
-            'file' => 'sometimes|mimes:csv,txt,xlx,xls,pdf,doc,docx|max:2048'
+            'file' => 'nullable|mimes:csv,txt,xlx,xls,pdf,doc,docx,zip|max:25600'
         ];
     }
 

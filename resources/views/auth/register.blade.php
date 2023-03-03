@@ -162,6 +162,6 @@
                 </div>
             </div>
         </div>
-        {{-- @include('auth.partials.copy') --}}
     </div>
+    @include('auth.contact')
 @endsection

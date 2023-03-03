@@ -68,6 +68,25 @@
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
+                            <label for="" class="font-weight-bold">Non-Academic Award</label>
+                            <span class="text-danger">*</span>
+                            <select class="custom-select nonacadaward" name="nonacad_id" id="non">
+                                <option value="">--Select Award--</option>
+                                @foreach ($award as $id => $item)
+                                    <option value="{{ $id }}" {{ old('nonacad_id') == $id ? 'selected' : '' }}>
+                                        {{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('nonacad_id'))
+                                <span class="text-danger text-left">{{ $errors->first('nonacad_id') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mt-0 mb-4">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
                             <select class="custom-select" name="year_level">
@@ -89,25 +108,7 @@
                         </div>
                     </div>
                 </div>
-                @include('user.non-academic-form.leadership')
-                <div class="card shadow mt-0 mb-4">
-                    <div class="card-body">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="font-weight-bold">Non-Academic Award</label>
-                            <span class="text-danger">*</span>
-                            <select class="custom-select nonacadaward" name="nonacad_id" id="non">
-                                <option value="">--Select Award--</option>
-                                @foreach ($award as $id => $item)
-                                    <option value="{{ $id }}" {{ old('nonacad_id') == $id ? 'selected' : '' }}>
-                                        {{ $item }}</option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('nonacad_id'))
-                                <span class="text-danger text-left">{{ $errors->first('nonacad_id') }}</span>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+
                 <div id="organization" class="card shadow mt-0 mb-4 hidden">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -142,6 +143,10 @@
                         </div>
                     </div>
                 </div>
+
+                @include('user.non-academic-form.leadership')
+                @include('user.non-academic-form.outstanding')
+
                 <div id="sports" class="card shadow mt-0 mb-4 hidden">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -220,21 +225,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mt-0 mb-4">
+                <div id="supporting" class="card shadow mt-0 mb-4">
                     <div class="card-body">
-                        <div class="col-md-6 mb-3">
-                            <label for="formFile" class="form-label font-weight-bold">Supporting Documents: </label>
-                            <span class="text-danger">*</span>
-                            <input type="file" name="file" required>
+                        <div class="col-md-12 mb-3">
+                            <label for="formFile" class="form-label font-weight-bold">Supporting Documents </label>
+                            <input type="file" name="file" class="form-control" id="inputGroupFile01"
+                                aria-describedby="inputGroupFileAddon01" accept=".zip">
+                            <span class="small">(Note: Please compile your supporting documents file (.zip) if you
+                                have more than one document.) </span>
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mt-0 mb-4">
+                <div id="photo_two" class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-6 mb-3">
-                            <label for="formFile" class="form-label font-weight-bold">2x2 photo: </label>
+                            <label class="form-label font-weight-bold">2x2 photo: </label>
                             <span class="text-danger">*</span>
-                            <input type="file" name="image" required>
+                            <input type="file" class="form-control" name="image" required>
                         </div>
                     </div>
                 </div>
@@ -249,19 +256,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check small mb-4">
-                    <input type="checkbox" class="form-check-input" id="termsCheckbox">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        I understand and agree that by filling out this form, I am allowing the recognition committee of the
-                        PUP
-                        Taguig Recognition Management System to collect, process, use, share and disclose my personal
-                        information and also to store it as long as necessary for the fulfillment of the stated purpose and
-                        in
-                        accordance with applicable laws, including the Data Privacy Act of 2012 and its implementing Rules
-                        and
-                        Regulations.
-                    </label>
+                <div class="mb-4">
+                    <div class="form-check small">
+                        <input type="checkbox" class="form-check-input" id="termsCheckbox1">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I hereby declare that all information given about is true and correct to the best of my
+                            knowledge and ability.
+                        </label>
+                    </div>
+                    <div class="form-check small">
+                        <input type="checkbox" class="form-check-input" id="termsCheckbox2">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I understand and agree that by filling out this form, I am allowing the recognition committee of
+                            the
+                            PUP
+                            Taguig Recognition Management System to collect, process, use, share and disclose my personal
+                            information and also to store it as long as necessary for the fulfillment of the stated purpose
+                            and
+                            in
+                            accordance with applicable laws, including the Data Privacy Act of 2012 and its implementing
+                            Rules
+                            and
+                            Regulations.
+                        </label>
+                    </div>
                 </div>
+
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary" id="form_submit">Submit</button>
                 </div>
@@ -272,9 +292,9 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('admin/js/nonacademic.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            var award = document.getElementById('non');
             var orgs = document.getElementById('org');
 
             if (orgs.value == "9") {
@@ -283,61 +303,6 @@
             } else {
                 $("#others").removeClass("show");
                 $("#others").addClass("hidden");
-            }
-
-            if (award.value == "1") {
-                $("#organization").removeClass("hidden");
-                $("#organization").addClass("show");
-            } else {
-                $("#organization").removeClass("show");
-                $("#organization").addClass("hidden");
-            }
-            if (award.value == "2") {
-                $("#sports").removeClass("hidden");
-                $("#sports").addClass("show");
-            } else {
-                $("#sports").removeClass("show");
-                $("#sports").addClass("hidden");
-            }
-            if (award.value == "4") {
-                $("#subject_name").removeClass("hidden");
-                $("#subject_name").addClass("show");
-                $("#thesis").removeClass("hidden");
-                $("#thesis").addClass("show");
-            } else {
-                $("#subject_name").removeClass("show");
-                $("#subject_name").addClass("hidden");
-                $("#thesis").removeClass("show");
-                $("#thesis").addClass("hidden");
-            }
-            if (award.value == "6") {
-                $("#sa").removeClass("hidden");
-                $("#sa").addClass("show");
-            } else {
-                $("#sa").removeClass("show");
-                $("#sa").addClass("hidden");
-            }
-            if (award.value == "7") {
-                $("#outside").removeClass("hidden");
-                $("#outside").addClass("show");
-            } else {
-                $("#outside").removeClass("show");
-                $("#outside").addClass("hidden");
-            }
-            if (award.value == "1" || award.value == "3" || award.value == "5" || award.value == "6" || award
-                .value == "7") {
-                $("#organization").removeClass("hidden");
-                $("#organization").addClass("show");
-            } else {
-                $("#organization").removeClass("show");
-                $("#organization").addClass("hidden");
-            }
-            if (award.value == "2" || award.value == "3") {
-                $("#sports").removeClass("hidden");
-                $("#sports").addClass("show");
-            } else {
-                $("#sports").removeClass("show");
-                $("#sports").addClass("hidden");
             }
         });
     </script>

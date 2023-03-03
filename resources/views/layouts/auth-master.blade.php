@@ -12,14 +12,16 @@
     <title>{{ getSystemAcronym() }}</title>
 
     <!-- Fonts -->
-    <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/fontawesome-free-6.2.0-web/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     {{-- <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin/img/apple-touch-icon.png') }}">
@@ -62,9 +64,12 @@
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
+    <script src="{{ asset('admin/js/contact.js') }}"></script>
     <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/toast/toastr.min.js') }}"></script>
 
+    @yield('scripts')
 </body>
 
 </html>
