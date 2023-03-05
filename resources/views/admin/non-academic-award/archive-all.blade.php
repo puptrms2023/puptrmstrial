@@ -27,7 +27,6 @@
                                     <th>Course</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
-                                    <th class="text-center">Image</th>
                                     <th class="text-center">Status</th>
                                 </tr>
                             </thead>
@@ -104,8 +103,6 @@
                                                 <span class="badge badge-primary">{{ $data->nonacad->name }}</span>
                                             @endif
                                         </td>
-                                        <td><img src="{{ asset('uploads/' . $data->image) }}" alt="img"
-                                                class="img-thumbnail img-circle" width="50"></td>
                                         <td>
                                             @if ($data->status == '0')
                                                 Pending

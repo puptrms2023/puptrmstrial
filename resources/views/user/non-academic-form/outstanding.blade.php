@@ -1,4 +1,4 @@
-<div id="outstanding_fields" class="hidden">
+{{-- <div id="outstanding_fields" class="hidden">
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -133,9 +133,9 @@
             <div class="col-md-6 mb-3">
                 <label for="" class="font-weight-bold">E. Financial Statement (.pdf file) (10%) </label>
                 <span class="text-danger">*</span>
-                <input type="file" class="form-control" name="file" required>
+                <input type="file" class="form-control" name="file">
                 <span class="small">PDF, DOCX, DOC file is accepted</span>
             </div>
         </div>
     </div>
-</div>
+</div> --}}

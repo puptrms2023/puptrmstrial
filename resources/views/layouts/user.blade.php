@@ -18,6 +18,7 @@
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar-5.11.3.css') }}">
+    <link href="{{ asset('admin/vendor/tempusdominus/tempusdominus-bootstrap-4.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/toast/toastr.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.icon8.com/fonts/icon8.css">
 
@@ -69,8 +70,6 @@
         <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
-        <script src="{{ asset('admin/js/custom.js') }}"></script>
-        <script src="{{ asset('admin/js/validate.js') }}"></script>
 
         <script src="{{ asset('admin/vendor/moment/moment.min.js') }}"></script>
         <!-- select2 -->
@@ -81,6 +80,9 @@
         <script src="{{ asset('admin/vendor/isotope/isotope.pkgd.js') }}"></script>
         <script src="{{ asset('admin/vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
         <script src="{{ asset('assets/js/fullcalendar-5.11.3.js') }}"></script>
+        <script src="{{ asset('admin/vendor/tempusdominus/tempusdominus-bootstrap-4.min.js') }}"></script>
+        <script src="{{ asset('admin/js/custom.js') }}"></script>
+        <script src="{{ asset('admin/js/validate.js') }}"></script>
         <script src="https://cdn.icon8.com/js/icon8.js"></script>
 
         <script>

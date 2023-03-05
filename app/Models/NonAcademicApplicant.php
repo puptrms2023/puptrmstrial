@@ -34,4 +34,32 @@ class NonAcademicApplicant extends Model implements Auditable
     {
         return $this->belongsTo(Reason::class, 'reason', 'id');
     }
+    public function academics()
+    {
+        return $this->hasOne(Academic::class, 'n_id', 'id');
+    }
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'n_id');
+    }
+    public function officership()
+    {
+        return $this->hasMany(Officership::class, 'n_id');
+    }
+    public function awards()
+    {
+        return $this->hasMany(Award::class, 'n_id');
+    }
+    public function community_outreach()
+    {
+        return $this->hasMany(Community_Outreach::class, 'n_id');
+    }
+    public function interviews()
+    {
+        return $this->hasOne(Interview::class, 'n_id');
+    }
+    public function leadership_criteria()
+    {
+        return $this->hasOne(Leadership_Criteria::class, 'n_id');
+    }
 }

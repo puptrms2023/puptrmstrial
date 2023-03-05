@@ -14,8 +14,6 @@
         <b>School Year: <span class="text-primary">{{ getAcademicYear() }}</span></b>
     </div>
 
-    @include('layouts.partials.messages')
-
     <div class="row">
         <div class="col-md-3">
             <div class="card shadow mt-0 mb-4">
@@ -70,7 +68,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Non-Academic Award</label>
                             <span class="text-danger">*</span>
-                            <select class="custom-select nonacadaward" name="nonacad_id" id="non">
+                            <select class="custom-select nonacadaward" name="nonacad_id" id="non" required>
                                 <option value="">--Select Award--</option>
                                 @foreach ($award as $id => $item)
                                     <option value="{{ $id }}" {{ old('nonacad_id') == $id ? 'selected' : '' }}>
@@ -89,7 +87,7 @@
                         <div class="col-md-12 mb-3">
                             <label for="" class="font-weight-bold">Academic Level</label>
                             <span class="text-danger">*</span>
-                            <select class="custom-select" name="year_level">
+                            <select class="custom-select" name="year_level" required>
                                 <option value="">--Select Academic Level--</option>
                                 <option data-state="1st Year" value="1st Year"
                                     {{ old('year_level') == '1st Year' ? 'selected' : '' }}>1st Year</option>
@@ -231,6 +229,9 @@
                             <label for="formFile" class="form-label font-weight-bold">Supporting Documents </label>
                             <input type="file" name="file" class="form-control" id="inputGroupFile01"
                                 aria-describedby="inputGroupFileAddon01" accept=".zip">
+                            @if ($errors->has('file'))
+                                <span class="text-danger text-left">{{ $errors->first('file') }}</span>
+                            @endif
                             <span class="small">(Note: Please compile your supporting documents file (.zip) if you
                                 have more than one document.) </span>
                         </div>
@@ -241,7 +242,10 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label font-weight-bold">2x2 photo: </label>
                             <span class="text-danger">*</span>
-                            <input type="file" class="form-control" name="image" required>
+                            <input type="file" class="form-control" name="image">
+                            @if ($errors->has('image'))
+                                <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -258,14 +262,16 @@
                 </div>
                 <div class="mb-4">
                     <div class="form-check small">
-                        <input type="checkbox" class="form-check-input" id="termsCheckbox1">
+                        <input type="checkbox" class="form-check-input" name="termsCheckbox1" id="termsCheckbox1"
+                            @if (old('termsCheckbox1', false)) checked @endif>
                         <label class="form-check-label" for="flexCheckDefault">
                             I hereby declare that all information given about is true and correct to the best of my
                             knowledge and ability.
                         </label>
                     </div>
                     <div class="form-check small">
-                        <input type="checkbox" class="form-check-input" id="termsCheckbox2">
+                        <input type="checkbox" class="form-check-input" name="termsCheckbox2" id="termsCheckbox2"
+                            @if (old('termsCheckbox2', false)) checked @endif>
                         <label class="form-check-label" for="flexCheckDefault">
                             I understand and agree that by filling out this form, I am allowing the recognition committee of
                             the
@@ -295,6 +301,7 @@
     <script src="{{ asset('admin/js/nonacademic.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
+            var award = document.getElementById('non');
             var orgs = document.getElementById('org');
 
             if (orgs.value == "9") {
@@ -304,6 +311,54 @@
                 $("#others").removeClass("show");
                 $("#others").addClass("hidden");
             }
+
+            if (award.value == "1") {
+                $("#organization, #leadership_fields").show();
+            } else {
+                $("#organization, #leadership_fields").hide();
+            }
+            if (award.value == "2") {
+                $("#sports").show();
+            } else {
+                $("#sports").hide();
+            }
+            if (award.value == "3") {
+                $("#organization, #outstanding_fields").show();
+            } else {
+                $("#organization, #outstanding_fields").hide();
+            }
+            if (award.value == "4") {
+                $("#subject_name, #thesis").show();
+                $("#supporting").addClass("hidden");
+            } else {
+                $("#subject_name, #thesis").hide();
+                $("#supporting").removeClass("hidden");
+            }
+            if (award.value == "3" || award.value == "4") {
+                $("#photo_two").addClass("hidden");
+
+            } else {
+                $("#photo_two").removeClass("hidden");
+            }
+            if (award.value == "6") {
+                $("#sa").show();
+            } else {
+                $("#sa").hide();
+            }
+
+            if (award.value == "7") {
+                $("#outside").show();
+            } else {
+                $("#outside").hide();
+            }
+
+            if (award.value == "1" || award.value == "3" || award.value == "5" || award.value == "6" || award
+                .value == "7") {
+                $("#organization").show();
+            } else {
+                $("#organization").hide();
+            }
+
         });
     </script>
 @endsection

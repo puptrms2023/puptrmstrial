@@ -87,7 +87,6 @@
                                     <th>Year Level</th>
                                     <th>S.Y.</th>
                                     <th>Award Applied</th>
-                                    <th>Photo</th>
                                     <th class="text-center">Status</th>
                                     <th>Actions <br>
                                         @can('non-academic award delete')
@@ -172,10 +171,6 @@
                                             @else
                                                 <span class="badge badge-primary">{{ $award->nonacad->name }}</span>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('uploads/' . $award->image) }}"
-                                                class="img-thumbnail img-circle" width="50" alt="Image">
                                         </td>
                                         <td class="text-center">
                                             @if (auth()->user()->can('non-academic award edit'))

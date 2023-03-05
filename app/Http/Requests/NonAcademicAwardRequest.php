@@ -37,9 +37,25 @@ class NonAcademicAwardRequest extends FormRequest
             'designation' => 'nullable',
             'competition' => 'nullable',
             'placement' => 'nullable',
-            'image' => 'required|mimes:jpeg,png,jpg',
-            'file' => 'nullable|mimes:csv,txt,xlx,xls,pdf,doc,docx,zip|max:25600'
+            'interview' => 'nullable|mimes:pdf,doc,docx|max:25600',
+            // 'image' => 'required|mimes:jpeg,png,jpg',
+            'file' => 'nullable|mimes:csv,txt,xlx,xls,pdf,doc,docx,zip|max:25600',
+            'first_year_first' => $this->nullableNumericValidation(),
+            'first_year_second' => $this->nullableNumericValidation(),
+            'second_year_first' => $this->nullableNumericValidation(),
+            'second_year_second' => $this->nullableNumericValidation(),
+            'third_year_first' => $this->nullableNumericValidation(),
+            'third_year_second' => $this->nullableNumericValidation(),
+            'fourth_year_first' => $this->nullableNumericValidation(),
+            'fourth_year_second' => $this->nullableNumericValidation(),
+            'fifth_year_first' => $this->nullableNumericValidation(),
+            'fifth_year_second' => $this->nullableNumericValidation()
         ];
+    }
+
+    private function nullableNumericValidation()
+    {
+        return ['nullable', 'numeric', 'regex:/^\d+(\.\d{1,3})?$/'];
     }
 
     public function withValidator(Validator $validator)
@@ -67,6 +83,72 @@ class NonAcademicAwardRequest extends FormRequest
         });
         $validator->sometimes('others', 'required', function ($input) {
             return $input->org_id == '9';
+        });
+
+        $validator->sometimes('image', 'nullable|mimes:jpeg,png,jpg', function ($input) {
+            return $input->nonacad_id == '4' || $input->nonacad_id == '3';
+        });
+
+        //leadership validation
+        $validator->sometimes('projects.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('sponsors.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('inclusive_date.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('inclusive_level.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('beneficiaries.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+
+        $validator->sometimes('organization.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('position_held.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('date_received.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('level.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+
+        $validator->sometimes('award.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('awarded_by.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('date_received_off.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('level_off.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+
+        $validator->sometimes('projects_com.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('involvement.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('sponsored_by.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('inclusive_date_com.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('level_comm.*', 'required', function ($input) {
+            return $input->nonacad_id == '1';
+        });
+        $validator->sometimes('interview', 'nullable|mimes:pdf,doc,docx|max:25600', function ($input) {
+            return $input->nonacad_id == '1';
         });
     }
 

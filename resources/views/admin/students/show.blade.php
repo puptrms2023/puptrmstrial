@@ -248,7 +248,6 @@
                                         <th>Course</th>
                                         <th>Year Level</th>
                                         <th>S.Y.</th>
-                                        <th>Image</th>
                                         <th>Remarks</th>
                                         <th>Status</th>
                                         <th>Date</th>
@@ -325,10 +324,6 @@
                                             <td>{{ $app->courses->course_code }}</td>
                                             <td>{{ $app->year_level }}</td>
                                             <td>{{ $app->school_year }}</td>
-                                            <td>
-                                                <img src="{{ asset('uploads/' . $app->image) }}"
-                                                    class="img-thumbnail img-circle" width="50" alt="Image">
-                                            </td>
                                             <td>{{ $app->remarks }}</td>
                                             <td>
                                                 @if ($app->status == '0')

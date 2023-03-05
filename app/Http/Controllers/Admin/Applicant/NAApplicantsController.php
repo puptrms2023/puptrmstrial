@@ -7,6 +7,8 @@ use App\Models\Reason;
 use App\Models\NonAcadAward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Leadership;
+use App\Models\Leadership_Criteria;
 use App\Models\NonAcademicApplicant;
 use Illuminate\Support\Facades\File;
 use App\Notifications\NonAcademicStatus;
@@ -32,7 +34,7 @@ class NAApplicantsController extends Controller
 
     public function details($nonacad_id, $id)
     {
-        $form = NonAcademicApplicant::find($id);
+        $form = NonAcademicApplicant::with('academics', 'projects', 'officership', 'awards', 'community_outreach', 'interviews', 'leadership_criteria')->where('id', $id)->first();
         $reasons = Reason::pluck('description', 'id');
         return view('admin.non-academic-award.show', compact('form', 'reasons'));
     }
@@ -78,9 +80,11 @@ class NAApplicantsController extends Controller
 
     public function update(Request $request, $nonacad_id, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
             'status' => 'required',
-            'reason' => 'nullable'
+            'reason' => 'nullable',
+            'total' => ['nullable', 'numeric', 'max:100'],
         ]);
         $status = NonAcademicApplicant::findOrFail($id);
 
@@ -91,6 +95,21 @@ class NAApplicantsController extends Controller
 
         $users = User::where('id', $status->user_id)->get();
         $status->save();
+
+        if ($nonacad_id == '1') {
+            Leadership_Criteria::updateOrCreate(
+                ['n_id' => $id],
+                [
+                    'academic_performance' => $request->acad_perf,
+                    'projects_initiated' => $request->project_initiated,
+                    'officership' => $request->officership,
+                    'awards_received' => $request->awards,
+                    'community_outreach' => $request->community_out,
+                    'interview' => $request->interview
+                ]
+            );
+        }
+
         if ($request->status == '1' || $request->status == '2') {
             Notification::send($users, new StudentApplicantStatus($status->id, $request->status, $award));
         }

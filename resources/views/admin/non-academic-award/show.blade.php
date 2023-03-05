@@ -7,6 +7,7 @@
         <div class="h3 mb-0 text-gray-800"> {{ $form->nonacad->name }}
         </div>
     </div>
+    @include('layouts.partials.messages')
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -107,20 +108,32 @@
                                     @endif
                                 </td>
                             </tr>
-                            <tr>
-                                <th width="25%">Supporting Documents</th>
-                                <td>
-                                    <a href="{{ asset($form->file_path) }}" class="btn-link text-muted"
-                                        target="_blank">{{ $form->file_name }}</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th width="25%">2x2 photo</th>
-                                <td>
-                                    <img src="{{ asset('uploads/' . $form->image) }}" alt="" width="150px"
-                                        height="150px">
-                                </td>
-                            </tr>
+                            @if ($form->nonacad_id != '4')
+                                <tr>
+                                    <th width="25%">Supporting Documents</th>
+                                    <td>
+                                        <a href="{{ asset($form->file_path) }}" class="btn-link text-muted"
+                                            target="_blank">{{ $form->file_name }}</a>
+                                    </td>
+                                </tr>
+                            @endif
+                            @if (
+                                $form->nonacad_id == '1' ||
+                                    $form->nonacad_id == '2' ||
+                                    $form->nonacad_id == '5' ||
+                                    $form->nonacad_id == '6' ||
+                                    $form->nonacad_id == '7' ||
+                                    $form->nonacad_id == '8' ||
+                                    $form->nonacad_id == '9')
+                                <tr>
+                                    <th width="25%">2x2 photo</th>
+                                    <td>
+                                        <img src="{{ asset('uploads/' . $form->image) }}" alt="" width="150px"
+                                            height="150px">
+                                    </td>
+                                </tr>
+                            @else
+                            @endif
                             <tr>
                                 <th width="25%">Remarks</th>
                                 <td>{{ $form->remarks }}</td>
@@ -155,14 +168,19 @@
             </div>
         </div>
     </div>
-    @can('non-academic award edit')
-        <div class="row">
-            <div class="col-md-6">
-                <form action="{{ url('admin/non-academic-award/' . $form->nonacad_id . '/update-status/' . $form->id) }}"
-                    method="POST">
-                    @csrf
-                    @method('PUT')
 
+    <form action="{{ url('admin/non-academic-award/' . $form->nonacad_id . '/update-status/' . $form->id) }}"
+        method="POST">
+        @csrf
+        @method('PUT')
+
+        @if ($form->nonacad->id == '1')
+            @include('admin.non-academic-award.leadership')
+        @endif
+
+        @can('non-academic award edit')
+            <div class="row">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="">Status</label>
                         <select class="custom-select my-1 mr-sm-2 status" name="status" required>
@@ -193,8 +211,8 @@
                     <div class="mb-3">
                         <button class="btn btn-secondary" type="submit">Update</button>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    @endcan
+        @endcan
+    </form>
 @endsection

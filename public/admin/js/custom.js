@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkPattern2();
     initializeSelect2('.selectsub');
 
+    updateButtonState();
     const uploadButton = document.getElementById('upload_sig');
 const imageDiv = document.getElementById('upload_signature');
 
@@ -72,7 +73,7 @@ $(document).ready(function () {
           $("#outside").hide();
         }
 
-        if (responseId == "1" || responseId == "5" || responseId == "6" || responseId == "7") {
+        if (responseId == "1" || responseId == "3" || responseId == "5" || responseId == "6" || responseId == "7") {
           $("#organization").show();
         } else {
           $("#organization").hide();
@@ -1383,6 +1384,7 @@ $(function() {
 
 //data privacy policy
 // get the checkbox elements
+
 const checkbox1 = document.getElementById("termsCheckbox1");
 const checkbox2 = document.getElementById("termsCheckbox2");
 
