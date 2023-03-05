@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-sm-2 d-flex align-items-center justify-content-end">
                         <input type="number" name="awards" min="0" max="10"
-                            value="{{ $form->leadership_criteria->awards ?? '' }}"
+                            value="{{ $form->leadership_criteria->awards_received ?? '' }}"
                             class="form-control form-control-sm text-center" placeholder="Enter percentage">
                     </div>
                 </div>
