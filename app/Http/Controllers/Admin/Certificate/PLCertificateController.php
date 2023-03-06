@@ -19,7 +19,12 @@ class PLCertificateController extends Controller
     }
     public function index()
     {
-        $courses = Courses::all();
+        $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
+            $query->where('certificate_status', 0)
+                ->where('status', 1)
+                ->where('award_applied', 3);
+        }])
+            ->get();
         return view('admin.send-awardees-certificates.presidents-list-award.index', compact('courses'));
     }
 

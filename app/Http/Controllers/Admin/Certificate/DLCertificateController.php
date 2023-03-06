@@ -20,7 +20,12 @@ class DLCertificateController extends Controller
 
     public function index()
     {
-        $courses = Courses::all();
+        $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
+            $query->where('certificate_status', 0)
+                ->where('status', 1)
+                ->where('award_applied', 2);
+        }])
+            ->get();
         return view('admin.send-awardees-certificates.deans-list-award.index', compact('courses'));
     }
 

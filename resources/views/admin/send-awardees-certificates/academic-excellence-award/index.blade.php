@@ -19,12 +19,6 @@
                 <a class="card lift h-100"
                     href="{{ url('admin/send-awardees-certificates/academic-excellence-award/' . $item->course_code) }}">
                     <div class="card border-left-success shadow">
-                        {{-- <div class="position-absolute top-0 end-0 mt-2 me-2">
-                            <div class="bg-danger rounded-circle text-white d-flex align-items-center justify-content-center"
-                                style="width: 20px; height: 20px;">
-                                {{ $item->ae_applicants->certificate_status->count() }}
-                            </div>
-                        </div> --}}
                         <div class="card-body text-center">
                             <div class="text-md card-text font-weight-bold text-success text-uppercase pl-6 mt-4r mt-3">
                                 {{ $item->course_code }}
@@ -32,6 +26,11 @@
                             <div class="col-12 mb-3">
                                 <i class="fas fa-solid fa-award fa-2x text-success "></i>
                             </div>
+                            @if ($item->applicant_count > '0')
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger rounded-circle">{{ $item->applicant_count }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>

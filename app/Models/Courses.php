@@ -18,4 +18,8 @@ class Courses extends Model implements Auditable
     {
         return $this->hasMany(StudentApplicant::class, 'course_id');
     }
+    public function ae_applicants()
+    {
+        return $this->hasMany(AcademicExcellence::class, 'course_id');
+    }
 }

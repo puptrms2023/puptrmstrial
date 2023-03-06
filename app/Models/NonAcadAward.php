@@ -11,4 +11,8 @@ class NonAcadAward extends Model
     public $fillable = [
         'name',
     ];
+    public function nonacad_applicants()
+    {
+        return $this->hasMany(NonAcademicApplicant::class, 'nonacad_id');
+    }
 }

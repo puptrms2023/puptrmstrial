@@ -23,6 +23,11 @@
                             <div class="card-text font-weight-bold text-secondary text-uppercase">
                                 {{ $item->name }}
                             </div>
+                            @if ($item->applicant_count > '0')
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger rounded-circle">{{ $item->applicant_count }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>

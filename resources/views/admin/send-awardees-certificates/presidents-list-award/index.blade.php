@@ -26,6 +26,11 @@
                             <div class="col-12 mb-3">
                                 <i class="fas fa-solid fa-award fa-2x text-warning "></i>
                             </div>
+                            @if ($item->applicant_count > '0')
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger rounded-circle">{{ $item->applicant_count }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>

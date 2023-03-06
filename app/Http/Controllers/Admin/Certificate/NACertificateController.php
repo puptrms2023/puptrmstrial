@@ -15,7 +15,11 @@ class NACertificateController extends Controller
 {
     public function index()
     {
-        $nonacad = NonAcadAward::all();
+        $nonacad = NonAcadAward::withCount(['nonacad_applicants as applicant_count' => function ($query) {
+            $query->where('certificate_status', 0)
+                ->where('status', 1);
+        }])
+            ->get();
         return view('admin.send-awardees-certificates.non-academic-award.index', compact('nonacad'));
     }
 

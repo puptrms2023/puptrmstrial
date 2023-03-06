@@ -19,7 +19,11 @@ class AECertificateController extends Controller
     }
     public function index()
     {
-        $courses = Courses::all();
+        $courses = Courses::withCount(['ae_applicants as applicant_count' => function ($query) {
+            $query->where('certificate_status', 0)
+                ->where('status', 1);
+        }])
+            ->get();
         return view('admin.send-awardees-certificates.academic-excellence-award.index', compact('courses'));
     }
 
