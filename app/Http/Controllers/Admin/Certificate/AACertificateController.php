@@ -30,7 +30,7 @@ class AACertificateController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
         //count
         $count = StudentApplicant::where('certificate_status', '1')->where('status', '1')->where('award_applied', '1')->count();
-        $total = StudentApplicant::where('status', '1')->where('award_applied', '1')->count();
+        $total = StudentApplicant::where('status', '1')->where('award_applied', '1')->where('course_id', $courses->id)->count();
 
         $awardees = StudentApplicant::where('award_applied', '1')
             ->where('course_id', $courses->id)
