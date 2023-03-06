@@ -14,6 +14,7 @@ use App\Notifications\AdminNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\NonAcademicAwardRequest;
 use App\Models\Academic;
+use App\Models\Financial;
 use App\Models\Interview;
 
 class NonAcademicAwardController extends Controller
@@ -70,7 +71,6 @@ class NonAcademicAwardController extends Controller
         $lastid = $award->id;
 
         if ($request->nonacad_id == '1') {
-
             $record = new Academic;
             $record->n_id = $lastid;
             $record->first_year_first = $data['first_year_first'];
@@ -97,9 +97,8 @@ class NonAcademicAwardController extends Controller
                     'updated_at' => now()
                 ]);
             }
-
             foreach ($request->organization as $key => $organizations) {
-                DB::table('officership')->insert([
+                DB::table('officerships')->insert([
                     'n_id' => $lastid,
                     'organization' => $organizations,
                     'position_held' => $data['position_held'][$key],
@@ -109,8 +108,6 @@ class NonAcademicAwardController extends Controller
                     'updated_at' => now()
                 ]);
             }
-
-
             foreach ($request->award as $key => $awards) {
                 DB::table('awards')->insert([
                     'n_id' => $lastid,
@@ -122,8 +119,6 @@ class NonAcademicAwardController extends Controller
                     'updated_at' => now()
                 ]);
             }
-
-
             foreach ($request->projects_com as $key => $project) {
                 DB::table('community_outreach')->insert([
                     'n_id' => $lastid,
@@ -132,11 +127,10 @@ class NonAcademicAwardController extends Controller
                     'sponsored_by' => $data['sponsored_by'][$key],
                     'inclusive_dates' => $data['inclusive_date_com'][$key],
                     'level' => $data['level_comm'][$key],
-
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
             }
-
-
             if ($request->has('interview')) {
                 $file_int = $request->file('interview');
                 $fileName = time() . '_' . $file_int->getClientOriginalName();
@@ -149,7 +143,62 @@ class NonAcademicAwardController extends Controller
                 $interview->save();
             }
         }
+        if ($request->nonacad_id == '3') {
+            foreach ($request->oprojects as $key => $project) {
+                DB::table('projects')->insert([
+                    'n_id' => $lastid,
+                    'projects' => $project,
+                    'sponsors' => $data['osponsors'][$key],
+                    'inclusive_date' => $data['oinclusive_date'][$key],
+                    'inclusive_level' => $data['oinclusive_level'][$key],
+                    'beneficiaries' => $data['obeneficiaries'][$key],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+            foreach ($request->oaward as $key => $awards) {
+                DB::table('awards')->insert([
+                    'n_id' => $lastid,
+                    'awards' => $awards,
+                    'awarded_by' => $data['oawarded_by'][$key],
+                    'date_received' => $data['odate_received_off'][$key],
+                    'level' => $data['olevel_off'][$key],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+            foreach ($request->oprojects_com as $key => $project) {
+                DB::table('community_outreach')->insert([
+                    'n_id' => $lastid,
+                    'projects' => $project,
+                    'involvement' => $data['oinvolvement'][$key],
+                    'sponsored_by' => $data['osponsored_by'][$key],
+                    'inclusive_dates' => $data['oinclusive_date_com'][$key],
+                    'level' => $data['olevel_comm'][$key],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+            foreach ($request->affiliation as $key => $affiliate) {
+                DB::table('affiliations')->insert([
+                    'n_id' => $lastid,
+                    'affiliation' => $affiliate,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+            if ($request->has('financial')) {
+                $file_int = $request->file('financial');
+                $fileName = time() . '_' . $file_int->getClientOriginalName();
+                $filePath = $request->file('financial')->storeAs('uploads', $fileName, 'public');
 
+                $interview = new Financial;
+                $interview->n_id = $lastid;
+                $interview->file_name = time() . '_' . $file_int->getClientOriginalName();
+                $interview->file_path = '/storage/' . $filePath;
+                $interview->save();
+            }
+        }
 
         Notification::send($users, new AdminNotification($user_name, $lastid, $award->nonacad->nonacad_code));
 

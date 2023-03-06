@@ -1,4 +1,5 @@
 <div id="leadership_fields" class="hidden">
+
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -72,7 +73,6 @@
         </div>
     </div>
 
-
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -123,7 +123,6 @@
         </div>
     </div>
 
-
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -170,8 +169,6 @@
         </div>
     </div>
 
-
-
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -217,7 +214,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
@@ -271,14 +267,13 @@
         </div>
     </div>
 
-
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="" class="font-weight-bold">F. Interview Results (10%) </label>
                 <input type="file" class="form-control" name="interview">
                 @if ($errors->has('interview'))
-                    <span class="text-danger text-left">{{ $errors->first('interview') }}</span>
+                    <div class="text-danger text-left">{{ $errors->first('interview') }}</div>
                 @endif
                 <span class="small">PDF, DOCX, DOC file is accepted</span>
             </div>

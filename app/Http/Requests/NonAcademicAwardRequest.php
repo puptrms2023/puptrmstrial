@@ -89,6 +89,10 @@ class NonAcademicAwardRequest extends FormRequest
             return $input->nonacad_id == '4' || $input->nonacad_id == '3';
         });
 
+        $validator->sometimes('financial', 'required|mimes:pdf,doc,docx|max:25600', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+
         //leadership validation
         $validator->sometimes('projects.*', 'required', function ($input) {
             return $input->nonacad_id == '1';
@@ -149,6 +153,55 @@ class NonAcademicAwardRequest extends FormRequest
         });
         $validator->sometimes('interview', 'nullable|mimes:pdf,doc,docx|max:25600', function ($input) {
             return $input->nonacad_id == '1';
+        });
+
+        //outstanding
+        $validator->sometimes('oprojects.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('osponsors.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('oinclusive_date.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('oinclusive_level.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('obeneficiaries.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+
+        $validator->sometimes('oaward.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('oawarded_by.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('odate_received_off.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('olevel_off.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+
+        $validator->sometimes('oprojects_com.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('oinvolvement.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('osponsored_by.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('oinclusive_date_com.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('olevel_comm.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
+        });
+        $validator->sometimes('affiliation.*', 'required', function ($input) {
+            return $input->nonacad_id == '3';
         });
     }
 

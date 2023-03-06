@@ -62,4 +62,16 @@ class NonAcademicApplicant extends Model implements Auditable
     {
         return $this->hasOne(Leadership_Criteria::class, 'n_id');
     }
+    public function outstanding_criteria()
+    {
+        return $this->hasOne(Outstanding_Org::class, 'n_id');
+    }
+    public function financials()
+    {
+        return $this->hasOne(Financial::class, 'n_id');
+    }
+    public function affiliations()
+    {
+        return $this->hasMany(Affiliation::class, 'n_id');
+    }
 }

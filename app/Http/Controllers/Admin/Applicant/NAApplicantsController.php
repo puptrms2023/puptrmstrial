@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Leadership;
 use App\Models\Leadership_Criteria;
 use App\Models\NonAcademicApplicant;
+use App\Models\Outstanding_Org;
 use Illuminate\Support\Facades\File;
 use App\Notifications\NonAcademicStatus;
 use Illuminate\Support\Facades\Notification;
@@ -34,7 +35,7 @@ class NAApplicantsController extends Controller
 
     public function details($nonacad_id, $id)
     {
-        $form = NonAcademicApplicant::with('academics', 'projects', 'officership', 'awards', 'community_outreach', 'interviews', 'leadership_criteria')->where('id', $id)->first();
+        $form = NonAcademicApplicant::with('academics', 'projects', 'officership', 'awards', 'community_outreach', 'interviews', 'leadership_criteria', 'outstanding_criteria', 'financials', 'affiliations')->where('id', $id)->first();
         $reasons = Reason::pluck('description', 'id');
         return view('admin.non-academic-award.show', compact('form', 'reasons'));
     }
@@ -106,6 +107,18 @@ class NAApplicantsController extends Controller
                     'awards_received' => $request->awards,
                     'community_outreach' => $request->community_out,
                     'interview' => $request->interview
+                ]
+            );
+        }
+        if ($nonacad_id == '3') {
+            Outstanding_Org::updateOrCreate(
+                ['n_id' => $id],
+                [
+                    'projects_initiated' => $request->project_initiated,
+                    'awards_received' => $request->awards,
+                    'community_involvement' => $request->community_involvement,
+                    'affiliation' => $request->affiliation,
+                    'financial_statement' => $request->financial_statement
                 ]
             );
         }

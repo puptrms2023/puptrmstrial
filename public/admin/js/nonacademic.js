@@ -209,3 +209,189 @@ function removeRow3(button) {
 existingData3.forEach(function(data) {
     addRow(data);
 });
+
+//outsanding
+function o_addRow(o_existingData) {
+    var tableBody = document.getElementById("o_projects_initiated");
+    var newRow = tableBody.insertRow(-1);
+
+    // Populate input fields with existing data, if available
+    if (o_existingData) {
+        newRow.innerHTML = `
+          <td><input type="text" name="oprojects[]" class="form-control form-control-sm" value="${o_existingData.oproject}"></td>
+          <td><input type="text" name="osponsors[]" class="form-control form-control-sm" value="${o_existingData.osponsor}"></td>
+          <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="oinclusive_date[]" data-toggle="datetimepicker" data-target="#datetimepicker1" value="${o_existingData.odate}"></td>
+          <td><input type="text" name="oinclusive_level[]" class="form-control form-control-sm" value="${o_existingData.olevel}"></td>
+          <td><input type="text" name="obeneficiaries[]" class="form-control form-control-sm" value="${o_existingData.obeneficiaries}"></td>
+          <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow(this)">Remove</button></td>
+        `;
+    } else {
+        newRow.innerHTML = `
+          <td><input type="text" name="oprojects[]" class="form-control form-control-sm"></td>
+          <td><input type="text" name="osponsors[]" class="form-control form-control-sm"></td>
+          <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="oinclusive_date[]" data-toggle="datetimepicker" data-target="#datetimepicker1"></td>
+          <td><input type="text" name="oinclusive_level[]" class="form-control form-control-sm"></td>
+          <td><input type="text" name="obeneficiaries[]" class="form-control form-control-sm"></td>
+          <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow(this)">Remove</button></td>
+        `;
+    }
+
+    // Initialize datetimepicker for new row
+    $(newRow).find('.datetimepicker-input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar',
+            up: 'fas fa-chevron-up',
+            down: 'fas fa-chevron-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'fas fa-calendar-day',
+            clear: 'fas fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+}
+function o_removeRow(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+// Assuming that existingData is an array of objects containing the existing data
+o_existingData.forEach(function(data) {
+    o_addRow(data);
+});
+
+function o_addRow1(o_existingData1) {
+    var tableBody = document.getElementById("o_awards_received");
+    var newRow = tableBody.insertRow(-1);
+
+    if (o_existingData1) {
+    newRow.innerHTML = `
+      <td><input type="text" name="oaward[]" class="form-control form-control-sm" value="${o_existingData1.oaward}"></td>
+      <td><input type="text" name="oawarded_by[]" class="form-control form-control-sm" value="${o_existingData1.oawarded_by}"></td>
+      <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="date_received_off[]" data-toggle="datetimepicker" data-target="#datetimepicker1" value="${o_existingData1.odate_received_off}"></td>
+      <td><input type="text" name="olevel_off[]" class="form-control form-control-sm" value="${existingData2.olevel_off}"></td>
+      <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow1(this)">Remove</button></td>
+    `;
+} else {
+    newRow.innerHTML = `
+    <td><input type="text" name="oaward[]" class="form-control form-control-sm"></td>
+    <td><input type="text" name="oawarded_by[]" class="form-control form-control-sm"></td>
+    <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="odate_received_off[]" data-toggle="datetimepicker" data-target="#datetimepicker1"></td>
+    <td><input type="text" name="olevel_off[]" class="form-control form-control-sm"></td>
+    <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow1(this)">Remove</button></td>
+  `;
+}
+    // Initialize datetimepicker for new row
+    $(newRow).find('.datetimepicker-input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar',
+            up: 'fas fa-chevron-up',
+            down: 'fas fa-chevron-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'fas fa-calendar-day',
+            clear: 'fas fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+}
+
+function o_removeRow1(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+o_existingData1.forEach(function(data) {
+    o_addRow1(data);
+});
+
+function o_addRow2(o_existingData2) {
+    var tableBody = document.getElementById("o_community");
+    var newRow = tableBody.insertRow(-1);
+
+    if (o_existingData2) {
+    newRow.innerHTML = `
+      <td><input type="text" name="oprojects_com[]" class="form-control form-control-sm" value="${o_existingData2.oprojects_com}"></td>
+      <td><input type="text" name="oinvolvement[]" class="form-control form-control-sm" value="${o_existingData2.oinvolvement}"></td>
+      <td><input type="text" name="osponsored_by[]" class="form-control form-control-sm" value="${o_existingData2.osponsored_by}"></td>
+      <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="oinclusive_date_com[]" data-toggle="datetimepicker" data-target="#datetimepicker1" value="${o_existingData2.oinclusive_date_com}"></td>
+      <td><input type="text" name="olevel_comm[]" class="form-control form-control-sm" value="${o_existingData2.olevel_comm}"></td>
+      <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow2(this)">Remove</button></td>
+    `;
+} else {
+    newRow.innerHTML = `
+    <td><input type="text" name="oprojects_com[]" class="form-control form-control-sm"></td>
+    <td><input type="text" name="oinvolvement[]" class="form-control form-control-sm"></td>
+    <td><input type="text" name="osponsored_by[]" class="form-control form-control-sm"></td>
+    <td><input type="text" class="form-control form-control-sm datetimepicker-input" name="oinclusive_date_com[]" data-toggle="datetimepicker" data-target="#datetimepicker1"></td>
+    <td><input type="text" name="olevel_comm[]" class="form-control form-control-sm"></td>
+    <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow2(this)">Remove</button></td>
+  `;
+}
+    // Initialize datetimepicker for new row
+    $(newRow).find('.datetimepicker-input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar',
+            up: 'fas fa-chevron-up',
+            down: 'fas fa-chevron-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'fas fa-calendar-day',
+            clear: 'fas fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+}
+
+function o_removeRow2(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+o_existingData2.forEach(function(data) {
+    o_addRow2(data);
+});
+
+function o_addRow3(o_existingData3) {
+    var tableBody = document.getElementById("affiliation");
+    var newRow = tableBody.insertRow(-1);
+
+    if (o_existingData3) {
+    newRow.innerHTML = `
+      <td><input type="text" name="affiliation[]" class="form-control form-control-sm" value="${o_existingData3.affiliation}"></td>
+      <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow3(this)">Remove</button></td>
+    `;
+} else {
+    newRow.innerHTML = `
+    <td><input type="text" name="affiliation[]" class="form-control form-control-sm"></td>
+    <td><button type="button" class="btn btn-danger btn-sm" onclick="o_removeRow3(this)">Remove</button></td>
+  `;
+}
+    // Initialize datetimepicker for new row
+    $(newRow).find('.datetimepicker-input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar',
+            up: 'fas fa-chevron-up',
+            down: 'fas fa-chevron-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'fas fa-calendar-day',
+            clear: 'fas fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+}
+
+function o_removeRow3(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+o_existingData3.forEach(function(data) {
+    o_addRow3(data);
+});

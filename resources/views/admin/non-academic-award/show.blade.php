@@ -19,150 +19,152 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                            <tr>
-                                <th width="25%">Student Number</th>
-                                <td>{{ $form->users->stud_num }}</td>
-                            </tr>
-                            <tr>
-                                <th width="25%">Student Name</th>
-                                <td>{{ $form->users->first_name . ' ' . $form->users->last_name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Course</th>
-                                <td>{{ $form->courses->course }}</td>
-                            </tr>
-                            <tr>
-                                <th width="25%">Year Level</th>
-                                <td>{{ $form->year_level }}</td>
-                            </tr>
-                            <tr>
-                                <th width="25%">School Year</th>
-                                <td><b>{{ $form->school_year }}</b></td>
-                            </tr>
-                            <tr>
-                                <th width="25%">Award Applied</th>
-                                <td>
-                                    @if ($form->nonacad_id == '1')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}
-                                                @if (!empty($form->others))
-                                                    - {{ $form->others }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '2')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>Sport: {{ $form->sports }}</p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '3')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}
-                                                @if (!empty($form->others))
-                                                    - {{ $form->others }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '4')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>Subject Name: {{ $form->subject_name }}<br>
-                                                Thesis Title: {{ $form->thesis_title }}</p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '5')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>School Organization: {{ $form->orgs->name }}
-                                                @if (!empty($form->others))
-                                                    - {{ $form->others }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '6')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>Designation Office: {{ $form->designated_office }}<br>
-                                                School Organization: {{ $form->orgs->name }}
-                                                @if (!empty($form->others))
-                                                    - {{ $form->others }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    @elseif ($form->nonacad_id == '7')
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                        <div class="small">
-                                            <P>Competition Name: {{ $form->competition_name }}<br>
-                                                Placements: {{ $form->placement }}<br>
-                                                School Organization: {{ $form->orgs->name }}
-                                                @if (!empty($form->others))
-                                                    - {{ $form->others }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    @else
-                                        <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            @if ($form->nonacad_id != '4')
+                    <div class="tale-responsive">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
                                 <tr>
-                                    <th width="25%">Supporting Documents</th>
-                                    <td>
-                                        <a href="{{ asset($form->file_path) }}" class="btn-link text-muted"
-                                            target="_blank">{{ $form->file_name }}</a>
-                                    </td>
+                                    <th width="25%">Student Number</th>
+                                    <td>{{ $form->users->stud_num }}</td>
                                 </tr>
-                            @endif
-                            @if (
-                                $form->nonacad_id == '1' ||
-                                    $form->nonacad_id == '2' ||
-                                    $form->nonacad_id == '5' ||
-                                    $form->nonacad_id == '6' ||
-                                    $form->nonacad_id == '7' ||
-                                    $form->nonacad_id == '8' ||
-                                    $form->nonacad_id == '9')
                                 <tr>
-                                    <th width="25%">2x2 photo</th>
-                                    <td>
-                                        <img src="{{ asset('uploads/' . $form->image) }}" alt="" width="150px"
-                                            height="150px">
-                                    </td>
+                                    <th width="25%">Student Name</th>
+                                    <td>{{ $form->users->first_name . ' ' . $form->users->last_name }}</td>
                                 </tr>
-                            @else
-                            @endif
-                            <tr>
-                                <th width="25%">Remarks</th>
-                                <td>{{ $form->remarks }}</td>
-                            </tr>
-                            <tr>
-                                <th width="25%">Status</th>
-                                <td>
-                                    @if ($form->status == '0')
-                                        <span class="badge badge-warning">Pending</span>
-                                    @endif
-                                    @if ($form->status == '1')
-                                        <span class="badge badge-success">Approved</span>
-                                    @endif
-                                    @if ($form->status == '2')
-                                        <span class="badge badge-danger">Rejected</span>
-                                        @if ($form->reason != '')
-                                            <small> -
-                                                @if ($form->reason == '1')
-                                                    Others: {{ $form->others }}
-                                                @else
-                                                    {{ $form->reasons->description }}
-                                                @endif
-                                            </small>
+                                <tr>
+                                    <th>Course</th>
+                                    <td>{{ $form->courses->course }}</td>
+                                </tr>
+                                <tr>
+                                    <th width="25%">Year Level</th>
+                                    <td>{{ $form->year_level }}</td>
+                                </tr>
+                                <tr>
+                                    <th width="25%">School Year</th>
+                                    <td><b>{{ $form->school_year }}</b></td>
+                                </tr>
+                                <tr>
+                                    <th width="25%">Award Applied</th>
+                                    <td>
+                                        @if ($form->nonacad_id == '1')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>School Organization: {{ $form->orgs->name }}
+                                                    @if (!empty($form->others))
+                                                        - {{ $form->others }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '2')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>Sport: {{ $form->sports }}</p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '3')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>School Organization: {{ $form->orgs->name }}
+                                                    @if (!empty($form->others))
+                                                        - {{ $form->others }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '4')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>Subject Name: {{ $form->subject_name }}<br>
+                                                    Thesis Title: {{ $form->thesis_title }}</p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '5')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>School Organization: {{ $form->orgs->name }}
+                                                    @if (!empty($form->others))
+                                                        - {{ $form->others }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '6')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>Designation Office: {{ $form->designated_office }}<br>
+                                                    School Organization: {{ $form->orgs->name }}
+                                                    @if (!empty($form->others))
+                                                        - {{ $form->others }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @elseif ($form->nonacad_id == '7')
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
+                                            <div class="small">
+                                                <P>Competition Name: {{ $form->competition_name }}<br>
+                                                    Placements: {{ $form->placement }}<br>
+                                                    School Organization: {{ $form->orgs->name }}
+                                                    @if (!empty($form->others))
+                                                        - {{ $form->others }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @else
+                                            <span class="badge badge-primary">{{ $form->nonacad->name }}</span>
                                         @endif
-                                    @endif
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                @if ($form->nonacad_id != '4')
+                                    <tr>
+                                        <th width="25%">Supporting Documents</th>
+                                        <td>
+                                            <a href="{{ asset($form->file_path) }}" class="btn-link text-muted"
+                                                target="_blank">{{ $form->file_name }}</a>
+                                        </td>
+                                    </tr>
+                                @endif
+                                @if (
+                                    $form->nonacad_id == '1' ||
+                                        $form->nonacad_id == '2' ||
+                                        $form->nonacad_id == '5' ||
+                                        $form->nonacad_id == '6' ||
+                                        $form->nonacad_id == '7' ||
+                                        $form->nonacad_id == '8' ||
+                                        $form->nonacad_id == '9')
+                                    <tr>
+                                        <th width="25%">2x2 photo</th>
+                                        <td>
+                                            <img src="{{ asset('uploads/' . $form->image) }}" alt="" width="150px"
+                                                height="150px">
+                                        </td>
+                                    </tr>
+                                @else
+                                @endif
+                                <tr>
+                                    <th width="25%">Remarks</th>
+                                    <td>{{ $form->remarks }}</td>
+                                </tr>
+                                <tr>
+                                    <th width="25%">Status</th>
+                                    <td>
+                                        @if ($form->status == '0')
+                                            <span class="badge badge-warning">Pending</span>
+                                        @endif
+                                        @if ($form->status == '1')
+                                            <span class="badge badge-success">Approved</span>
+                                        @endif
+                                        @if ($form->status == '2')
+                                            <span class="badge badge-danger">Rejected</span>
+                                            @if ($form->reason != '')
+                                                <small> -
+                                                    @if ($form->reason == '1')
+                                                        Others: {{ $form->others }}
+                                                    @else
+                                                        {{ $form->reasons->description }}
+                                                    @endif
+                                                </small>
+                                            @endif
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <small class="float-right"> Added at {{ $form->created_at }} </small>
                 </div>
             </div>
@@ -176,6 +178,8 @@
 
         @if ($form->nonacad->id == '1')
             @include('admin.non-academic-award.leadership')
+        @elseif ($form->nonacad->id == '3')
+            @include('admin.non-academic-award.outstanding')
         @endif
 
         @can('non-academic award edit')
@@ -215,4 +219,7 @@
             </div>
         @endcan
     </form>
+@endsection
+@section('scripts')
+    <script src="{{ asset('admin/js/criteria.js') }}"></script>
 @endsection

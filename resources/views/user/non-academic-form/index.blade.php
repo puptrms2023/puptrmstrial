@@ -230,7 +230,7 @@
                             <input type="file" name="file" class="form-control" id="inputGroupFile01"
                                 aria-describedby="inputGroupFileAddon01" accept=".zip">
                             @if ($errors->has('file'))
-                                <span class="text-danger text-left">{{ $errors->first('file') }}</span>
+                                <div class="text-danger text-left">{{ $errors->first('file') }}</div>
                             @endif
                             <span class="small">(Note: Please compile your supporting documents file (.zip) if you
                                 have more than one document.) </span>

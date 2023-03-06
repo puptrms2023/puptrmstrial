@@ -1,4 +1,3 @@
-<div id="leadership_fields">
     <div class="card shadow mt-0 mb-4">
         <div class="card-body">
             <div class="col-md-12 mb-3">
@@ -239,51 +238,19 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="div">
-    <div class="col-md-12">
-        <div class="row mb-2">
-            <div class="col-sm-10">
-                <span class="text-danger" id="error-message"></span>
-            </div>
-            <div class="col-sm-2 d-flex align-items-center justify-content-end">
-                <input type="text" name="total" id="total_percentage" class="form-control form-control-sm"
-                    value="{{ $form->leadership_criteria->total ?? '' }}" disabled>
+    <div class="div">
+        <div class="col-md-12">
+            <div class="row mb-2">
+                <div class="col-sm-10">
+                    <span class="text-danger" id="error-message"></span>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center justify-content-end">
+                    <input type="text" name="total" id="total_percentage" class="form-control form-control-sm"
+                        value="{{ $form->leadership_criteria->total ?? '' }}" disabled>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section('scripts')
-    <script>
-        const inputs = document.querySelectorAll('input[type="number"]');
-        const totalInput = document.querySelector('#total_percentage');
-        const errorMessage = document.querySelector('#error-message');
 
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                let total = 0;
-                let error = false;
-                inputs.forEach(input => {
-                    const val = parseInt(input.value) || 0;
-                    total += val;
-                    if (val > parseInt(input.max)) {
-                        error = true;
-                        input.value = '';
-                    }
-                });
-                if (total > 100) {
-                    totalInput.value = '';
-                    errorMessage.textContent = 'Error: Total cannot be greater than 100';
-                } else if (error) {
-                    totalInput.value = '';
-                    errorMessage.textContent = 'Error: Value cannot be greater than the allowed maximum';
-                } else {
-                    totalInput.value = total;
-                    errorMessage.textContent = '';
-                }
-            });
-        });
-    </script>
-@endsection

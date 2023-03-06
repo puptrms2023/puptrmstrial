@@ -80,7 +80,7 @@ $(document).ready(function () {
         }
 
         // Check if the #idPic element is visible after the show/hide logic is applied
-        console.log($("#supporting").is(":visible"));
+        // console.log($("#supporting").is(":visible"));
       });
 
 });

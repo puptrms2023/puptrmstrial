@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('officership', function (Blueprint $table) {
+        Schema::create('outstanding_org', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('n_id')->nullable();
-            $table->string('organization')->nullable();
-            $table->string('position_held')->nullable();
-            $table->string('date_received')->nullable();
-            $table->string('level')->nullable();
+            $table->integer('projects_initiated')->nullable();
+            $table->integer('awards_received')->nullable();
+            $table->integer('community_involvement')->nullable();
+            $table->integer('affiliation')->nullable();
+            $table->integer('financial_statement')->nullable();
+            $table->integer('total')->virtualAs('projects_initiated + awards_received + community_involvement + affiliation + financial_statement')->nullable();
             $table->timestamps();
 
             $table->foreign('n_id')->references('id')->on('non_academic_applicants')->onDelete('cascade');
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('officership');
+        Schema::dropIfExists('outstanding_org');
     }
 };
