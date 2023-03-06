@@ -26,9 +26,12 @@ class StudentApplicantsController extends Controller
 
     public function index()
     {
-        $courses = Courses::all();
-        $pending = StudentApplicant::where('award_applied', '1')->where('status', '0')->count();
-        return view('admin.achievers-award.index', compact('courses', 'pending'));
+        $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
+            $query->where('award_applied', 1)
+                ->where('status', 0);
+        }])
+            ->get();
+        return view('admin.achievers-award.index', compact('courses'));
     }
 
     public function achieversView(Request $request, $course_code)

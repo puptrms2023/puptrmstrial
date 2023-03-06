@@ -27,10 +27,12 @@ class NAApplicantsController extends Controller
 
     public function index()
     {
-        $nonacad = NonAcadAward::all();
-        $total = NonAcademicApplicant::count();
+        $nonacad = NonAcadAward::withCount(['nonacad_applicants as applicant_count' => function ($query) {
+            $query->where('status', 0);
+        }])
+            ->get();
 
-        return view('admin.non-academic-award.index', compact('total', 'nonacad'));
+        return view('admin.non-academic-award.index', compact('nonacad'));
     }
 
     public function details($nonacad_id, $id)

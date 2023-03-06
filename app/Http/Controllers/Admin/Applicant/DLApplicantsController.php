@@ -25,9 +25,12 @@ class DLApplicantsController extends Controller
     }
     public function index()
     {
-        $pending = StudentApplicant::where('award_applied', '2')->where('status', '0')->count();
-        $courses = Courses::all();
-        return view('admin.deans-list-award.index', compact('courses', 'pending'));
+        $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
+            $query->where('award_applied', 2)
+                ->where('status', 0);
+        }])
+            ->get();
+        return view('admin.deans-list-award.index', compact('courses'));
     }
 
     public function achieversView(Request $request, $course_code)

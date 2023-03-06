@@ -13,11 +13,6 @@
         @endif
         <a href="{{ url('admin/non-academic-award/all') }}" class="btn btn-secondary position-relative mr-2"><i
                 class="fa-solid fa-user-group fa-sm"></i> Applicants
-            @if ($total >= 1)
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ $total }}
-                </span>
-            @endif
         </a>
     </div>
 
@@ -30,6 +25,11 @@
                             <div class="card-text font-weight-bold text-secondary text-uppercase">
                                 {{ $item->name }}
                             </div>
+                            @if ($item->applicant_count > '0')
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger rounded-circle">{{ $item->applicant_count }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>

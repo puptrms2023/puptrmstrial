@@ -26,9 +26,11 @@ class AEApplicantsController extends Controller
 
     public function index()
     {
-        $pending = AcademicExcellence::where('status', '0')->count();
-        $courses = Courses::all();
-        return view('admin.academic-excellence-award.index', compact('courses', 'pending'));
+        $courses = Courses::withCount(['ae_applicants as applicant_count' => function ($query) {
+            $query->where('status', 0);
+        }])
+            ->get();
+        return view('admin.academic-excellence-award.index', compact('courses'));
     }
     public function achieversView(Request $request, $course_code)
     {

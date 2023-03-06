@@ -13,11 +13,6 @@
         @endif
         <a href="{{ url('admin/deans-list-award/overall') }}" class="btn btn-secondary position-relative mr-2"><i
                 class="fa-solid fa-user-group fa-sm"></i> Applicants
-            @if ($pending >= 1)
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ $pending }}
-                </span>
-            @endif
         </a>
     </div>
 
@@ -33,6 +28,11 @@
                             <div class="col-12 mb-3">
                                 <i class="fas fa-solid fa-award fa-2x text-info "></i>
                             </div>
+                            @if ($item->applicant_count > '0')
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger rounded-circle">{{ $item->applicant_count }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>
