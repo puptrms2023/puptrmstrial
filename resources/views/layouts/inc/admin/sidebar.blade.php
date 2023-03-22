@@ -262,9 +262,13 @@
                         <a class="collapse-item {{ Request::is('admin/maintenance/form') || Request::is('admin/maintenance/form/*') ? 'active' : '' }}"
                             href="{{ url('admin/maintenance/form') }}">Form</a>
                     @endcan
-                    @can('course list')
+                    @can('program list')
                         <a class="collapse-item {{ Request::is('admin/maintenance/programs') || Request::is('admin/maintenance/programs/*') ? 'active' : '' }}"
                             href="{{ url('admin/maintenance/programs') }}">Programs</a>
+                    @endcan
+                    @can('subject list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/subjects') || Request::is('admin/maintenance/subjects/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/subjects') }}">Subjects</a>
                     @endcan
                     @can('about view')
                         <a class="collapse-item {{ Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') ? 'active' : '' }}"

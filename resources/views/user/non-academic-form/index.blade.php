@@ -63,6 +63,13 @@
                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                 <input type="hidden" value="{{ Auth::user()->course_id }}" name="course_id">
 
+                <div id="note" class="card mb-4 border-left-warning hidden">
+                    <div class="card-header pt-3 pb-1">
+                        <p class="text-primary">Note: Student Organization Presidents themselves can <b>ONLY</b> apply for
+                            this award.</p>
+                    </div>
+                </div>
+
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
@@ -339,6 +346,11 @@
 
             } else {
                 $("#photo_two").removeClass("hidden");
+            }
+            if (award.value == "5") {
+                $("#note").show();
+            } else {
+                $("#note").hide();
             }
             if (award.value == "6") {
                 $("#sa").show();

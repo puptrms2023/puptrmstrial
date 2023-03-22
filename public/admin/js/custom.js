@@ -61,6 +61,12 @@ $(document).ready(function () {
             $("#photo_two").removeClass("hidden");
           }
 
+        if (responseId == "5") {
+            $("#note").show();
+        } else {
+            $("#note").hide();
+        }
+
         if (responseId == "6") {
           $("#sa").show();
         } else {
@@ -1382,6 +1388,27 @@ $(function() {
     });
 });
 
+function calculateGWA() {
+    var grades = document.querySelectorAll("input[name='grades'][onkeyup='calculateGWA()']");
+    var units = document.querySelectorAll("input[name='units'][onkeyup='calculateGWA()']");
+
+    var total = 0;
+    var unitsTotal = 0;
+
+    for (var i = 0; i < grades.length; i++) {
+        var grade = parseFloat(grades[i].value);
+        var unit = parseFloat(units[i].value);
+        if (!isNaN(grade) && !isNaN(unit)) {
+            total += grade * unit;
+            unitsTotal += unit;
+        }
+    }
+
+    var gwa = total / unitsTotal;
+    if (!isNaN(gwa)) {
+        document.getElementById("gwa").value = gwa.toFixed(2);
+    }
+}
 //data privacy policy
 // get the checkbox elements
 

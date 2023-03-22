@@ -60,6 +60,8 @@
                                 <td>
                                     <img src="{{ asset('uploads/' . $status->image) }}" alt="" width="150px"
                                         height="150px">
+                                    <button type="button" id="editImage" class="btn btn-sm float-right"><i
+                                            class="fa-solid fa-pen-to-square"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -97,6 +99,9 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">1st Semester Grades
+                        <button type="button" id="editGrades1"
+                            data-url="{{ route('deans.edit-grades-content', $status->id) }}" data-id="1"
+                            class="btn btn-sm float-right"><i class="fa-solid fa-pen-to-square"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -104,8 +109,8 @@
                         <table class="table table-bordered table-sm" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Subject Code</th>
-                                    <th>Subject Name</th>
+                                    <th>Course Code</th>
+                                    <th>Course Description</th>
                                     <th>Grades</th>
                                     <th>Units</th>
                                 </tr>
@@ -130,9 +135,12 @@
                                         $gwa = number_format($gwa, 2, '.', '');
                                     @endphp
                                 @endforeach
+                                <tr>
+                                    <td colspan="4" class="text-right"> <small>GWA:
+                                            <b>{{ $gwa }}</b></small></td>
+                                </tr>
                             </tbody>
                         </table>
-                        <small>GWA: <b>{{ $gwa }}</b></small>
                     </div>
                 </div>
             </div>
@@ -141,6 +149,9 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="m-0 font-weight-bold text-primary">2nd Semester Grades
+                        <button type="button" id="editGrades2"
+                            data-url="{{ route('deans.edit-grades-content', $status->id) }}" data-id="2"
+                            class="btn btn-sm float-right"><i class="fa-solid fa-pen-to-square"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -174,9 +185,12 @@
                                         $gwa = number_format($gwa, 2, '.', '');
                                     @endphp
                                 @endforeach
+                                <tr>
+                                    <td colspan="4" class="text-right"> <small>GWA:
+                                            <b>{{ $gwa }}</b></small></td>
+                                </tr>
                             </tbody>
                         </table>
-                        <small>GWA: <b>{{ $gwa }}</b></small>
                     </div>
                 </div>
             </div>
@@ -226,4 +240,6 @@
             </div>
         </div>
     @endcan
+    @include('admin.deans-list-award.grades')
+    @include('admin.deans-list-award.image')
 @endsection

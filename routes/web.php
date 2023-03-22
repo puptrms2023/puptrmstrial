@@ -87,6 +87,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('achievers-award/delete-form', 'destroy');
         Route::delete('achievers-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('achievers-award/bulk-delete-form', 'deleteAll');
+        Route::get('/aa/edit-grades-content/{id}', 'getModalContent')->name('achievers.edit-grades-content');
+        Route::post('aa/update-grades/{id}', 'gradesUpdate')->name('achievers.grades.update');
+        Route::post('/aa/update-image/{id}', 'updateImage')->name('achievers.image.update');
     });
     Route::controller(App\Http\Controllers\Admin\ArchiveController::class)->group(function () {
         Route::get('/archive/achievers-award/{course_code}', 'archiveAA');
@@ -130,6 +133,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('/deans-list-award/delete-form', 'destroy');
         Route::delete('/deans-list-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('/deans-list-award/bulk-delete-form', 'deleteAll');
+        Route::get('/dl/edit-grades-content/{id}', 'getModalContent')->name('deans.edit-grades-content');
+        Route::post('dl/update-grades/{id}', 'gradesUpdate')->name('deans.grades.update');
+        Route::post('/dl/update-image/{id}', 'updateImage')->name('deans.image.update');
     });
     //PL Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\PLApplicantsController::class)->group(function () {
@@ -147,6 +153,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('/presidents-list-award/delete-form', 'destroy');
         Route::delete('/presidents-list-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('/presidents-list-award/bulk-delete-form', 'deleteAll');
+        Route::get('/pl/edit-grades-content/{id}', 'getModalContent')->name('president.edit-grades-content');
+        Route::post('pl/update-grades/{id}', 'gradesUpdate')->name('president.grades.update');
+        Route::post('/pl/update-image/{id}', 'updateImage')->name('president.image.update');
     });
     //Academic Excellence Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\AEApplicantsController::class)->group(function () {
@@ -164,6 +173,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('/academic-excellence-award/delete-form', 'destroy');
         Route::delete('/academic-excellence-award/{course_code}/bulk-delete-form', 'deleteAll');
         Route::delete('/academic-excellence-award/bulk-delete-form', 'deleteAll');
+        Route::get('/ae/edit-grades-content/{id}', 'getModalContent')->name('excellence.edit-grades-content');
+        Route::post('ae/update-grades/{id}', 'gradesUpdate')->name('excellence.grades.update');
+        Route::post('/ae/update-image/{id}', 'updateImage')->name('excellence.image.update');
     });
     //Non Academic Applicants
     Route::controller(App\Http\Controllers\Admin\Applicant\NAApplicantsController::class)->group(function () {
@@ -281,6 +293,16 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::put('/maintenance/programs/{id}', 'update');
         Route::post('/maintenance/delete-programs', 'destroy');
         Route::delete('/maintenance/programs/bulk-delete', 'deleteAll');
+    });
+    //subjects M
+    Route::controller(App\Http\Controllers\Admin\Maintenance\SubjectsController::class)->group(function () {
+        Route::get('/maintenance/subjects', 'index');
+        Route::get('/maintenance/subjects/create', 'create');
+        Route::post('/maintenance/subjects', 'store');
+        Route::get('/maintenance/subjects/{id}', 'edit');
+        Route::put('/maintenance/subjects/{id}', 'update');
+        Route::post('/maintenance/delete-subjects', 'destroy');
+        Route::delete('/maintenance/subjects/bulk-delete', 'deleteAll');
     });
     //about M
     Route::controller(App\Http\Controllers\Admin\Maintenance\AboutController::class)->group(function () {

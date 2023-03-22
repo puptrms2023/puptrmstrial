@@ -100,7 +100,7 @@
             class="highlight">Achiever's Award</span> for the S.Y.
         {{ $sy }}.
     </div>
-    <div class="date"><span class="highlight">Given this day, {{ date('jS \of F Y') }}</span> via Google Mail</div>
+    <div class="date"><span class="highlight">Given this {{ str_replace(Date::now()->format('jS'), Date::now()->format('jS') . ' day', Date::now()->format('jS \of F Y')) }}</span> via Google Mail</div>
     <table class="table2">
         <tr>
             <td width="21%">

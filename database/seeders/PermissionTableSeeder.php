@@ -37,6 +37,10 @@ class PermissionTableSeeder extends Seeder
             // 'student edit',
             // 'student delete'
             // 'form application'
+            'subject list',
+            'subject create',
+            'subject edit',
+            'subject delete',
 
         ];
 

@@ -7,10 +7,12 @@ use App\Models\Reason;
 use App\Models\Courses;
 use App\Models\Summary;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\StudentApplicant;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\StudentApplicantStatus;
 
@@ -277,6 +279,135 @@ class PLApplicantsController extends Controller
         StudentApplicant::whereIn('id', explode(",", $ids))->delete();
         return response()->json([
             'success' => 'The Application form move to archive successfully'
+        ]);
+    }
+
+    public function getModalContent(Request $request, $id)
+    {
+        $term = $request->input('id');
+        $grades = Summary::where('app_id', $id)
+            ->where('term', $term)
+            ->get();
+
+        $html = "";
+        if (!empty($grades)) {
+            $html .= "<table class='table table-sm'>
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Description</th>
+                    <th>Grade</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>";
+            foreach ($grades as $grade) {
+                $html .= "<tr data-id='$grade->id'>
+                <td>" . $grade->subjects->s_code . "</td>
+                <td>" . $grade->subjects->s_name . "</td>
+                <td><input type='text' name='grades' class='form-control form-control-sm text-center grade-input' onkeyup='calculateGWA()' value='$grade->grades'></td>
+                <td><input type='text' name='units' class='form-control form-control-sm text-center unit-input' onkeyup='calculateGWA()' value='$grade->units'></td>
+            </tr>";
+            }
+            $html .= "<tr>
+            <td colspan='3' class='text-right font-weight-bold'>GWA:</td>
+            <td><input type='text' class='form-control form-control-sm text-center' id='gwa' readonly></td>
+        </tr>";
+            $html .= "</tbody>
+        </table>";
+            $html .= "<input type='hidden' id='term-table' value='$term'>";
+        }
+
+        $response['html'] = $html;
+
+        return response()->json($response);
+    }
+
+    public function gradesUpdate(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'term' => 'required',
+            'data.grades.*' => ['required', 'numeric', Rule::in([1.00, 1.25, 1.5, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00])],
+            'data.units.*' => 'required|numeric',
+            'data.ids.*' => 'required|numeric',
+        ]);
+
+        // check if validation failed
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        $grades = $request->input('data.grades');
+        $units = $request->input('data.units');
+        $ids = $request->input('data.ids');
+        $total_grades = 0;
+        $total_units = 0;
+        // Loop through the grades and units and update the corresponding records
+        for ($i = 0; $i < count($grades); $i++) {
+            // Get the row ID from the request data
+            $row_id = $ids[$i];
+
+            // Find the corresponding record using the row ID
+            $grade = Summary::where('id', $row_id)->first();
+
+            // Update the record with the new grades and units
+            $grade->grades = $grades[$i];
+            $grade->units = $units[$i];
+            $grade->save();
+
+            $total_grades += $grades[$i] * $units[$i];
+            $total_units += $units[$i];
+        }
+
+        $gwa = $total_units > 0 ? number_format($total_grades / $total_units, 2, '.', '') : 0;
+
+        $app = StudentApplicant::find($id);
+        if ($request->term == '1') {
+            $app->gwa_1st = $gwa;
+        } else {
+            $app->gwa_2nd = $gwa;
+        }
+        $app->save();
+
+        return response()->json([
+            'success' => 'Grades updated successfully'
+        ]);
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|mimes:jpeg,png,jpg'
+        ]);
+
+        // check if validation failed
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        $status = StudentApplicant::findOrFail($id);
+
+        if ($request->hasfile('image')) {
+
+            if ($status->image && file_exists(public_path('uploads/' . $status->image))) {
+                unlink(public_path('uploads/' . $status->image));
+            }
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/', $filename);
+            $status->image = $filename;
+        }
+
+        $status->save();
+
+        return response()->json([
+            'success' => 'Image updated successfully'
         ]);
     }
 }
