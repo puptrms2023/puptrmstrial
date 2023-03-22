@@ -25,7 +25,7 @@ class SubjectCreateRequest extends FormRequest
     {
         return [
             'course_code' => 'required|unique:subjects,s_code',
-            'course_description' => 'required|unique:subjects,s_name'
+            'course_description' => 'required'
         ];
     }
 }

@@ -25,7 +25,7 @@ class SubjectUpdateRequest extends FormRequest
     {
         return [
             'course_code' => 'required|unique:subjects,s_code,' . $this->id,
-            'course_description' => 'required|unique:subjects,s_name,' . $this->id
+            'course_description' => 'required'
         ];
     }
 }
