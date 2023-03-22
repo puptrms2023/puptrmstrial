@@ -94,7 +94,7 @@
         }
 
         footer {
-            position: fixed;
+            position: absolute;
             bottom: -60px;
             left: 50px;
             right: 50px;
