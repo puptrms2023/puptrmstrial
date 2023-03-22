@@ -188,8 +188,10 @@
     </div>
     <table class="table2">
         <tr>
-            <td>Signed by:</td>
-            <td>
+            <td colspan="3" align="center"><b>Evaluators</b></td>
+        </tr>
+        <tr>
+            <td height="90">
                 @if (name1Report()->signature != null)
                     <div class="img-sig">
                         <img src="{{ public_path('uploads/signature/' . name1Report()->signature) }}" width="100" />
@@ -218,8 +220,10 @@
             </td>
         </tr>
         <tr>
-            <td>Noted by:</td>
-            <td colspan="3" align="center" height="110">
+            <td colspan="3" align="center" height="50"><b>Noted by</b></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center" height="50">
                 @if (name4Report()->signature != null)
                     <div class="img-sig">
                         <img src="{{ public_path('uploads/signature/' . name4Report()->signature) }}" width="100" />
