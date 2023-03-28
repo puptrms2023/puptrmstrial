@@ -28,7 +28,7 @@ class NAApplicantsController extends Controller
     public function index()
     {
         $nonacad = NonAcadAward::withCount(['nonacad_applicants as applicant_count' => function ($query) {
-            $query->where('status', 0);
+            $query->where('status', 0)->where('school_year', getAcademicYear());
         }])
             ->get();
 
@@ -44,14 +44,14 @@ class NAApplicantsController extends Controller
 
     public function overallList()
     {
-        $form = NonAcademicApplicant::all();
+        $form = NonAcademicApplicant::where('school_year', getAcademicYear())->get();
         return view('admin.non-academic-award.all', compact('form'));
     }
 
     public function view(Request $request, $id)
     {
         $title = NonAcadAward::where('id', $id)->first();
-        $form = NonAcademicApplicant::where('nonacad_id', $id)->get();
+        $form = NonAcademicApplicant::where('nonacad_id', $id)->where('school_year', getAcademicYear())->get();
 
         return view('admin.non-academic-award.view', compact('title', 'form'));
     }
@@ -137,6 +137,7 @@ class NAApplicantsController extends Controller
         $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
         $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
             ->where('status', '1')
+            ->where('school_year', getAcademicYear())
             ->get();
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.non-academic-award.student-accepted', array('students' => $students), array('nonacad' => $nonacad));
@@ -149,6 +150,7 @@ class NAApplicantsController extends Controller
         $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
         $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
             ->where('status', '2')
+            ->where('school_year', getAcademicYear())
             ->get();
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.non-academic-award.student-rejected', array('students' => $students), array('nonacad' => $nonacad));
@@ -160,6 +162,7 @@ class NAApplicantsController extends Controller
     {
         $nonacad = NonAcadAward::where('nonacad_code', $nonacad_code)->first();
         $students = NonAcademicApplicant::where('nonacad_id', $nonacad->id)
+            ->where('school_year', getAcademicYear())
             ->orderBy('year_level', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');

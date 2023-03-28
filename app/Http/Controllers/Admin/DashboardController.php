@@ -88,21 +88,21 @@ class DashboardController extends Controller
         $total_nonacad = NonAcademicApplicant::where('school_year', $year)->count();
 
         //pending
-        $stud_applicant_p = StudentApplicant::where('status', '0')->count();
-        $acad_excellence_p = AcademicExcellence::where('status', '0')->count();
-        $nonacad_applicants_p = NonAcademicApplicant::where('status', '0')->count();
+        $stud_applicant_p = StudentApplicant::where('status', '0')->where('school_year', $year)->count();
+        $acad_excellence_p = AcademicExcellence::where('status', '0')->where('school_year', $year)->count();
+        $nonacad_applicants_p = NonAcademicApplicant::where('status', '0')->where('school_year', $year)->count();
         $pending = $stud_applicant_p + $acad_excellence_p + $nonacad_applicants_p;
 
         //completed
-        $stud_applicant_c = StudentApplicant::where('status', '1')->count();
-        $acad_excellence_c = AcademicExcellence::where('status', '1')->count();
-        $nonacad_applicants_c = NonAcademicApplicant::where('status', '1')->count();
+        $stud_applicant_c = StudentApplicant::where('status', '1')->where('school_year', $year)->count();
+        $acad_excellence_c = AcademicExcellence::where('status', '1')->where('school_year', $year)->count();
+        $nonacad_applicants_c = NonAcademicApplicant::where('status', '1')->where('school_year', $year)->count();
         $completed = $stud_applicant_c + $acad_excellence_c + $nonacad_applicants_c;
 
         //rejected
-        $stud_applicant_d = StudentApplicant::where('status', '2')->count();
-        $acad_excellence_d = AcademicExcellence::where('status', '2')->count();
-        $nonacad_applicants_d = NonAcademicApplicant::where('status', '2')->count();
+        $stud_applicant_d = StudentApplicant::where('status', '2')->where('school_year', $year)->count();
+        $acad_excellence_d = AcademicExcellence::where('status', '2')->where('school_year', $year)->count();
+        $nonacad_applicants_d = NonAcademicApplicant::where('status', '2')->where('school_year', $year)->count();
         $rejected = $stud_applicant_d + $acad_excellence_d + $nonacad_applicants_d;
 
         return view('admin.dashboard', compact('year', 'total_nonacad', 'analytics_achiever', 'analytics_deans', 'analytics_presidents', 'analytics_acadexcell', 'achiever', 'total_achiever', 'deans', 'total_dean', 'president', 'total_president', 'excellence', 'total_excellence', 'pending', 'completed', 'rejected'));

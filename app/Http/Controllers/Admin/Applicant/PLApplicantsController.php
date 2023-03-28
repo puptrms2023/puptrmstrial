@@ -30,7 +30,8 @@ class PLApplicantsController extends Controller
     {
         $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
             $query->where('award_applied', 3)
-                ->where('status', 0);
+                ->where('status', 0)
+                ->where('school_year', getAcademicYear());
         }])
             ->get();
         return view('admin.presidents-list-award.index', compact('courses'));
@@ -42,6 +43,7 @@ class PLApplicantsController extends Controller
         $model = StudentApplicant::with('users', 'courses')
             ->where('student_applicants.course_id', $courses->id)
             ->where('award_applied', '3')
+            ->where('school_year', getAcademicYear())
             ->select('student_applicants.*');
 
         if ($request->ajax()) {
@@ -75,14 +77,6 @@ class PLApplicantsController extends Controller
                     return '<img src="' . $url . '" class="img-thumbnail img-circle"
                                     width="50" alt="Image">';
                 })
-                // ->addColumn('avg', function (StudentApplicant $stud) {
-                //     $totalwithSummer = ($stud->gwa_1st + $stud->gwa_2nd + $stud->summer) / 3;
-                //     if (!empty($stud->summer)) {
-                //         return number_format((float) $totalwithSummer, 2, '.', '');
-                //     } else {
-                //         return $stud->gwa;
-                //     }
-                // })
                 ->addColumn('status', function (StudentApplicant $data) {
                     return view('admin.presidents-list-award.action.status', compact('data'));
                 })
@@ -163,6 +157,7 @@ class PLApplicantsController extends Controller
             $students = StudentApplicant::where('award_applied', '3')
                 ->where('course_id', $courses->id)
                 ->where('status', '1')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         } else {
@@ -172,6 +167,7 @@ class PLApplicantsController extends Controller
                 ->where('course_id', $courses->id)
                 ->where('year_level', $year)
                 ->where('status', '1')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         }
@@ -187,6 +183,7 @@ class PLApplicantsController extends Controller
             $students = StudentApplicant::where('award_applied', '3')
                 ->where('course_id', $courses->id)
                 ->where('status', '2')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         } else {
@@ -196,6 +193,7 @@ class PLApplicantsController extends Controller
                 ->where('course_id', $courses->id)
                 ->where('year_level', $year)
                 ->where('status', '2')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         }
@@ -210,6 +208,7 @@ class PLApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
         $students = StudentApplicant::where('award_applied', '3')
             ->where('course_id', $courses->id)
+            ->where('school_year', getAcademicYear())
             ->orderBy('year_level', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');
@@ -222,7 +221,7 @@ class PLApplicantsController extends Controller
     {
         if ($request->ajax()) {
             if ($request->ajax()) {
-                $model = StudentApplicant::with('users', 'courses')->where('award_applied', '3')->select('student_applicants.*');
+                $model = StudentApplicant::with('users', 'courses')->where('award_applied', '3')->where('school_year', getAcademicYear())->select('student_applicants.*');
                 if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                     $model->where('status', $request->get('status'))->get();
                 }

@@ -15,62 +15,62 @@ class ArchiveController extends Controller
     public function archiveAA($course_code)
     {
         $course = Courses::where('course_code', $course_code)->first();
-        $form = StudentApplicant::where('course_id', $course->id)->onlyTrashed()->get();
+        $form = StudentApplicant::where('course_id', $course->id)->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.achievers-award.archive', compact('form', 'course'));
     }
     public function allarchiveAA()
     {
-        $form = StudentApplicant::where('award_applied', '1')->onlyTrashed()->get();
+        $form = StudentApplicant::where('award_applied', '1')->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.achievers-award.archive-all', compact('form'));
     }
 
     public function archiveDL($course_code)
     {
         $course = Courses::where('course_code', $course_code)->first();
-        $form = StudentApplicant::where('course_id', $course->id)->onlyTrashed()->get();
+        $form = StudentApplicant::where('course_id', $course->id)->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.deans-list-award.archive', compact('form', 'course'));
     }
     public function allarchiveDL()
     {
-        $form = StudentApplicant::where('award_applied', '2')->onlyTrashed()->get();
+        $form = StudentApplicant::where('award_applied', '2')->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.deans-list-award.archive-all', compact('form'));
     }
 
     public function archivePL($course_code)
     {
         $course = Courses::where('course_code', $course_code)->first();
-        $form = StudentApplicant::where('course_id', $course->id)->onlyTrashed()->get();
+        $form = StudentApplicant::where('course_id', $course->id)->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.presidents-list-award.archive', compact('form', 'course'));
     }
     public function allarchivePL()
     {
-        $form = StudentApplicant::where('award_applied', '3')->onlyTrashed()->get();
+        $form = StudentApplicant::where('award_applied', '3')->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.presidents-list-award.archive-all', compact('form'));
     }
 
     public function archiveAE($course_code)
     {
         $course = Courses::where('course_code', $course_code)->first();
-        $form = AcademicExcellence::where('course_id', $course->id)->onlyTrashed()->get();
+        $form = AcademicExcellence::where('course_id', $course->id)->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.academic-excellence-award.archive', compact('form', 'course'));
     }
 
     public function allarchiveAE()
     {
-        $form = AcademicExcellence::onlyTrashed()->get();
+        $form = AcademicExcellence::where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.academic-excellence-award.archive-all', compact('form'));
     }
 
     public function archiveNA($nonacad_id)
     {
         $nonacad = NonAcadAward::where('id', $nonacad_id)->first();
-        $form = NonAcademicApplicant::where('nonacad_id', $nonacad->id)->onlyTrashed()->get();
+        $form = NonAcademicApplicant::where('nonacad_id', $nonacad->id)->where('school_year', getAcademicYear())->onlyTrashed()->get();
         return view('admin.non-academic-award.archive', compact('form', 'nonacad'));
     }
 
     public function allarchiveNA()
     {
-        $form = NonAcademicApplicant::onlyTrashed()->get();
+        $form = NonAcademicApplicant::where('school_year', getAcademicYear())->get();
         return view('admin.non-academic-award.archive-all', compact('form'));
     }
 

@@ -21,7 +21,8 @@ class AECertificateController extends Controller
     {
         $courses = Courses::withCount(['ae_applicants as applicant_count' => function ($query) {
             $query->where('certificate_status', 0)
-                ->where('status', 1);
+                ->where('status', 1)
+                ->where('school_year', getAcademicYear());
         }])
             ->get();
         return view('admin.send-awardees-certificates.academic-excellence-award.index', compact('courses'));
@@ -31,12 +32,13 @@ class AECertificateController extends Controller
     {
         $courses = Courses::where('course_code', $course_code)->first();
         //count
-        $count = AcademicExcellence::where('certificate_status', '1')->where('status', '1')->where('award_applied', '4')->where('course_id', $courses->id)->count();
-        $total = AcademicExcellence::where('status', '1')->where('award_applied', '4')->where('course_id', $courses->id)->count();
+        $count = AcademicExcellence::where('certificate_status', '1')->where('school_year', getAcademicYear())->where('status', '1')->where('award_applied', '4')->where('course_id', $courses->id)->count();
+        $total = AcademicExcellence::where('status', '1')->where('school_year', getAcademicYear())->where('award_applied', '4')->where('course_id', $courses->id)->count();
 
         $awardees = AcademicExcellence::where('award_applied', '4')
             ->where('course_id', $courses->id)
             ->where('status', '1')
+            ->where('school_year', getAcademicYear())
             ->orderBy('gwa', 'asc')
             ->get();
         return view('admin.send-awardees-certificates.academic-excellence-award.view', compact('courses', 'awardees', 'count', 'total'));

@@ -17,7 +17,8 @@ class NACertificateController extends Controller
     {
         $nonacad = NonAcadAward::withCount(['nonacad_applicants as applicant_count' => function ($query) {
             $query->where('certificate_status', 0)
-                ->where('status', 1);
+                ->where('status', 1)
+                ->where('school_year', getAcademicYear());
         }])
             ->get();
         return view('admin.send-awardees-certificates.non-academic-award.index', compact('nonacad'));
@@ -26,8 +27,8 @@ class NACertificateController extends Controller
     public function show($id)
     {
         $nonacad = NonAcadAward::find($id);
-        $form = NonAcademicApplicant::where('nonacad_id', $id)->where('status', '1')->get();
-        $count = NonAcademicApplicant::where('certificate_status', '1')->where('nonacad_id', $id)->count();
+        $form = NonAcademicApplicant::where('nonacad_id', $id)->where('status', '1')->where('school_year', getAcademicYear())->get();
+        $count = NonAcademicApplicant::where('certificate_status', '1')->where('nonacad_id', $id)->where('school_year', getAcademicYear())->count();
         return view('admin.send-awardees-certificates.non-academic-award.view', compact('count', 'nonacad', 'form'));
     }
 

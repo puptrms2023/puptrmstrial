@@ -29,7 +29,8 @@ class AEApplicantsController extends Controller
     public function index()
     {
         $courses = Courses::withCount(['ae_applicants as applicant_count' => function ($query) {
-            $query->where('status', 0);
+            $query->where('status', 0)
+                ->where('school_year', getAcademicYear());
         }])
             ->get();
         return view('admin.academic-excellence-award.index', compact('courses'));
@@ -37,7 +38,7 @@ class AEApplicantsController extends Controller
     public function achieversView(Request $request, $course_code)
     {
         $courses = Courses::where('course_code', $course_code)->first();
-        $model = AcademicExcellence::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->select('ae_applicants.*');
+        $model = AcademicExcellence::with('users')->with('courses')->where('ae_applicants.course_id', $courses->id)->where('school_year', getAcademicYear())->select('ae_applicants.*');
         if ($request->ajax()) {
             if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                 $model->where('status', $request->get('status'))->get();
@@ -193,6 +194,7 @@ class AEApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
         $students = AcademicExcellence::where('course_id', $courses->id)
             ->where('status', '1')
+            ->where('school_year', getAcademicYear())
             ->orderBy('gwa', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');
@@ -206,6 +208,7 @@ class AEApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
         $students = AcademicExcellence::where('course_id', $courses->id)
             ->where('status', '2')
+            ->where('school_year', getAcademicYear())
             ->get();
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('admin.academic-excellence-award.student-rejected', array('students' => $students), array('courses' => $courses));
@@ -217,6 +220,7 @@ class AEApplicantsController extends Controller
     {
         $courses = Courses::where('course_code', $course_code)->first();
         $students = AcademicExcellence::where('course_id', $courses->id)
+            ->where('school_year', getAcademicYear())
             ->orderBy('year_level', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');
@@ -227,7 +231,7 @@ class AEApplicantsController extends Controller
 
     public function overallList(Request $request)
     {
-        $model = AcademicExcellence::with('users', 'courses')->select('ae_applicants.*');
+        $model = AcademicExcellence::with('users', 'courses')->where('school_year', getAcademicYear())->select('ae_applicants.*');
         if ($request->ajax()) {
             if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                 $model->where('status', $request->get('status'))->get();

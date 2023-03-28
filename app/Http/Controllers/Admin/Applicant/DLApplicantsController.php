@@ -29,7 +29,8 @@ class DLApplicantsController extends Controller
     {
         $courses = Courses::withCount(['applicants as applicant_count' => function ($query) {
             $query->where('award_applied', 2)
-                ->where('status', 0);
+                ->where('status', 0)
+                ->where('school_year', getAcademicYear());
         }])
             ->get();
         return view('admin.deans-list-award.index', compact('courses'));
@@ -41,6 +42,7 @@ class DLApplicantsController extends Controller
         $model = StudentApplicant::with('users', 'courses')
             ->where('student_applicants.course_id', $courses->id)
             ->where('award_applied', '2')
+            ->where('school_year', getAcademicYear())
             ->select('student_applicants.*');
 
         if ($request->ajax()) {
@@ -155,6 +157,7 @@ class DLApplicantsController extends Controller
             $students = StudentApplicant::where('award_applied', '2')
                 ->where('course_id', $courses->id)
                 ->where('status', '1')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         } else {
@@ -164,6 +167,7 @@ class DLApplicantsController extends Controller
                 ->where('course_id', $courses->id)
                 ->where('year_level', $year)
                 ->where('status', '1')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         }
@@ -179,6 +183,7 @@ class DLApplicantsController extends Controller
             $students = StudentApplicant::where('award_applied', '2')
                 ->where('course_id', $courses->id)
                 ->where('status', '2')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         } else {
@@ -188,6 +193,7 @@ class DLApplicantsController extends Controller
                 ->where('course_id', $courses->id)
                 ->where('year_level', $year)
                 ->where('status', '2')
+                ->where('school_year', getAcademicYear())
                 ->orderBy('gwa', 'asc')
                 ->get();
         }
@@ -202,6 +208,7 @@ class DLApplicantsController extends Controller
         $courses = Courses::where('course_code', $course_code)->first();
         $students = StudentApplicant::where('award_applied', '2')
             ->where('course_id', $courses->id)
+            ->where('school_year', getAcademicYear())
             ->orderBy('year_level', 'asc')
             ->get();
         $pdf = app('dompdf.wrapper');
@@ -214,7 +221,7 @@ class DLApplicantsController extends Controller
     {
         if ($request->ajax()) {
             if ($request->ajax()) {
-                $model = StudentApplicant::with('users', 'courses')->where('award_applied', '2')->select('student_applicants.*');
+                $model = StudentApplicant::with('users', 'courses')->where('award_applied', '2')->where('school_year', getAcademicYear())->select('student_applicants.*');
                 if ($request->get('status') == '0' || $request->get('status') == '1' || $request->get('status') == '2') {
                     $model->where('status', $request->get('status'))->get();
                 }
