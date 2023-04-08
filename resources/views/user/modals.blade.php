@@ -30,7 +30,7 @@
             </div>
             <div class="modal-body">
                 <ul class="text-primary">
-                    <li>Please put the <b>exact units and grades</b> listed in your PUP SIS account.</li>
+                    <li>Please put the <b>exact and grades</b> listed in your PUP SIS account.</li>
                     <li>Otherwise, you will be <b>sanctioned for falsification of records</b>.</li>
                 </ul>
             </div>

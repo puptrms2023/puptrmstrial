@@ -63,13 +63,6 @@
                 id="application_form_aa">
                 @csrf
 
-                <div class="card mb-4 border-left-warning">
-                    <div class="card-header pt-3 pb-1">
-                        <p class="text-primary">Note: P.E. and CWTS subjects cannot be included otherwise your
-                            application form will be automatically rejected.</p>
-                    </div>
-                </div>
-
                 <div class="card shadow mt-0 mb-4">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">

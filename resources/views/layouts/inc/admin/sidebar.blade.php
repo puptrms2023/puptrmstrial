@@ -270,6 +270,10 @@
                         <a class="collapse-item {{ Request::is('admin/maintenance/subjects') || Request::is('admin/maintenance/subjects/*') ? 'active' : '' }}"
                             href="{{ url('admin/maintenance/subjects') }}">Subjects</a>
                     @endcan
+                    @can('subject list')
+                        <a class="collapse-item {{ Request::is('admin/maintenance/course-list') || Request::is('admin/maintenance/course-list/*') ? 'active' : '' }}"
+                            href="{{ url('admin/maintenance/course-list') }}">Course List</a>
+                    @endcan
                     @can('about view')
                         <a class="collapse-item {{ Request::is('admin/maintenance/about') || Request::is('admin/maintenance/about/*') ? 'active' : '' }}"
                             href="{{ url('admin/maintenance/about') }}">About</a>

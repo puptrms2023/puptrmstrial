@@ -304,6 +304,13 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(functio
         Route::post('/maintenance/delete-subjects', 'destroy');
         Route::delete('/maintenance/subjects/bulk-delete', 'deleteAll');
     });
+    //Course list m
+    Route::controller(App\Http\Controllers\Admin\ProgramSubject\ProgramSubjectsController::class)->group(function () {
+        Route::get('/maintenance/course-list', 'index');
+        Route::get('/maintenance/course-list/{course_code}', 'view');
+        Route::post('/maintenance/course-list/{program_id}', 'createUpdate');
+        Route::post('/maintenance/delete-subs-field', 'destroy');
+    });
     //about M
     Route::controller(App\Http\Controllers\Admin\Maintenance\AboutController::class)->group(function () {
         Route::get('/maintenance/about', 'index');

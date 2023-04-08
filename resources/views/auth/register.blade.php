@@ -96,10 +96,10 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label class="small mb-1">Course</label>
+                                                <label class="small mb-1">Program</label>
                                                 <span class="text-danger">*</span>
                                                 <select class="custom-select" name="course_id" id="course_id" required>
-                                                    <option value="">--Select Course--</option>
+                                                    <option value="">--Select Program--</option>
                                                     @foreach ($course as $id => $item)
                                                         <option value="{{ $id }}"
                                                             {{ old('course_id') == $id ? 'selected' : '' }}>
@@ -139,10 +139,10 @@
 
                                         </div>
                                         <div class="small mb-3">By signing up, you agree to the <a
-                                                href="{{ route('terms_of_use') }}" style="color:#0d6efd">Terms of
+                                                href="https://www.pup.edu.ph/terms/" style="color:#0d6efd">Terms of
                                                 Use</a> and
-                                            <a href="{{ route('privacy_policy') }}" style="color:#0d6efd">Privacy
-                                                Policy</a>.
+                                            <a href="https://www.pup.edu.ph/privacy/" style="color:#0d6efd">Privacy
+                                                Statement</a>.
                                         </div>
                                         <button class="btn btn-primary" type="submit">Sign Up</button>
                                     </form>

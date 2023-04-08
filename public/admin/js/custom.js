@@ -238,6 +238,25 @@ function initializeSelect2(selector) {
         closeOnSelect: !$(selector).attr('multiple'),
     });
 }
+//validate units
+function validateInput(event) {
+    const charCode = (typeof event.which === "number") ? event.which : event.keyCode;
+    if (charCode !== 8 && charCode !== 0 && charCode !== 13 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
+  }
+  //display subjects select2
+  function subOptions(selectedValue) {
+    var options = '<option value="" disabled selected>Select an option</option>';
+    for (var i = 0; i < sub.length; i++) {
+      var selected = "";
+      if (selectedValue && selectedValue == sub[i].id) {
+        selected = "selected";
+      }
+      options += '<option value="' + sub[i].id + '" ' + selected + '>' + sub[i].s_code + ' - ' + sub[i].s_name + '</option>';
+    }
+    return options;
+  }
 //Award Application Validation Dropdown
 var $selectYear = $('#selectYear'),
 		$selectAward = $('#selectAward'),
