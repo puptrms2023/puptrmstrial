@@ -10,4 +10,4 @@
 - Run <code>php artisan db:seed --class=DataRetentionSeeder</code>
 - Run <code>php artisan list  </code> and look for delete command
 - That's it: launch the main URL and login with default credentials user: superadmin - 11111111 | 
-admin: admin - 11111111
+admin: admin - 11111111  
